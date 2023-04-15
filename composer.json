@@ -1,0 +1,43 @@
+{
+    "name": "dfsmania/laralive-admin",
+    "description": "An integration of AdminLTE v4 with Laravel and Livewire",
+    "keywords": [
+        "laravel",
+        "livewire",
+        "adminlte",
+        "admin panel"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Diego Smania",
+            "email": "diego.smania@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DFSmania\\LaraliveAdmin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DFSmania\\LaraliveAdmin\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DFSmania\\LaraliveAdmin\\LaraliveAdminServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "laravel/framework": ">=7.0",
+        "livewire/livewire": ">=2.10"
+    },
+    "require-dev": {
+        "orchestra/testbench": ">=5.0",
+        "phpunit/phpunit": ">=9.5"
+    }
+}
