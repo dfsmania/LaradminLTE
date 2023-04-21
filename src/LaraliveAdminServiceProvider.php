@@ -30,7 +30,7 @@ class LaraliveAdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Load the package resources.
+        // Load the views of the package.
 
         $this->loadViews();
 
@@ -61,7 +61,11 @@ class LaraliveAdminServiceProvider extends ServiceProvider
      */
     private function setAssetsAsPublishable()
     {
-        //
+        $path = $this->packagePath('resources/assets');
+
+        $this->publishes([
+            $path => public_path('vendor/laralive-admin'),
+        ], 'assets');
     }
 
     /**
