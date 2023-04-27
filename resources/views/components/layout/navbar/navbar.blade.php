@@ -8,21 +8,12 @@
 
         <ul class="navbar-nav">
 
-            {{-- TODO: Create a general navbar-link component and use the component --}}
-            {{-- TODO: Included items should be readed from a config file --}}
-            <li class="nav-item">
-                <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
-                    <i class="fa-solid fa-bars"></i>
-                </a>
-            </li>
+            {{-- Hamburger button --}}
+            <x-ladmin-navbar-link icon="fa-solid fa-bars" role="button" data-lte-toggle="sidebar"/>
 
-            <li class="nav-item d-none d-md-block">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-
-            <li class="nav-item d-none d-md-block">
-                <a href="#" class="nav-link">Contact</a>
-            </li>
+            {{-- TODO: Custom links should be readed from a config file --}}
+            <x-ladmin-navbar-link label="Home" theme="primary"/>
+            <x-ladmin-navbar-link label="Contact" id="contact-link"/>
 
         </ul>
 
@@ -30,12 +21,14 @@
 
         <ul class="navbar-nav ms-auto">
 
-            {{-- TODO: Navbar search (navbar-search) should be also a component --}}
-            <li class="nav-item">
-                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                    <i class="fa-solid fa-search"></i>
-                </a>
-            </li>
+            {{-- TODO: Custom links should be readed from a config file --}}
+            <x-ladmin-navbar-link icon="fa-regular fa-lg fa-bell" badge="5"
+                badge-classes="border border-dark border-1 rounded-circle"/>
+            <x-ladmin-navbar-link icon="fa-regular fa-lg fa-envelope" badge="7"
+                badge-theme="danger" badge-classes="border border-dark border-1 rounded-circle"/>
+
+            {{-- Navbar search button --}}
+            <x-ladmin-navbar-link icon="fa-solid fa-lg fa-search" theme="danger" role="button" data-widget="navbar-search"/>
 
         </ul>
 
