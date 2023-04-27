@@ -22,6 +22,7 @@ class LaraliveAdminServiceProvider extends ServiceProvider
     protected $layoutComponents = [
         'panel' => Layout\AdminPanel::class,
         'navbar' => Layout\Navbar\Navbar::class,
+        'navbar-link' => Layout\Navbar\Link::class,
     ];
 
     /**
