@@ -45,23 +45,8 @@
             {{-- Top navbar --}}
             <x-ladmin-navbar/>
 
-            {{-- TODO: Create a component for the Sidebar --}}
             {{-- Sidebar --}}
-            <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-
-                {{-- Sidebar brand --}}
-                <div class="sidebar-brand">
-                    SIDEBAR BRAND
-                </div>
-
-                {{-- Sidebar menu wrapper --}}
-                <div class="sidebar-wrapper">
-                    <nav class="mt-2">
-                        SIDEBAR
-                    </nav>
-                </div>
-
-            </aside>
+            <x-ladmin-sidebar/>
 
             {{-- Main content --}}
             <main class="app-main">
