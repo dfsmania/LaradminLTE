@@ -59,18 +59,6 @@ class Link extends Component
     public $url;
 
     /**
-     * TODO: This may be moved to a general helper/utility class.
-     * Apply an HTML entity decoder to the specified string.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    protected function applyHtmlEntityDecoder($value)
-    {
-        return isset($value) ? html_entity_decode($value) : $value;
-    }
-
-    /**
      * Create a new component instance.
      *
      * @return void
@@ -80,10 +68,10 @@ class Link extends Component
         $badgeTheme = 'secondary', $badgeClasses = null
     ) {
         $this->icon = $icon;
-        $this->label = $this->applyHtmlEntityDecoder($label);
+        $this->label = html_entity_decode($label);
         $this->url = $url;
         $this->theme = $theme;
-        $this->badge = $this->applyHtmlEntityDecoder($badge);
+        $this->badge = html_entity_decode($badge);
         $this->badgeTheme = $badgeTheme;
         $this->badgeClasses = $badgeClasses;
     }
