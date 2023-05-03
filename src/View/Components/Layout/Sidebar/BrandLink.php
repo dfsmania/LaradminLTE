@@ -14,6 +14,14 @@ class BrandLink extends Component
     public $label;
 
     /**
+     * A set of extra classes for the label. You may use this to customize the
+     * label style.
+     *
+     * @var string
+     */
+    public $labelClasses;
+
+    /**
      * The image path (logo) of the brand link.
      *
      * @var string
@@ -49,14 +57,31 @@ class BrandLink extends Component
      * @return void
      */
     public function __construct(
-        $label = null, $logo = null, $url = '#',
-        $logoAlt = '',  $logoClasses = null
+        $label = null, $logo = null, $url = '#', $logoAlt = '',
+        $labelClasses = null, $logoClasses = null
     ) {
         $this->label = html_entity_decode($label);
         $this->logo = $logo;
         $this->url = $url;
         $this->logoAlt = $logoAlt;
+        $this->labelClasses = $labelClasses;
         $this->logoClasses = $logoClasses;
+    }
+
+    /**
+     * Make the set of classes for the label.
+     *
+     * @return string
+     */
+    public function makeLabelClasses()
+    {
+        $classes = ['brand-text'];
+
+        if (! empty($this->labelClasses)) {
+            $classes[] = $this->labelClasses;
+        }
+
+        return implode(' ', $classes);
     }
 
     /**

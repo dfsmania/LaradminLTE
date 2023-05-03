@@ -8,7 +8,8 @@
     <x-ladmin-sidebar-brand label="AdminLTE"
         logo="{{ asset('vendor/laralive-admin/img/AdminLTELogo.png') }}"
         logo-alt="AdminLTE"
-        logo-classes="opacity-75 shadow rounded-circle"/>
+        label-classes="text-info fw-bold opacity-75"
+        logo-classes="opacity-75 shadow"/>
 
     {{-- Sidebar menu wrapper --}}
     {{-- TODO: Create components for sidebar items (example, link and treeview) --}}

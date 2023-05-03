@@ -10,9 +10,8 @@
         @endif
 
         {{-- Label (optional) --}}
-        {{-- TODO: Check for more label customizations (classes) --}}
         @if (! empty($label))
-            <span class="brand-text">{{ $label }}</span>
+            <span class="{{ $makeLabelClasses() }}">{{ $label }}</span>
         @endif
 
     </a>
