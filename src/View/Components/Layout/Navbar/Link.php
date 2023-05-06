@@ -77,7 +77,7 @@ class Link extends Component
     }
 
     /**
-     * Make the set of classes for the icon.
+     * Make the set of classes for the link.
      *
      * @return string
      */

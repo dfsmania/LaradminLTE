@@ -10,13 +10,6 @@ use Illuminate\View\Component;
 class Navbar extends Component
 {
     /**
-     * Some description...
-     *
-     * @var string
-     */
-    public $someProperty;
-
-    /**
      * Create a new component instance.
      *
      * @return void
@@ -34,7 +27,7 @@ class Navbar extends Component
     public function makeNavbarClasses()
     {
         // TODO: This logic should be improved based on the package
-        // configuration. For example, the navbar mat be themed with classes:
+        // configuration. For example, the navbar may be themed with classes:
         // navbar-light/dark and bg-* classes.
 
         $classes = ['app-header', 'navbar', 'navbar-expand', 'bg-body'];

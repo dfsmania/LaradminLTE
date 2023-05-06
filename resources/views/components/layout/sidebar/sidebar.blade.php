@@ -1,5 +1,4 @@
 {{-- Sidebar --}}
-{{-- TODO: Make the basic sidebar markup --}}
 {{-- TODO: What properties may be add to the component? --}}
 
 <aside class="{{ $makeSidebarClasses() }}" data-bs-theme="dark">

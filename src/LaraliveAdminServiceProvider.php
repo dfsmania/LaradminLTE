@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 class LaraliveAdminServiceProvider extends ServiceProvider
 {
     /**
-     * The prefix to use for register or load the package resources.
+     * The prefix to use when registering or loading the package resources.
      *
      * @var string
      */

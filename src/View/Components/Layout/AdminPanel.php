@@ -5,7 +5,7 @@ namespace DFSmania\LaraliveAdmin\View\Components\Layout;
 use Illuminate\View\Component;
 
 /**
- * TODO: Should we use a Livewire component instead?
+ * TODO: Should we use a Livewire component with turbo links instead?
  */
 class AdminPanel extends Component
 {

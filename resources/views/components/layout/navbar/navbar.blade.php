@@ -1,5 +1,4 @@
 {{-- Top navbar --}}
-{{-- TODO: Make the basic navbar markup --}}
 
 <nav class="{{ $makeNavbarClasses() }}">
     <div class="container-fluid">

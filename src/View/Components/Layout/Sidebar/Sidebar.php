@@ -10,13 +10,6 @@ use Illuminate\View\Component;
 class Sidebar extends Component
 {
     /**
-     * Some description...
-     *
-     * @var string
-     */
-    public $someProperty;
-
-    /**
      * Create a new component instance.
      *
      * @return void
