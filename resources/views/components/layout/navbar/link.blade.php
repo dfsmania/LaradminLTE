@@ -1,4 +1,4 @@
-{{-- Menu link --}}
+{{-- Navbar link --}}
 
 <li class="nav-item">
 

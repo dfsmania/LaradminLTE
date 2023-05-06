@@ -1,4 +1,4 @@
-{{-- Menu link --}}
+{{-- Sidebar link --}}
 
 <li class="nav-item">
 
@@ -9,10 +9,8 @@
             <i class="nav-icon {{ $icon }}"></i>
         @endif
 
-        {{-- Label (optional) --}}
-        @if(! empty($label))
-            <p>{{ $label }}</p>
-        @endif
+        {{-- Label --}}
+        <p>{{ $label }}</p>
 
         {{-- Badge (optional) --}}
         @if(! empty($badge))

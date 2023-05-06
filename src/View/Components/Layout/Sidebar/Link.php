@@ -64,11 +64,11 @@ class Link extends Component
      * @return void
      */
     public function __construct(
-        $icon = null, $label = null, $url = '#', $theme = null, $badge = null,
+        $label, $icon = null, $url = '#', $theme = null, $badge = null,
         $badgeTheme = 'secondary', $badgeClasses = null
     ) {
-        $this->icon = $icon;
         $this->label = html_entity_decode($label);
+        $this->icon = $icon;
         $this->url = $url;
         $this->theme = $theme;
         $this->badge = html_entity_decode($badge);

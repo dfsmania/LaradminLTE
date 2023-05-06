@@ -1,4 +1,4 @@
-{{-- Sidebar Brand Link --}}
+{{-- Sidebar brand link --}}
 
 <div class="sidebar-brand">
 
