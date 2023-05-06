@@ -21,6 +21,8 @@
                 data-accordion="false"
                 role="menu">
 
+                <x-ladmin-sidebar-header label="Header 1" class="text-uppercase"/>
+
                 <x-ladmin-sidebar-link label="Link 1" icon="fa-regular fa-circle"/>
 
                 <x-ladmin-sidebar-link label="Link 2" icon="fa-regular fa-square" theme="warning"/>
@@ -28,8 +30,11 @@
                 <x-ladmin-sidebar-link label="Link 3" icon="fa-solid fa-tag"
                     badge="5" badge-theme="info"/>
 
-                <x-ladmin-sidebar-link label="Link 4" icon="fa-solid fa-user" theme="info"
+                <x-ladmin-sidebar-link label="Link 4" icon="fa-solid fa-star" theme="info"
                     badge="7" badge-theme="danger" badge-classes="rounded-circle"/>
+
+                <x-ladmin-sidebar-header label="Header 2" icon="fa-regular fa-bookmark"
+                    theme="danger" class="fw-bold text-uppercase"/>
 
             </ul>
 
