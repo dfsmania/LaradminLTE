@@ -47,7 +47,7 @@ class Header extends Component
      */
     public function makeHeaderClasses()
     {
-        $classes = ['nav-header'];
+        $classes = ['nav-header', 'user-select-none'];
 
         if (! empty($this->theme)) {
             $classes[] = "text-{$this->theme}";

@@ -83,7 +83,7 @@ class Link extends Component
      */
     public function makeLinkClasses()
     {
-        $classes = ['nav-link'];
+        $classes = ['nav-link', 'user-select-none'];
 
         if (! empty($this->theme)) {
             $classes[] = "text-{$this->theme}";
