@@ -27,6 +27,7 @@ class LaraliveAdminServiceProvider extends ServiceProvider
         'sidebar-brand' => Layout\Sidebar\BrandLink::class,
         'sidebar-header' => Layout\Sidebar\Header::class,
         'sidebar-link' => Layout\Sidebar\Link::class,
+        'sidebar-treeview' => Layout\Sidebar\TreeviewMenu::class,
     ];
 
     /**
