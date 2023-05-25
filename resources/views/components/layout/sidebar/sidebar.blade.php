@@ -53,7 +53,7 @@
                 </x-ladmin-sidebar-treeview>
 
                 <x-ladmin-sidebar-treeview label="Menu 3" icon="fa-solid fa-cubes"
-                    theme="danger" badge="2">
+                    theme="danger" badge="2" toggler-icon="fa-solid fa-caret-right">
                     <x-ladmin-sidebar-link label="Link E" icon="fa-regular fa-circle"/>
                     <x-ladmin-sidebar-link label="Link F" icon="fa-regular fa-circle"/>
                 </x-ladmin-sidebar-treeview>

@@ -11,10 +11,10 @@
         @endif
 
         {{-- Label --}}
-        <p>
-            {{ $label }}
-            <i class="nav-arrow fa-solid fa-angle-right"></i>
-        </p>
+        <p>{{ $label }}</p>
+
+        {{-- Toggler icon --}}
+        <i class="nav-arrow {{ $togglerIcon }}"></i>
 
         {{-- Badge (optional) --}}
         @if(! empty($badge))

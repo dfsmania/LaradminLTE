@@ -52,13 +52,21 @@ class TreeviewMenu extends Component
     public $theme;
 
     /**
+     * The Font Awesome icon of the treeview menu toggler.
+     *
+     * @var string
+     */
+    public $togglerIcon;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct(
         $label, $icon = null, $theme = null, $badge = null,
-        $badgeTheme = 'secondary', $badgeClasses = null
+        $badgeTheme = 'secondary', $badgeClasses = null,
+        $togglerIcon = 'fa-solid fa-angle-right'
     ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
@@ -66,6 +74,7 @@ class TreeviewMenu extends Component
         $this->badge = html_entity_decode($badge);
         $this->badgeTheme = $badgeTheme;
         $this->badgeClasses = $badgeClasses;
+        $this->togglerIcon = $togglerIcon;
     }
 
     /**
