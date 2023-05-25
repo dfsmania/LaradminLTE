@@ -37,7 +37,9 @@ class LaraliveAdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Register the configuration of the package.
+
+        $this->registerConfig();
     }
 
     /**
@@ -63,6 +65,19 @@ class LaraliveAdminServiceProvider extends ServiceProvider
         }
 
         $this->setAssetsAsPublishable();
+    }
+
+    /**
+     * Register the package configuration.
+     *
+     * @return void
+     */
+    private function registerConfig()
+    {
+        $this->mergeConfigFrom(
+            $this->packagePath('config/ladmin.php'),
+            $this->prefix
+        );
     }
 
     /**

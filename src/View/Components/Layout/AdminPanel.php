@@ -42,6 +42,10 @@ class AdminPanel extends Component
             'bg-body-tertirary',
         ];
 
+        if (! empty(config('ladmin.layout.fixed_sidebar', false))) {
+            $classes[] = 'layout-fixed';
+        }
+
         return implode(' ', $classes);
     }
 
