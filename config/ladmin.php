@@ -16,5 +16,6 @@ return [
 
     'layout' => [
         'fixed_sidebar' => true,
+        'rtl' => false,
     ],
 ];

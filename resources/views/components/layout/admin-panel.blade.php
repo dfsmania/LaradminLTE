@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ $makeHtmlLang() }}" dir="{{ $makeHtmlDir() }}">
 
     <head>
 
@@ -29,7 +29,7 @@
         {{-- TODO: Here we may include a component with the configured CSS plugins (pre AdminLte) --}}
 
         {{-- AdminLte theme style --}}
-        <link rel="stylesheet" href="{{ asset('vendor/laralive-admin/css/adminlte.min.css') }}">
+        <link rel="stylesheet" href="{{ $makeAdminlteHref() }}">
 
         {{-- TODO: Here we may include a component with the configured CSS plugins (post AdminLte) --}}
 

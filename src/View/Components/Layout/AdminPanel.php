@@ -28,6 +28,39 @@ class AdminPanel extends Component
     }
 
     /**
+     * Make the 'dir' attribute for the HTML tag.
+     *
+     * @return string
+     */
+    public function makeHtmlDir()
+    {
+        return empty(config('ladmin.layout.rtl', false)) ? 'ltr' : 'rtl';
+    }
+
+    /**
+     * Make the 'lang' attribute for the HTML tag.
+     *
+     * @return string
+     */
+    public function makeHtmlLang()
+    {
+        return str_replace('_', '-', app()->getLocale());
+    }
+
+    /**
+     * Make the 'href' attribute for the AdminLTE stylesheet link. This is used
+     * to switch between LTR (left-to-right) and RTL (right-to-left) layouts.
+     *
+     * @return string
+     */
+    public function makeAdminlteHref()
+    {
+        $rtlSuffix = empty(config('ladmin.layout.rtl', false)) ? '' : '.rtl';
+
+        return asset("vendor/laralive-admin/css/adminlte{$rtlSuffix}.min.css");
+    }
+
+    /**
      * Make the set of classes for the body tag.
      *
      * @return string
