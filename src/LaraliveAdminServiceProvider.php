@@ -65,6 +65,7 @@ class LaraliveAdminServiceProvider extends ServiceProvider
         }
 
         $this->setAssetsAsPublishable();
+        $this->setConfigAsPublishable();
     }
 
     /**
@@ -121,6 +122,20 @@ class LaraliveAdminServiceProvider extends ServiceProvider
         $this->publishes([
             $path => public_path('vendor/laralive-admin'),
         ], 'assets');
+    }
+
+    /**
+     * Declare the package config as a publishable resource.
+     *
+     * @return void
+     */
+    private function setConfigAsPublishable()
+    {
+        $path = $this->packagePath('config/ladmin.php');
+
+        $this->publishes([
+            $path => config_path('ladmin.php'),
+        ], 'config');
     }
 
     /**
