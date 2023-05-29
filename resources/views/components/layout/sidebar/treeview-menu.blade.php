@@ -3,7 +3,7 @@
 <li class="nav-item">
 
     {{-- Treeview link --}}
-    <a href="javascript:;" {{ $attributes->merge(['class' => $makeLinkClasses()]) }}>
+    <a href="#" {{ $attributes->merge(['class' => $makeLinkClasses()]) }}>
 
         {{-- Icon (optional) --}}
         @if(! empty($icon))
