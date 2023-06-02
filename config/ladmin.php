@@ -7,7 +7,7 @@ return [
     | Layout
     |--------------------------------------------------------------------------
     |
-    | Here you can change the layout options of the admin panel.
+    | Here you can change the layout options of your Laralive-Admin panel.
     |
     | For details you can look the online documentation here:
     | TBD
