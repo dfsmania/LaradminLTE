@@ -2,14 +2,15 @@
 
 @foreach($files as $file)
 
-    {{-- TODO: Render the file --}}
-    {{-- TODO: Create components to handle plugin links and scripts --}}
-    {{-- TODO: Additional properties may be bypassed using $attributes->merge() --}}
+    {{--
+    TODO: Rework file type, client may just specify pre or post adminlte and
+    we can guess the file extension. For this we can use pathinfo() PHP method
+    --}}
 
     @if($type === 'pre-adminlte-css' || $type === 'post-adminlte-css')
-        <link ladmin="test" rel="stylesheet" href="{{ $file['location'] }}">
+        <link {!! $computePluginFileAttributes($file, 'css') !!}/>
     @elseif($type === 'pre-adminlte-js' || $type === 'post-adminlte-js')
-        <script ladmin="test" src="{{ $file['location'] }}"></script>
+        <script {!! $computePluginFileAttributes($file, 'js') !!}></script>
     @endif
 
 @endforeach

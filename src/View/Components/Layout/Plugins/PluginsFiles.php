@@ -2,7 +2,9 @@
 
 namespace DFSmania\LaraliveAdmin\View\Components\Layout\Plugins;
 
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
+use Illuminate\View\ComponentAttributeBag;
 
 class PluginsFiles extends Component
 {
@@ -179,6 +181,42 @@ class PluginsFiles extends Component
         }
 
         return $file;
+    }
+
+    /**
+     * Computes a string (with HTML like format) that represents the set of
+     * attributes for the specified plugin file.
+     *
+     * @param  array  $file  An array representing the plugin file
+     * @param  string  $type  The type of the plugin file (css or js)
+     * @return string  A string representing the list of attributes
+     */
+    public function computePluginFileAttributes($file, $type)
+    {
+        $attrs = new ComponentAttributeBag();
+
+        // Grab the set of attributes that are explicitly defined (these have
+        // the 'attr_' token prefixed on its name), and save they into the bag.
+
+        foreach($file as $attr => $val) {
+            if (Str::startsWith($attr, 'attr_')) {
+                $attrs[substr($attr, 5)] = $val;
+            }
+        }
+
+        // Now, depending on the type of the plugin file, add some required
+        // attributes, including the one that references the plugin location.
+
+        if ($type === 'css') {
+            $attrs['href'] = $attrs['href'] ?? $file['location'];
+            $attrs['rel'] = $attrs['rel'] ?? 'stylesheet';
+        } else if ($type === 'js') {
+            $attrs['src'] = $attrs['src'] ?? $file['location'];
+        }
+
+        // Return a string representing the list of attributes.
+
+        return $attrs->toHtml();
     }
 
     /**
