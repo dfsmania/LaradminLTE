@@ -5,7 +5,7 @@ namespace DFSmania\LaraliveAdmin\Tools\Plugins;
 class PluginsManager
 {
     /**
-     * The array of plugin resources (mostly CSS and JS files) that will be
+     * The array of plugins resources (mostly CSS and JS files) that will be
      * included into the template. Each resource is classified into one of
      * the next categories:
      *
@@ -94,7 +94,7 @@ class PluginsManager
     }
 
     /**
-     * Read and classify each resource of the provided plugins into one of the
+     * Read and classify the resources of the provided plugins into one of the
      * available categories.
      *
      * @param  array  $plugins  An array with the plugins resources

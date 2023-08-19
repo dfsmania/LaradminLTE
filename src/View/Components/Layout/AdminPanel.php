@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaraliveAdmin\View\Components\Layout;
 
+use DFSmania\LaraliveAdmin\Tools\Plugins\PluginsManager;
 use Illuminate\View\Component;
 
 /**
@@ -18,6 +19,14 @@ class AdminPanel extends Component
     public $title;
 
     /**
+     * An instance of the plugins manager, this will be used to read and
+     * classify the configuration of plugins resources.
+     *
+     * @var PluginsManager
+     */
+    public $plugins;
+
+    /**
      * Create a new component instance.
      *
      * @return void
@@ -25,6 +34,12 @@ class AdminPanel extends Component
     public function __construct($title = null)
     {
         $this->title = $title ?? config('app.name');
+
+        // Init plugins manager with the provided plugins configuration.
+
+        $this->plugins = new PluginsManager(
+            is_array(config('ladmin_plugins')) ? config('ladmin_plugins') : []
+        );
     }
 
     /**
