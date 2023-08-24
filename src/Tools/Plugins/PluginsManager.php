@@ -80,7 +80,7 @@ class PluginsManager
      */
     public function getPreAdminlteScripts()
     {
-        return $resources['pre-adminlte-script'] ?? [];
+        return $this->resources['pre-adminlte-script'] ?? [];
     }
 
     /**
@@ -90,7 +90,7 @@ class PluginsManager
      */
     public function getPostAdminlteScripts()
     {
-        return $resources['post-adminlte-script'] ?? [];
+        return $this->resources['post-adminlte-script'] ?? [];
     }
 
     /**

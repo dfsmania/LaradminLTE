@@ -2,6 +2,6 @@
 
 @foreach($resources as $res)
 
-    <link {!! $computeResourceAttributes($res) !!}/>
+    <link {!! $computeResourceAttributes($res) !!}>
 
 @endforeach
