@@ -26,12 +26,14 @@
         {{-- Fontawesome-free --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
 
-        {{-- TODO: Here we may include a component with the configured CSS plugins (pre AdminLte) --}}
+        {{-- Pre AdminLTE plugins links --}}
+        <x-ladmin-plugins-links :resources="$plugins->getPreAdminlteLinks()"/>
 
         {{-- AdminLte theme style --}}
         <link rel="stylesheet" href="{{ $makeAdminlteHref() }}">
 
-        {{-- TODO: Here we may include a component with the configured CSS plugins (post AdminLte) --}}
+        {{-- Post AdminLTE plugins links --}}
+        <x-ladmin-plugins-links :resources="$plugins->getPostAdminlteLinks()"/>
 
         {{-- TODO: Add favicons markup --}}
 
@@ -95,12 +97,14 @@
         {{-- Bootstrap 5 --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 
-        {{-- TODO: Here we may include a component with the configured plugins scripts (pre AdminLte) --}}
+        {{-- Pre AdminLTE plugins scripts --}}
+        <x-ladmin-plugins-scripts :resources="$plugins->getPreAdminlteScripts()"/>
 
         {{-- AdminLle App --}}
         <script src="{{ asset('vendor/laralive-admin/js/adminlte.min.js') }}"></script>
 
-        {{-- TODO: Here we may include a component with the configured plugins scripts (post AdminLte) --}}
+        {{-- Post AdminLTE plugins scripts --}}
+        <x-ladmin-plugins-scripts :resources="$plugins->getPostAdminlteScripts()"/>
 
     </body>
 </html>
