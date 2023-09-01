@@ -150,14 +150,14 @@ class PluginsManager
      */
     protected function classifyResource($resource)
     {
-        // Adapt the resource location attribute.
+        // Pre-process the source attribute of the resource.
 
         if (! empty($resource['asset'])) {
-            $resource['location'] = asset($resource['location']);
+            $resource['source'] = asset($resource['source']);
         }
 
         // Add the resource into its category (note we clean some properties
-        // before adding the resource on the corresponding category).
+        // before adding the resource in the corresponding category).
 
         $type = $resource['type'];
         unset($resource['type']);
@@ -227,9 +227,9 @@ class PluginsManager
      * contains the required data). A resource should follow the below schema:
      *
      * (array) [
-     *     'asset'    => optional|bool,
-     *     'location' => required|string,
-     *     'type'     => required|string,
+     *     'asset'  => optional|bool,
+     *     'source' => required|string,
+     *     'type'   => required|string,
      * ]
      *
      * @param  array  $resource  An array representing the plugin resource
@@ -242,7 +242,7 @@ class PluginsManager
         // classification categories.
 
         return is_array($resource)
-            && isset($resource['location'])
+            && isset($resource['source'])
             && isset($resource['type'])
             && in_array($resource['type'], array_keys($this->resources));
     }

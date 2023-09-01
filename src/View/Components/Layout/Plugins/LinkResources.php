@@ -50,9 +50,9 @@ class LinkResources extends Component
         }
 
         // Now, add the required attributes, including the one that references
-        // the resource location.
+        // the resource's source.
 
-        $attrs['href'] = $attrs['href'] ?? $res['location'];
+        $attrs['href'] = $attrs['href'] ?? $res['source'];
         $attrs['rel'] = $attrs['rel'] ?? 'stylesheet';
 
         // Return a string representing the list of attributes.

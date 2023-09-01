@@ -50,9 +50,9 @@ class ScriptResources extends Component
         }
 
         // Now, add the required attributes, including the one that references
-        // the resource location.
+        // the resource's source.
 
-        $attrs['src'] = $attrs['src'] ?? $res['location'];
+        $attrs['src'] = $attrs['src'] ?? $res['source'];
 
         // Return a string representing the list of attributes.
 
