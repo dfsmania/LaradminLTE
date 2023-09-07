@@ -77,9 +77,18 @@ class LaraliveAdminServiceProvider extends ServiceProvider
      */
     private function registerConfig()
     {
+        // Register the main configuration.
+
         $this->mergeConfigFrom(
-            $this->packagePath('config/ladmin.php'),
+            $this->packagePath("config/{$this->prefix}.php"),
             $this->prefix
+        );
+
+        // Register the plugins configuration.
+
+        $this->mergeConfigFrom(
+            $this->packagePath("config/{$this->prefix}_plugins.php"),
+            "{$this->prefix}_plugins"
         );
     }
 
@@ -133,10 +142,12 @@ class LaraliveAdminServiceProvider extends ServiceProvider
      */
     private function setConfigAsPublishable()
     {
-        $path = $this->packagePath('config/ladmin.php');
+        $mainCfg = $this->packagePath("config/{$this->prefix}.php");
+        $pluginsCfg = $this->packagePath("config/{$this->prefix}_plugins.php");
 
         $this->publishes([
-            $path => config_path('ladmin.php'),
+            $mainCfg => config_path("{$this->prefix}.php"),
+            $pluginsCfg => config_path("{$this->prefix}_plugins.php"),
         ], 'config');
     }
 
