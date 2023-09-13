@@ -12,20 +12,6 @@
         {{-- Title --}}
         <title>{{ $title }}</title>
 
-        {{-- TODO: This should be optional for scenarios without internet --}}
-        {{-- Google Font: Source Sans Pro --}}
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
-
-        {{-- TODO: What's the best way to include this --}}
-        {{-- Overlayscrollbars --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/styles/overlayscrollbars.min.css" integrity="sha256-LWLZPJ7X1jJLI5OG5695qDemW1qQ7lNdbTfQ64ylbUY=" crossorigin="anonymous">
-
-        {{-- TODO: What's the best way to include this --}}
-        {{-- Fontawesome-free --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
-
         {{-- Pre AdminLTE plugins links --}}
         <x-ladmin-plugins-links :resources="$plugins->getPreAdminlteLinks()"/>
 
@@ -88,19 +74,10 @@
 
         </div>
 
-        {{-- Overlayscrollbars --}}
-        <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-NRZchBuHZWSXldqrtAOeCZpucH/1n1ToJ3C8mSK95NU=" crossorigin="anonymous"></script>
-
-        {{-- @Popperjs for Bootstrap 5 --}}
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-
-        {{-- Bootstrap 5 --}}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-
         {{-- Pre AdminLTE plugins scripts --}}
         <x-ladmin-plugins-scripts :resources="$plugins->getPreAdminlteScripts()"/>
 
-        {{-- AdminLle App --}}
+        {{-- AdminLte App --}}
         <script src="{{ asset('vendor/laralive-admin/js/adminlte.min.js') }}"></script>
 
         {{-- Post AdminLTE plugins scripts --}}
