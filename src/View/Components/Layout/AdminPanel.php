@@ -20,7 +20,7 @@ class AdminPanel extends Component
 
     /**
      * An instance of the plugins manager, this will be used to read and
-     * classify the configuration of plugins resources.
+     * classify the configuration of the plugins resources.
      *
      * @var PluginsManager
      */
@@ -35,7 +35,7 @@ class AdminPanel extends Component
     {
         $this->title = $title ?? config('app.name');
 
-        // Init plugins manager with the provided plugins configuration.
+        // Init the plugins manager with the provided plugins configuration.
 
         $this->plugins = new PluginsManager(
             is_array(config('ladmin_plugins')) ? config('ladmin_plugins') : []

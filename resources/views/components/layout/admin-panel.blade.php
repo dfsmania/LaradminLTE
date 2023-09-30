@@ -21,7 +21,7 @@
         {{-- Post AdminLTE plugins links --}}
         <x-ladmin-plugins-links :resources="$plugins->getPostAdminlteLinks()"/>
 
-        {{-- TODO: Add favicons markup --}}
+        {{-- TODO: Add favicons markup (maybe with a new component) --}}
 
     </head>
 
@@ -37,6 +37,7 @@
             <x-ladmin-sidebar/>
 
             {{-- Main content --}}
+            {{-- TODO: Create a component for the Main Content? --}}
             <main class="app-main">
 
                 {{-- TODO: Create a component for the Content Header --}}
