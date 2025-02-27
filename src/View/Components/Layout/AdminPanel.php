@@ -1,8 +1,8 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin\View\Components\Layout;
+namespace DFSmania\LaradminLte\View\Components\Layout;
 
-use DFSmania\LaraliveAdmin\Tools\Plugins\PluginsManager;
+use DFSmania\LaradminLte\Tools\Plugins\PluginsManager;
 use Illuminate\View\Component;
 
 /**
@@ -72,7 +72,7 @@ class AdminPanel extends Component
     {
         $rtlSuffix = empty(config('ladmin.layout.rtl', false)) ? '' : '.rtl';
 
-        return asset("vendor/laralive-admin/css/adminlte{$rtlSuffix}.min.css");
+        return asset("vendor/laradmin/css/adminlte{$rtlSuffix}.min.css");
     }
 
     /**

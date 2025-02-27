@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin\View\Components\Layout\Sidebar;
+namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
 

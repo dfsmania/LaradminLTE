@@ -89,7 +89,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can setup the set of extra or custom plugins that will be used
-    | within the views of your Laralive-Admin panel.
+    | within the views of your admin panel.
     |
     | For details you can look the online documentation here:
     | TBD

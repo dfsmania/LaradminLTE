@@ -1,11 +1,11 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin;
+namespace DFSmania\LaradminLte;
 
-use DFSmania\LaraliveAdmin\View\Components\Layout;
+use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\Support\ServiceProvider;
 
-class LaraliveAdminServiceProvider extends ServiceProvider
+class LaradminLteServiceProvider extends ServiceProvider
 {
     /**
      * The prefix to use when registering or loading the package resources.
@@ -20,6 +20,7 @@ class LaraliveAdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $layoutComponents = [
+        'footer' => Layout\Footer\Footer::class,
         'navbar' => Layout\Navbar\Navbar::class,
         'navbar-link' => Layout\Navbar\Link::class,
         'panel' => Layout\AdminPanel::class,
@@ -131,7 +132,7 @@ class LaraliveAdminServiceProvider extends ServiceProvider
         $path = $this->packagePath('resources/assets');
 
         $this->publishes([
-            $path => public_path('vendor/laralive-admin'),
+            $path => public_path('vendor/laradmin'),
         ], 'assets');
     }
 

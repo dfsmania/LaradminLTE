@@ -1,8 +1,8 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin\Tests;
+namespace DFSmania\LaradminLte\Tests;
 
-use DFSmania\LaraliveAdmin\LaraliveAdminServiceProvider;
+use DFSmania\LaradminLte\LaradminLteServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
@@ -28,7 +28,7 @@ class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [
-            LaraliveAdminServiceProvider::class,
+            LaradminLteServiceProvider::class,
         ];
     }
 

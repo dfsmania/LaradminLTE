@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin\View\Components\Layout\Navbar;
+namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
 
 use Illuminate\View\Component;
 

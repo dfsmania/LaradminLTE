@@ -79,7 +79,7 @@
         <x-ladmin-plugins-scripts :resources="$plugins->getPreAdminlteScripts()"/>
 
         {{-- AdminLte App --}}
-        <script src="{{ asset('vendor/laralive-admin/js/adminlte.min.js') }}"></script>
+        <script src="{{ asset('vendor/laradmin/js/adminlte.min.js') }}"></script>
 
         {{-- Post AdminLTE plugins scripts --}}
         <x-ladmin-plugins-scripts :resources="$plugins->getPostAdminlteScripts()"/>

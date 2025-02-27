@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin\Tools\Plugins;
+namespace DFSmania\LaradminLte\Tools\Plugins;
 
 class PluginsManager
 {
@@ -44,7 +44,7 @@ class PluginsManager
     }
 
     /**
-     * Get all the resources that have been already classified.
+     * Retrieve all the resources that have been already classified.
      *
      * @return array
      */
@@ -54,7 +54,7 @@ class PluginsManager
     }
 
     /**
-     * Get the set of pre-adminlte header links.
+     * Retrieve the set of pre-adminlte header links.
      *
      * @return array
      */
@@ -64,7 +64,7 @@ class PluginsManager
     }
 
     /**
-     * Get the set of post-adminlte header links.
+     * Retrieve the set of post-adminlte header links.
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class PluginsManager
     }
 
     /**
-     * Get the set of pre-adminlte scripts.
+     * Retrieve the set of pre-adminlte scripts.
      *
      * @return array
      */
@@ -84,7 +84,7 @@ class PluginsManager
     }
 
     /**
-     * Get the set of post-adminlte scripts.
+     * Retrieve the set of post-adminlte scripts.
      *
      * @return array
      */

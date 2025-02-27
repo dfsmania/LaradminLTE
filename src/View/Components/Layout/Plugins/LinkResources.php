@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaraliveAdmin\View\Components\Layout\Plugins;
+namespace DFSmania\LaradminLte\View\Components\Layout\Plugins;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
