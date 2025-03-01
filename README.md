@@ -1,2 +1,2 @@
 # LaradminLte-Dev
-An integration of AdminLTE v4 with Laravel and Livewire (Development stage)
+An integration of AdminLTE v4 into Laravel (Development stage)
