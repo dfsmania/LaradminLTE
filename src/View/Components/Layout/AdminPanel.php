@@ -4,14 +4,12 @@ namespace DFSmania\LaradminLte\View\Components\Layout;
 
 use DFSmania\LaradminLte\Tools\Plugins\PluginsManager;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
-/**
- * TODO: Should we use a Livewire component with turbo links instead?
- */
 class AdminPanel extends Component
 {
     /**
-     * The title that will be displayed on a browser's window. Defaults to
+     * The title that will be displayed on the browser's window. Defaults to
      * config('app.name') when not provided.
      *
      * @var string
@@ -20,7 +18,7 @@ class AdminPanel extends Component
 
     /**
      * An instance of the plugins manager, this will be used to read and
-     * classify the configuration of the plugins resources.
+     * classify the configured set of the plugins resources.
      *
      * @var PluginsManager
      */
@@ -31,7 +29,7 @@ class AdminPanel extends Component
      *
      * @return void
      */
-    public function __construct($title = null)
+    public function __construct(?string $title = null)
     {
         $this->title = $title ?? config('app.name');
 
@@ -43,21 +41,21 @@ class AdminPanel extends Component
     }
 
     /**
-     * Make the 'dir' attribute for the HTML tag.
+     * Make the 'dir' attribute for the main HTML tag.
      *
      * @return string
      */
-    public function makeHtmlDir()
+    public function makeHtmlDir(): string
     {
         return empty(config('ladmin.layout.rtl', false)) ? 'ltr' : 'rtl';
     }
 
     /**
-     * Make the 'lang' attribute for the HTML tag.
+     * Make the 'lang' attribute for the main HTML tag.
      *
      * @return string
      */
-    public function makeHtmlLang()
+    public function makeHtmlLang(): string
     {
         return str_replace('_', '-', app()->getLocale());
     }
@@ -68,7 +66,7 @@ class AdminPanel extends Component
      *
      * @return string
      */
-    public function makeAdminlteHref()
+    public function makeAdminlteHref(): string
     {
         $rtlSuffix = empty(config('ladmin.layout.rtl', false)) ? '' : '.rtl';
 
@@ -80,7 +78,7 @@ class AdminPanel extends Component
      *
      * @return string
      */
-    public function makeBodyClasses()
+    public function makeBodyClasses(): string
     {
         // TODO: This logic should be improved based on the package
         // configuration.
@@ -102,7 +100,7 @@ class AdminPanel extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.admin-panel');
     }

@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class Header extends Component
 {
@@ -33,8 +34,11 @@ class Header extends Component
      *
      * @return void
      */
-    public function __construct($label, $icon = null, $theme = null)
-    {
+    public function __construct(
+        string $label,
+        ?string $icon = null,
+        ?string $theme = null
+    ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
         $this->theme = $theme;
@@ -45,7 +49,7 @@ class Header extends Component
      *
      * @return string
      */
-    public function makeHeaderClasses()
+    public function makeHeaderClasses(): string
     {
         $classes = ['nav-header', 'user-select-none'];
 
@@ -61,7 +65,7 @@ class Header extends Component
      *
      * @return string
      */
-    public function makeLabelClasses()
+    public function makeLabelClasses(): string
     {
         $classes = [];
 
@@ -77,7 +81,7 @@ class Header extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.sidebar.header');
     }

@@ -3,10 +3,8 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
-/**
- * TODO: Should we use a Livewire component instead?
- */
 class Sidebar extends Component
 {
     /**
@@ -24,7 +22,7 @@ class Sidebar extends Component
      *
      * @return string
      */
-    public function makeSidebarClasses()
+    public function makeSidebarClasses(): string
     {
         // TODO: This logic should be improved based on the package
         // configuration. For example, the sidebar may be themed with
@@ -40,7 +38,7 @@ class Sidebar extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.sidebar.sidebar');
     }

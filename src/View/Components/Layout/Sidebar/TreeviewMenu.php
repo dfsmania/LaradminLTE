@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class TreeviewMenu extends Component
 {
@@ -64,9 +65,13 @@ class TreeviewMenu extends Component
      * @return void
      */
     public function __construct(
-        $label, $icon = null, $theme = null, $badge = null,
-        $badgeTheme = 'secondary', $badgeClasses = null,
-        $togglerIcon = 'fa-solid fa-angle-right'
+        string $label,
+        ?string $icon = null,
+        ?string $theme = null,
+        ?string $badge = null,
+        string $badgeTheme = 'secondary',
+        ?string $badgeClasses = null,
+        string $togglerIcon = 'fa-solid fa-angle-right'
     ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
@@ -82,7 +87,7 @@ class TreeviewMenu extends Component
      *
      * @return string
      */
-    public function makeLinkClasses()
+    public function makeLinkClasses(): string
     {
         $classes = ['nav-link', 'user-select-none'];
 
@@ -98,10 +103,9 @@ class TreeviewMenu extends Component
      *
      * @return string
      */
-    public function makeBadgeClasses()
+    public function makeBadgeClasses(): string
     {
         $classes = ['nav-badge', 'badge', 'fw-bold', 'me-3'];
-
         $classes[] = "bg-{$this->badgeTheme}";
 
         if (! empty($this->badgeClasses)) {
@@ -116,7 +120,7 @@ class TreeviewMenu extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.sidebar.treeview-menu');
     }

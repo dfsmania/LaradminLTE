@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\Tests;
 
 use DFSmania\LaradminLte\LaradminLteServiceProvider;
+use Illuminate\Foundation\Application;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
@@ -25,7 +26,7 @@ class TestCase extends BaseTestCase
      * @param  \Illuminate\Foundation\Application  $app
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders(Application $app): array
     {
         return [
             LaradminLteServiceProvider::class,
@@ -38,7 +39,7 @@ class TestCase extends BaseTestCase
      * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp(Application $app): void
     {
         // Perform environment setup...
     }

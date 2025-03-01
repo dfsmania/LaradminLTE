@@ -3,10 +3,8 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
-/**
- * TODO: Should we use a Livewire component instead?
- */
 class Navbar extends Component
 {
     /**
@@ -24,7 +22,7 @@ class Navbar extends Component
      *
      * @return string
      */
-    public function makeNavbarClasses()
+    public function makeNavbarClasses(): string
     {
         // TODO: This logic should be improved based on the package
         // configuration. For example, the navbar may be themed with classes:
@@ -40,7 +38,7 @@ class Navbar extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.navbar.navbar');
     }

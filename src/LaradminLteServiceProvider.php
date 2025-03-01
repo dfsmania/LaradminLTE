@@ -38,7 +38,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         // Register the configuration of the package.
 
@@ -50,7 +50,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Load the views of the package.
 
@@ -76,7 +76,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function registerConfig()
+    private function registerConfig(): void
     {
         // Register the main configuration.
 
@@ -98,7 +98,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function loadViews()
+    private function loadViews(): void
     {
         // Load all of the package views.
 
@@ -127,7 +127,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function setAssetsAsPublishable()
+    private function setAssetsAsPublishable(): void
     {
         $path = $this->packagePath('resources/assets');
 
@@ -141,7 +141,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function setConfigAsPublishable()
+    private function setConfigAsPublishable(): void
     {
         $mainCfg = $this->packagePath("config/{$this->prefix}.php");
         $pluginsCfg = $this->packagePath("config/{$this->prefix}_plugins.php");
@@ -158,7 +158,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      * @param  string  $path  The relative path to the resource
      * @return string
      */
-    private function packagePath($path)
+    private function packagePath(string $path): string
     {
         return __DIR__."/../{$path}";
     }

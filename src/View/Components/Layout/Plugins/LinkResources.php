@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
+use Illuminate\View\View;
 
 class LinkResources extends Component
 {
@@ -22,7 +23,7 @@ class LinkResources extends Component
      *
      * @return void
      */
-    public function __construct($resources = [])
+    public function __construct(array $resources = [])
     {
         // Setup the link resources.
 
@@ -34,9 +35,9 @@ class LinkResources extends Component
      * attributes for the specified link resource.
      *
      * @param  array  $res  An array representing the link resource
-     * @return string  A string representing the list of attributes
+     * @return string
      */
-    public function computeResourceAttributes($res)
+    public function computeResourceAttributes(array $res): string
     {
         $attrs = new ComponentAttributeBag();
 
@@ -65,7 +66,7 @@ class LinkResources extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.plugins.link-resources');
     }

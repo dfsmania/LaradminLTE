@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class BrandLink extends Component
 {
@@ -57,8 +58,12 @@ class BrandLink extends Component
      * @return void
      */
     public function __construct(
-        $label = null, $logo = null, $url = '#', $logoAlt = '',
-        $labelClasses = null, $logoClasses = null
+        ?string $label = null,
+        ?string $logo = null,
+        string $url = '#',
+        string $logoAlt = '',
+        ?string $labelClasses = null,
+        ?string $logoClasses = null
     ) {
         $this->label = html_entity_decode($label);
         $this->logo = $logo;
@@ -73,7 +78,7 @@ class BrandLink extends Component
      *
      * @return string
      */
-    public function makeLabelClasses()
+    public function makeLabelClasses(): string
     {
         $classes = ['brand-text'];
 
@@ -89,7 +94,7 @@ class BrandLink extends Component
      *
      * @return string
      */
-    public function makeLogoClasses()
+    public function makeLogoClasses(): string
     {
         $classes = ['brand-image'];
 
@@ -105,7 +110,7 @@ class BrandLink extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.sidebar.brand-link');
     }

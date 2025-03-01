@@ -36,7 +36,7 @@ class PluginsManager
      * @param  array  $plugins  An array with the plugins resources
      * @return void
      */
-    public function __construct($plugins = [])
+    public function __construct(array $plugins = [])
     {
         // Read and classify the resources of the provided plugins.
 
@@ -48,7 +48,7 @@ class PluginsManager
      *
      * @return array
      */
-    public function getAllResources()
+    public function getAllResources(): array
     {
         return $this->resources;
     }
@@ -58,7 +58,7 @@ class PluginsManager
      *
      * @return array
      */
-    public function getPreAdminlteLinks()
+    public function getPreAdminlteLinks(): array
     {
         return $this->resources['pre-adminlte-link'] ?? [];
     }
@@ -68,7 +68,7 @@ class PluginsManager
      *
      * @return array
      */
-    public function getPostAdminlteLinks()
+    public function getPostAdminlteLinks(): array
     {
         return $this->resources['post-adminlte-link'] ?? [];
     }
@@ -78,7 +78,7 @@ class PluginsManager
      *
      * @return array
      */
-    public function getPreAdminlteScripts()
+    public function getPreAdminlteScripts(): array
     {
         return $this->resources['pre-adminlte-script'] ?? [];
     }
@@ -88,7 +88,7 @@ class PluginsManager
      *
      * @return array
      */
-    public function getPostAdminlteScripts()
+    public function getPostAdminlteScripts(): array
     {
         return $this->resources['post-adminlte-script'] ?? [];
     }
@@ -100,7 +100,7 @@ class PluginsManager
      * @param  array  $plugins  An array with the plugins resources
      * @return void
      */
-    protected function classifyPlugins($plugins)
+    protected function classifyPlugins(array $plugins): void
     {
         foreach ($plugins as $pluginName => $plugin) {
 
@@ -122,7 +122,7 @@ class PluginsManager
      * @param  array  $resources  An array with the resources to be classified
      * @return void
      */
-    protected function classifyResources($resources)
+    protected function classifyResources(array $resources): void
     {
         foreach ($resources as $res) {
 
@@ -140,15 +140,13 @@ class PluginsManager
 
     /**
      * Classify the specified resource into one of the next categories:
-     * > pre-adminlte-link
-     * > post-adminlte-link
-     * > pre-adminlte-script
-     * > post-adminlte-script
+     * pre-adminlte-link, post-adminlte-link, pre-adminlte-script or
+     * post-adminlte-script
      *
      * @param  array  $resource  An array describing the resource
      * @return void
      */
-    protected function classifyResource($resource)
+    protected function classifyResource(array $resource): void
     {
         // Pre-process the source attribute of the resource.
 
@@ -170,9 +168,9 @@ class PluginsManager
      * when it's valid and required in the current request or view.
      *
      * @param  array  $plugin  An array representing the plugin
-     * @return bool  Whether the plugin should be included or not
+     * @return bool
      */
-    protected function shouldIncludePlugin($plugin)
+    protected function shouldIncludePlugin(array $plugin): bool
     {
         return $this->isValidPlugin($plugin)
             && $this->isRequiredPlugin($plugin);
@@ -188,9 +186,9 @@ class PluginsManager
      * ]
      *
      * @param  array  $plugin  An array representing the plugin data
-     * @return bool  Whether the plugin structure is valid or not
+     * @return bool
      */
-    protected function isValidPlugin($plugin)
+    protected function isValidPlugin(array $plugin): bool
     {
         return is_array($plugin)
             && isset($plugin['always'])
@@ -205,9 +203,9 @@ class PluginsManager
      * current request/view using a custom blade directive (TBD).
      *
      * @param  array  $plugin  An array representing the plugin data
-     * @return bool  Whether the plugin must be included or not
+     * @return bool
      */
-    protected function isRequiredPlugin($plugin)
+    protected function isRequiredPlugin(array $plugin): bool
     {
         // TODO: We should also check whether the plugin is required by the
         // current request/view using some sort of blade directive (TBD). By
@@ -233,12 +231,12 @@ class PluginsManager
      * ]
      *
      * @param  array  $resource  An array representing the plugin resource
-     * @return bool  Whether the resource structure is valid or not
+     * @return bool
      */
-    protected function isValidPluginResource($resource)
+    protected function isValidPluginResource(array $resource): bool
     {
-        // Note that a resource with an unaccepted type with be detected as
-        // invalid. A type should match with one of the available
+        // Note that a resource with an unaccepted type will be detected as
+        // invalid. The type should match with one of the available
         // classification categories.
 
         return is_array($resource)

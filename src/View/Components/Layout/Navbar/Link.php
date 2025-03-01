@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class Link extends Component
 {
@@ -64,8 +65,13 @@ class Link extends Component
      * @return void
      */
     public function __construct(
-        $icon = null, $label = null, $url = '#', $theme = null, $badge = null,
-        $badgeTheme = 'secondary', $badgeClasses = null
+        ?string $icon = null,
+        ?string $label = null,
+        string $url = '#',
+        ?string $theme = null,
+        ?string $badge = null,
+        string $badgeTheme = 'secondary',
+        ?string $badgeClasses = null
     ) {
         $this->icon = $icon;
         $this->label = html_entity_decode($label);
@@ -81,7 +87,7 @@ class Link extends Component
      *
      * @return string
      */
-    public function makeLinkClasses()
+    public function makeLinkClasses(): string
     {
         $classes = ['nav-link', 'user-select-none'];
 
@@ -97,10 +103,9 @@ class Link extends Component
      *
      * @return string
      */
-    public function makeBadgeClasses()
+    public function makeBadgeClasses(): string
     {
         $classes = ['navbar-badge', 'badge', 'fw-bold'];
-
         $classes[] = "bg-{$this->badgeTheme}";
 
         if (! empty($this->badgeClasses)) {
@@ -115,7 +120,7 @@ class Link extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public function render(): View|string
     {
         return view('ladmin::components.layout.navbar.link');
     }
