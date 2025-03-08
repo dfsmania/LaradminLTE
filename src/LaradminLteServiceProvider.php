@@ -60,6 +60,10 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->loadComponents();
 
+        // Load the translations of the package.
+
+        $this->loadTranslations();
+
         // Declare the publishable resources of the package. This section is
         // only valid if the Laravel app is running on console.
 
@@ -111,7 +115,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function loadComponents()
+    private function loadComponents(): void
     {
         // Load all the blade-x components.
 
@@ -120,6 +124,17 @@ class LaradminLteServiceProvider extends ServiceProvider
         );
 
         $this->loadViewComponentsAs($this->prefix, $components);
+    }
+
+    /**
+     * Load the package translations.
+     *
+     * @return void
+     */
+    private function loadTranslations(): void
+    {
+        $path = $this->packagePath('lang');
+        $this->loadTranslationsFrom($path, $this->prefix);
     }
 
     /**

@@ -63,15 +63,12 @@
 
             </main>
 
-            {{-- TODO: Create a component for the Footer? --}}
             {{-- Footer --}}
-            <footer class="app-footer">
-                <div class="float-end d-none d-sm-inline">
-                    Anything you want
-                </div>
-
-                <strong>Copyright &copy; 2014-2023.</strong>
-            </footer>
+            <x-ladmin-footer>
+                @isset($footer)
+                    {{ $footer }}
+                @endisset
+            </x-ladmin-footer>
 
         </div>
 
