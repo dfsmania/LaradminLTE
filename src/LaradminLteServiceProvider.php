@@ -21,6 +21,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     protected $layoutComponents = [
         'footer' => Layout\Footer\Footer::class,
+        'main-content' => Layout\MainContent\MainContent::class,
         'navbar' => Layout\Navbar\Navbar::class,
         'navbar-link' => Layout\Navbar\Link::class,
         'panel' => Layout\AdminPanel::class,

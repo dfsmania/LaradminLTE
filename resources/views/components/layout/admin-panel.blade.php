@@ -37,31 +37,15 @@
             <x-ladmin-sidebar/>
 
             {{-- Main content --}}
-            {{-- TODO: Create a component for the Main Content? --}}
-            <main class="app-main">
+            <x-ladmin-main-content>
+                @isset($contentHeader)
+                    <x-slot name="contentHeader">
+                        {{ $contentHeader }}
+                    </x-slot>
+                @endisset
 
-                {{-- TODO: Create a component for the Content Header --}}
-                {{-- Content Header --}}
-                <div class="app-content-header">
-                    <div class="container-fluid">
-                        <div class="row">
-                            CONTENT HEADER
-                        </div>
-                    </div>
-                </div>
-
-                {{-- TODO: Create a component for the Content Body --}}
-                {{-- Content Body --}}
-                <div class="app-content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            CONTENT BODY
-                            {{ $slot }}
-                        </div>
-                    </div>
-                </div>
-
-            </main>
+                {{ $slot}}
+            </x-ladmin-main-content>
 
             {{-- Footer --}}
             <x-ladmin-footer>
@@ -82,4 +66,5 @@
         <x-ladmin-plugins-scripts :resources="$plugins->getPostAdminlteScripts()"/>
 
     </body>
+
 </html>

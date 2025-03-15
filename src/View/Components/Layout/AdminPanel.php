@@ -18,7 +18,7 @@ class AdminPanel extends Component
 
     /**
      * An instance of the plugins manager, this will be used to read and
-     * classify the configured set of the plugins resources.
+     * classify the set of configured plugins resources.
      *
      * @var PluginsManager
      */
