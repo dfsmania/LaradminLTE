@@ -27,7 +27,6 @@ class AdminPanel extends Component
     /**
      * Create a new component instance.
      *
-     * @return void
      */
     public function __construct(?string $title = null)
     {
@@ -81,15 +80,24 @@ class AdminPanel extends Component
     public function makeBodyClasses(): string
     {
         // TODO: This logic should be improved based on the package
-        // configuration.
+        // configuration. For example, the breakpoint for expand sidebar and
+        // the background color.
 
         $classes = [
             'sidebar-expand-lg',
-            'bg-body-tertirary',
+            'bg-body-tertiary',
         ];
 
         if (! empty(config('ladmin.layout.fixed_sidebar', false))) {
             $classes[] = 'layout-fixed';
+        }
+
+        if (! empty(config('ladmin.layout.fixed_navbar', false))) {
+            $classes[] = 'fixed-header';
+        }
+
+        if (! empty(config('ladmin.layout.fixed_footer', false))) {
+            $classes[] = 'fixed-footer';
         }
 
         return implode(' ', $classes);

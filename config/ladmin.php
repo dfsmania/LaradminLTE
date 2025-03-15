@@ -22,9 +22,9 @@ return [
         'company' => 'Your Company',
 
         // The url site of the company that owns and develops the admin panel.
-        'company_url' => 'http://your-company.com',
+        'company_url' => 'https://your-company.com',
 
-        // The year when your admin panel begin developed.
+        // The year when the development of your admin panel started.
         'start_year' => 2024,
     ],
 
@@ -41,7 +41,16 @@ return [
     */
 
     'layout' => [
+        // Whether to enable a fixed footer.
+        'fixed_footer' => false,
+
+        // Whether to enable a fixed navbar header.
+        'fixed_navbar' => true,
+
+        // Whether to enable a fixed sidebar.
         'fixed_sidebar' => true,
+
+        // Whether to enable the right-to-left (RTL) layout.
         'rtl' => false,
     ],
 ];
