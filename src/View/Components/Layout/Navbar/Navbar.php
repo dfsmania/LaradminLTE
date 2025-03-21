@@ -47,9 +47,9 @@ class Navbar extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View
      */
-    public function render(): View|string
+    public function render(): View
     {
         return view('ladmin::components.layout.navbar.navbar');
     }
