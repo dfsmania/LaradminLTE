@@ -19,10 +19,10 @@ return [
         'version' => '1.0.0',
 
         // The name of the company that owns and develops the admin panel.
-        'company' => 'Your Company',
+        'company' => 'Company Name',
 
         // The url site of the company that owns and develops the admin panel.
-        'company_url' => 'https://your-company.com',
+        'company_url' => 'https://company-name.com',
 
         // The year when the development of your admin panel started.
         'start_year' => 2024,
