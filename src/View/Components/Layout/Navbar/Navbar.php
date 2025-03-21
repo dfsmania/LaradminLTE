@@ -24,11 +24,22 @@ class Navbar extends Component
      */
     public function makeNavbarClasses(): string
     {
-        // TODO: This logic should be improved based on the package
-        // configuration. For example, the navbar may be themed with classes:
-        // navbar-light/dark and bg-* classes.
+        // Setup base navbar classes.
 
-        $classes = ['app-header', 'navbar', 'navbar-expand', 'bg-body'];
+        $classes = ['app-header', 'navbar', 'navbar-expand'];
+
+        // TODO: If eventually a layout topnav is added, we should allow the
+        // user to choose the screen breakpoint for the navbar-expand class,
+        // like 'navbar-expand-md' or 'navbar-expand-lg'. See more info at:
+        // https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors
+
+        // Add extra classes from the configuration file.
+
+        $cfgClasses = config('ladmin.navbar.classes', ['bg-body']);
+
+        if (is_array($cfgClasses)) {
+            array_push($classes, ...$cfgClasses);
+        }
 
         return implode(' ', $classes);
     }

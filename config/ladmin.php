@@ -53,4 +53,22 @@ return [
         // Whether to enable the right-to-left (RTL) layout.
         'rtl' => false,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Navbar
+    |--------------------------------------------------------------------------
+    |
+    | Here you can customize the top navigation navbar of your admin panel.
+    |
+    | For more details you can look the online documentation here:
+    | TBD
+    |
+    */
+
+    'navbar' => [
+        // The set of extra classes for the navbar, usually to setup the navbar
+        // color theme.
+        'classes' => ['bg-body'],
+    ],
 ];
