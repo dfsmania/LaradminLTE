@@ -63,9 +63,9 @@ class ScriptResources extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return View
+     * @return \Illuminate\View\View|string
      */
-    public function render(): View
+    public function render(): View|string
     {
         return view('ladmin::components.layout.plugins.script-resources');
     }
