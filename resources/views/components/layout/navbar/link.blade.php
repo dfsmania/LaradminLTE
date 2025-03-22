@@ -1,5 +1,4 @@
 {{-- Navbar link --}}
-
 <li class="nav-item">
 
     <a href="{{ $url }}" {{ $attributes->merge(['class' => $makeLinkClasses()]) }}>
