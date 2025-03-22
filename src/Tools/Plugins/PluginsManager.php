@@ -38,9 +38,9 @@ class PluginsManager
      */
     public function __construct(array $plugins = [])
     {
-        // Read and classify the resources of the provided plugins.
+        // Read, validate and classify the resources of the provided plugins.
 
-        $this->classifyPlugins(is_array($plugins) ? $plugins : []);
+        $this->classifyPlugins($plugins);
     }
 
     /**
@@ -60,7 +60,7 @@ class PluginsManager
      */
     public function getPreAdminlteLinks(): array
     {
-        return $this->resources['pre-adminlte-link'] ?? [];
+        return $this->resources['pre-adminlte-link'];
     }
 
     /**
@@ -70,7 +70,7 @@ class PluginsManager
      */
     public function getPostAdminlteLinks(): array
     {
-        return $this->resources['post-adminlte-link'] ?? [];
+        return $this->resources['post-adminlte-link'];
     }
 
     /**
@@ -80,7 +80,7 @@ class PluginsManager
      */
     public function getPreAdminlteScripts(): array
     {
-        return $this->resources['pre-adminlte-script'] ?? [];
+        return $this->resources['pre-adminlte-script'];
     }
 
     /**
@@ -90,12 +90,12 @@ class PluginsManager
      */
     public function getPostAdminlteScripts(): array
     {
-        return $this->resources['post-adminlte-script'] ?? [];
+        return $this->resources['post-adminlte-script'];
     }
 
     /**
-     * Read and classify the resources of the provided plugins into one of the
-     * available categories.
+     * Read, validate and classify the resources of the provided plugins into
+     * one of the available categories.
      *
      * @param  array  $plugins  An array with the plugins resources
      * @return void
@@ -104,7 +104,7 @@ class PluginsManager
     {
         foreach ($plugins as $pluginName => $plugin) {
 
-            // Check whether the plugin should be included.
+            // Check whether the plugin is valid and should be included.
 
             if (! $this->shouldIncludePlugin($plugin)) {
                 continue;
@@ -118,6 +118,7 @@ class PluginsManager
 
     /**
      * Read and classify the provided set of plugin resources.
+     * Invalid resources in the array will be skipped.
      *
      * @param  array  $resources  An array with the resources to be classified
      * @return void
@@ -239,9 +240,16 @@ class PluginsManager
         // invalid. The type should match with one of the available
         // classification categories.
 
-        return is_array($resource)
-            && isset($resource['source'])
-            && isset($resource['type'])
+        if (! is_array($resource)) {
+            return false;
+        }
+
+        $hasValidSource = ! empty($resource['source'])
+            && is_string($resource['source']);
+
+        $hasValidType = isset($resource['type'])
             && in_array($resource['type'], array_keys($this->resources));
+
+        return $hasValidSource && $hasValidType;
     }
 }
