@@ -12,7 +12,8 @@ class ScriptResources extends Component
 {
     /**
      * The array of script resources (mostly JS files) that will be rendered.
-     * These resources always belongs to one of the configured plugins.
+     * These resources always belongs to one of the configured plugins, and
+     * will be validated externally.
      *
      * @var array
      */
@@ -21,12 +22,11 @@ class ScriptResources extends Component
     /**
      * Create a new component instance.
      *
+     * @param  array  $resources  An array of valid script resources.
      * @return void
      */
     public function __construct(array $resources = [])
     {
-        // Setup the script resources.
-
         $this->resources = Arr::wrap($resources);
     }
 
@@ -34,7 +34,7 @@ class ScriptResources extends Component
      * Computes a string (with HTML like format) that represents the set of
      * attributes for the specified script resource.
      *
-     * @param  array  $res  An array representing the script resource
+     * @param  array  $res  An array representing a valid script resource.
      * @return string
      */
     public function computeResourceAttributes(array $res): string
@@ -50,20 +50,22 @@ class ScriptResources extends Component
             }
         }
 
-        // Now, add the required attributes, including the one that references
-        // the resource's source.
+        // Now, add the required attributes, including the one that defines
+        // the source of the script resource.
 
-        $attrs['src'] = $attrs['src'] ?? $res['source'];
+        $attrs['src'] = $attrs['src'] ?? ($res['source'] ?? '#');
 
-        // Return a string representing the list of attributes.
+        // Return a string representing the list of attributes for the script.
 
         return $attrs->toHtml();
     }
 
     /**
      * Get the view / contents that represent the component.
+     * This method will be used to render the set of script resources that were
+     * configured for the body tag.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {

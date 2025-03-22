@@ -12,7 +12,8 @@ class LinkResources extends Component
 {
     /**
      * The array of link resources (mostly CSS files) that will be rendered.
-     * These resources always belongs to one of the configured plugins.
+     * These resources always belongs to one of the configured plugins, and
+     * will be validated externally.
      *
      * @var array
      */
@@ -21,12 +22,11 @@ class LinkResources extends Component
     /**
      * Create a new component instance.
      *
+     * @param  array  $resources  An array of valid link resources.
      * @return void
      */
     public function __construct(array $resources = [])
     {
-        // Setup the link resources.
-
         $this->resources = Arr::wrap($resources);
     }
 
@@ -34,7 +34,7 @@ class LinkResources extends Component
      * Computes a string (with HTML like format) that represents the set of
      * attributes for the specified link resource.
      *
-     * @param  array  $res  An array representing the link resource
+     * @param  array  $res  An array representing a valid link resource.
      * @return string
      */
     public function computeResourceAttributes(array $res): string
@@ -50,21 +50,23 @@ class LinkResources extends Component
             }
         }
 
-        // Now, add the required attributes, including the one that references
-        // the resource's source.
+        // Now, add the required attributes, including the one that defines
+        // the source of the link resource.
 
-        $attrs['href'] = $attrs['href'] ?? $res['source'];
+        $attrs['href'] = $attrs['href'] ?? ($res['source'] ?? '#');
         $attrs['rel'] = $attrs['rel'] ?? 'stylesheet';
 
-        // Return a string representing the list of attributes.
+        // Return a string representing the list of attributes for the link.
 
         return $attrs->toHtml();
     }
 
     /**
      * Get the view / contents that represent the component.
+     * This method will be used to render the set of link resources that were
+     * configured for the head tag.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {

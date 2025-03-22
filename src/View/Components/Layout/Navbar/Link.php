@@ -69,7 +69,6 @@ class Link extends Component
      * @param  ?string  $badge  The text for the badge of the link.
      * @param  string   $badgeTheme  The background theme for the badge.
      * @param  ?string  $badgeClasses  A set of extra classes for the badge.
-     *
      * @return void
      */
     public function __construct(
