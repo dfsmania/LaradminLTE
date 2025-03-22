@@ -1,7 +1,7 @@
 {{-- Main content --}}
 <main class="app-main">
 
-    {{-- Content Header --}}
+    {{-- Content header --}}
     @isset($contentHeader)
         <div class="app-content-header">
             <div class="container-fluid">
@@ -10,7 +10,7 @@
         </div>
     @endisset
 
-    {{-- Content Body --}}
+    {{-- Content body --}}
     <div class="app-content">
         <div class="container-fluid">
             {{ $slot }}
