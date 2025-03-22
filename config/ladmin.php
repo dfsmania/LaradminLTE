@@ -19,10 +19,10 @@ return [
         'version' => '1.0.0',
 
         // The name of the company that owns and develops the admin panel.
-        'company' => 'Company Name',
+        'company' => 'Your Company Name',
 
         // The url site of the company that owns and develops the admin panel.
-        'company_url' => 'https://company-name.com',
+        'company_url' => 'https://your-company-website.com',
 
         // The year when the development of your admin panel started.
         'start_year' => 2024,
@@ -59,7 +59,7 @@ return [
     | Navbar
     |--------------------------------------------------------------------------
     |
-    | Here you can customize the top navigation navbar of your admin panel.
+    | Here you can customize the top navbar section of your admin panel.
     |
     | For more details you can look the online documentation here:
     | TBD
@@ -67,8 +67,24 @@ return [
     */
 
     'navbar' => [
-        // The set of extra classes for the navbar, usually to setup the navbar
-        // color theme.
+        // The set of extra classes for the navbar, usually to setup its theme.
+        'classes' => ['bg-body'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Footer
+    |--------------------------------------------------------------------------
+    |
+    | Here you can customize the footer section of your admin panel.
+    |
+    | For more details you can look the online documentation here:
+    | TBD
+    |
+    */
+
+    'footer' => [
+        // The set of extra classes for the footer, usually to setup its theme.
         'classes' => ['bg-body'],
     ],
 ];

@@ -1,5 +1,5 @@
 {{-- Footer --}}
-<footer class="app-footer">
+<footer class="{{ $makeFooterClasses() }}">
 
     @if($slot->isNotEmpty())
         {{-- Custom footer content via slot --}}
