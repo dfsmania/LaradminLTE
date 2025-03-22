@@ -20,6 +20,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      * @var array
      */
     protected $layoutComponents = [
+        'default-footer-content' => Layout\Footer\DefaultFooterContent::class,
         'footer' => Layout\Footer\Footer::class,
         'main-content' => Layout\MainContent\MainContent::class,
         'navbar' => Layout\Navbar\Navbar::class,
