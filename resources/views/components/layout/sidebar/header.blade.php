@@ -1,5 +1,4 @@
 {{-- Sidebar header --}}
-
 <li {{ $attributes->merge(['class' => $makeHeaderClasses()]) }}>
 
     {{-- Icon (optional) --}}

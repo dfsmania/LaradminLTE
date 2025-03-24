@@ -22,8 +22,8 @@ class Header extends Component
     public $label;
 
     /**
-     * The AdminLTE theme for the header (primary, secondary, info, success,
-     * warning, danger, light, dark, black, white).
+     * The color theme for the header. Any Bootstrap text color, like: primary,
+     * secondary, info, success, warning, danger, etc.
      *
      * @var string
      */
@@ -32,6 +32,9 @@ class Header extends Component
     /**
      * Create a new component instance.
      *
+     * @param  string   $label  The label text for the header
+     * @param  ?string  $icon  The Font Awesome icon associated with the header
+     * @param  ?string  $theme  The color theme for the header
      * @return void
      */
     public function __construct(
@@ -79,7 +82,7 @@ class Header extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {
