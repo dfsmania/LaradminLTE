@@ -15,16 +15,16 @@ class Link extends Component
     public $badge;
 
     /**
-     * A set of extra classes for the badge. You may use this to customize the
-     * badge style.
+     * A set of extra classes for the badge. You may use these classes to
+     * customize the badge style.
      *
-     * @var string
+     * @var array
      */
     public $badgeClasses;
 
     /**
-     * The AdminLTE theme for the badge (primary, secondary, info, success,
-     * warning, danger, light, dark, black, white).
+     * The background theme for the badge. Any Bootstrap background color, like:
+     * primary, secondary, info, success, warning, danger, etc.
      *
      * @var string
      */
@@ -45,15 +45,15 @@ class Link extends Component
     public $label;
 
     /**
-     * The AdminLTE theme for the link (primary, secondary, info, success,
-     * warning, danger, light, dark, black, white).
+     * The color theme for the link. Any Bootstrap link color, like: primary,
+     * secondary, info, success, warning, danger, etc.
      *
      * @var string
      */
     public $theme;
 
     /**
-     * The URL of the link.
+     * The URL (href attribute) of the link.
      *
      * @var string
      */
@@ -62,6 +62,13 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
+     * @param  string   $label  The label of the link
+     * @param  ?string  $icon  The Font Awesome icon of the link
+     * @param  string   $url  The URL (href attribute) of the link
+     * @param  ?string  $theme  The color theme for the link
+     * @param  ?string  $badge  The text for the badge of the link
+     * @param  string   $badgeTheme  The background theme for the badge
+     * @param  ?string  $badgeClasses  A set of extra classes for the badge
      * @return void
      */
     public function __construct(
@@ -79,7 +86,10 @@ class Link extends Component
         $this->theme = $theme;
         $this->badge = html_entity_decode($badge);
         $this->badgeTheme = $badgeTheme;
-        $this->badgeClasses = $badgeClasses;
+
+        $this->badgeClasses = ! empty($badgeClasses)
+            ? explode(' ', $badgeClasses)
+            : [];
     }
 
     /**
@@ -109,7 +119,7 @@ class Link extends Component
         $classes[] = "bg-{$this->badgeTheme}";
 
         if (! empty($this->badgeClasses)) {
-            $classes[] = $this->badgeClasses;
+            $classes = array_merge($classes, $this->badgeClasses);
         }
 
         return implode(' ', $classes);
@@ -118,7 +128,7 @@ class Link extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {
