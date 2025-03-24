@@ -1,5 +1,4 @@
 {{-- Treeview menu --}}
-
 <li class="nav-item">
 
     {{-- Treeview link --}}

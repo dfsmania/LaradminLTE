@@ -15,16 +15,16 @@ class TreeviewMenu extends Component
     public $badge;
 
     /**
-     * A set of extra classes for the badge. You may use this to customize the
-     * badge style.
+     * A set of extra classes for the badge. You may use these classes to
+     * customize the badge style.
      *
-     * @var string
+     * @var array
      */
     public $badgeClasses;
 
     /**
-     * The AdminLTE theme for the badge (primary, secondary, info, success,
-     * warning, danger, light, dark, black, white).
+     * The background theme for the badge. Any Bootstrap background color, like:
+     * primary, secondary, info, success, warning, danger, etc.
      *
      * @var string
      */
@@ -45,15 +45,16 @@ class TreeviewMenu extends Component
     public $label;
 
     /**
-     * The AdminLTE theme for the treeview menu (primary, secondary, info,
-     * success, warning, danger, light, dark, black, white).
+     * The color theme for the link. Any Bootstrap link color, like: primary,
+     * secondary, info, success, warning, danger, etc.
      *
      * @var string
      */
     public $theme;
 
     /**
-     * The Font Awesome icon of the treeview menu toggler.
+     * The Font Awesome icon of the treeview menu toggler. Defaults to
+     * 'fa-solid fa-angle-right'.
      *
      * @var string
      */
@@ -62,6 +63,13 @@ class TreeviewMenu extends Component
     /**
      * Create a new component instance.
      *
+     * @param  string   $label  The label of the treeview menu
+     * @param  ?string  $icon  The Font Awesome icon of the treeview menu
+     * @param  ?string  $theme  The color theme for the treeview menu
+     * @param  ?string  $badge  The text for the badge of the treeview menu
+     * @param  string   $badgeTheme  The background theme for the badge
+     * @param  ?string  $badgeClasses  A set of extra classes for the badge
+     * @param  string   $togglerIcon  The Font Awesome icon of the menu toggler
      * @return void
      */
     public function __construct(
@@ -78,8 +86,11 @@ class TreeviewMenu extends Component
         $this->theme = $theme;
         $this->badge = html_entity_decode($badge);
         $this->badgeTheme = $badgeTheme;
-        $this->badgeClasses = $badgeClasses;
         $this->togglerIcon = $togglerIcon;
+
+        $this->badgeClasses = ! empty($badgeClasses)
+            ? explode(' ', $badgeClasses)
+            : [];
     }
 
     /**
@@ -109,7 +120,7 @@ class TreeviewMenu extends Component
         $classes[] = "bg-{$this->badgeTheme}";
 
         if (! empty($this->badgeClasses)) {
-            $classes[] = $this->badgeClasses;
+            $classes = array_merge($classes, $this->badgeClasses);
         }
 
         return implode(' ', $classes);
@@ -118,7 +129,7 @@ class TreeviewMenu extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {
