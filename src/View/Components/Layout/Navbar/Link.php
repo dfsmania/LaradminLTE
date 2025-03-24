@@ -15,10 +15,10 @@ class Link extends Component
     public $badge;
 
     /**
-     * A set of extra classes for the badge. You may use this to customize the
-     * badge style.
+     * A set of extra classes for the badge. You may use these classes to
+     * customize the badge style.
      *
-     * @var string
+     * @var array
      */
     public $badgeClasses;
 
@@ -53,7 +53,7 @@ class Link extends Component
     public $theme;
 
     /**
-     * The URL of the link.
+     * The URL (href attribute) of the link.
      *
      * @var string
      */
@@ -62,13 +62,13 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
-     * @param  ?string  $icon  The Font Awesome icon of the link.
-     * @param  ?string  $label  The label of the link.
-     * @param  string   $url  The URL of the link.
-     * @param  ?string  $theme  The color theme for the link.
-     * @param  ?string  $badge  The text for the badge of the link.
-     * @param  string   $badgeTheme  The background theme for the badge.
-     * @param  ?string  $badgeClasses  A set of extra classes for the badge.
+     * @param  ?string  $icon  The Font Awesome icon of the link
+     * @param  ?string  $label  The label of the link
+     * @param  string   $url  The URL (href attribute) of the link
+     * @param  ?string  $theme  The color theme for the link
+     * @param  ?string  $badge  The text for the badge of the link
+     * @param  string   $badgeTheme  The background theme for the badge
+     * @param  ?string  $badgeClasses  A set of extra classes for the badge
      * @return void
      */
     public function __construct(
@@ -81,12 +81,15 @@ class Link extends Component
         ?string $badgeClasses = null
     ) {
         $this->icon = $icon;
-        $this->label = html_entity_decode($label ?? '');
+        $this->label = html_entity_decode($label);
         $this->url = $url;
         $this->theme = $theme;
-        $this->badge = html_entity_decode($badge ?? '');
+        $this->badge = html_entity_decode($badge);
         $this->badgeTheme = $badgeTheme;
-        $this->badgeClasses = $badgeClasses;
+
+        $this->badgeClasses = ! empty($badgeClasses)
+            ? explode(' ', $badgeClasses)
+            : [];
     }
 
     /**
@@ -116,7 +119,7 @@ class Link extends Component
         $classes[] = "bg-{$this->badgeTheme}";
 
         if (! empty($this->badgeClasses)) {
-            $classes[] = $this->badgeClasses;
+            $classes = array_merge($classes, $this->badgeClasses);
         }
 
         return implode(' ', $classes);
