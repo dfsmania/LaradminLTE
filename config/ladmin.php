@@ -68,6 +68,11 @@ return [
     */
 
     'navbar' => [
+        // Specifies the Bootstrap theme for the navbar. Available options are
+        // 'light' or 'dark'. Setting this to null will disable a specific theme
+        // for the navbar, allowing it to inherit a global theme settings.
+        'bootstrap_theme' => null,
+
         // The set of extra classes for the navbar, usually to setup its
         // background color and style.
         'classes' => ['bg-body'],
@@ -109,6 +114,11 @@ return [
     */
 
     'footer' => [
+        // Specifies the Bootstrap theme for the footer. Available options are
+        // 'light' or 'dark'. Setting this to null will disable a specific theme
+        // for the footer, allowing it to inherit a global theme settings.
+        'bootstrap_theme' => null,
+
         // The set of extra classes for the footer, usually to setup its
         // background color and style.
         'classes' => ['bg-body'],

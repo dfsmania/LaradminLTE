@@ -8,6 +8,16 @@ use Illuminate\View\View;
 class Navbar extends Component
 {
     /**
+     * The set of valid Bootstrap themes that can be applied on the navbar.
+     *
+     * @var array
+     */
+    protected $validBootstrapThemes = [
+        'light',
+        'dark'
+    ];
+
+    /**
      * Make the set of classes for the navbar wrapper.
      *
      * @return string
@@ -33,6 +43,18 @@ class Navbar extends Component
         }
 
         return implode(' ', $classes);
+    }
+
+    /**
+     * Make the specific Bootstrap theme for the navbar wrapper.
+     *
+     * @return string
+     */
+    public function makeBootstrapTheme(): string
+    {
+        $bsTheme = config('ladmin.navbar.bootstrap_theme', '');
+
+        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
 
     /**

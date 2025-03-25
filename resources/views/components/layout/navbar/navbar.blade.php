@@ -1,5 +1,5 @@
 {{-- Top navbar --}}
-<nav class="{{ $makeNavbarClasses() }}">
+<nav class="{{ $makeNavbarClasses() }}" data-bs-theme="{{ $makeBootstrapTheme() }}">
     <div class="container-fluid">
 
         {{-- Start links --}}
