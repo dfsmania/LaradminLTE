@@ -7,7 +7,8 @@ return [
     | Basic Information
     |--------------------------------------------------------------------------
     |
-    | Here you can setup the basic information of your admin panel.
+    | Here you can setup the basic information of your admin panel. By default,
+    | most of this information will appear in the footer section.
     |
     | For more details you can look the online documentation here:
     | TBD
@@ -67,8 +68,32 @@ return [
     */
 
     'navbar' => [
-        // The set of extra classes for the navbar, usually to setup its theme.
+        // The set of extra classes for the navbar, usually to setup its
+        // background color and style.
         'classes' => ['bg-body'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Sidebar
+    |--------------------------------------------------------------------------
+    |
+    | Here you can customize the sidebar section of your admin panel.
+    |
+    | For more details you can look the online documentation here:
+    | TBD
+    |
+    */
+
+    'sidebar' => [
+        // Specifies the Bootstrap theme for the sidebar. Available options are
+        // 'light' or 'dark'. Setting this to null will disable a specific theme
+        // for the sidebar, allowing it to inherit a global theme settings.
+        'bootstrap_theme' => 'dark',
+
+        // The set of extra classes for the sidebar, usually to setup its
+        // background color and style.
+        'classes' => ['bg-body-secondary', 'shadow'],
     ],
 
     /*
@@ -84,7 +109,8 @@ return [
     */
 
     'footer' => [
-        // The set of extra classes for the footer, usually to setup its theme.
+        // The set of extra classes for the footer, usually to setup its
+        // background color and style.
         'classes' => ['bg-body'],
     ],
 ];

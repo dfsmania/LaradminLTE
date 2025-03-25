@@ -8,14 +8,14 @@ use Illuminate\View\View;
 class Sidebar extends Component
 {
     /**
-     * Create a new component instance.
+     * The set of valid Bootstrap themes that can be applied on the sidebar.
      *
-     * @return void
+     * @var array
      */
-    public function __construct()
-    {
-        //
-    }
+    protected $validBootstrapThemes = [
+        'light',
+        'dark'
+    ];
 
     /**
      * Make the set of classes for the sidebar wrapper.
@@ -24,19 +24,37 @@ class Sidebar extends Component
      */
     public function makeSidebarClasses(): string
     {
-        // TODO: This logic should be improved based on the package
-        // configuration. For example, the sidebar may be themed with
-        // different classes.
+        // Setup base sidebar classes.
 
-        $classes = ['app-sidebar', 'bg-body-secondary', 'shadow'];
+        $classes = ['app-sidebar'];
+
+        // Add extra classes from the configuration file.
+
+        $cfgClasses = config('ladmin.sidebar.classes', ['bg-body-secondary']);
+
+        if (is_array($cfgClasses)) {
+            $classes = array_merge($classes, $cfgClasses);
+        }
 
         return implode(' ', $classes);
     }
 
     /**
+     * Make the specific Bootstrap theme for the sidebar wrapper.
+     *
+     * @return string
+     */
+    public function makeBootstrapTheme(): string
+    {
+        $bsTheme = config('ladmin.sidebar.bootstrap_theme', 'dark');
+
+        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
+    }
+
+    /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {
