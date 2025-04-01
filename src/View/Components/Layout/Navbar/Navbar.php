@@ -39,8 +39,10 @@ class Navbar extends Component
         $cfgClasses = config('ladmin.navbar.classes', ['bg-body']);
 
         if (is_array($cfgClasses)) {
-            $classes = array_merge($classes, $cfgClasses);
+            $classes = array_merge($classes, array_filter($cfgClasses));
         }
+
+        // Return the classes as a space-separated string.
 
         return implode(' ', $classes);
     }
