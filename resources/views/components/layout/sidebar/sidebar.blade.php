@@ -2,12 +2,11 @@
 <aside class="{{ $makeSidebarClasses() }}" data-bs-theme="{{ $makeBootstrapTheme() }}">
 
     {{-- Sidebar brand --}}
-    {{-- TODO: Properties should be read from configuration file --}}
-    <x-ladmin-sidebar-brand label="AdminLTE"
-        logo-url="{{ asset('vendor/laradmin/img/AdminLTELogo.png') }}"
-        logo-alt="AdminLTE"
-        label-classes="fw-bold"
-        logo-classes="opacity-75 rounded-circle shadow-sm"/>
+    <x-ladmin-sidebar-brand label="{{ config('ladmin.logo.text', 'AdminLTE') }}"
+        logo-url="{{ config('ladmin.logo.image', '') }}"
+        logo-alt="{{ config('ladmin.logo.image_alt', 'AdminLTE Logo') }}"
+        label-classes="{{ $makeBrandTextClasses() }}"
+        logo-classes="{{ $makeBrandImageClasses() }}"/>
 
     {{-- Sidebar menu wrapper --}}
     <div class="sidebar-wrapper">

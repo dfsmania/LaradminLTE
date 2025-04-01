@@ -31,6 +31,36 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Brand Logo
+    |--------------------------------------------------------------------------
+    |
+    | Here you can setup the brand logo of your admin panel. By default, the
+    | logo will appear in the top-left corner of your admin panel.
+    |
+    | For more details you can look the online documentation here:
+    | TBD
+    |
+    */
+
+    'logo' => [
+        // The text displayed alongside the logo.
+        'text' => 'AdminLTE',
+
+        // The URL path to the logo image file.
+        'image' => asset('vendor/laradmin/img/AdminLTELogo.png'),
+
+        // The alternative text for the logo image, used for accessibility.
+        'image_alt' => 'AdminLTE Logo',
+
+        // The CSS classes applied to style the logo text.
+        'text_classes' => ['fw-bold'],
+
+        // The CSS classes applied to style the logo image.
+        'image_classes' => ['rounded-circle', 'shadow', 'opacity-75'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Layout
     |--------------------------------------------------------------------------
     |
