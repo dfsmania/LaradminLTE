@@ -103,8 +103,8 @@ return [
         // for the navbar, allowing it to inherit a global theme settings.
         'bootstrap_theme' => null,
 
-        // The set of extra classes for the navbar, usually to setup its
-        // background color and style.
+        // A list of additional CSS classes applied to the navbar, typically
+        // used to configure its background color and styling.
         'classes' => ['bg-body'],
     ],
 
@@ -126,8 +126,8 @@ return [
         // for the sidebar, allowing it to inherit a global theme settings.
         'bootstrap_theme' => 'dark',
 
-        // The set of extra classes for the sidebar, usually to setup its
-        // background color and style.
+        // A list of additional CSS classes applied to the sidebar, typically
+        // used to configure its background color and styling.
         'classes' => ['bg-body-secondary', 'shadow'],
     ],
 
@@ -149,8 +149,8 @@ return [
         // for the footer, allowing it to inherit a global theme settings.
         'bootstrap_theme' => null,
 
-        // The set of extra classes for the footer, usually to setup its
-        // background color and style.
+        // A list of additional CSS classes applied to the footer, typically
+        // used to configure its background color and styling.
         'classes' => ['bg-body'],
     ],
 ];
