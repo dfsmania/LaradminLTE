@@ -14,8 +14,8 @@
 
             {{-- Sidebar menu --}}
             <ul class="nav sidebar-menu flex-column"
+                data-accordion="{{ config('ladmin.sidebar.accordion', false) }}"
                 data-lte-toggle="treeview"
-                data-accordion="false"
                 role="menu">
 
                 {{-- Basic Link tests --}}

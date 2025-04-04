@@ -129,6 +129,10 @@ return [
         // A list of additional CSS classes applied to the sidebar, typically
         // used to configure its background color and styling.
         'classes' => ['bg-body-secondary', 'shadow'],
+
+        // Enables or disables the accordion navigation feature. When enabled,
+        // expanding a menu will automatically collapse any other open menus.
+        'accordion' => false,
     ],
 
     /*
