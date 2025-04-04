@@ -42,6 +42,18 @@ class Sidebar extends Component
     }
 
     /**
+     * Make the specific Bootstrap theme for the sidebar wrapper.
+     *
+     * @return string
+     */
+    public function makeBootstrapTheme(): string
+    {
+        $bsTheme = config('ladmin.sidebar.bootstrap_theme', 'dark');
+
+        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
+    }
+
+    /**
      * Make the set of classes for the sidebar brand logo text.
      *
      * @return string
@@ -77,18 +89,6 @@ class Sidebar extends Component
         return is_array($cfgClasses)
             ? implode(' ', array_filter($cfgClasses))
             : '';
-    }
-
-    /**
-     * Make the specific Bootstrap theme for the sidebar wrapper.
-     *
-     * @return string
-     */
-    public function makeBootstrapTheme(): string
-    {
-        $bsTheme = config('ladmin.sidebar.bootstrap_theme', 'dark');
-
-        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
 
     /**
