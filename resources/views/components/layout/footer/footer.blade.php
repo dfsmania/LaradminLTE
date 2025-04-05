@@ -1,5 +1,5 @@
 {{-- Footer --}}
-<footer class="{{ $makeFooterClasses() }}" data-bs-theme="{{ $makeBootstrapTheme() }}">
+<footer class="{{ $footerClasses }}" data-bs-theme="{{ $bootstrapTheme }}">
 
     @if($slot->isNotEmpty())
         {{-- Custom footer content via slot --}}

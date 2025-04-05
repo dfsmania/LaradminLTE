@@ -18,11 +18,37 @@ class Footer extends Component
     ];
 
     /**
-     * Make the set of classes for the footer wrapper.
+     * The set of classes that will be applied to the footer wrapper, as a
+     * space-separated string
+     *
+     * @var string
+     */
+    public string $footerClasses;
+
+    /**
+     * The Bootstrap theme that will be applied to the footer wrapper.
+     *
+     * @var string
+     */
+    public string $bootstrapTheme;
+
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->footerClasses = $this->getFooterClasses();
+        $this->bootstrapTheme = $this->getBootstrapTheme();
+    }
+
+    /**
+     * Gets the set of classes for the footer wrapper.
      *
      * @return string
      */
-    public function makeFooterClasses(): string
+    protected function getFooterClasses(): string
     {
         // Setup base footer classes.
 
@@ -42,11 +68,11 @@ class Footer extends Component
     }
 
     /**
-     * Make the specific Bootstrap theme for the footer wrapper.
+     * Gets the specific Bootstrap theme for the footer wrapper.
      *
      * @return string
      */
-    public function makeBootstrapTheme(): string
+    protected function getBootstrapTheme(): string
     {
         $bsTheme = config('ladmin.footer.bootstrap_theme', '');
 
