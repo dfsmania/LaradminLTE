@@ -8,50 +8,50 @@ use Illuminate\View\View;
 class BrandLink extends Component
 {
     /**
-     * The label of the brand link.
+     * The label of the brand link (optional).
      *
-     * @var string
+     * @var ?string
      */
-    public $label;
+    public ?string $label;
 
     /**
-     * A set of extra classes for the label. You may use these classes to
-     * customize the style of the label.
+     * The set of CSS classes for the label, as a space-separated string. These
+     * CSS classes are mainly used to customize the style of the label.
      *
-     * @var array
+     * @var ?string
      */
-    public $labelClasses;
+    public ?string $labelClasses;
 
     /**
-     * The URL (src attribute) of the brand link image (logo). This URL should
-     * be accessible from your application.
+     * The URL (src attribute) of the brand link image (optional). This URL
+     * should be accessible from your application.
      *
-     * @var string
+     * @var ?string
      */
-    public $logoUrl;
+    public ?string $logoUrl;
 
     /**
      * The alternate text for the brand link logo, used as the 'alt' attribute
      * in the HTML '<img>' tag for accessibility purposes.
      *
-     * @var string
+     * @var ?string
      */
-    public $logoAlt;
+    public ?string $logoAlt;
 
     /**
-     * A set of extra classes for the logo. You may use these classes to
-     * customize the logo style.
+     * The set of CSS classes for the logo, as a space-separated string. These
+     * CSS classes are mainly used to customize the style of the logo.
      *
-     * @var array
+     * @var ?string
      */
-    public $logoClasses;
+    public ?string $logoClasses;
 
     /**
      * The URL (href attribute) of the brand link.
      *
      * @var string
      */
-    public $url;
+    public string $url;
 
     /**
      * Create a new component instance.
@@ -59,7 +59,7 @@ class BrandLink extends Component
      * @param  ?string  $label  The text label for the brand link
      * @param  ?string  $logoUrl  The URL to the logo image
      * @param  string   $url  The URL the brand link points to
-     * @param  string   $logoAlt  The alternative text for the logo image
+     * @param  ?string  $logoAlt  The alternative text for the logo image
      * @param  ?string  $labelClasses  Additional CSS classes for the label
      * @param  ?string  $logoClasses  Additional CSS classes for the logo
      * @return void
@@ -68,51 +68,53 @@ class BrandLink extends Component
         ?string $label = null,
         ?string $logoUrl = null,
         string $url = '#',
-        string $logoAlt = '',
+        ?string $logoAlt = null,
         ?string $labelClasses = null,
         ?string $logoClasses = null
     ) {
         $this->label = html_entity_decode($label);
         $this->logoUrl = $logoUrl;
-        $this->url = $url;
+        $this->url = filter_var($url, FILTER_SANITIZE_URL) ? $url : '#';
         $this->logoAlt = $logoAlt;
 
-        $this->labelClasses = ! empty($labelClasses)
-            ? explode(' ', $labelClasses)
-            : [];
+        $this->labelClasses = ! empty($label)
+            ? $this->getLabelClasses($labelClasses)
+            : null;
 
-        $this->logoClasses = ! empty($logoClasses)
-            ? explode(' ', $logoClasses)
-            : [];
+        $this->logoClasses = ! empty($logoUrl)
+            ? $this->getLogoClasses($logoClasses)
+            : null;
     }
 
     /**
-     * Make the set of classes for the label.
+     * Gets the set of CSS classes for the label.
      *
+     * @param  ?string  $extraClasses  A set of extra CSS classes for the label
      * @return string
      */
-    public function makeLabelClasses(): string
+    protected function getLabelClasses(?string $extraClasses): string
     {
         $classes = ['brand-text'];
 
-        if (! empty($this->labelClasses)) {
-            $classes = array_merge($classes, $this->labelClasses);
+        if (! empty($extraClasses)) {
+            $classes[] = trim($extraClasses);
         }
 
         return implode(' ', $classes);
     }
 
     /**
-     * Make the set of classes for the logo.
+     * Gets the set of classes for the logo.
      *
+     * @param  ?string  $extraClasses  A set of extra CSS classes for the logo
      * @return string
      */
-    public function makeLogoClasses(): string
+    protected function getLogoClasses(?string $extraClasses): string
     {
         $classes = ['brand-image'];
 
-        if (! empty($this->logoClasses)) {
-            $classes = array_merge($classes, $this->logoClasses);
+        if (! empty($extraClasses)) {
+            $classes[] = trim($extraClasses);
         }
 
         return implode(' ', $classes);

@@ -5,12 +5,12 @@
 
         {{-- Logo (optional) --}}
         @if (! empty($logoUrl))
-            <img src="{{ $logoUrl }}" alt="{{ $logoAlt }}" class="{{ $makeLogoClasses() }}">
+            <img src="{{ $logoUrl }}" alt="{{ $logoAlt }}" class="{{ $logoClasses }}">
         @endif
 
         {{-- Label (optional) --}}
         @if (! empty($label))
-            <span class="{{ $makeLabelClasses() }}">{{ $label }}</span>
+            <span class="{{ $labelClasses }}">{{ $label }}</span>
         @endif
 
     </a>
