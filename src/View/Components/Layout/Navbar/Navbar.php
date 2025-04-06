@@ -18,7 +18,7 @@ class Navbar extends Component
     ];
 
     /**
-     * The set of classes that will be applied to the navbar wrapper, as a
+     * The set of CSS classes that will be applied to the navbar wrapper, as a
      * space-separated string
      *
      * @var string
@@ -44,13 +44,13 @@ class Navbar extends Component
     }
 
     /**
-     * Gets the set of classes for the navbar wrapper.
+     * Gets the set of CSS classes for the navbar wrapper.
      *
      * @return string
      */
     protected function getNavbarClasses(): string
     {
-        // Setup base navbar classes.
+        // Setup base navbar CSS classes.
 
         $classes = ['app-header', 'navbar', 'navbar-expand'];
 
@@ -60,7 +60,7 @@ class Navbar extends Component
         // 'navbar-expand-md' or 'navbar-expand-lg'. See more info at:
         // https://getbootstrap.com/docs/5.3/components/navbar/#responsive-behaviors
 
-        // Add extra classes from the configuration file.
+        // Add extra CSS classes from the configuration file.
 
         $cfgClasses = config('ladmin.navbar.classes', ['bg-body']);
 

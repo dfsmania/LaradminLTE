@@ -15,7 +15,7 @@ class Link extends Component
     public ?string $badge;
 
     /**
-     * The set of classes for the badge, as a space-separated string.
+     * The set of CSS classes for the badge, as a space-separated string.
      *
      * @var ?string
      */
@@ -36,7 +36,7 @@ class Link extends Component
     public ?string $label;
 
     /**
-     * The set of classes for the link, as a space-separated string.
+     * The set of CSS classes for the link, as a space-separated string.
      *
      * @var string
      */
@@ -58,7 +58,7 @@ class Link extends Component
      * @param  ?string  $color  The Bootstrap color of the link
      * @param  ?string  $badge  The text for the badge of the link
      * @param  string   $badgeColor  The Bootstrap background color of the badge
-     * @param  ?string  $badgeClasses  A set of extra classes for the badge
+     * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
      * @return void
      */
     public function __construct(
@@ -76,7 +76,7 @@ class Link extends Component
         $this->badge = html_entity_decode($badge);
         $this->linkClasses = $this->getLinkClasses($color);
 
-        // If the badge is not empty, set the classes for the badge.
+        // If the badge is not empty, set the CSS classes for the badge.
         // Otherwise, set them to null.
 
         $this->badgeClasses = ! empty($badge)
@@ -85,7 +85,7 @@ class Link extends Component
     }
 
     /**
-     * Gets the set of classes for the link.
+     * Gets the set of CSS classes for the link.
      *
      * @param  ?string  $color  The Bootstrap color for the link
      * @return string
@@ -102,10 +102,10 @@ class Link extends Component
     }
 
     /**
-     * Gets the set of classes for the badge.
+     * Gets the set of CSS classes for the badge.
      *
      * @param  string   $color  The Bootstrap background color for the badge
-     * @param  ?string  $extraClasses  A set of extra classes for the badge
+     * @param  ?string  $extraClasses  A set of extra CSS classes for the badge
      * @return string
      */
     protected function getBadgeClasses(

@@ -18,7 +18,7 @@ class Footer extends Component
     ];
 
     /**
-     * The set of classes that will be applied to the footer wrapper, as a
+     * The set of CSS classes that will be applied to the footer wrapper, as a
      * space-separated string
      *
      * @var string
@@ -44,7 +44,7 @@ class Footer extends Component
     }
 
     /**
-     * Gets the set of classes for the footer wrapper.
+     * Gets the set of CSS classes for the footer wrapper.
      *
      * @return string
      */
