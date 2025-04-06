@@ -1,7 +1,7 @@
 {{-- Sidebar link --}}
 <li class="nav-item">
 
-    <a href="{{ $url }}" {{ $attributes->merge(['class' => $makeLinkClasses()]) }}>
+    <a href="{{ $url }}" {{ $attributes->merge(['class' => $linkClasses]) }}>
 
         {{-- Icon (optional) --}}
         @if(! empty($icon))
@@ -13,7 +13,7 @@
 
         {{-- Badge (optional) --}}
         @if(! empty($badge))
-            <span class="{{ $makeBadgeClasses() }}">
+            <span class="{{ $badgeClasses }}">
                 {{ $badge }}
             </span>
         @endif

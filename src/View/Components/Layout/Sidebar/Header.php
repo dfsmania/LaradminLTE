@@ -33,7 +33,7 @@ class Header extends Component
      *
      * @param  string   $label  The label text for the header
      * @param  ?string  $icon  The Font Awesome icon associated with the header
-     * @param  ?string  $color  The Bootsrap color of the header
+     * @param  ?string  $color  The Bootstrap color of the header
      * @return void
      */
     public function __construct(

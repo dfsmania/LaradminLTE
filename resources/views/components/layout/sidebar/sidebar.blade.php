@@ -25,13 +25,13 @@
 
                 <x-ladmin-sidebar-link label="Link 1" icon="fa-regular fa-circle"/>
 
-                <x-ladmin-sidebar-link label="Link 2" icon="fa-regular fa-square" theme="warning"/>
+                <x-ladmin-sidebar-link label="Link 2" icon="fa-regular fa-square" color="warning"/>
 
                 <x-ladmin-sidebar-link label="Link 3" icon="fa-regular fa-circle-dot"
-                    badge="5" badge-theme="info"/>
+                    badge="5" badge-color="info"/>
 
-                <x-ladmin-sidebar-link label="Link 4" icon="fa-solid fa-star" theme="info"
-                    badge="7" badge-theme="danger" badge-classes="rounded-circle"/>
+                <x-ladmin-sidebar-link label="Link 4" icon="fa-solid fa-star" color="info"
+                    badge="7" badge-color="danger" badge-classes="rounded-circle"/>
 
                 {{-- Treeview menu tests --}}
 
