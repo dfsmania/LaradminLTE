@@ -21,7 +21,7 @@
                 {{-- Basic Link tests --}}
 
                 <x-ladmin-sidebar-header label="Basic Link Tests" icon="fa-regular fa-bookmark"
-                    class="text-uppercase fw-bold" theme="success"/>
+                    class="text-uppercase fw-bold" color="success"/>
 
                 <x-ladmin-sidebar-link label="Link 1" icon="fa-regular fa-circle"/>
 
@@ -36,7 +36,29 @@
                 {{-- Treeview menu tests --}}
 
                 <x-ladmin-sidebar-header label="Treeview Menu Tests" icon="fa-regular fa-bookmark"
-                    class="text-uppercase fw-bold" theme="success"/>
+                    class="text-uppercase fw-bold" color="success"/>
+
+                <x-ladmin-sidebar-treeview label="Menu 1" icon="fa-solid fa-cubes">
+                    <x-ladmin-sidebar-link label="Link A" icon="fa-regular fa-circle"/>
+                    <x-ladmin-sidebar-link label="Link B" icon="fa-regular fa-circle"/>
+
+                    <x-ladmin-sidebar-treeview label="Menu 2" icon="fa-solid fa-cubes"
+                        theme="info" badge="2" badge-theme="warning">
+                        <x-ladmin-sidebar-link label="Link C" icon="fa-regular fa-circle"/>
+                        <x-ladmin-sidebar-link label="Link D" icon="fa-regular fa-circle"/>
+                    </x-ladmin-sidebar-treeview>
+                </x-ladmin-sidebar-treeview>
+
+                <x-ladmin-sidebar-treeview label="Menu 1" icon="fa-solid fa-cubes">
+                    <x-ladmin-sidebar-link label="Link A" icon="fa-regular fa-circle"/>
+                    <x-ladmin-sidebar-link label="Link B" icon="fa-regular fa-circle"/>
+
+                    <x-ladmin-sidebar-treeview label="Menu 2" icon="fa-solid fa-cubes"
+                        theme="info" badge="2" badge-theme="warning">
+                        <x-ladmin-sidebar-link label="Link C" icon="fa-regular fa-circle"/>
+                        <x-ladmin-sidebar-link label="Link D" icon="fa-regular fa-circle"/>
+                    </x-ladmin-sidebar-treeview>
+                </x-ladmin-sidebar-treeview>
 
                 <x-ladmin-sidebar-treeview label="Menu 1" icon="fa-solid fa-cubes">
                     <x-ladmin-sidebar-link label="Link A" icon="fa-regular fa-circle"/>

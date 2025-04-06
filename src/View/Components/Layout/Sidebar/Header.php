@@ -8,72 +8,56 @@ use Illuminate\View\View;
 class Header extends Component
 {
     /**
-     * The Font Awesome icon of the header.
+     * The Font Awesome icon of the header (optional).
      *
-     * @var string
+     * @var ?string
      */
-    public $icon;
+    public ?string $icon;
 
     /**
      * The label of the header.
      *
      * @var string
      */
-    public $label;
+    public string $label;
 
     /**
-     * The color theme for the header. Any Bootstrap text color, like: primary,
-     * secondary, info, success, warning, danger, etc.
+     * The set of CSS classes for the header, as a space-separated string.
      *
      * @var string
      */
-    public $theme;
+    public string $headerClasses;
 
     /**
      * Create a new component instance.
      *
      * @param  string   $label  The label text for the header
      * @param  ?string  $icon  The Font Awesome icon associated with the header
-     * @param  ?string  $theme  The color theme for the header
+     * @param  ?string  $color  The Bootsrap color of the header
      * @return void
      */
     public function __construct(
         string $label,
         ?string $icon = null,
-        ?string $theme = null
+        ?string $color = null
     ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
-        $this->theme = $theme;
+        $this->headerClasses = $this->getHeaderClasses($color);
     }
 
     /**
-     * Make the set of classes for the header.
+     * Gets the set of CSS classes for the header.
      *
+     * @param  ?string  $color  The Bootstrap color for the header text
      * @return string
      */
-    public function makeHeaderClasses(): string
+    protected function getHeaderClasses(?string $color): string
     {
         $classes = ['nav-header', 'user-select-none'];
 
-        if (! empty($this->theme)) {
-            $classes[] = "text-{$this->theme}";
-        }
-
-        return implode(' ', $classes);
-    }
-
-    /**
-     * Make the set of classes for the label.
-     *
-     * @return string
-     */
-    public function makeLabelClasses(): string
-    {
-        $classes = [];
-
-        if (! empty($this->icon)) {
-            $classes[] = "ms-1";
+        if (! empty($color)) {
+            $classes[] = "text-{$color}";
         }
 
         return implode(' ', $classes);

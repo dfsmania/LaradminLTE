@@ -1,14 +1,12 @@
 {{-- Sidebar header --}}
-<li {{ $attributes->merge(['class' => $makeHeaderClasses()]) }}>
+<li {{ $attributes->merge(['class' => $headerClasses]) }}>
 
     {{-- Icon (optional) --}}
     @if(! empty($icon))
-        <i class="{{ $icon }}"></i>
+        <i class="{{ $icon }} me-1"></i>
     @endif
 
     {{-- Label --}}
-    <span class="{{ $makeLabelClasses() }}">
-        {{ $label }}
-    </span>
+    <span>{{ $label }}</span>
 
 </li>
