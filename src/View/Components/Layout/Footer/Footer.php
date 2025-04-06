@@ -8,11 +8,11 @@ use Illuminate\View\View;
 class Footer extends Component
 {
     /**
-     * The set of valid Bootstrap themes that can be applied on the footer.
+     * The set of valid Bootstrap themes that can be applied to the footer.
      *
-     * @var array
+     * @var string[]
      */
-    protected $validBootstrapThemes = [
+    protected array $validBootstrapThemes = [
         'light',
         'dark'
     ];

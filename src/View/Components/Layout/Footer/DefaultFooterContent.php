@@ -12,28 +12,28 @@ class DefaultFooterContent extends Component
      *
      * @var string
      */
-    public $version;
+    public string $version;
 
     /**
      * The name of the company that owns and develops the admin panel.
      *
      * @var string
      */
-    public $company;
+    public string $company;
 
     /**
      * The url site of the company that owns and develops the admin panel.
      *
      * @var string
      */
-    public $companyUrl;
+    public string $companyUrl;
 
     /**
      * The year when the development of your admin panel started.
      *
      * @var string
      */
-    public $startYear;
+    public string $startYear;
 
     /**
      * Create a new component instance.
