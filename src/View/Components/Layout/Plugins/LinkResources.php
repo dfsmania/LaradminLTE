@@ -17,7 +17,7 @@ class LinkResources extends Component
      *
      * @var array
      */
-    public $resources;
+    public array $resources;
 
     /**
      * Create a new component instance.
