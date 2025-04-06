@@ -8,56 +8,46 @@ use Illuminate\View\View;
 class Link extends Component
 {
     /**
-     * The text for the badge of the link.
+     * The text for the badge of the link (optional).
+     *
+     * @var ?string
+     */
+    public ?string $badge;
+
+    /**
+     * The set of classes for the badge, as a space-separated string.
+     *
+     * @var ?string
+     */
+    public ?string $badgeClasses;
+
+    /**
+     * The Font Awesome icon of the link (optional).
+     *
+     * @var ?string
+     */
+    public ?string $icon;
+
+    /**
+     * The label of the link (optional).
+     *
+     * @var ?string
+     */
+    public ?string $label;
+
+    /**
+     * The set of classes for the link, as a space-separated string.
      *
      * @var string
      */
-    public $badge;
-
-    /**
-     * A set of extra classes for the badge. You may use these classes to
-     * customize the badge style.
-     *
-     * @var array
-     */
-    public $badgeClasses;
-
-    /**
-     * The background theme for the badge. Any Bootstrap background color, like:
-     * primary, secondary, info, success, warning, danger, etc.
-     *
-     * @var string
-     */
-    public $badgeTheme;
-
-    /**
-     * The Font Awesome icon of the link.
-     *
-     * @var string
-     */
-    public $icon;
-
-    /**
-     * The label of the link.
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * The color theme for the link. Any Bootstrap link color, like: primary,
-     * secondary, info, success, warning, danger, etc.
-     *
-     * @var string
-     */
-    public $theme;
+    public string $linkClasses;
 
     /**
      * The URL (href attribute) of the link.
      *
      * @var string
      */
-    public $url;
+    public string $url;
 
     /**
      * Create a new component instance.
@@ -65,9 +55,9 @@ class Link extends Component
      * @param  ?string  $icon  The Font Awesome icon of the link
      * @param  ?string  $label  The label of the link
      * @param  string   $url  The URL (href attribute) of the link
-     * @param  ?string  $theme  The color theme for the link
+     * @param  ?string  $color  The Bootstrap color of the link
      * @param  ?string  $badge  The text for the badge of the link
-     * @param  string   $badgeTheme  The background theme for the badge
+     * @param  string   $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra classes for the badge
      * @return void
      */
@@ -75,51 +65,57 @@ class Link extends Component
         ?string $icon = null,
         ?string $label = null,
         string $url = '#',
-        ?string $theme = null,
+        ?string $color = null,
         ?string $badge = null,
-        string $badgeTheme = 'secondary',
+        string $badgeColor = 'secondary',
         ?string $badgeClasses = null
     ) {
         $this->icon = $icon;
         $this->label = html_entity_decode($label);
-        $this->url = $url;
-        $this->theme = $theme;
+        $this->url = filter_var($url, FILTER_VALIDATE_URL) ? $url : '#';
         $this->badge = html_entity_decode($badge);
-        $this->badgeTheme = $badgeTheme;
+        $this->linkClasses = $this->getLinkClasses($color);
 
-        $this->badgeClasses = ! empty($badgeClasses)
-            ? explode(' ', $badgeClasses)
-            : [];
+        // If the badge is not empty, set the classes for the badge.
+        // Otherwise, set them to null.
+
+        $this->badgeClasses = ! empty($badge)
+            ? $this->getBadgeClasses($badgeColor, $badgeClasses)
+            : null;
     }
 
     /**
-     * Make the set of classes for the link.
+     * Gets the set of classes for the link.
      *
+     * @param  ?string  $color  The Bootstrap color for the link
      * @return string
      */
-    public function makeLinkClasses(): string
+    protected function getLinkClasses(?string $color): string
     {
         $classes = ['nav-link', 'user-select-none'];
 
-        if (! empty($this->theme)) {
-            $classes[] = "link-{$this->theme}";
+        if (! empty($color)) {
+            $classes[] = "link-{$color}";
         }
 
         return implode(' ', $classes);
     }
 
     /**
-     * Make the set of classes for the badge.
+     * Gets the set of classes for the badge.
      *
+     * @param  string   $color  The Bootstrap background color for the badge
+     * @param  ?string  $extraClasses  A set of extra classes for the badge
      * @return string
      */
-    public function makeBadgeClasses(): string
-    {
-        $classes = ['navbar-badge', 'badge', 'fw-bold'];
-        $classes[] = "bg-{$this->badgeTheme}";
+    protected function getBadgeClasses(
+        string $color,
+        ?string $extraClasses
+    ): string {
+        $classes = ['navbar-badge', 'badge', 'fw-bold', "bg-{$color}"];
 
-        if (! empty($this->badgeClasses)) {
-            $classes = array_merge($classes, $this->badgeClasses);
+        if (! empty($extraClasses)) {
+            $classes[] = trim($extraClasses);
         }
 
         return implode(' ', $classes);
