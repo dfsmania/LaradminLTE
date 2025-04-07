@@ -1,12 +1,12 @@
 {{-- Sidebar --}}
-<aside class="{{ $makeSidebarClasses() }}" data-bs-theme="{{ $makeBootstrapTheme() }}">
+<aside class="{{ $sidebarClasses }}" data-bs-theme="{{ $bootstrapTheme }}">
 
     {{-- Sidebar brand --}}
     <x-ladmin-sidebar-brand label="{{ config('ladmin.logo.text', 'AdminLTE') }}"
         logo-url="{{ config('ladmin.logo.image', '') }}"
         logo-alt="{{ config('ladmin.logo.image_alt', 'AdminLTE Logo') }}"
-        label-classes="{{ $makeBrandTextClasses() }}"
-        logo-classes="{{ $makeBrandImageClasses() }}"/>
+        label-classes="{{ $brandTextClasses }}"
+        logo-classes="{{ $brandImageClasses }}"/>
 
     {{-- Sidebar menu wrapper --}}
     <div class="sidebar-wrapper">

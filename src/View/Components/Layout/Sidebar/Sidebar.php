@@ -8,7 +8,7 @@ use Illuminate\View\View;
 class Sidebar extends Component
 {
     /**
-     * The set of valid Bootstrap themes that can be applied on the sidebar.
+     * The set of valid Bootstrap themes that can be applied to the sidebar.
      *
      * @var array
      */
@@ -18,11 +18,55 @@ class Sidebar extends Component
     ];
 
     /**
-     * Make the set of classes for the sidebar wrapper.
+     * The set of CSS classes that will be applied to the sidebar wrapper, as a
+     * space-separated string
+     *
+     * @var string
+     */
+    public string $sidebarClasses;
+
+    /**
+     * The Bootstrap theme that will be applied to the sidebar wrapper.
+     *
+     * @var string
+     */
+    public string $bootstrapTheme;
+
+    /**
+     * The set of CSS classes that will be applied to the sidebar brand text,
+     * as a space-separated string
+     *
+     * @var string
+     */
+    public string $brandTextClasses;
+
+    /**
+     * The set of CSS classes that will be applied to the sidebar brand image,
+     * as a space-separated string
+     *
+     * @var string
+     */
+    public string $brandImageClasses;
+
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->sidebarClasses = $this->getSidebarClasses();
+        $this->bootstrapTheme = $this->getBootstrapTheme();
+        $this->brandTextClasses = $this->getBrandTextClasses();
+        $this->brandImageClasses = $this->getBrandImageClasses();
+    }
+
+    /**
+     * Gets the set of CSS classes for the sidebar wrapper.
      *
      * @return string
      */
-    public function makeSidebarClasses(): string
+    protected function getSidebarClasses(): string
     {
         // Setup base sidebar classes.
 
@@ -42,11 +86,11 @@ class Sidebar extends Component
     }
 
     /**
-     * Make the specific Bootstrap theme for the sidebar wrapper.
+     * Gets the specific Bootstrap theme for the sidebar wrapper.
      *
      * @return string
      */
-    public function makeBootstrapTheme(): string
+    protected function getBootstrapTheme(): string
     {
         $bsTheme = config('ladmin.sidebar.bootstrap_theme', 'dark');
 
@@ -54,11 +98,11 @@ class Sidebar extends Component
     }
 
     /**
-     * Make the set of classes for the sidebar brand logo text.
+     * Gets the set of CSS classes for the sidebar brand logo text.
      *
      * @return string
      */
-    public function makeBrandTextClasses(): string
+    protected function getBrandTextClasses(): string
     {
         // Retrieve classes from the configuration file, defaulting to an empty
         // array if not set.
@@ -73,11 +117,11 @@ class Sidebar extends Component
     }
 
     /**
-     * Make the set of classes for the sidebar brand logo image.
+     * Gets the set of CSS classes for the sidebar brand logo image.
      *
      * @return string
      */
-    public function makeBrandImageClasses(): string
+    protected function getBrandImageClasses(): string
     {
         // Retrieve classes from the configuration file, defaulting to an empty
         // array if not set.
