@@ -42,39 +42,32 @@
                     <x-ladmin-sidebar-link label="Link A" icon="fa-regular fa-circle"/>
                     <x-ladmin-sidebar-link label="Link B" icon="fa-regular fa-circle"/>
 
-                    <x-ladmin-sidebar-treeview label="Menu 2" icon="fa-solid fa-cubes"
-                        theme="info" badge="2" badge-theme="warning">
+                    <x-ladmin-sidebar-treeview label="SubMenu 1-1" icon="fa-solid fa-cubes"
+                        color="info" badge="2" badge-color="warning">
                         <x-ladmin-sidebar-link label="Link C" icon="fa-regular fa-circle"/>
                         <x-ladmin-sidebar-link label="Link D" icon="fa-regular fa-circle"/>
                     </x-ladmin-sidebar-treeview>
                 </x-ladmin-sidebar-treeview>
 
-                <x-ladmin-sidebar-treeview label="Menu 1" icon="fa-solid fa-cubes">
-                    <x-ladmin-sidebar-link label="Link A" icon="fa-regular fa-circle"/>
-                    <x-ladmin-sidebar-link label="Link B" icon="fa-regular fa-circle"/>
+                <x-ladmin-sidebar-treeview label="Menu 2" icon="fa-solid fa-cubes">
+                    <x-ladmin-sidebar-link label="Link E" icon="fa-regular fa-circle ms-1"/>
+                    <x-ladmin-sidebar-link label="Link F" icon="fa-regular fa-circle ms-1"/>
 
-                    <x-ladmin-sidebar-treeview label="Menu 2" icon="fa-solid fa-cubes"
-                        theme="info" badge="2" badge-theme="warning">
-                        <x-ladmin-sidebar-link label="Link C" icon="fa-regular fa-circle"/>
-                        <x-ladmin-sidebar-link label="Link D" icon="fa-regular fa-circle"/>
+                    <x-ladmin-sidebar-treeview label="SubMenu 2-1" icon="fa-solid fa-cubes ms-1"
+                        color="primary" badge="2" badge-color="primary">
+                        <x-ladmin-sidebar-link label="Link G" icon="fa-regular fa-circle ms-2"/>
+                        <x-ladmin-sidebar-link label="Link H" icon="fa-regular fa-circle ms-2"/>
                     </x-ladmin-sidebar-treeview>
-                </x-ladmin-sidebar-treeview>
-
-                <x-ladmin-sidebar-treeview label="Menu 1" icon="fa-solid fa-cubes">
-                    <x-ladmin-sidebar-link label="Link A" icon="fa-regular fa-circle"/>
-                    <x-ladmin-sidebar-link label="Link B" icon="fa-regular fa-circle"/>
-
-                    <x-ladmin-sidebar-treeview label="Menu 2" icon="fa-solid fa-cubes"
-                        theme="info" badge="2" badge-theme="warning">
-                        <x-ladmin-sidebar-link label="Link C" icon="fa-regular fa-circle"/>
-                        <x-ladmin-sidebar-link label="Link D" icon="fa-regular fa-circle"/>
+                    <x-ladmin-sidebar-treeview label="SubMenu 2-2" icon="fa-solid fa-cubes ms-1"
+                        color="warning" badge="1" badge-color="warning">
+                        <x-ladmin-sidebar-link label="Link I" icon="fa-regular fa-circle ms-2"/>
                     </x-ladmin-sidebar-treeview>
                 </x-ladmin-sidebar-treeview>
 
                 <x-ladmin-sidebar-treeview label="Menu 3" icon="fa-solid fa-cubes"
-                    theme="danger" badge="2" toggler-icon="fa-solid fa-caret-right">
-                    <x-ladmin-sidebar-link label="Link E" icon="fa-regular fa-circle"/>
-                    <x-ladmin-sidebar-link label="Link F" icon="fa-regular fa-circle"/>
+                    color="danger" badge="2" toggler-icon="fa-solid fa-caret-right">
+                    <x-ladmin-sidebar-link label="Link J" icon="fa-regular fa-circle"/>
+                    <x-ladmin-sidebar-link label="Link K" icon="fa-regular fa-circle"/>
                 </x-ladmin-sidebar-treeview>
 
             </ul>
