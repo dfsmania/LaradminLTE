@@ -9,28 +9,69 @@ use Illuminate\View\View;
 class AdminPanel extends Component
 {
     /**
+     * The 'dir' attribute for the main HTML tag. This is used to switch between
+     * LTR (left-to-right) and RTL (right-to-left) layouts.
+     */
+    public string $htmlDir;
+
+    /**
+     * The 'lang' attribute for the main HTML tag. This is used to specify the
+     * language of the document.
+     */
+    public string $htmlLang;
+
+    /**
      * The title that will be displayed on the browser's window. Defaults to
      * config('app.name') when not provided.
      *
      * @var string
      */
-    public $title;
+    public string $title;
 
     /**
-     * An instance of the plugins manager, this will be used to read and
+     * The URL path to the AdminLTE stylesheet file. Different stylesheet files
+     * are used to switch between LTR (left-to-right) and RTL (right-to-left)
+     * layouts.
+     *
+     * @var string
+     */
+    public string $adminlteCssFile;
+
+    /**
+     * The set of CSS classes for the body tag, as a space-separated string.
+     * This is used to apply different layout styles.
+     *
+     * @var string
+     */
+    public string $bodyClasses;
+
+    /**
+     * An instance of the plugins manager. This is used to read, validate, and
      * classify the set of configured plugins resources.
      *
      * @var PluginsManager
      */
-    public $plugins;
+    public PluginsManager $plugins;
 
     /**
      * Create a new component instance.
      *
+     * @param  ?string  $title  The title for the browser's window.
+     * @return void
      */
     public function __construct(?string $title = null)
     {
+        $this->htmlDir = $this->getHtmlDir();
+        $this->htmlLang = $this->getHtmlLang();
         $this->title = $title ?? config('app.name');
+
+        // Setup the AdminLTE stylesheet file path (LTR or RTL).
+
+        $this->adminlteCssFile = $this->getAdminlteCssFile();
+
+        // Setup the body classes.
+
+        $this->bodyClasses = $this->getBodyClasses();
 
         // Init the plugins manager with the provided plugins configuration.
 
@@ -40,48 +81,53 @@ class AdminPanel extends Component
     }
 
     /**
-     * Make the 'dir' attribute for the main HTML tag.
+     * Gets the 'dir' attribute for the main HTML tag. This property depends on
+     * whether layout RTL configuration is enabled or not.
      *
      * @return string
      */
-    public function makeHtmlDir(): string
+    protected function getHtmlDir(): string
     {
         return empty(config('ladmin.layout.rtl', false)) ? 'ltr' : 'rtl';
     }
 
     /**
-     * Make the 'lang' attribute for the main HTML tag.
+     * Gets the 'lang' attribute for the main HTML tag. This property depends
+     * on the current locale of the Laravel application.
      *
      * @return string
      */
-    public function makeHtmlLang(): string
+    protected function getHtmlLang(): string
     {
         return str_replace('_', '-', app()->getLocale());
     }
 
     /**
-     * Make the 'href' attribute for the AdminLTE stylesheet link. This is used
-     * to switch between LTR (left-to-right) and RTL (right-to-left) layouts.
+     * Gets the AdminLTE stylesheet file. The file to use depends on whether
+     * layout RTL configuration is enabled or not.
      *
      * @return string
      */
-    public function makeAdminlteHref(): string
+    protected function getAdminlteCssFile(): string
     {
-        $rtlSuffix = empty(config('ladmin.layout.rtl', false)) ? '' : '.rtl';
+        $file = empty(config('ladmin.layout.rtl', false))
+            ? 'adminlte.min.css'
+            : 'adminlte.rtl.min.css';
 
-        return asset("vendor/laradmin/css/adminlte{$rtlSuffix}.min.css");
+        return asset("vendor/laradmin/css/{$file}");
     }
 
     /**
-     * Make the set of classes for the body tag.
+     * Gets the set of CSS classes for the body tag. The set of classes to be
+     * used depends mostly on the layout configuration.
      *
      * @return string
      */
-    public function makeBodyClasses(): string
+    protected function getBodyClasses(): string
     {
-        // TODO: This logic should be improved based on the package
-        // configuration. For example, the breakpoint for expand sidebar and
-        // the background color.
+        // TODO: This logic should be improved based on the package config
+        // file. For example, the breakpoint for expand sidebar and the
+        // background color.
 
         $classes = [
             'sidebar-expand-lg',
@@ -106,7 +152,7 @@ class AdminPanel extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\View\View|string
+     * @return View|string
      */
     public function render(): View|string
     {

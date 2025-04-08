@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $makeHtmlLang() }}" dir="{{ $makeHtmlDir() }}">
+<html lang="{{ $htmlLang }}" dir="{{ $htmlDir }}">
 
     <head>
 
@@ -15,8 +15,8 @@
         {{-- Pre AdminLTE plugins links --}}
         <x-ladmin-plugins-links :resources="$plugins->getPreAdminlteLinks()"/>
 
-        {{-- AdminLte theme style --}}
-        <link rel="stylesheet" href="{{ $makeAdminlteHref() }}">
+        {{-- AdminLTE theme style --}}
+        <link rel="stylesheet" href="{{ $adminlteCssFile }}">
 
         {{-- Post AdminLTE plugins links --}}
         <x-ladmin-plugins-links :resources="$plugins->getPostAdminlteLinks()"/>
@@ -25,8 +25,7 @@
 
     </head>
 
-    {{-- TODO: Generate body data-*  attributes using a $makeBodyData() --}}
-    <body class="{{ $makeBodyClasses() }}">
+    <body class="{{ $bodyClasses }}">
 
         <div class="app-wrapper">
 
@@ -44,7 +43,7 @@
                     </x-slot>
                 @endisset
 
-                {{ $slot}}
+                {{ $slot }}
             </x-ladmin-main-content>
 
             {{-- Footer --}}
@@ -59,7 +58,7 @@
         {{-- Pre AdminLTE plugins scripts --}}
         <x-ladmin-plugins-scripts :resources="$plugins->getPreAdminlteScripts()"/>
 
-        {{-- AdminLte App --}}
+        {{-- AdminLTE JavaScript App --}}
         <script src="{{ asset('vendor/laradmin/js/adminlte.min.js') }}"></script>
 
         {{-- Post AdminLTE plugins scripts --}}
