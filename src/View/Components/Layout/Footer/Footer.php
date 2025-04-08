@@ -8,29 +8,12 @@ use Illuminate\View\View;
 class Footer extends Component
 {
     /**
-     * The set of valid Bootstrap themes that can be applied to the footer.
-     *
-     * @var string[]
-     */
-    protected array $validBootstrapThemes = [
-        'light',
-        'dark'
-    ];
-
-    /**
      * The set of CSS classes that will be applied to the footer wrapper, as a
      * space-separated string
      *
      * @var string
      */
     public string $footerClasses;
-
-    /**
-     * The Bootstrap theme that will be applied to the footer wrapper.
-     *
-     * @var string
-     */
-    public string $bootstrapTheme;
 
     /**
      * Create a new component instance.
@@ -40,7 +23,6 @@ class Footer extends Component
     public function __construct()
     {
         $this->footerClasses = $this->getFooterClasses();
-        $this->bootstrapTheme = $this->getBootstrapTheme();
     }
 
     /**
@@ -65,18 +47,6 @@ class Footer extends Component
         // Return the classes as a space-separated string.
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Gets the specific Bootstrap theme for the footer wrapper.
-     *
-     * @return string
-     */
-    protected function getBootstrapTheme(): string
-    {
-        $bsTheme = config('ladmin.footer.bootstrap_theme', '');
-
-        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
 
     /**

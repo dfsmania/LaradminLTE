@@ -9,6 +9,17 @@ use Illuminate\View\View;
 class AdminPanel extends Component
 {
     /**
+     * The set of valid Bootstrap themes that can be applied to the entire
+     * layout.
+     *
+     * @var string[]
+     */
+    protected array $validBootstrapThemes = [
+        'light',
+        'dark'
+    ];
+
+    /**
      * The 'dir' attribute for the main HTML tag. This is used to switch between
      * LTR (left-to-right) and RTL (right-to-left) layouts.
      */
@@ -19,6 +30,13 @@ class AdminPanel extends Component
      * language of the document.
      */
     public string $htmlLang;
+
+    /**
+     * The Bootstrap theme that will be applied to the entire layout.
+     *
+     * @var string
+     */
+    public string $bootstrapTheme;
 
     /**
      * The title that will be displayed on the browser's window. Defaults to
@@ -63,6 +81,7 @@ class AdminPanel extends Component
     {
         $this->htmlDir = $this->getHtmlDir();
         $this->htmlLang = $this->getHtmlLang();
+        $this->bootstrapTheme = $this->getBootstrapTheme();
         $this->title = $title ?? config('app.name');
 
         // Setup the AdminLTE stylesheet file path (LTR or RTL).
@@ -100,6 +119,18 @@ class AdminPanel extends Component
     protected function getHtmlLang(): string
     {
         return str_replace('_', '-', app()->getLocale());
+    }
+
+    /**
+     * Gets the Bootstrap theme for the entire layout.
+     *
+     * @return string
+     */
+    protected function getBootstrapTheme(): string
+    {
+        $bsTheme = config('ladmin.layout.bootstrap_theme', '');
+
+        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
 
     /**

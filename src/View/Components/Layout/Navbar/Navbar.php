@@ -8,29 +8,12 @@ use Illuminate\View\View;
 class Navbar extends Component
 {
     /**
-     * The set of valid Bootstrap themes that can be applied to the navbar.
-     *
-     * @var string[]
-     */
-    protected array $validBootstrapThemes = [
-        'light',
-        'dark'
-    ];
-
-    /**
      * The set of CSS classes that will be applied to the navbar wrapper, as a
      * space-separated string
      *
      * @var string
      */
     public string $navbarClasses;
-
-    /**
-     * The Bootstrap theme that will be applied to the navbar wrapper.
-     *
-     * @var string
-     */
-    public string $bootstrapTheme;
 
     /**
      * Create a new component instance.
@@ -40,7 +23,6 @@ class Navbar extends Component
     public function __construct()
     {
         $this->navbarClasses = $this->getNavbarClasses();
-        $this->bootstrapTheme = $this->getBootstrapTheme();
     }
 
     /**
@@ -71,18 +53,6 @@ class Navbar extends Component
         // Return the classes as a space-separated string.
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Gets the specific Bootstrap theme for the navbar wrapper.
-     *
-     * @return string
-     */
-    protected function getBootstrapTheme(): string
-    {
-        $bsTheme = config('ladmin.navbar.bootstrap_theme', '');
-
-        return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
 
     /**

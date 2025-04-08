@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $htmlLang }}" dir="{{ $htmlDir }}">
+<html lang="{{ $htmlLang }}" dir="{{ $htmlDir }}" data-bs-theme="{{ $bootstrapTheme }}">
 
     <head>
 

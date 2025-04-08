@@ -83,6 +83,10 @@ return [
 
         // Whether to enable the right-to-left (RTL) layout.
         'rtl' => false,
+
+        // Specifies the Bootstrap theme for the entire layout. Available
+        // options are 'light' or 'dark'.
+        'bootstrap_theme' => 'light',
     ],
 
     /*
@@ -98,11 +102,6 @@ return [
     */
 
     'navbar' => [
-        // Specifies the Bootstrap theme for the navbar. Available options are
-        // 'light' or 'dark'. Setting this to null will disable a specific theme
-        // for the navbar, allowing it to inherit a global theme settings.
-        'bootstrap_theme' => null,
-
         // A list of additional CSS classes applied to the navbar, typically
         // used to configure its background color and styling.
         'classes' => ['bg-body'],
@@ -123,7 +122,7 @@ return [
     'sidebar' => [
         // Specifies the Bootstrap theme for the sidebar. Available options are
         // 'light' or 'dark'. Setting this to null will disable a specific theme
-        // for the sidebar, allowing it to inherit a global theme settings.
+        // for the sidebar, allowing it to inherit the global layout settings.
         'bootstrap_theme' => 'dark',
 
         // A list of additional CSS classes applied to the sidebar, typically
@@ -148,11 +147,6 @@ return [
     */
 
     'footer' => [
-        // Specifies the Bootstrap theme for the footer. Available options are
-        // 'light' or 'dark'. Setting this to null will disable a specific theme
-        // for the footer, allowing it to inherit a global theme settings.
-        'bootstrap_theme' => null,
-
         // A list of additional CSS classes applied to the footer, typically
         // used to configure its background color and styling.
         'classes' => ['bg-body'],
