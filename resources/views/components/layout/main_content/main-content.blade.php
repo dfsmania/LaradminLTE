@@ -1,5 +1,5 @@
 {{-- Main content --}}
-<main class="app-main">
+<main class="{{ $mainContentClasses }}">
 
     {{-- Content header --}}
     @isset($contentHeader)

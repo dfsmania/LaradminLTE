@@ -131,7 +131,6 @@ class AdminPanel extends Component
 
         $classes = [
             'sidebar-expand-lg',
-            'bg-body-tertiary',
         ];
 
         if (! empty(config('ladmin.layout.fixed_sidebar', false))) {

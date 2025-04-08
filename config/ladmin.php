@@ -157,4 +157,22 @@ return [
         // used to configure its background color and styling.
         'classes' => ['bg-body'],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Main Content
+    |--------------------------------------------------------------------------
+    |
+    | Here you can customize the main content section of your admin panel.
+    |
+    | For more details you can look the online documentation here:
+    | TBD
+    |
+    */
+
+    'main_content' => [
+        // A list of additional CSS classes applied to the main content,
+        // typically used to configure its background color and styling.
+        'classes' => ['bg-body-tertiary'],
+    ],
 ];
