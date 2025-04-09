@@ -16,9 +16,6 @@ return [
     */
 
     'basic' => [
-        // The version of your admin panel.
-        'version' => '1.0.0',
-
         // The name of the company that owns and develops the admin panel.
         'company' => 'Your Company Name',
 
@@ -27,6 +24,9 @@ return [
 
         // The year when the development of your admin panel started.
         'start_year' => 2024,
+
+        // The version of your admin panel.
+        'version' => '1.0.0',
     ],
 
     /*
@@ -43,20 +43,20 @@ return [
     */
 
     'logo' => [
-        // The text displayed alongside the logo.
-        'text' => 'AdminLTE',
-
         // The URL path to the logo image file.
         'image' => asset('vendor/laradmin/img/AdminLTELogo.png'),
 
         // The alternative text for the logo image, used for accessibility.
         'image_alt' => 'AdminLTE Logo',
 
-        // The CSS classes applied to style the logo text.
-        'text_classes' => ['fw-bold'],
-
         // The CSS classes applied to style the logo image.
         'image_classes' => ['rounded-circle', 'shadow', 'opacity-75'],
+
+        // The text displayed alongside the logo.
+        'text' => 'AdminLTE',
+
+        // The CSS classes applied to style the logo text.
+        'text_classes' => ['fw-bold'],
     ],
 
     /*
@@ -72,6 +72,10 @@ return [
     */
 
     'layout' => [
+        // Specifies the Bootstrap theme for the entire layout. Available
+        // options are 'light' or 'dark'.
+        'bootstrap_theme' => 'light',
+
         // Whether to enable a fixed footer.
         'fixed_footer' => false,
 
@@ -83,10 +87,6 @@ return [
 
         // Whether to enable the right-to-left (RTL) layout.
         'rtl' => false,
-
-        // Specifies the Bootstrap theme for the entire layout. Available
-        // options are 'light' or 'dark'.
-        'bootstrap_theme' => 'light',
     ],
 
     /*
@@ -120,6 +120,10 @@ return [
     */
 
     'sidebar' => [
+        // Toggles the accordion navigation feature. When enabled, expanding a
+        // sidebar menu will automatically collapse any other open menus.
+        'accordion' => false,
+
         // Specifies the Bootstrap theme for the sidebar. Available options are
         // 'light' or 'dark'. Setting this to null will disable a specific theme
         // for the sidebar, allowing it to inherit the global layout settings.
@@ -129,18 +133,14 @@ return [
         // used to configure its background color and styling.
         'classes' => ['bg-body-secondary', 'shadow'],
 
-        // Toggles the accordion navigation feature. When enabled, expanding a
-        // sidebar menu will automatically collapse any other open menus.
-        'accordion' => false,
+        // The Bootstrap breakpoint at which the sidebar automatically expands
+        // or fully collapses. Valid options are: 'sm', 'md', 'lg', 'xl', 'xxl'.
+        'expand_breakpoint' => 'lg',
 
         // Toggles the mini sidebar feature. When enabled, and it is manually
         // collapsed, the sidebar shrinks to a compact size displaying icons
         // only, instead of fully collapsing.
         'mini_sidebar' => true,
-
-        // The Bootstrap breakpoint at which the sidebar automatically expands
-        // or fully collapses. Valid options are: 'sm', 'md', 'lg', 'xl', 'xxl'.
-        'expand_breakpoint' => 'lg',
     ],
 
     /*
