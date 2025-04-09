@@ -20,6 +20,13 @@ class AdminPanel extends Component
     ];
 
     /**
+     * The set of valid Bootstrap screen breakpoints.
+     *
+     * @var string[]
+     */
+    protected array $validScreenBreakpoints = ['sm', 'md', 'lg', 'xl', 'xxl'];
+
+    /**
      * The 'dir' attribute for the main HTML tag. This is used to switch between
      * LTR (left-to-right) and RTL (right-to-left) layouts.
      */
@@ -156,13 +163,19 @@ class AdminPanel extends Component
      */
     protected function getBodyClasses(): string
     {
-        // TODO: This logic should be improved based on the package config
-        // file. For example, the breakpoint for expand sidebar and the
-        // background color.
+        // Initialize the CSS classes with the default layout classes.
 
         $classes = [
-            'sidebar-expand-lg',
+            $this->getSidebarExpandBreakpointClass(),
         ];
+
+        // Add the mini sidebar class if the feature is enabled.
+
+        if (! empty(config('ladmin.sidebar.mini_sidebar', false))) {
+            $classes[] = 'sidebar-mini';
+        }
+
+        // Add CSS classes relative to fixed layout options.
 
         if (! empty(config('ladmin.layout.fixed_sidebar', false))) {
             $classes[] = 'layout-fixed';
@@ -177,6 +190,25 @@ class AdminPanel extends Component
         }
 
         return implode(' ', $classes);
+    }
+
+    /**
+     * Gets the sidebar expand breakpoint CSS class. This class depends on the
+     * configured expand breakpoint for the sidebar, and determines the screen
+     * width at which the sidebar transitions between expanded and collapsed
+     * states.
+     *
+     * @return string
+     */
+    protected function getSidebarExpandBreakpointClass(): string
+    {
+        $breakpoint = config('ladmin.sidebar.expand_breakpoint', 'lg');
+
+        if (! in_array($breakpoint, $this->validScreenBreakpoints)) {
+            $breakpoint = 'lg';
+        }
+
+        return "sidebar-expand-{$breakpoint}";
     }
 
     /**

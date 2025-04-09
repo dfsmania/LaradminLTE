@@ -129,9 +129,18 @@ return [
         // used to configure its background color and styling.
         'classes' => ['bg-body-secondary', 'shadow'],
 
-        // Enables or disables the accordion navigation feature. When enabled,
-        // expanding a menu will automatically collapse any other open menus.
+        // Toggles the accordion navigation feature. When enabled, expanding a
+        // sidebar menu will automatically collapse any other open menus.
         'accordion' => false,
+
+        // Toggles the mini sidebar feature. When enabled, and it is manually
+        // collapsed, the sidebar shrinks to a compact size displaying icons
+        // only, instead of fully collapsing.
+        'mini_sidebar' => true,
+
+        // The Bootstrap breakpoint at which the sidebar automatically expands
+        // or fully collapses. Valid options are: 'sm', 'md', 'lg', 'xl', 'xxl'.
+        'expand_breakpoint' => 'lg',
     ],
 
     /*
