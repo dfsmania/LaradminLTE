@@ -175,6 +175,12 @@ class AdminPanel extends Component
             $classes[] = 'sidebar-mini';
         }
 
+        // Add the sidebar collapsed class if the feature is enabled.
+
+        if (! empty(config('ladmin.sidebar.default_collapsed', false))) {
+            $classes[] = 'sidebar-collapse';
+        }
+
         // Add CSS classes relative to fixed layout options.
 
         if (! empty(config('ladmin.layout.fixed_sidebar', false))) {

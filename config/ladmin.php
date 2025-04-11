@@ -133,6 +133,11 @@ return [
         // used to configure its background color and styling.
         'classes' => ['bg-body-secondary', 'shadow'],
 
+        // Determines if the sidebar should be collapsed by default when the
+        // page loads. This is useful for creating a cleaner interface or
+        // optimizing space on smaller screens.
+        'default_collapsed' => false,
+
         // The Bootstrap breakpoint at which the sidebar automatically expands
         // or fully collapses. Valid options are: 'sm', 'md', 'lg', 'xl', 'xxl'.
         'expand_breakpoint' => 'lg',
