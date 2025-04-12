@@ -8,18 +8,18 @@ use Illuminate\Support\ServiceProvider;
 class LaradminLteServiceProvider extends ServiceProvider
 {
     /**
-     * The prefix to use when registering or loading the package resources.
+     * The prefix used for registering and loading package resources.
      *
      * @var string
      */
-    protected $prefix = 'ladmin';
+    protected string $pkgPrefix = 'ladmin';
 
     /**
-     * Array with the available layout components.
+     * A mapping of layout component aliases to their corresponding class names.
      *
-     * @var array
+     * @var array<string, class-string>
      */
-    protected $layoutComponents = [
+    protected array $layoutComponents = [
         'default-footer-content' => Layout\Footer\DefaultFooterContent::class,
         'footer' => Layout\Footer\Footer::class,
         'main-content' => Layout\MainContent\MainContent::class,
@@ -66,15 +66,13 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->loadTranslations();
 
-        // Declare the publishable resources of the package. This section is
-        // only valid if the Laravel app is running on console.
+        // Declare the publishable resources of the package. Ensure publishable
+        // resources are only available in console context.
 
-        if (! $this->app->runningInConsole()) {
-            return;
+        if ($this->app->runningInConsole()) {
+            $this->setAssetsAsPublishable();
+            $this->setConfigAsPublishable();
         }
-
-        $this->setAssetsAsPublishable();
-        $this->setConfigAsPublishable();
     }
 
     /**
@@ -84,18 +82,18 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     private function registerConfig(): void
     {
-        // Register the main configuration.
+        // Register the main package configuration file.
 
         $this->mergeConfigFrom(
-            $this->packagePath("config/{$this->prefix}.php"),
-            $this->prefix
+            $this->packagePath("config/{$this->pkgPrefix}.php"),
+            $this->pkgPrefix
         );
 
-        // Register the plugins configuration.
+        // Register the dedicated plugins configuration file.
 
         $this->mergeConfigFrom(
-            $this->packagePath("config/{$this->prefix}_plugins.php"),
-            "{$this->prefix}_plugins"
+            $this->packagePath("config/{$this->pkgPrefix}_plugins.php"),
+            "{$this->pkgPrefix}_plugins"
         );
     }
 
@@ -109,7 +107,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Load all of the package views.
 
         $path = $this->packagePath('resources/views');
-        $this->loadViewsFrom($path, $this->prefix);
+        $this->loadViewsFrom($path, $this->pkgPrefix);
     }
 
     /**
@@ -125,7 +123,7 @@ class LaradminLteServiceProvider extends ServiceProvider
             $this->layoutComponents,
         );
 
-        $this->loadViewComponentsAs($this->prefix, $components);
+        $this->loadViewComponentsAs($this->pkgPrefix, $components);
     }
 
     /**
@@ -136,7 +134,7 @@ class LaradminLteServiceProvider extends ServiceProvider
     private function loadTranslations(): void
     {
         $path = $this->packagePath('lang');
-        $this->loadTranslationsFrom($path, $this->prefix);
+        $this->loadTranslationsFrom($path, $this->pkgPrefix);
     }
 
     /**
@@ -154,23 +152,25 @@ class LaradminLteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Declare the package config as a publishable resource.
+     * Declare the package configuration files as publishable resources.
      *
      * @return void
      */
     private function setConfigAsPublishable(): void
     {
-        $mainCfg = $this->packagePath("config/{$this->prefix}.php");
-        $pluginsCfg = $this->packagePath("config/{$this->prefix}_plugins.php");
+        $mainCfg = $this->packagePath("config/{$this->pkgPrefix}.php");
+        $pluginsCfg = $this->packagePath(
+            "config/{$this->pkgPrefix}_plugins.php"
+        );
 
         $this->publishes([
-            $mainCfg => config_path("{$this->prefix}.php"),
-            $pluginsCfg => config_path("{$this->prefix}_plugins.php"),
+            $mainCfg => config_path("{$this->pkgPrefix}.php"),
+            $pluginsCfg => config_path("{$this->pkgPrefix}_plugins.php"),
         ], 'config');
     }
 
     /**
-     * Get the absolute path to some package resource.
+     * Resolves the absolute path to a given relative package resource path.
      *
      * @param  string  $path  The relative path to the resource
      * @return string
