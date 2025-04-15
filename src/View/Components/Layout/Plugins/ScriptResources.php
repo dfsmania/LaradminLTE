@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\View\Components\Layout\Plugins;
 
+use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
@@ -11,49 +12,39 @@ use Illuminate\View\View;
 class ScriptResources extends Component
 {
     /**
-     * The array of script resources (mostly JS files) that will be rendered.
-     * These resources always belongs to one of the configured plugins, and
-     * will be validated externally.
+     * The array of script resources (PluginResource instances) that will be
+     * rendered.
      *
-     * @var array
+     * @var PluginResource[]
      */
     public array $resources;
 
     /**
      * Create a new component instance.
      *
-     * @param  array  $resources  An array of valid script resources.
+     * @param  PluginResource[]  $resources  An array of valid script resources.
      * @return void
      */
     public function __construct(array $resources = [])
     {
-        $this->resources = Arr::wrap($resources);
+        $this->resources = $resources;
     }
 
     /**
      * Computes a string (with HTML like format) that represents the set of
      * attributes for the specified script resource.
      *
-     * @param  array  $res  An array representing a valid script resource.
+     * @param  PluginResource  $res  A valid script resource.
      * @return string
      */
-    public function computeResourceAttributes(array $res): string
+    public function computeResourceAttributes(PluginResource $res): string
     {
-        $attrs = new ComponentAttributeBag();
+        $attrs = new ComponentAttributeBag($res->htmlAttributes);
 
-        // Grab the set of attributes that were explicitly defined (these have
-        // the 'attr_' token prefixed on its name), and save they into the bag.
-
-        foreach($res as $attr => $val) {
-            if (Str::startsWith($attr, 'attr_')) {
-                $attrs[substr($attr, 5)] = $val;
-            }
-        }
-
-        // Now, add the required attributes, including the one that defines
+        // Add the required attributes, including the one that defines
         // the source of the script resource.
 
-        $attrs['src'] = $attrs['src'] ?? ($res['source'] ?? '#');
+        $attrs['src'] = $attrs['src'] ?? $res->source;
 
         // Return a string representing the list of attributes for the script.
 

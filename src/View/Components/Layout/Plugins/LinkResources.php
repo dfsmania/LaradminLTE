@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\View\Components\Layout\Plugins;
 
+use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
@@ -11,49 +12,39 @@ use Illuminate\View\View;
 class LinkResources extends Component
 {
     /**
-     * The array of link resources (mostly CSS files) that will be rendered.
-     * These resources always belongs to one of the configured plugins, and
-     * will be validated externally.
+     * The array of link resources (PluginResource instances) that will be
+     * rendered.
      *
-     * @var array
+     * @var PluginResource[]
      */
     public array $resources;
 
     /**
      * Create a new component instance.
      *
-     * @param  array  $resources  An array of valid link resources.
+     * @param  PluginResource[]  $resources  An array of valid link resources.
      * @return void
      */
     public function __construct(array $resources = [])
     {
-        $this->resources = Arr::wrap($resources);
+        $this->resources = $resources;
     }
 
     /**
      * Computes a string (with HTML like format) that represents the set of
      * attributes for the specified link resource.
      *
-     * @param  array  $res  An array representing a valid link resource.
+     * @param  PluginResource  $res  A valid link resource.
      * @return string
      */
-    public function computeResourceAttributes(array $res): string
+    public function computeResourceAttributes(PluginResource $res): string
     {
-        $attrs = new ComponentAttributeBag();
+        $attrs = new ComponentAttributeBag($res->htmlAttributes);
 
-        // Grab the set of attributes that were explicitly defined (these have
-        // the 'attr_' token prefixed on its name), and save they into the bag.
+        // Add the required attributes, including the one that defines the
+        // source of the link resource.
 
-        foreach($res as $attr => $val) {
-            if (Str::startsWith($attr, 'attr_')) {
-                $attrs[substr($attr, 5)] = $val;
-            }
-        }
-
-        // Now, add the required attributes, including the one that defines
-        // the source of the link resource.
-
-        $attrs['href'] = $attrs['href'] ?? ($res['source'] ?? '#');
+        $attrs['href'] = $attrs['href'] ?? $res->source;
         $attrs['rel'] = $attrs['rel'] ?? 'stylesheet';
 
         // Return a string representing the list of attributes for the link.

@@ -1,5 +1,7 @@
 <?php
 
+use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
+
 return [
 
     /*
@@ -7,8 +9,14 @@ return [
     | Required Plugins
     |--------------------------------------------------------------------------
     |
-    | This set of plugins is required by the AdminLTE template. So, don't make
-    | any changes here unless you are really sure what you are doing.
+    | This section defines the plugins that are essential for the proper
+    | functioning of the AdminLTE template. These plugins are pre-configured
+    | and should not be modified unless you have a thorough understanding of
+    | their purpose and impact on the system.
+    |
+    | Proceed with caution when making changes to this configuration, as
+    | altering these settings may lead to unexpected behavior or errors in
+    | the AdminLTE interface.
     |
     */
 
@@ -16,10 +24,10 @@ return [
         'always' => true,
         'resources' => [
             [
-                'type' => 'pre-adminlte-script',
+                'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
                 'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js',
-                'attr_integrity' => 'sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ',
-                'attr_crossorigin' => 'anonymous',
+                'integrity' => 'sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ',
+                'crossorigin' => 'anonymous',
             ],
         ],
     ],
@@ -27,10 +35,10 @@ return [
         'always' => true,
         'resources' => [
             [
-                'type' => 'pre-adminlte-link',
+                'type' => ResourceType::PRE_ADMINLTE_LINK,
                 'source' => 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/css/all.min.css',
-                'attr_integrity' => 'sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=',
-                'attr_crossorigin' => 'anonymous',
+                'integrity' => 'sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=',
+                'crossorigin' => 'anonymous',
             ],
         ],
     ],
@@ -38,18 +46,18 @@ return [
         'always' => true,
         'resources' => [
             [
-                'type' => 'pre-adminlte-link',
+                'type' => ResourceType::PRE_ADMINLTE_LINK,
                 'source' => 'https://fonts.googleapis.com',
-                'attr_rel' => 'preconnect',
+                'rel' => 'preconnect',
             ],
             [
-                'type' => 'pre-adminlte-link',
+                'type' => ResourceType::PRE_ADMINLTE_LINK,
                 'source' => 'https://fonts.gstatic.com',
-                'attr_rel' => 'preconnect',
-                'attr_crossorigin' => true,
+                'rel' => 'preconnect',
+                'crossorigin' => true,
             ],
             [
-                'type' => 'pre-adminlte-link',
+                'type' => ResourceType::PRE_ADMINLTE_LINK,
                 'source' => 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap',
             ],
         ],
@@ -58,16 +66,16 @@ return [
         'always' => true,
         'resources' => [
             [
-                'type' => 'pre-adminlte-link',
+                'type' => ResourceType::PRE_ADMINLTE_LINK,
                 'source' => 'https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/styles/overlayscrollbars.min.css',
-                'attr_integrity' => 'sha256-LWLZPJ7X1jJLI5OG5695qDemW1qQ7lNdbTfQ64ylbUY=',
-                'attr_crossorigin' => 'anonymous',
+                'integrity' => 'sha256-LWLZPJ7X1jJLI5OG5695qDemW1qQ7lNdbTfQ64ylbUY=',
+                'crossorigin' => 'anonymous',
             ],
             [
-                'type' => 'pre-adminlte-script',
+                'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
                 'source' => 'https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/browser/overlayscrollbars.browser.es6.min.js',
-                'attr_integrity' => 'sha256-NRZchBuHZWSXldqrtAOeCZpucH/1n1ToJ3C8mSK95NU=',
-                'attr_crossorigin' => 'anonymous',
+                'integrity' => 'sha256-NRZchBuHZWSXldqrtAOeCZpucH/1n1ToJ3C8mSK95NU=',
+                'crossorigin' => 'anonymous',
             ],
         ],
     ],
@@ -75,10 +83,10 @@ return [
         'always' => true,
         'resources' => [
             [
-                'type' => 'pre-adminlte-script',
+                'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
                 'source' => 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js',
-                'attr_integrity' => 'sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE',
-                'attr_crossorigin' => 'anonymous',
+                'integrity' => 'sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE',
+                'crossorigin' => 'anonymous',
             ],
         ],
     ],
@@ -88,8 +96,9 @@ return [
     | Extra/Custom Plugins
     |--------------------------------------------------------------------------
     |
-    | Here you can setup the set of extra or custom plugins that will be used
-    | within the views of your admin panel.
+    | Here you can setup the set of additional or custom plugins that will be
+    | used within the views of your admin panel. You can specify plugins here
+    | to extend or customize the functionality of your application.
     |
     | For details you can look the online documentation here:
     | TBD
@@ -100,7 +109,7 @@ return [
         'always' => true,
         'resources' => [
             [
-                'type' => 'post-adminlte-link',
+                'type' => ResourceType::POST_ADMINLTE_LINK,
                 'source' => 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
             ],
         ],
