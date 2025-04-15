@@ -35,9 +35,18 @@ class PluginsManager
     ];
 
     /**
+     * A static array to track the names of explicitly required plugins. This
+     * is primarily used to store plugins required by the custom
+     * @ladmin_plugin() blade directive.
+     *
+     * @var array<string, bool>
+     */
+    protected static array $explicitlyRequiredPlugins = [];
+
+    /**
      * Create a new instance of the class.
      *
-     * @param  array  $plugins  An array with the raw plugins resources config
+     * @param  array  $pluginsCfg  An array with the raw plugins config
      * @return void
      */
     public function __construct(array $pluginsCfg = [])
@@ -45,6 +54,28 @@ class PluginsManager
         // Read, validate and classify the resources of the provided plugins.
 
         $this->classifyPlugins($pluginsCfg);
+    }
+
+    /**
+     * Mark a plugin as explicitly required.
+     *
+     * @param  string  $pluginName  The name of the plugin to be marked
+     * @return void
+     */
+    public static function setPluginAsRequired(string $pluginName): void
+    {
+        self::$explicitlyRequiredPlugins[$pluginName] = true;
+    }
+
+    /**
+     * Check if a plugin is explicitly required.
+     *
+     * @param  string  $pluginName  The name of the plugin to be checked
+     * @return bool
+     */
+    public static function isPluginExplicitlyRequired(string $pluginName): bool
+    {
+        return self::$explicitlyRequiredPlugins[$pluginName] ?? false;
     }
 
     /**
@@ -112,9 +143,13 @@ class PluginsManager
 
             $plugin = Plugin::createFromConfig($pluginName, $pluginConfig);
 
-            // Check if plugin is valid and required. If not, skip it.
+            // Check if plugin is valid and required in the current request.
+            // If not, skip it.
 
-            if ($plugin === null || ! $plugin->isRequired()) {
+            $isPluginRequired = ! empty($pluginConfig['always'])
+                || self::isPluginExplicitlyRequired($pluginName);
+
+            if ($plugin === null || ! $isPluginRequired) {
                 continue;
             }
 

@@ -14,15 +14,6 @@ class Plugin
     public string $name;
 
     /**
-     * Whether the plugin is always required. If a plugin is always required,
-     * its resources will be included into all the views using the AdminLTE
-     * layout template.
-     *
-     * @var bool
-     */
-    public bool $always;
-
-    /**
      * The list of resources associated with the plugin. Each resource is an
      * instance of PluginResource and represents a CSS or JS file required
      * by the plugin.
@@ -35,17 +26,12 @@ class Plugin
      * Create a new Plugin instance.
      *
      * @param  string  $name  The name of the plugin
-     * @param  bool  $always  Whether the plugin is always required
      * @param  PluginResource[]  $resources  The list of plugin resources
      * @return void
      */
-    public function __construct(
-        string $name,
-        bool $always,
-        array $resources = []
-    ) {
+    public function __construct(string $name, array $resources = [])
+    {
         $this->name = $name;
-        $this->always = $always;
         $this->resources = $resources;
     }
 
@@ -78,7 +64,7 @@ class Plugin
         // At this point, configuration is valid and we return a new Plugin
         // instance with the validated configuration.
 
-        return new self($name, $config['always'], $resources);
+        return new self($name, $resources);
     }
 
     /**
@@ -86,7 +72,7 @@ class Plugin
      * follow the below schema:
      *
      * (array) [
-     *     'always'    => required|bool,
+     *     'always'    => optional|bool,
      *     'resources' => required|array,
      * ]
      *
@@ -95,8 +81,7 @@ class Plugin
      */
     protected static function validatePluginConfig(array $config): bool
     {
-        return isset($config['always'], $config['resources'])
-            && is_bool($config['always'])
+        return isset($config['resources'])
             && is_array($config['resources'])
             && ! empty($config['resources']);
     }
@@ -128,25 +113,5 @@ class Plugin
         }
 
         return $result;
-    }
-
-    /**
-     * Check if the plugin is required.
-     * TODO: Consider enhancing the logic to determine if the plugin is required
-     * by evaluating its usage in the current request or view. This could be
-     * achieved using a custom Blade directive or another mechanism. For now,
-     * the plugin is either always required (on all views) or never required.
-     * TODO: Explore the possibility of defining a custom Blade directive to
-     * dynamically modify a plugin's configuration property. For example, a
-     * directive like @ladmin-plugin('foo') could set:
-     * config(['ladmin_plugins.foo.required' => true])
-     * This would only apply if the 'foo' plugin exists in the plugins
-     * configuration.
-     *
-     * @return bool
-     */
-    public function isRequired(): bool
-    {
-        return $this->always;
     }
 }

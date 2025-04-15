@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte;
 
 use DFSmania\LaradminLte\View\Components\Layout;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class LaradminLteServiceProvider extends ServiceProvider
@@ -65,6 +66,10 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Load the translations of the package.
 
         $this->loadTranslations();
+
+        // Register the custom blade directives of the package.
+
+        $this->registerBladeDirectives();
 
         // Declare the publishable resources of the package. Ensure publishable
         // resources are only available in console context.
@@ -135,6 +140,24 @@ class LaradminLteServiceProvider extends ServiceProvider
     {
         $path = $this->packagePath('lang');
         $this->loadTranslationsFrom($path, $this->pkgPrefix);
+    }
+
+    /**
+     * Register the package custom blade directives.
+     *
+     * @return void
+     */
+    private function registerBladeDirectives(): void
+    {
+        // Register the "ladmin_plugin" directive to explicitly include plugin
+        // resources in the HTML document.
+
+        Blade::directive("{$this->pkgPrefix}_plugin", function ($pluginName) {
+            $phpCode = "\DFSmania\LaradminLte\Tools\Plugins";
+            $phpCode .= "\PluginsManager::setPluginAsRequired($pluginName);";
+
+            return "<?php {$phpCode} ?>";
+        });
     }
 
     /**
