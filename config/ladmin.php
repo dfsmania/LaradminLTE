@@ -10,7 +10,7 @@ return [
     | Here you can setup the basic information of your admin panel. By default,
     | most of this information will appear in the footer section.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
@@ -37,7 +37,7 @@ return [
     | Here you can setup the brand logo of your admin panel. By default, the
     | logo will appear in the top-left corner of your admin panel.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
@@ -66,7 +66,7 @@ return [
     |
     | Here you can change the layout options of your admin panel.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
@@ -96,7 +96,7 @@ return [
     |
     | Here you can customize the top navbar section of your admin panel.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
@@ -114,7 +114,7 @@ return [
     |
     | Here you can customize the sidebar section of your admin panel.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
@@ -155,7 +155,7 @@ return [
     |
     | Here you can customize the footer section of your admin panel.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
@@ -173,7 +173,7 @@ return [
     |
     | Here you can customize the main content section of your admin panel.
     |
-    | For more details you can look the online documentation here:
+    | For more details, refer to the online documentation:
     | TBD
     |
     */
