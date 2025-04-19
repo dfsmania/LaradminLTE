@@ -31,6 +31,42 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Favicons
+    |--------------------------------------------------------------------------
+    |
+    | Here you can configure the favicons for your admin panel. Favicons are
+    | small icons displayed in browser tabs, bookmarks, and other areas. They
+    | will be searched in the "favicons" folder within your configured Laravel
+    | asset_url, typically located in the public directory.
+    |
+    | For more details, refer to the online documentation:
+    | TBD
+    |
+    */
+
+    'favicons' => [
+        // Determines whether to include comprehensive favicon markup to ensure
+        // compatibility across various browsers and platforms. If disabled,
+        // only the basic favicon markup will be included.
+        'full_support' => true,
+
+        // The primary color of your brand logo. Used for maskable icons on
+        // iOS and Android Chrome when full support is enabled.
+        'brand_logo_color' => '#000000',
+
+        // The background color of your brand logo. Used for Microsoft
+        // application tiles and Android Chrome address bar when full support
+        // is enabled.
+        'brand_background_color' => '#ffffff',
+
+        // The list of PNG favicon sizes that are served by your server. These
+        // sizes are used to generate the markup for the PNG favicons discovery
+        // when full support is enabled.
+        'png_sizes' => ['16x16', '32x32', '96x96'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Brand Logo
     |--------------------------------------------------------------------------
     |

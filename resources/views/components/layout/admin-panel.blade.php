@@ -21,7 +21,8 @@
         {{-- Post AdminLTE plugins links --}}
         <x-ladmin-plugins-links :resources="$plugins->getPostAdminlteLinks()"/>
 
-        {{-- TODO: Add favicons markup (maybe with a new component) --}}
+        {{-- Favicons markup --}}
+        <x-ladmin-favicons/>
 
     </head>
 
