@@ -3,8 +3,6 @@
 namespace DFSmania\LaradminLte\View\Components\Layout\Plugins;
 
 use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
