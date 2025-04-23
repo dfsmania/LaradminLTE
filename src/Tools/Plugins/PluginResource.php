@@ -4,9 +4,29 @@ namespace DFSmania\LaradminLte\Tools\Plugins;
 
 use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 
 class PluginResource
 {
+    /**
+     * Validation rules for a plugin resource configuration. These rules are
+     * used with the Laravel Validator to ensure the configuration adheres to
+     * the following schema:
+     *
+     * (array) [
+     *     'asset'  => optional|boolean,
+     *     'source' => required|string,
+     *     'type'   => required,
+     * ]
+     *
+     * @var array<string, string>
+     */
+    protected static array $cfgValidationRules = [
+        'asset' => 'sometimes|boolean',
+        'source' => 'required|string',
+        'type' => 'required',
+    ];
+
     /**
      * The type of the resource, indicating its placement within the HTML
      * document relative to the AdminLTE CSS and JS files.
@@ -49,8 +69,8 @@ class PluginResource
     }
 
     /**
-     * Create a PluginResource instance from a raw configuration array. It will
-     * return null when the configuration is invalid.
+     * Create a new PluginResource instance from a raw configuration array. It
+     * will return null when the configuration is invalid.
      *
      * @param  array  $config  The raw plugin resource configuration array
      * @return ?self
@@ -59,7 +79,9 @@ class PluginResource
     {
         // Ensure the resource configuration adheres to the expected schema.
 
-        if (! self::validateResourceConfig($config)) {
+        $validator = Validator::make($config, self::$cfgValidationRules);
+
+        if ($validator->fails() || ! $config['type'] instanceof ResourceType) {
             return null;
         }
 
@@ -77,49 +99,14 @@ class PluginResource
         // Retrieve additional attributes for the resource. These attributes
         // will be rendered as extra HTML attributes on the resource tag.
 
-        $htmlExtraAttrs = Arr::except($config, ['type', 'source', 'asset']);
+        $extraHtmlAttrs = Arr::except(
+            $config,
+            array_keys(self::$cfgValidationRules)
+        );
 
         // At this point, configuration is valid and we return a new
         // PluginResource instance with the validated configuration.
 
-        return new self($config['type'], $config['source'], $htmlExtraAttrs);
-    }
-
-    /**
-     * Validate a plugin resource raw configuration. A resource configuration
-     * should follow the below schema:
-     *
-     * (array) [
-     *     'asset'  => optional|bool,
-     *     'source' => required|string,
-     *     'type'   => required|ResourceType,
-     * ]
-     *
-     * Any other extra property in the configuration will be considered as an
-     * extra attribute for the resource tag.
-     *
-     * @param  array  $config  The raw plugin resource configuration array
-     * @return bool
-     */
-    protected static function validateResourceConfig(array $config): bool
-    {
-        // Check if the configuration has valid source (required).
-
-        $hasValidSource = ! empty($config['source'])
-            && is_string($config['source']);
-
-        // Check if the configuration has valid type (required).
-
-        $hasValidType = ! empty($config['type'])
-            && $config['type'] instanceof ResourceType;
-
-        // Check if the configuration has valid asset (optional).
-
-        $hasValidAsset = ! array_key_exists('asset', $config)
-            || is_bool($config['asset']);
-
-        // Returns whether the resource configuration is valid.
-
-        return $hasValidSource && $hasValidType && $hasValidAsset;
+        return new self($config['type'], $config['source'], $extraHtmlAttrs);
     }
 }

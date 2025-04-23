@@ -9,6 +9,15 @@ use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 class PluginsManager
 {
     /**
+     * A static array to track the names of explicitly required plugins. This
+     * is primarily used to store plugins required by the custom blade
+     * directive: @ladmin_plugin().
+     *
+     * @var array<string, bool>
+     */
+    protected static array $explicitlyRequiredPlugins = [];
+
+    /**
      * The array of plugins resources (mostly CSS and JS files) that will be
      * included into the template. Each resource is classified into one of
      * the next categories:
@@ -27,21 +36,12 @@ class PluginsManager
      *
      * @var array<string, PluginResource[]>
      */
-    protected $resources = [
+    protected array $resources = [
         ResourceType::PRE_ADMINLTE_LINK->value => [],
         ResourceType::POST_ADMINLTE_LINK->value => [],
         ResourceType::PRE_ADMINLTE_SCRIPT->value => [],
         ResourceType::POST_ADMINLTE_SCRIPT->value => [],
     ];
-
-    /**
-     * A static array to track the names of explicitly required plugins. This
-     * is primarily used to store plugins required by the custom
-     * @ladmin_plugin() blade directive.
-     *
-     * @var array<string, bool>
-     */
-    protected static array $explicitlyRequiredPlugins = [];
 
     /**
      * Create a new instance of the class.

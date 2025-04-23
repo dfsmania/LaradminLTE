@@ -3,9 +3,27 @@
 namespace DFSmania\LaradminLte\Tools\Plugins;
 
 use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
+use Illuminate\Support\Facades\Validator;
 
 class Plugin
 {
+    /**
+     * Validation rules for a plugin configuration. These rules are used with
+     * the Laravel Validator to ensure the configuration adheres to the
+     * following schema:
+     *
+     * (array) [
+     *     'always'    => optional|boolean,
+     *     'resources' => required|array,
+     * ]
+     *
+     * @var array<string, string>
+     */
+    protected static array $cfgValidationRules = [
+        'always' => 'sometimes|boolean',
+        'resources' => 'required|array',
+    ];
+
     /**
      * The name of the plugin.
      *
@@ -48,7 +66,9 @@ class Plugin
     {
         // Ensure the plugin configuration adheres to the expected schema.
 
-        if (! self::validatePluginConfig($config)) {
+        $validator = Validator::make($config, self::$cfgValidationRules);
+
+        if ($validator->fails()) {
             return null;
         }
 
@@ -68,34 +88,9 @@ class Plugin
     }
 
     /**
-     * Validate a plugin raw configuration. A plugin configuration should
-     * follow the below schema:
-     *
-     * (array) [
-     *     'always'    => optional|bool,
-     *     'resources' => required|array,
-     * ]
-     *
-     * @param  array  $config  The raw plugin configuration array
-     * @return bool
-     */
-    protected static function validatePluginConfig(array $config): bool
-    {
-        return isset($config['resources'])
-            && is_array($config['resources'])
-            && ! empty($config['resources']);
-    }
-
-    /**
      * Create a set of PluginResource instances from a raw plugin resources
-     * configuration array. Each resource in the configuration should follow
-     * the below schema:
-     *
-     * (array) [
-     *     'asset'  => optional|bool,
-     *     'source' => required|string,
-     *     'type'   => required|string,
-     * ]
+     * configuration array. It will return an empty array when no valid
+     * resources are found in the configuration.
      *
      * @param  array  $resources  The raw plugin resources configuration array
      * @return PluginResource[]
