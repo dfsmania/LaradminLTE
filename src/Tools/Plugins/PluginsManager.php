@@ -18,21 +18,20 @@ class PluginsManager
     protected static array $explicitlyRequiredPlugins = [];
 
     /**
-     * The array of plugins resources (mostly CSS and JS files) that will be
-     * included into the template. Each resource is classified into one of
-     * the next categories:
+     * An array of plugin resources (primarily CSS and JS files) to be included
+     * in the template. Each resource is categorized into one of the following:
      *
-     * > resources['pre-adminlte-link']: Resources to be included before the
-     * AdminLTE Stylesheet.
+     * - 'pre-adminlte-link': Resources to include before the AdminLTE
+     * stylesheet.
      *
-     * > resources['post-adminlte-link']: Resources to be included after the
-     * AdminLTE Stylesheet.
+     * - 'post-adminlte-link': Resources to include after the AdminLTE
+     * stylesheet.
      *
-     * > resources['pre-adminlte-script']: Resources to be included before the
-     * AdminLTE Javascript file.
+     * 'pre-adminlte-script': Resources to include before the AdminLTE
+     * JavaScript file.
      *
-     * > resources['post-adminlte-script']: Resources to be included after the
-     * AdminLTE Javascript file.
+     * - 'post-adminlte-script': Resources to include after the AdminLTE
+     * JavaScript file.
      *
      * @var array<string, PluginResource[]>
      */
