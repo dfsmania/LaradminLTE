@@ -1,9 +1,9 @@
 {
-    "name": "dfsmania/laradmin",
+    "name": "dfsmania/laradminlte",
     "description": "An integration of AdminLTE v4 into Laravel",
     "keywords": [
         "laravel",
-        "adminlte",
+        "adminlte 4",
         "admin panel"
     ],
     "type": "library",
@@ -32,10 +32,10 @@
         }
     },
     "require": {
-        "laravel/framework": ">=8.0"
+        "laravel/framework": ">=10.0"
     },
     "require-dev": {
-        "orchestra/testbench": ">=6.0",
-        "phpunit/phpunit": ">=9.5"
+        "orchestra/testbench": ">=8.0",
+        "phpunit/phpunit": ">=10.0"
     }
 }
