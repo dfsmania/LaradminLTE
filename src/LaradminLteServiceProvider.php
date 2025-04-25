@@ -47,6 +47,14 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Register the configuration of the package.
 
         $this->registerConfig();
+
+        // Bind a singleton instance of the main package class to ensure that
+        // only one instance is created and shared throughout the application's
+        // lifecycle within the same request-response cycle.
+
+        $this->app->singleton(LaradminLte::class, function ($app) {
+            return new LaradminLte();
+        });
     }
 
     /**
