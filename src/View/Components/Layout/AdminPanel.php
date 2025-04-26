@@ -71,14 +71,6 @@ class AdminPanel extends Component
     public string $bodyClasses;
 
     /**
-     * An instance of the plugins manager. This is used to read, validate, and
-     * classify the set of configured plugins resources.
-     *
-     * @var PluginsManager
-     */
-    public PluginsManager $plugins;
-
-    /**
      * Create a new component instance.
      *
      * @param  ?string  $title  The title for the browser's window.
@@ -98,12 +90,6 @@ class AdminPanel extends Component
         // Setup the body classes.
 
         $this->bodyClasses = $this->getBodyClasses();
-
-        // Init the plugins manager with the provided plugins configuration.
-
-        $this->plugins = new PluginsManager(
-            is_array(config('ladmin_plugins')) ? config('ladmin_plugins') : []
-        );
     }
 
     /**
