@@ -103,6 +103,13 @@ class LaradminLteServiceProvider extends ServiceProvider
             $this->pkgPrefix
         );
 
+        // Register the dedicated menu configuration file.
+
+        $this->mergeConfigFrom(
+            $this->packagePath("config/{$this->pkgPrefix}_menu.php"),
+            "{$this->pkgPrefix}_menu"
+        );
+
         // Register the dedicated plugins configuration file.
 
         $this->mergeConfigFrom(
