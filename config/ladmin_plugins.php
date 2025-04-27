@@ -42,23 +42,14 @@ return [
             ],
         ],
     ],
-    'GoogleFont' => [
+    'JsDeliverFont' => [
         'always' => true,
         'resources' => [
             [
                 'type' => ResourceType::PRE_ADMINLTE_LINK,
-                'source' => 'https://fonts.googleapis.com',
-                'rel' => 'preconnect',
-            ],
-            [
-                'type' => ResourceType::PRE_ADMINLTE_LINK,
-                'source' => 'https://fonts.gstatic.com',
-                'rel' => 'preconnect',
-                'crossorigin' => true,
-            ],
-            [
-                'type' => ResourceType::PRE_ADMINLTE_LINK,
-                'source' => 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap',
+                'source' => 'https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css',
+                'integrity' => 'sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=',
+                'crossorigin' => 'anonymous',
             ],
         ],
     ],
