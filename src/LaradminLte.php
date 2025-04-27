@@ -2,7 +2,6 @@
 
 namespace DFSmania\LaradminLte;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuManager;
 use DFSmania\LaradminLte\Tools\Plugins\PluginsManager;
 
 class LaradminLte
