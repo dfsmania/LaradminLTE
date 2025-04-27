@@ -54,20 +54,20 @@ class Link extends Component
      *
      * @param  string   $label  The label of the link
      * @param  ?string  $icon  The Font Awesome icon of the link
-     * @param  string   $url  The URL (href attribute) of the link
+     * @param  ?string  $url  The URL (href attribute) of the link
      * @param  ?string  $color  The Bootstrap color for the link
      * @param  ?string  $badge  The text for the badge of the link
-     * @param  string   $badgeColor  The Bootstrap background color of the badge
+     * @param  ?string  $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
      * @return void
      */
     public function __construct(
         string $label,
         ?string $icon = null,
-        string $url = '#',
+        ?string $url = null,
         ?string $color = null,
         ?string $badge = null,
-        string $badgeColor = 'secondary',
+        ?string $badgeColor = null,
         ?string $badgeClasses = null
     ) {
         $this->label = html_entity_decode($label);
@@ -77,7 +77,10 @@ class Link extends Component
         $this->linkClasses = $this->getLinkClasses($color);
 
         // If the badge is not empty, set the CSS classes for the badge.
-        // Otherwise, set them to null.
+        // Otherwise, set them to null. The default color for the badge is
+        // 'secondary' if not provided.
+
+        $badgeColor = $badgeColor ?? 'secondary';
 
         $this->badgeClasses = ! empty($badge)
             ? $this->getBadgeClasses($badgeColor, $badgeClasses)
