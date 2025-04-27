@@ -13,13 +13,17 @@
         <title>{{ $title }}</title>
 
         {{-- Pre AdminLTE plugins links --}}
-        <x-ladmin-plugins-links :resources="ladmin()->plugins->getPreAdminlteLinks()"/>
+        @foreach(ladmin()->plugins->getPreAdminlteLinks() as $resource)
+            {!! $resource->render() !!}
+        @endforeach
 
         {{-- AdminLTE theme style --}}
         <link rel="stylesheet" href="{{ $adminlteCssFile }}">
 
         {{-- Post AdminLTE plugins links --}}
-        <x-ladmin-plugins-links :resources="ladmin()->plugins->getPostAdminlteLinks()"/>
+        @foreach(ladmin()->plugins->getPostAdminlteLinks() as $resource)
+            {!! $resource->render() !!}
+        @endforeach
 
         {{-- Favicons markup --}}
         <x-ladmin-favicons/>
@@ -57,13 +61,17 @@
         </div>
 
         {{-- Pre AdminLTE plugins scripts --}}
-        <x-ladmin-plugins-scripts :resources="ladmin()->plugins->getPreAdminlteScripts()"/>
+        @foreach(ladmin()->plugins->getPreAdminlteScripts() as $resource)
+            {!! $resource->render() !!}
+        @endforeach
 
         {{-- AdminLTE JavaScript App --}}
         <script src="{{ asset('vendor/laradmin/js/adminlte.min.js') }}"></script>
 
         {{-- Post AdminLTE plugins scripts --}}
-        <x-ladmin-plugins-scripts :resources="ladmin()->plugins->getPostAdminlteScripts()"/>
+        @foreach(ladmin()->plugins->getPostAdminlteScripts() as $resource)
+            {!! $resource->render() !!}
+        @endforeach
 
     </body>
 

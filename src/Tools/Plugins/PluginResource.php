@@ -5,6 +5,7 @@ namespace DFSmania\LaradminLte\Tools\Plugins;
 use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\ComponentAttributeBag;
 
 class PluginResource
 {
@@ -108,5 +109,69 @@ class PluginResource
         // PluginResource instance with the validated configuration.
 
         return new self($config['type'], $config['source'], $extraHtmlAttrs);
+    }
+
+    /**
+     * Computes and returns a string (with HTML like format) that represents
+     * the markup of the plugin resource.
+     *
+     * @return string
+     */
+    public function render(): string
+    {
+        if ($this->type->isLink()) {
+            return $this->renderAsLink();
+        } elseif ($this->type->isScript()) {
+            return $this->renderAsScript();
+        }
+
+        // If the resource type is not recognized, return an empty string.
+        // This should not happen if the resource was created using the
+        // createFromConfig() method, as it validates the type.
+
+        return '';
+    }
+
+    /**
+     * Render the plugin resource as a link tag.
+     *
+     * @return string
+     */
+    protected function renderAsLink(): string
+    {
+        $attrs = new ComponentAttributeBag($this->htmlAttributes);
+
+        // Add the required attributes, including the one that defines the
+        // source of the link resource. Note we take priority over the html
+        // attributes, so the user can override the 'href' or 'rel' attributes
+        // by using the configuration, if needed.
+
+        $attrs['href'] = $attrs['href'] ?? $this->source;
+        $attrs['rel'] = $attrs['rel'] ?? 'stylesheet';
+
+        // Return a string representing the link tag.
+
+        return "<link {$attrs->toHtml()}>";
+    }
+
+    /**
+     * Render the plugin resource as a script tag.
+     *
+     * @return string
+     */
+    protected function renderAsScript(): string
+    {
+        $attrs = new ComponentAttributeBag($this->htmlAttributes);
+
+        // Add the required attributes, including the one that defines the
+        // source of the script resource. Note we take priority over the html
+        // attributes, so the user can override the 'src' attribute by using
+        // the configuration, if needed.
+
+        $attrs['src'] = $attrs['src'] ?? $this->source;
+
+        // Return a string representing the script tag.
+
+        return "<script {$attrs->toHtml()}></script>";
     }
 }

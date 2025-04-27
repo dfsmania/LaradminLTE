@@ -78,7 +78,7 @@ class PluginsManager
     }
 
     /**
-     * Retrieve all the resources that have been already classified.
+     * Retrieve all the plugin resources that have been already classified.
      *
      * @return array<string, PluginResource[]>
      */
@@ -131,7 +131,7 @@ class PluginsManager
      * Read, validate and classify the resources of the provided plugins into
      * one of the available categories.
      *
-     * @param  array  $plugins  An array with the raw plugins config
+     * @param  array  $plugins  An array with the raw plugins configuration
      * @return void
      */
     protected function classifyPlugins(array $plugins): void
