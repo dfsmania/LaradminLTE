@@ -26,6 +26,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         'footer' => Layout\Footer\Footer::class,
         'main-content' => Layout\MainContent\MainContent::class,
         'navbar' => Layout\Navbar\Navbar::class,
+        'navbar-header' => Layout\Navbar\Header::class,
         'navbar-link' => Layout\Navbar\Link::class,
         'panel' => Layout\AdminPanel::class,
         'sidebar' => Layout\Sidebar\Sidebar::class,
