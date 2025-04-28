@@ -1,7 +1,7 @@
 {{-- Sidebar brand link --}}
 <div class="sidebar-brand">
 
-    <a href="{{ $url }}" {{ $attributes->merge(['class' => 'brand-link user-select-none']) }}>
+    <a href="{{ $url }}" {{ $attributes->merge(['class' => 'brand-link']) }}>
 
         {{-- Logo (optional) --}}
         @if (! empty($logoUrl))

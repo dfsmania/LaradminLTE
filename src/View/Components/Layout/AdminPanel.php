@@ -149,9 +149,11 @@ class AdminPanel extends Component
      */
     protected function getBodyClasses(): string
     {
-        // Initialize the CSS classes with the default layout classes.
+        // Initialize the CSS classes with the default layout classes. Class
+        // 'user-select-none' is used to prevent text selection on the layout.
 
         $classes = [
+            'user-select-none',
             $this->getSidebarExpandBreakpointClass(),
         ];
 

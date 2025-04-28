@@ -54,7 +54,7 @@ class Header extends Component
      */
     protected function getHeaderClasses(?string $color): string
     {
-        $classes = ['nav-header', 'user-select-none'];
+        $classes = ['nav-header'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";

@@ -93,7 +93,7 @@ class TreeviewMenu extends Component
      */
     protected function getLinkClasses(?string $color): string
     {
-        $classes = ['nav-link', 'user-select-none'];
+        $classes = ['nav-link'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
