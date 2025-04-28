@@ -74,6 +74,19 @@ class MenuItem
     ];
 
     /**
+     * The set of callable functions that will be used to create the blade
+     * components for the menu items. The key is the placement of the item
+     * (navbar or sidebar) and the value is a callable function that will
+     * return the corresponding component.
+     *
+     * @var array<string, callable>
+     */
+    protected static array $componentBuilders = [
+        'navbar' => [self::class, 'getNavbarComponent'],
+        'sidebar' => [self::class, 'getSidebarComponent'],
+    ];
+
+    /**
      * The type of the menu item, which dictates its rendering logic by
      * selecting the appropriate blade component for it.
      *
@@ -125,13 +138,9 @@ class MenuItem
         // its type and placement within the layout. This component will handle
         // the rendering logic for the menu item.
 
-        $component = null;
-
-        if ($place === 'navbar') {
-            $component = self::getNavbarComponent($config);
-        } elseif ($place === 'sidebar') {
-            $component = self::getSidebarComponent($config);
-        }
+        $component = self::$componentBuilders[$place]
+            ? self::$componentBuilders[$place]($config)
+            : null;
 
         // If the component is null, it means that the menu item type is not
         // recognized for the given placement. In this case, we will return
@@ -192,7 +201,8 @@ class MenuItem
         $extraHtmlAttrs = Arr::except($config, self::$reservedConfigKeys);
 
         // Check the type of the menu item and return the corresponding
-        // component.
+        // component. Note we return null for unrecognized menu item types as
+        // they cannot be rendered in the navbar.
 
         switch ($config['type']) {
             case MenuItemType::HEADER:
@@ -235,7 +245,8 @@ class MenuItem
         $extraHtmlAttrs = Arr::except($config, self::$reservedConfigKeys);
 
         // Check the type of the menu item and return the corresponding
-        // component.
+        // component. Note we return null for unrecognized menu item types as
+        // they cannot be rendered in the sidebar.
 
         switch ($config['type']) {
             case MenuItemType::HEADER:
