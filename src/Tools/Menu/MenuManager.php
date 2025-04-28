@@ -44,7 +44,7 @@ class MenuManager
      *
      * @return array<string, MenuItem[]>
      */
-    public function getAllMenuItems(): array
+    public function getAllItems(): array
     {
         return $this->items;
     }
@@ -55,7 +55,7 @@ class MenuManager
      *
      * @return MenuItem[]
      */
-    public function getNavbarLeftMenuItems(): array
+    public function getLeftNavbarItems(): array
     {
         return $this->items['navbar-left'];
     }
@@ -66,7 +66,7 @@ class MenuManager
      *
      * @return MenuItem[]
      */
-    public function getNavbarRightMenuItems(): array
+    public function getRightNavbarItems(): array
     {
         return $this->items['navbar-right'];
     }
@@ -76,7 +76,7 @@ class MenuManager
      *
      * @return MenuItem[]
      */
-    public function getSidebarMenuItems(): array
+    public function getSidebarItems(): array
     {
         return $this->items['sidebar'];
     }
@@ -107,7 +107,7 @@ class MenuManager
             // should be either "left" or "right". If not defined, we will
             // assume a "left" position by default.
 
-            if (isset($item['position']) && $item['position'] === 'right') {
+            if (($item['position'] ?? 'left') === 'right') {
                 $this->items['navbar-right'][] = $menuItem;
             } else {
                 $this->items['navbar-left'][] = $menuItem;

@@ -19,7 +19,7 @@
                 role="menu">
 
                 {{-- Sidebar menu items --}}
-                @foreach(ladmin()->menu->getSidebarMenuItems() as $item)
+                @foreach(ladmin()->menu->getSidebarItems() as $item)
                     {!! $item->render() !!}
                 @endforeach
 

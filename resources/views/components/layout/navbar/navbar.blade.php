@@ -4,14 +4,14 @@
 
         {{-- Start links --}}
         <ul class="navbar-nav">
-            @foreach(ladmin()->menu->getNavbarLeftMenuItems() as $item)
+            @foreach(ladmin()->menu->getLeftNavbarItems() as $item)
                 {!! $item->render() !!}
             @endforeach
         </ul>
 
         {{-- End links --}}
         <ul class="navbar-nav ms-auto">
-            @foreach(ladmin()->menu->getNavbarRightMenuItems() as $item)
+            @foreach(ladmin()->menu->getRightNavbarItems() as $item)
                 {!! $item->render() !!}
             @endforeach
         </ul>
