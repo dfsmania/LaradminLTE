@@ -57,9 +57,9 @@ class TreeviewMenu extends Component
      * @param  ?string  $icon  The Font Awesome icon of the treeview menu
      * @param  ?string  $color  The Bootstrap color for the treeview menu
      * @param  ?string  $badge  The text for the badge of the treeview menu
-     * @param  string   $badgeColor  The Bootstrap background color of the badge
+     * @param  ?string  $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
-     * @param  string   $togglerIcon  The Font Awesome icon of the menu toggler
+     * @param  ?string  $togglerIcon  The Font Awesome icon of the menu toggler
      * @return void
      */
     public function __construct(
@@ -67,18 +67,21 @@ class TreeviewMenu extends Component
         ?string $icon = null,
         ?string $color = null,
         ?string $badge = null,
-        string $badgeColor = 'secondary',
+        ?string $badgeColor = null,
         ?string $badgeClasses = null,
-        string $togglerIcon = 'fa-solid fa-angle-right'
+        ?string $togglerIcon = null
     ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
         $this->badge = html_entity_decode($badge);
-        $this->togglerIcon = $togglerIcon;
+        $this->togglerIcon = $togglerIcon ?? 'fa-solid fa-angle-right';
         $this->linkClasses = $this->getLinkClasses($color);
 
         // If the badge is not empty, set the CSS classes for the badge.
-        // Otherwise, set them to null.
+        // Otherwise, set them to null. The default color for the badge is
+        // 'secondary' if not provided.
+
+        $badgeColor = $badgeColor ?? 'secondary';
 
         $this->badgeClasses = ! empty($badge)
             ? $this->getBadgeClasses($badgeColor, $badgeClasses)

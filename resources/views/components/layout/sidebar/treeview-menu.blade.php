@@ -25,8 +25,10 @@
     </a>
 
     {{-- Treeview menu items --}}
-    <ul class="nav nav-treeview">
-        {{ $slot }}
-    </ul>
+    @if(! empty($slot))
+        <ul class="nav nav-treeview">
+            {{ $slot }}
+        </ul>
+    @endif
 
 </li>
