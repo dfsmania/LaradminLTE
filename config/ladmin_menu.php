@@ -30,6 +30,14 @@ return [
         // Add your custom menu items here to extend the navbar menu.
         // ---------------------------------------------------------------------
         [
+            'type' => MenuItemType::HEADER,
+            'label' => 'Header',
+            'icon' => 'fas fa-bookmark',
+            'color' => 'dark',
+            'position' => 'left',
+            'class' => 'text-uppercase fw-bold',
+        ],
+        [
             'type' => MenuItemType::LINK,
             'label' => 'Home',
             'url' => 'home',
@@ -88,6 +96,7 @@ return [
             'label' => 'Link 1',
             'url' => 'link_1',
             'icon' => 'far fa-circle',
+            'class' => 'active',
         ],
         [
             'type' => MenuItemType::LINK,
@@ -108,7 +117,7 @@ return [
             'type' => MenuItemType::LINK,
             'label' => 'Link 4',
             'url' => 'link_4',
-            'icon' => 'fas fa-star',
+            'icon' => 'fas fa-star text-primary',
             'color' => 'info',
             'badge' => '7',
             'badge_color' => 'danger',
@@ -141,7 +150,7 @@ return [
                 [
                     'type' => MenuItemType::TREEVIEW_MENU,
                     'label' => 'SubMenu 1-1',
-                    'icon' => 'fas fa-cubes',
+                    'icon' => 'fas fa-cubes text-primary',
                     'color' => 'info',
                     'badge' => '2',
                     'badge_color' => 'warning',
@@ -159,6 +168,25 @@ return [
                             'icon' => 'far fa-circle',
                         ],
                     ],
+                ],
+            ]
+        ],
+        [
+            'type' => MenuItemType::TREEVIEW_MENU,
+            'label' => 'Menu 2',
+            'icon' => 'fas fa-cubes',
+            'submenu' => [
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'Link E',
+                    'url' => 'link_e',
+                    'icon' => 'far fa-circle',
+                ],
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'Link F',
+                    'url' => 'link_f',
+                    'icon' => 'far fa-circle',
                 ],
             ]
         ],
