@@ -6,7 +6,14 @@ use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
+
+// TODO: Explore the usage of a COMPOSITE pattern for the MenuItem class.
+// This pattern allows for creating a tree structure of menu items, where
+// each menu item can have child items. The MenuItem class can be the base
+// class for all menu items, and it can have child items that are also
+// instances of MenuItem.
 
 // TODO: Explore the implementation of Laravel-AdminLTE filters for menu items.
 // Should this logic be encapsulated within this class using utility methods
@@ -71,6 +78,17 @@ class MenuItem
             'route' => 'required_without:url|array',
             'url' => 'required_without:route|string',
         ],
+
+        // Validation rules for a sidebar treeview-menu item.
+        MenuItemType::TREEVIEW_MENU->value => [
+            'badge' => 'sometimes|string',
+            'badge_classes' => 'sometimes|string',
+            'badge_color' => 'sometimes|string',
+            'color' => 'sometimes|string',
+            'icon' => 'sometimes|string',
+            'label' => 'required|string',
+            'submenu' => 'required|array',
+        ],
     ];
 
     /**
@@ -103,16 +121,31 @@ class MenuItem
     protected Component $bladeComponent;
 
     /**
+     * An array of child menu items that are nested under this menu item. This
+     * allows for creating hierarchical menu structures, where a menu item can
+     * have sub-items or child items (allow support for treeview menus or
+     * dropdowns).
+     *
+     * @var MenuItem[]
+     */
+    protected array $children;
+
+    /**
      * Create a new MenuItem instance.
      *
      * @param  MenuItemType  $type  The type of the menu item
      * @param  Component  $component  The blade component for rendering the item
+     * @param  MenuItem[]  $children  The child menu items of this item
      * @return void
      */
-    public function __construct(MenuItemType $type, Component $component)
-    {
+    public function __construct(
+        MenuItemType $type,
+        Component $component,
+        array $children = []
+    ) {
         $this->type = $type;
         $this->bladeComponent = $component;
+        $this->children = $children;
     }
 
     /**
@@ -134,13 +167,24 @@ class MenuItem
             return null;
         }
 
+        // Check if the menu item has children. If so, we will first create
+        // the child MenuItem instances from its configuration.
+
+        $children = [];
+
+        if (! empty($config['submenu'])) {
+            $children = self::getChildrenFromConfig($config['submenu'], $place);
+        }
+
         // Determine the appropriate blade component for the menu item based on
         // its type and placement within the layout. This component will handle
         // the rendering logic for the menu item.
 
-        $component = self::$componentBuilders[$place]
-            ? self::$componentBuilders[$place]($config)
-            : null;
+        $component = null;
+
+        if (isset(self::$componentBuilders[$place])) {
+            $component = self::$componentBuilders[$place]($config);
+        }
 
         // If the component is null, it means that the menu item type is not
         // recognized for the given placement. In this case, we will return
@@ -148,7 +192,7 @@ class MenuItem
         // will return a new MenuItem instance.
 
         return ! empty($component)
-            ? new self($config['type'], $component)
+            ? new self($config['type'], $component, $children)
             : null;
     }
 
@@ -182,6 +226,35 @@ class MenuItem
         // Now, check that the configuration schema is valid for the item type.
 
         return Validator::make($config, $rules)->passes();
+    }
+
+    /**
+     * Get child MenuItem instances from a raw menu item configuration array.
+     * This method is used to get the child items of a menu item, recursively.
+     *
+     * @param  array  $items  The raw menu item configuration array
+     * @param  string  $place  The placement of the item (navbar or sidebar)
+     * @return MenuItem[]
+     */
+    protected static function getChildrenFromConfig(
+        array $items,
+        string $place
+    ): array {
+        $children = [];
+
+        // Iterate over the raw menu item configuration array and create
+        // child MenuItem instances for each item. If a child item is invalid,
+        // it will be skipped.
+
+        foreach ($items as $item) {
+            $childItem = self::createFromConfig($item, $place);
+
+            if ($childItem !== null) {
+                $children[] = $childItem;
+            }
+        }
+
+        return $children;
     }
 
     /**
@@ -268,8 +341,14 @@ class MenuItem
                 ))->withAttributes($extraHtmlAttrs);
 
             case MenuItemType::TREEVIEW_MENU:
-                 // TODO: Implement creation of treeview menu component.
-                return null;
+                return (new Layout\Sidebar\TreeviewMenu(
+                    label: $config['label'],
+                    icon: $config['icon'] ?? null,
+                    color: $config['color'] ?? null,
+                    badge: $config['badge'] ?? null,
+                    badgeColor: $config['badge_color'] ?? null,
+                    badgeClasses: $config['badge_classes'] ?? null,
+                ))->withAttributes($extraHtmlAttrs);
 
             default:
                 return null;
@@ -315,6 +394,17 @@ class MenuItem
     }
 
     /**
+     * Get the child menu items of this menu item. This method will return an
+     * array of MenuItem instances that are nested under this menu item.
+     *
+     * @return MenuItem[]
+     */
+    public function children(): array
+    {
+        return $this->children;
+    }
+
+    /**
      * Renders the menu item using its underlying blade component. This method
      * will return the rendered HTML of the menu item.
      *
@@ -322,20 +412,32 @@ class MenuItem
      */
     public function render(): string
     {
-        // Render the underlying blade component.
+        // First, render all the children of this item and combine them into a
+        // single string.
+
+        $childrenHtml = '';
+
+        foreach ($this->children as $child) {
+            $childrenHtml .= $child->render();
+        }
+
+        // Now, render the underlying root blade component.
 
         $view = $this->bladeComponent->render();
 
         // Check if the rendered view is a string. If so, return it as is.
 
         if (is_string($view)) {
-            return $view;
+            return str_replace('{{ $slot }}', $childrenHtml, $view);
         }
 
         // If the rendered view is not a string, it means that it is a View
         // instance. In this case, we will pass the data from the blade
         // component to the view and render it.
 
-        return $view->with($this->bladeComponent->data())->render();
+        $data = $this->bladeComponent->data();
+        $data['slot'] = new HtmlString($childrenHtml);
+
+        return $view->with($data)->render();
     }
 }
