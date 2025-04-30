@@ -20,7 +20,7 @@
 
                 {{-- Sidebar menu items --}}
                 @foreach(ladmin()->menu->getSidebarItems() as $item)
-                    {!! $item->render() !!}
+                    {{ $item->render() }}
                 @endforeach
 
             </ul>

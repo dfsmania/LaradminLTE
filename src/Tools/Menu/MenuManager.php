@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\Tools\Menu;
 
 use DFSmania\LaradminLte\Tools\Menu\MenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
 
 class MenuManager
 {
@@ -83,7 +84,7 @@ class MenuManager
 
     /**
      * Read, validate and classify the provided navbar menu items into their
-     * corresponding placement categories. Invalid menu items in the array will
+     * respective placement categories. Invalid menu items in the array will
      * be skipped.
      *
      * @param  array  $items  An array with the raw menu items configuration
@@ -91,23 +92,22 @@ class MenuManager
      */
     protected function readNavbarMenuItems(array $items): void
     {
-        foreach ($items as $item) {
-            // Create a menu item instance from the configuration. The menu
-            // item instance will be null if the configuration is invalid.
+        foreach ($items as $itemCfg) {
+            // Attempt to create a new menu item instance from the provided
+            // configuration. If the configuration is invalid, the resulting
+            // menu item instance will be null, and the item will be skipped.
 
-            $menuItem = MenuItem::createFromConfig($item, 'navbar');
-
-            // Check if the menu item is valid. If not, skip it.
+            $menuItem = MenuItemFactory::createFromConfig($itemCfg, 'navbar');
 
             if ($menuItem === null) {
                 continue;
             }
 
-            // Check the position of the menu item relative to the navbar. It
-            // should be either "left" or "right". If not defined, we will
-            // assume a "left" position by default.
+            // Determine the position of the menu item within the navbar. Valid
+            // positions are "left" or "right". Defaults to "left" if not
+            // specified.
 
-            if (($item['position'] ?? 'left') === 'right') {
+            if (($itemCfg['position'] ?? 'left') === 'right') {
                 $this->items['navbar-right'][] = $menuItem;
             } else {
                 $this->items['navbar-left'][] = $menuItem;
@@ -124,19 +124,18 @@ class MenuManager
      */
     protected function readSidebarMenuItems(array $items): void
     {
-        foreach ($items as $item) {
-            // Create a menu item instance from the configuration. The menu
-            // item instance will be null if the configuration is invalid.
+        foreach ($items as $itemCfg) {
+            // Attempt to create a new menu item instance from the provided
+            // configuration. If the configuration is invalid, the resulting
+            // menu item instance will be null, and the item will be skipped.
 
-            $menuItem = MenuItem::createFromConfig($item, 'sidebar');
-
-            // Check if the menu item is valid. If not, skip it.
+            $menuItem = MenuItemFactory::createFromConfig($itemCfg, 'sidebar');
 
             if ($menuItem === null) {
                 continue;
             }
 
-            // Push the item into the sidebar menu.
+            // Push the menu item into the sidebar menu.
 
             $this->items['sidebar'][] = $menuItem;
         }
