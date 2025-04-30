@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 
-class TreeviewMenu implements MenuItem
+class Menu implements MenuItem
 {
     /**
      * Defines the validation rules for this menu item. These rules are used
@@ -27,8 +27,22 @@ class TreeviewMenu implements MenuItem
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
         'label' => 'required|string',
+        'position' => 'sometimes|in:left,right',
         'submenu' => 'required|array',
         'type' => 'required',
+    ];
+
+    /**
+     * The set of callable functions that will be used to create the blade
+     * component for the menu item. The key is the placement of the item
+     * (navbar or sidebar) and the value is a callable function that will
+     * return the corresponding component.
+     *
+     * @var array<string, callable>
+     */
+    protected static array $componentBuilders = [
+        'sidebar' => [self::class, 'getSidebarComponent'],
+        // TODO: Add support for dropdown menus in the navbar.
     ];
 
     /**
@@ -39,7 +53,7 @@ class TreeviewMenu implements MenuItem
      */
     protected static array $allowedChildTypes = [
         MenuItemType::LINK,
-        MenuItemType::TREEVIEW_MENU,
+        MenuItemType::MENU,
     ];
 
     /**
@@ -59,7 +73,7 @@ class TreeviewMenu implements MenuItem
     protected array $children;
 
     /**
-     * Create a new TreeviewMenu instance.
+     * Create a new Menu instance.
      *
      * @param  Component  $component  The blade component for rendering the item
      * @param  MenuItem[]  $children  The child menu items of this item
@@ -72,13 +86,14 @@ class TreeviewMenu implements MenuItem
     }
 
     /**
-     * Create a new TreeviewMenu instance from a raw menu item configuration
-     * array. It will return null when the configuration is invalid.
+     * Create a new Menu instance from a raw menu item configuration array.
+     * It will return null when the configuration is invalid.
      *
      * @param  array  $config  The menu item raw configuration array
+     * @param  string  $place  The placement of the item (navnar or sidebar)
      * @return ?self
      */
-    public static function createFromConfig(array $config): ?self
+    public static function createFromConfig(array $config, string $place): ?self
     {
         // Ensure the menu item configuration adheres to the expected schema.
         // If the configuration is invalid, we will return null to indicate
@@ -88,13 +103,21 @@ class TreeviewMenu implements MenuItem
             return null;
         }
 
+        // Check that the placement is valid for this menu item. When placement
+        // is not recognized, we will return null to indicate that the menu
+        // item is not valid.
+
+        if (! isset(self::$componentBuilders[$place])) {
+            return null;
+        }
+
         // Check if the menu item has children. If so, we will first create
         // the child menu item instances from its configuration.
 
         $children = [];
 
         if (! empty($config['submenu'])) {
-            $children = self::getChildrenFromConfig($config['submenu']);
+            $children = self::getChildrenFromConfig($config['submenu'], $place);
         }
 
         // Now, retrieve the additional attributes for the menu item. These
@@ -106,20 +129,13 @@ class TreeviewMenu implements MenuItem
             array_keys(self::$cfgValidationRules)
         );
 
-        // Get the appropriate blade component for the menu item.
+        // Determine the appropriate blade component for the menu item based on
+        // its placement within the layout.
 
-        $component = new Layout\Sidebar\TreeviewMenu(
-            label: $config['label'],
-            icon: $config['icon'] ?? null,
-            color: $config['color'] ?? null,
-            badge: $config['badge'] ?? null,
-            badgeColor: $config['badge_color'] ?? null,
-            badgeClasses: $config['badge_classes'] ?? null,
-        );
-
+        $component = self::$componentBuilders[$place]($config);
         $component->withAttributes($extraHtmlAttrs);
 
-        // Return a new Treeview menu instance.
+        // Return a new Menu instance.
 
         return new self($component, $children);
     }
@@ -130,10 +146,13 @@ class TreeviewMenu implements MenuItem
      * recursively.
      *
      * @param  array  $items  The raw submenu items configuration array
+     * @param  string  $place  The placement of the item (navbar or sidebar)
      * @return MenuItem[]
      */
-    protected static function getChildrenFromConfig(array $items): array
-    {
+    protected static function getChildrenFromConfig(
+        array $items,
+        string $place
+    ): array {
         $children = [];
 
         // Iterate over the raw submenu items configuration array and create
@@ -153,7 +172,7 @@ class TreeviewMenu implements MenuItem
             // configuration. If the configuration is invalid, the resulting
             // menu item instance will be null, and the item will be skipped.
 
-            $child = MenuItemFactory::createFromConfig($itemCfg, 'sidebar');
+            $child = MenuItemFactory::createFromConfig($itemCfg, $place);
 
             if ($child !== null) {
                 $children[] = $child;
@@ -161,6 +180,25 @@ class TreeviewMenu implements MenuItem
         }
 
         return $children;
+    }
+
+    /**
+     * Retrieve the blade component that should be used to render a Menu item
+     * in the sidebar.
+     *
+     * @param  array  $config  The menu item raw configuration array
+     * @return Component
+     */
+    protected static function getSidebarComponent(array $config): Component
+    {
+        return new Layout\Sidebar\TreeviewMenu(
+            label: $config['label'],
+            icon: $config['icon'] ?? null,
+            color: $config['color'] ?? null,
+            badge: $config['badge'] ?? null,
+            badgeColor: $config['badge_color'] ?? null,
+            badgeClasses: $config['badge_classes'] ?? null,
+        );
     }
 
     /**

@@ -16,7 +16,7 @@ return [
     */
 
     'navbar' => [
-        // Hamburger button to toggle the sidebar (required).
+        // Hamburger button to toggle the sidebar (REQUIRED).
         // ---------------------------------------------------------------------
         [
             'type' => MenuItemType::LINK,
@@ -131,7 +131,7 @@ return [
             'color' => 'success',
         ],
         [
-            'type' => MenuItemType::TREEVIEW_MENU,
+            'type' => MenuItemType::MENU,
             'label' => 'Menu 1',
             'icon' => 'fas fa-cubes',
             'submenu' => [
@@ -148,7 +148,7 @@ return [
                     'icon' => 'far fa-circle',
                 ],
                 [
-                    'type' => MenuItemType::TREEVIEW_MENU,
+                    'type' => MenuItemType::MENU,
                     'label' => 'SubMenu 1-1',
                     'icon' => 'fas fa-cubes text-primary',
                     'color' => 'info',
@@ -172,7 +172,7 @@ return [
             ]
         ],
         [
-            'type' => MenuItemType::TREEVIEW_MENU,
+            'type' => MenuItemType::MENU,
             'label' => 'Menu 2',
             'icon' => 'fas fa-cubes',
             'submenu' => [

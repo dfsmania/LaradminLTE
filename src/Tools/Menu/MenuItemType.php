@@ -11,5 +11,5 @@ enum MenuItemType: string
 {
     case HEADER = 'header';
     case LINK = 'link';
-    case TREEVIEW_MENU = 'treeview-menu';
+    case MENU = 'menu';
 }

@@ -28,7 +28,7 @@ class Header implements MenuItem
 
     /**
      * The set of callable functions that will be used to create the blade
-     * components for the menu items. The key is the placement of the item
+     * component for the menu item. The key is the placement of the item
      * (navbar or sidebar) and the value is a callable function that will
      * return the corresponding component.
      *
@@ -105,8 +105,8 @@ class Header implements MenuItem
     }
 
     /**
-     * Retrieve the blade component that should be used to render a header menu
-     * item in the navbar.
+     * Retrieve the blade component that should be used to render a Header item
+     * in the navbar.
      *
      * @param  array  $config  The menu item raw configuration array
      * @return Component
@@ -121,8 +121,8 @@ class Header implements MenuItem
     }
 
     /**
-     * Retrieve the blade component that should be used to render a header menu
-     * item in the sidebar.
+     * Retrieve the blade component that should be used to render a Header item
+     * in the sidebar.
      *
      * @param  array  $config  The menu item raw configuration array
      * @return Component

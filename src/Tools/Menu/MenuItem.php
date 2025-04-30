@@ -13,8 +13,7 @@ use Illuminate\Support\HtmlString;
  * for creating hierarchical menu structures, where a menu item can have
  * sub-items or child items.
  *
- * TODO: Explore the implementation of some Laravel-AdminLTE filters for menu
- * items:
+ * TODO: Explore the implementation of Laravel-AdminLTE filters for menu items:
  * 1) How can we determine if a menu item is currently active, i.e., its URL
  * matches the current request's URL path?
  * 2) How can we determine if a menu item should be displayed, based on
