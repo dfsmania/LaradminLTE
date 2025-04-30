@@ -14,7 +14,7 @@
 
         {{-- Pre AdminLTE plugins links --}}
         @foreach(ladmin()->plugins->getPreAdminlteLinks() as $resource)
-            {!! $resource->render() !!}
+            {{ $resource->render() }}
         @endforeach
 
         {{-- AdminLTE theme style --}}
@@ -22,7 +22,7 @@
 
         {{-- Post AdminLTE plugins links --}}
         @foreach(ladmin()->plugins->getPostAdminlteLinks() as $resource)
-            {!! $resource->render() !!}
+            {{ $resource->render() }}
         @endforeach
 
         {{-- Favicons markup --}}
@@ -62,7 +62,7 @@
 
         {{-- Pre AdminLTE plugins scripts --}}
         @foreach(ladmin()->plugins->getPreAdminlteScripts() as $resource)
-            {!! $resource->render() !!}
+            {{ $resource->render() }}
         @endforeach
 
         {{-- AdminLTE JavaScript App --}}
@@ -70,7 +70,7 @@
 
         {{-- Post AdminLTE plugins scripts --}}
         @foreach(ladmin()->plugins->getPostAdminlteScripts() as $resource)
-            {!! $resource->render() !!}
+            {{ $resource->render() }}
         @endforeach
 
     </body>

@@ -5,6 +5,7 @@ namespace DFSmania\LaradminLte\Tools\Plugins;
 use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\ComponentAttributeBag;
 
 class PluginResource
@@ -115,21 +116,19 @@ class PluginResource
      * Computes and returns a string (with HTML like format) that represents
      * the markup of the plugin resource.
      *
-     * @return string
+     * @return HtmlString
      */
-    public function render(): string
+    public function render(): HtmlString
     {
+        $htmlMarkup = null;
+
         if ($this->type->isLink()) {
-            return $this->renderAsLink();
+            $htmlMarkup = $this->renderAsLink();
         } elseif ($this->type->isScript()) {
-            return $this->renderAsScript();
+            $htmlMarkup = $this->renderAsScript();
         }
 
-        // If the resource type is not recognized, return an empty string.
-        // This should not happen if the resource was created using the
-        // createFromConfig() method, as it validates the type.
-
-        return '';
+        return new HtmlString($htmlMarkup);
     }
 
     /**
