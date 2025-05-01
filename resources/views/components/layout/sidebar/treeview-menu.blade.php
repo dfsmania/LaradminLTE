@@ -13,7 +13,11 @@
         <p>{{ $label }}</p>
 
         {{-- Toggler icon --}}
-        <i class="nav-arrow {{ $togglerIcon }}"></i>
+        @if(! empty($togglerIcon))
+            <i class="nav-arrow {{ $togglerIcon }}"></i>
+        @else
+            <span class="nav-arrow h3">&rsaquo;</span>
+        @endif
 
         {{-- Badge (optional) --}}
         @if(! empty($badge))

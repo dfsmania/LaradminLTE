@@ -43,12 +43,11 @@ class TreeviewMenu extends Component
     public string $linkClasses;
 
     /**
-     * The Font Awesome icon of the treeview menu toggler. Defaults to
-     * 'fa-solid fa-angle-right'.
+     * The Font Awesome icon of the treeview menu toggler.
      *
      * @var string
      */
-    public string $togglerIcon;
+    public ?string $togglerIcon;
 
     /**
      * Create a new component instance.
@@ -74,7 +73,7 @@ class TreeviewMenu extends Component
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
         $this->badge = html_entity_decode($badge);
-        $this->togglerIcon = $togglerIcon ?? 'fa-solid fa-angle-right';
+        $this->togglerIcon = $togglerIcon;
         $this->linkClasses = $this->getLinkClasses($color);
 
         // If the badge is not empty, set the CSS classes for the badge.

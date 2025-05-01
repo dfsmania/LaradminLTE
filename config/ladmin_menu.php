@@ -174,7 +174,9 @@ return [
         [
             'type' => MenuItemType::MENU,
             'label' => 'Menu 2',
+            'color' => 'warning',
             'icon' => 'fas fa-cubes',
+            'toggler_icon' => 'fas fa-arrow-right',
             'submenu' => [
                 [
                     'type' => MenuItemType::LINK,

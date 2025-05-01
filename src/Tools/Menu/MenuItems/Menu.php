@@ -29,6 +29,7 @@ class Menu implements MenuItem
         'label' => 'required|string',
         'position' => 'sometimes|in:left,right',
         'submenu' => 'required|array',
+        'toggler_icon' => 'sometimes|string',
         'type' => 'required',
     ];
 
@@ -198,6 +199,7 @@ class Menu implements MenuItem
             badge: $config['badge'] ?? null,
             badgeColor: $config['badge_color'] ?? null,
             badgeClasses: $config['badge_classes'] ?? null,
+            togglerIcon: $config['toggler_icon'] ?? null,
         );
     }
 
