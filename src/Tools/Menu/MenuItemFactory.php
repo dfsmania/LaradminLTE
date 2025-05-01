@@ -27,6 +27,7 @@ class MenuItemFactory
 
         // The set of menu item builders allowed for the navbar.
         // TODO: Add support for dropdown menus in the navbar.
+        // TODO: Add support for fullscreen toggler in the navbar.
         'navbar' => [
             MenuItemType::HEADER->value => [Header::class, 'createFromConfig'],
             MenuItemType::LINK->value => [Link::class, 'createFromConfig'],
@@ -59,17 +60,13 @@ class MenuItemFactory
             return null;
         }
 
-        // Check if the specified placement value is valid or recognized.
+        // Retrieve the builder function for the specified placement and menu
+        // item type. If no builder is found, return null to indicate the menu
+        // item is unsupported.
 
-        if (! isset(self::$builders[$place])) {
-            return null;
-        }
+        $builder = self::getBuilderFor($place, $config['type']);
 
-        // Check if the menu item type is valid for the specified placement.
-
-        $itemType = $config['type']->value;
-
-        if (! isset(self::$builders[$place][$itemType])) {
+        if (! $builder) {
             return null;
         }
 
@@ -77,7 +74,7 @@ class MenuItemFactory
         // function. If the creation fails, we will return null to indicate
         // that the menu item is not valid.
 
-        return self::$builders[$place][$itemType]($config, $place);
+        return $builder($config, $place);
     }
 
     /**
@@ -90,5 +87,23 @@ class MenuItemFactory
     {
         return ! empty($config['type'])
             && $config['type'] instanceof MenuItemType;
+    }
+
+    /**
+     * Get the builder function for a specific placement and menu item type.
+     *
+     * @param  string  $place  The placement of the item (navbar or sidebar)
+     * @param  MenuItemType  $type  The type of the menu item
+     * @return ?callable
+     */
+    protected static function getBuilderFor(
+        string $place,
+        MenuItemType $type
+    ): ?callable {
+
+        // Return the builder function for the specified placement and type.
+        // This will return null if the placement or the type is not valid.
+
+        return self::$builders[$place][$type->value] ?? null;
     }
 }
