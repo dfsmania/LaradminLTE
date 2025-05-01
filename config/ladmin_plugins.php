@@ -31,8 +31,19 @@ return [
             ],
         ],
     ],
-    'FontAwesome' => [
+    'BootstrapIcons' => [
         'always' => true,
+        'resources' => [
+            [
+                'type' => ResourceType::PRE_ADMINLTE_LINK,
+                'source' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css',
+                'integrity' => 'sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=',
+                'crossorigin' => 'anonymous',
+            ],
+        ],
+    ],
+    'FontAwesomeIcons' => [
+        'always' => false,
         'resources' => [
             [
                 'type' => ResourceType::PRE_ADMINLTE_LINK,
