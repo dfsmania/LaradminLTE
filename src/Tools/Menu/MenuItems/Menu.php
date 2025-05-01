@@ -192,6 +192,14 @@ class Menu implements MenuItem
      */
     protected static function getSidebarComponent(array $config): Component
     {
+        // Setup the toggler icon for the menu item. Fallback to the default
+        // icon if no other is provided.
+
+        $togglerIcon = $config['toggler_icon']
+            ?? config('ladmin.icons.treeview_toggler');
+
+        // Create and return the blade component for the menu item.
+
         return new Layout\Sidebar\TreeviewMenu(
             label: $config['label'],
             icon: $config['icon'] ?? null,
@@ -199,7 +207,7 @@ class Menu implements MenuItem
             badge: $config['badge'] ?? null,
             badgeColor: $config['badge_color'] ?? null,
             badgeClasses: $config['badge_classes'] ?? null,
-            togglerIcon: $config['toggler_icon'] ?? null,
+            togglerIcon: $togglerIcon,
         );
     }
 

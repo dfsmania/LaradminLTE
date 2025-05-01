@@ -97,6 +97,24 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default Icons
+    |--------------------------------------------------------------------------
+    |
+    | Here you can setup the default icons used in your admin panel. By default,
+    | this package works with Bootstrap Icons, but FontAwesome library is also
+    | supported.
+    |
+    | For more details, refer to the online documentation:
+    | TBD
+    |
+    */
+
+    'icons' => [
+        'treeview_toggler' => 'bi bi-chevron-right',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Layout
     |--------------------------------------------------------------------------
     |
