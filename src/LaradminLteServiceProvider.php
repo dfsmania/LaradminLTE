@@ -26,14 +26,9 @@ class LaradminLteServiceProvider extends ServiceProvider
         'footer' => Layout\Footer\Footer::class,
         'main-content' => Layout\MainContent\MainContent::class,
         'navbar' => Layout\Navbar\Navbar::class,
-        'navbar-header' => Layout\Navbar\Header::class,
-        'navbar-link' => Layout\Navbar\Link::class,
         'panel' => Layout\AdminPanel::class,
         'sidebar' => Layout\Sidebar\Sidebar::class,
         'sidebar-brand' => Layout\Sidebar\BrandLink::class,
-        'sidebar-header' => Layout\Sidebar\Header::class,
-        'sidebar-link' => Layout\Sidebar\Link::class,
-        'sidebar-treeview' => Layout\Sidebar\TreeviewMenu::class,
     ];
 
     /**
