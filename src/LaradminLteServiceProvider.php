@@ -85,6 +85,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->setAssetsAsPublishable();
             $this->setConfigAsPublishable();
+            $this->setTranslationsAsPublishable();
         }
     }
 
@@ -185,7 +186,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         $path = $this->packagePath('resources/assets');
 
         $this->publishes([
-            $path => public_path('vendor/laradmin'),
+            $path => public_path("vendor/{$this->pkgPrefix}"),
         ], 'assets');
     }
 
@@ -197,14 +198,30 @@ class LaradminLteServiceProvider extends ServiceProvider
     private function setConfigAsPublishable(): void
     {
         $mainCfg = $this->packagePath("config/{$this->pkgPrefix}.php");
+        $menuCfg = $this->packagePath("config/{$this->pkgPrefix}_menu.php");
         $pluginsCfg = $this->packagePath(
             "config/{$this->pkgPrefix}_plugins.php"
         );
 
         $this->publishes([
             $mainCfg => config_path("{$this->pkgPrefix}.php"),
+            $menuCfg => config_path("{$this->pkgPrefix}_menu.php"),
             $pluginsCfg => config_path("{$this->pkgPrefix}_plugins.php"),
         ], 'config');
+    }
+
+    /**
+     * Declare the package translations files as a publishable resource.
+     *
+     * @return void
+     */
+    private function setTranslationsAsPublishable(): void
+    {
+        $path = $this->packagePath('lang');
+
+        $this->publishes([
+            $path => lang_path("vendor/{$this->pkgPrefix}"),
+        ], 'translations');
     }
 
     /**

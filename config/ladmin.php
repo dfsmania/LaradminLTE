@@ -79,8 +79,9 @@ return [
     */
 
     'logo' => [
-        // The URL path to the logo image file.
-        'image' => asset('vendor/laradmin/img/AdminLTELogo.png'),
+        // The URL path to the logo image file. Can be a relative path to the
+        // public directory or an absolute URL.
+        'image' => 'vendor/ladmin/img/AdminLTELogo.png',
 
         // The alternative text for the logo image, used for accessibility.
         'image_alt' => 'AdminLTE Logo',

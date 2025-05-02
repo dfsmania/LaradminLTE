@@ -66,7 +66,7 @@
         @endforeach
 
         {{-- AdminLTE JavaScript App --}}
-        <script src="{{ asset('vendor/laradmin/js/adminlte.min.js') }}"></script>
+        <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
 
         {{-- Post AdminLTE plugins scripts --}}
         @foreach(ladmin()->plugins->getPostAdminlteScripts() as $resource)

@@ -138,7 +138,7 @@ class AdminPanel extends Component
             ? 'adminlte.min.css'
             : 'adminlte.rtl.min.css';
 
-        return asset("vendor/laradmin/css/{$file}");
+        return asset("vendor/ladmin/css/{$file}");
     }
 
     /**
