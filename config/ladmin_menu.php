@@ -27,6 +27,15 @@ return [
             'data-lte-toggle' => 'sidebar',
         ],
 
+        // Fullscreen toggler (OPTIONAL).
+        // ---------------------------------------------------------------------
+        [
+            'type' => MenuItemType::FULLSCREEN_TOGGLER,
+            'icon_expand' => 'bi bi-fullscreen',
+            'icon_collapse' => 'bi bi-fullscreen-exit',
+            'position' => 'right',
+        ],
+
         // Add your custom menu items here to extend the navbar menu.
         // ---------------------------------------------------------------------
         [

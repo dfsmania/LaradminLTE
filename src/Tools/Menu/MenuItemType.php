@@ -9,6 +9,7 @@ namespace DFSmania\LaradminLte\Tools\Menu;
  */
 enum MenuItemType: string
 {
+    case FULLSCREEN_TOGGLER = 'fullscreen-toggler';
     case HEADER = 'header';
     case LINK = 'link';
     case MENU = 'menu';

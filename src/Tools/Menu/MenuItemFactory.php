@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte\Tools\Menu;
 
 use DFSmania\LaradminLte\Tools\Menu\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\FullscreenToggler;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Header;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Link;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Menu;
@@ -27,10 +28,13 @@ class MenuItemFactory
 
         // The set of menu item builders allowed for the navbar.
         // TODO: Add support for dropdown menus in the navbar.
-        // TODO: Add support for fullscreen toggler in the navbar.
         'navbar' => [
             MenuItemType::HEADER->value => [Header::class, 'createFromConfig'],
             MenuItemType::LINK->value => [Link::class, 'createFromConfig'],
+            MenuItemType::FULLSCREEN_TOGGLER->value => [
+                FullscreenToggler::class,
+                'createFromConfig'
+            ],
         ],
 
         // The set of menu item builders allowed for the sidebar.
