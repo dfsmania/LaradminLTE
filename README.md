@@ -1,4 +1,4 @@
-# LaradminLte: An AdminLTE v4 Integration for Laravel
+# LaradminLte: AdminLTE v4 for Laravel
 
 LaradminLte is a package designed to integrate the [AdminLTE v4](https://adminlte-v4.netlify.app) administration dashboard template seamlessly into [Laravel](https://laravel.com/) (version 10 or higher). Currently in development, this package aims provides a quick and efficient way to set up an administration panel with advanced configuration options and a [Blade component](https://laravel.com/docs/blade#components) for rendering the layout.
 
