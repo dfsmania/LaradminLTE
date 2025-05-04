@@ -22,7 +22,7 @@ class TreeviewMenu extends Component
     public ?string $badgeClasses;
 
     /**
-     * The Font Awesome icon of the treeview menu (optional).
+     * The icon associated with the treeview menu (optional).
      *
      * @var ?string
      */
@@ -43,7 +43,7 @@ class TreeviewMenu extends Component
     public string $linkClasses;
 
     /**
-     * The Font Awesome icon of the treeview menu toggler.
+     * The icon of the treeview menu toggler.
      *
      * @var string
      */
@@ -53,12 +53,12 @@ class TreeviewMenu extends Component
      * Create a new component instance.
      *
      * @param  string   $label  The label of the treeview menu
-     * @param  ?string  $icon  The Font Awesome icon of the treeview menu
+     * @param  ?string  $icon  The icon associated with the treeview menu
      * @param  ?string  $color  The Bootstrap color for the treeview menu
      * @param  ?string  $badge  The text for the badge of the treeview menu
      * @param  ?string  $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
-     * @param  ?string  $togglerIcon  The Font Awesome icon of the menu toggler
+     * @param  ?string  $togglerIcon  The icon of the menu toggler
      * @return void
      */
     public function __construct(

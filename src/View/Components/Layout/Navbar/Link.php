@@ -22,7 +22,7 @@ class Link extends Component
     public ?string $badgeClasses;
 
     /**
-     * The Font Awesome icon of the link (optional).
+     * The icon associated with the link (optional).
      *
      * @var ?string
      */
@@ -52,7 +52,7 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
-     * @param  ?string  $icon  The Font Awesome icon of the link
+     * @param  ?string  $icon  The icon associated with the link
      * @param  ?string  $label  The label of the link
      * @param  ?string  $url  The URL (href attribute) of the link
      * @param  ?string  $color  The Bootstrap color of the link
