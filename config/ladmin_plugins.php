@@ -14,12 +14,31 @@ return [
     | and should not be modified unless you have a thorough understanding of
     | their purpose and impact on the system.
     |
+    | The order of the plugins is important, as some plugins depend on others
+    | to function correctly. So, plugins are loaded in the specified order.
+    |
     | Proceed with caution when making changes to this configuration, as
     | altering these settings may lead to unexpected behavior or errors in
     | the AdminLTE interface.
     |
     */
 
+    // Popper.js is a library used to manage poppers in web applications.
+    // It is required by Bootstrap 5 for tooltips and popovers.
+    'Popper' => [
+        'always' => true,
+        'resources' => [
+            [
+                'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
+                'source' => 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js',
+                'integrity' => 'sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r',
+                'crossorigin' => 'anonymous',
+            ],
+        ],
+    ],
+
+    // Bootstrap 5 is a popular front-end framework for developing responsive
+    // and mobile-first websites.
     'Bootstrap5' => [
         'always' => true,
         'resources' => [
@@ -31,6 +50,9 @@ return [
             ],
         ],
     ],
+
+    // Bootstrap Icons is a set of icons designed to work with Bootstrap. This
+    // is the icon set used by default in the AdminLTE template.
     'BootstrapIcons' => [
         'always' => true,
         'resources' => [
@@ -42,6 +64,10 @@ return [
             ],
         ],
     ],
+
+    // FontAwesome is a popular icon library that provides scalable vector
+    // icons. This is an alternative icon set that you can use with the
+    // AdminLTE template.
     'FontAwesomeIcons' => [
         'always' => false,
         'resources' => [
@@ -53,6 +79,10 @@ return [
             ],
         ],
     ],
+
+    // JsDeliver is a free CDN for open-source projects. It provides a way to
+    // load CSS and JS files from a variety of sources. This is used to load
+    // the font type used in the AdminLTE template from the CDN.
     'JsDeliverFont' => [
         'always' => true,
         'resources' => [
@@ -64,6 +94,10 @@ return [
             ],
         ],
     ],
+
+    // OverlayScrollbars is a plugin that provides a customizable scrollbar for
+    // web applications. It is used in the AdminLTE template to enhance the
+    // appearance and functionality of scrollbars.
     'OverlayScrollbars' => [
         'always' => true,
         'resources' => [
@@ -81,17 +115,6 @@ return [
             ],
         ],
     ],
-    'Popper' => [
-        'always' => true,
-        'resources' => [
-            [
-                'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
-                'source' => 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js',
-                'integrity' => 'sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE',
-                'crossorigin' => 'anonymous',
-            ],
-        ],
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -100,7 +123,8 @@ return [
     |
     | Here you can setup the set of additional or custom plugins that will be
     | used within the views of your admin panel. You can specify plugins here
-    | to extend or customize the functionality of your application.
+    | to extend or customize the functionality of your application. Please,
+    | note the plugins are loaded in the order they are defined here.
     |
     | For details you can look the online documentation here:
     | TBD
