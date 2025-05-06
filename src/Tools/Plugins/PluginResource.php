@@ -118,7 +118,7 @@ class PluginResource
      *
      * @return HtmlString
      */
-    public function render(): HtmlString
+    public function renderToHtml(): HtmlString
     {
         $htmlMarkup = null;
 
