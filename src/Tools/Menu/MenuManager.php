@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItem;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
 
 class MenuManager

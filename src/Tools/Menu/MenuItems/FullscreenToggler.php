@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItem;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
@@ -159,7 +159,7 @@ class FullscreenToggler implements MenuItem
      *
      * @return HtmlString
      */
-    public function render(): HtmlString
+    public function renderToHtml(): HtmlString
     {
         // Render the underlying blade component.
 

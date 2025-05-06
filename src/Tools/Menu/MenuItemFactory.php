@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItem;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\FullscreenToggler;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Header;
@@ -19,7 +19,7 @@ class MenuItemFactory
      *
      * This structure enables the creation of distinct menu items tailored to
      * specific placements. The blade component used to render a menu item
-     * varies based on its placement, and this approach also allows support
+     * varies based on its placement. This approach also allows support
      * for different menu item types across placements.
      *
      * @var array<string, array<string, callable>>

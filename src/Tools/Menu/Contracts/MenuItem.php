@@ -1,19 +1,20 @@
 <?php
 
-namespace DFSmania\LaradminLte\Tools\Menu;
+namespace DFSmania\LaradminLte\Tools\Menu\Contracts;
 
 use Illuminate\Support\HtmlString;
 
 /**
  * Interface MenuItem
  *
- * Defines the interface for a menu item. This interface is designed to
- * implement the Composite pattern, allowing menu items to be treated uniformly
- * whether they are individual items or composites with children. This allows
- * for creating hierarchical menu structures, where a menu item can have
+ * Defines the interface or contract for a menu item. This interface is
+ * designed to implement a COMPOSITE pattern, allowing menu items to be treated
+ * uniformly whether they are individual items or composites with children. This
+ * allows for creating hierarchical menu structures, where a menu item can have
  * sub-items or child items.
  *
- * TODO: Explore the implementation of Laravel-AdminLTE filters for menu items:
+ * TODO: Explore the implementation of Laravel-AdminLTE filters for menu items,
+ * the idea is to extend this interface to support the following features:
  * 1) How can we determine if a menu item is currently active, i.e., its URL
  * matches the current request's URL path?
  * 2) How can we determine if a menu item should be displayed, based on
@@ -49,5 +50,5 @@ interface MenuItem
      *
      * @return HtmlString
      */
-    public function render(): HtmlString;
+    public function renderToHtml(): HtmlString;
 }

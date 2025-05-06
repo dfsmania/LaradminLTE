@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItem;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
 use DFSmania\LaradminLte\View\Components\Layout;
@@ -250,7 +250,7 @@ class Menu implements MenuItem
      *
      * @return HtmlString
      */
-    public function render(): HtmlString
+    public function renderToHtml(): HtmlString
     {
         // First, render all the children of this item and combine them into a
         // single string.
@@ -258,7 +258,7 @@ class Menu implements MenuItem
         $childrenHtml = '';
 
         foreach ($this->children as $child) {
-            $childrenHtml .= $child->render();
+            $childrenHtml .= $child->renderToHtml();
         }
 
         // Now, render the underlying root blade component.
