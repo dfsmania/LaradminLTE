@@ -48,13 +48,6 @@ return [
         ],
         [
             'type' => MenuItemType::LINK,
-            'label' => 'Home',
-            'url' => 'home',
-            'color' => 'primary',
-            'position' => 'left',
-        ],
-        [
-            'type' => MenuItemType::LINK,
             'label' => 'Contact',
             'url' => 'contact',
             'color' => 'success',

@@ -4,10 +4,7 @@ namespace DFSmania\LaradminLte\Tools\Menu;
 
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\FullscreenToggler;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Header;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Link;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Menu;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems;
 
 class MenuItemFactory
 {
@@ -29,19 +26,34 @@ class MenuItemFactory
         // The set of menu item builders allowed for the navbar.
         // TODO: Add support for dropdown menus in the navbar.
         'navbar' => [
-            MenuItemType::HEADER->value => [Header::class, 'createFromConfig'],
-            MenuItemType::LINK->value => [Link::class, 'createFromConfig'],
             MenuItemType::FULLSCREEN_TOGGLER->value => [
-                FullscreenToggler::class,
+                MenuItems\Navbar\FullscreenToggler::class,
+                'createFromConfig'
+            ],
+            MenuItemType::HEADER->value => [
+                MenuItems\Navbar\Header::class,
+                'createFromConfig'
+            ],
+            MenuItemType::LINK->value => [
+                MenuItems\Navbar\Link::class,
                 'createFromConfig'
             ],
         ],
 
         // The set of menu item builders allowed for the sidebar.
         'sidebar' => [
-            MenuItemType::HEADER->value => [Header::class, 'createFromConfig'],
-            MenuItemType::LINK->value => [Link::class, 'createFromConfig'],
-            MenuItemType::MENU->value => [Menu::class, 'createFromConfig'],
+            MenuItemType::HEADER->value => [
+                MenuItems\Sidebar\Header::class,
+                'createFromConfig'
+            ],
+            MenuItemType::LINK->value => [
+                MenuItems\Sidebar\Link::class,
+                'createFromConfig'
+            ],
+            MenuItemType::MENU->value => [
+                MenuItems\Sidebar\Menu::class,
+                'createFromConfig'
+            ],
         ],
     ];
 
@@ -78,7 +90,7 @@ class MenuItemFactory
         // function. If the creation fails, we will return null to indicate
         // that the menu item is not valid.
 
-        return $builder($config, $place);
+        return $builder($config);
     }
 
     /**
