@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu;
 
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
 
@@ -33,11 +34,13 @@ class MenuManager
     {
         // Read, validate and classify the provided navbar menu items.
 
-        $this->readNavbarMenuItems($menuCfg['navbar'] ?? []);
+        $items = $menuCfg[MenuPlacement::NAVBAR->value] ?? [];
+        $this->readNavbarMenuItems($items);
 
         // Read and validate the provided sidebar menu items.
 
-        $this->readSidebarMenuItems($menuCfg['sidebar'] ?? []);
+        $items = $menuCfg[MenuPlacement::SIDEBAR->value] ?? [];
+        $this->readSidebarMenuItems($items);
     }
 
     /**
@@ -97,7 +100,8 @@ class MenuManager
             // configuration. If the configuration is invalid, the resulting
             // menu item instance will be null, and the item will be skipped.
 
-            $menuItem = MenuItemFactory::createFromConfig($itemCfg, 'navbar');
+            $place = MenuPlacement::NAVBAR;
+            $menuItem = MenuItemFactory::createFromConfig($itemCfg, $place);
 
             if ($menuItem === null) {
                 continue;
@@ -129,7 +133,8 @@ class MenuManager
             // configuration. If the configuration is invalid, the resulting
             // menu item instance will be null, and the item will be skipped.
 
-            $menuItem = MenuItemFactory::createFromConfig($itemCfg, 'sidebar');
+            $place = MenuPlacement::SIDEBAR;
+            $menuItem = MenuItemFactory::createFromConfig($itemCfg, $place);
 
             if ($menuItem === null) {
                 continue;

@@ -5,6 +5,7 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Base;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\BuildableFromConfig;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
@@ -42,12 +43,13 @@ abstract class AbstractCompositeMenuItem implements
     protected static array $allowedChildTypes = [];
 
     /**
-     * Specifies where child items will be rendered within the admin panel
-     * layout. For example, valid placements could be 'navbar' or 'sidebar'.
+     * Specifies where the child items will be rendered within the admin panel
+     * layout. This is required because the building process of a menu item
+     * may be different depending on its placement.
      *
-     * @var string
+     * @var MenuPlacement
      */
-    protected static string $childrenPlacement;
+    protected static MenuPlacement $childrenPlacement;
 
     /**
      * The underlying blade component that will be used to render the menu item.
@@ -104,6 +106,13 @@ abstract class AbstractCompositeMenuItem implements
         $children = ! empty($config['submenu'])
             ? static::getChildrenFromConfig($config['submenu'])
             : [];
+
+        // If the menu item has no children, we will avoid further build
+        // processing and return null to indicate that the menu item is invalid.
+
+        if (empty($children)) {
+            return null;
+        }
 
         // Now, retrieve the additional attributes for the menu item. These
         // attributes will be rendered as extra HTML attributes on the main

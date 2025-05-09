@@ -1,6 +1,7 @@
 <?php
 
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 
 return [
 
@@ -15,9 +16,9 @@ return [
     |
     */
 
-    'navbar' => [
+    MenuPlacement::NAVBAR->value => [
         // Hamburger button to toggle the sidebar (REQUIRED).
-        // ---------------------------------------------------------------------
+        // --------------------------------------------------------------------
         [
             'type' => MenuItemType::LINK,
             'icon' => 'bi bi-list h5',
@@ -28,7 +29,7 @@ return [
         ],
 
         // Fullscreen toggler (OPTIONAL).
-        // ---------------------------------------------------------------------
+        // --------------------------------------------------------------------
         [
             'type' => MenuItemType::FULLSCREEN_TOGGLER,
             'icon_expand' => 'bi bi-fullscreen',
@@ -37,7 +38,7 @@ return [
         ],
 
         // Add your custom menu items here to extend the navbar menu.
-        // ---------------------------------------------------------------------
+        // --------------------------------------------------------------------
         [
             'type' => MenuItemType::HEADER,
             'label' => 'Header',
@@ -85,7 +86,7 @@ return [
     |
     */
 
-    'sidebar' => [
+    MenuPlacement::SIDEBAR->value => [
         [
             'type' => MenuItemType::HEADER,
             'label' => 'Basic Link Tests',

@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractCompositeMenuItem;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;
@@ -46,7 +47,7 @@ class Menu extends AbstractCompositeMenuItem
      *
      * @var string
      */
-    protected static string $childrenPlacement = 'sidebar';
+    protected static MenuPlacement $childrenPlacement = MenuPlacement::SIDEBAR;
 
     /**
      * Creates a new instance of the blade component for the menu item.

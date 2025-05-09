@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte\Tools\Menu;
 
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems;
 
 class MenuItemFactory
@@ -25,7 +26,7 @@ class MenuItemFactory
 
         // The set of menu item builders allowed for the navbar.
         // TODO: Add support for dropdown menus in the navbar.
-        'navbar' => [
+        MenuPlacement::NAVBAR->value => [
             MenuItemType::FULLSCREEN_TOGGLER->value => [
                 MenuItems\Navbar\FullscreenToggler::class,
                 'createFromConfig'
@@ -41,7 +42,7 @@ class MenuItemFactory
         ],
 
         // The set of menu item builders allowed for the sidebar.
-        'sidebar' => [
+        MenuPlacement::SIDEBAR->value => [
             MenuItemType::HEADER->value => [
                 MenuItems\Sidebar\Header::class,
                 'createFromConfig'
@@ -62,12 +63,12 @@ class MenuItemFactory
      * value will be returned if the configuration is invalid.
      *
      * @param  array  $config  The raw configuration array of the menu item
-     * @param  string  $place  The placement of the item (navbar or sidebar)
+     * @param  MenuPlacement  $place  The placement of the item
      * @return ?MenuItem
      */
     public static function createFromConfig(
         array $config,
-        string $place
+        MenuPlacement $place
     ): ?MenuItem {
 
         // Check if the menu item configuration has a valid type.
@@ -107,19 +108,17 @@ class MenuItemFactory
 
     /**
      * Get the builder function for a specific placement and menu item type.
+     * It will return null if no builder is found for the specified placement
+     * and type.
      *
-     * @param  string  $place  The placement of the item (navbar or sidebar)
+     * @param  MenuPlacement  $place  The placement of the item
      * @param  MenuItemType  $type  The type of the menu item
      * @return ?callable
      */
     protected static function getBuilderFor(
-        string $place,
+        MenuPlacement $place,
         MenuItemType $type
     ): ?callable {
-
-        // Return the builder function for the specified placement and type.
-        // This will return null if the placement or the type is not valid.
-
-        return self::$builders[$place][$type->value] ?? null;
+        return self::$builders[$place->value][$type->value] ?? null;
     }
 }
