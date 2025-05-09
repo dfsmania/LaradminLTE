@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\Tools\Menu;
+namespace DFSmania\LaradminLte\Tools\Menu\Enums;
 
 /**
  * MenuItemType enum class.

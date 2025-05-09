@@ -3,7 +3,7 @@
 namespace DFSmania\LaradminLte\Tools\Menu;
 
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
-use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems;
 
 class MenuItemFactory

@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractCompositeMenuItem;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;

@@ -4,8 +4,8 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Base;
 
 use DFSmania\LaradminLte\Tools\Menu\Contracts\BuildableFromConfig;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
-use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;

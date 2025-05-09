@@ -1,6 +1,6 @@
 <?php
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 
 return [
 
