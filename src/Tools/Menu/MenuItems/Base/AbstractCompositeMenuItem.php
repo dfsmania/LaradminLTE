@@ -30,9 +30,7 @@ abstract class AbstractCompositeMenuItem implements
      *
      * @var array<string, string|array>
      */
-    protected static array $cfgValidationRules = [
-        'submenu' => 'required|array',
-    ];
+    protected static array $cfgValidationRules = [];
 
     /**
      * Defines the set of allowed child types for this menu item. This is used
@@ -100,11 +98,11 @@ abstract class AbstractCompositeMenuItem implements
         }
 
         // Check if the menu item has children. If so, we will first create
-        // the child menu item instances from its configuration. Children are
-        // expected to be under the 'submenu' key in the configuration array.
+        // the child menu item instances from its configuration.
 
-        $children = ! empty($config['submenu'])
-            ? static::getChildrenFromConfig($config['submenu'])
+        $childrenKey = static::getChildrenConfigKey();
+        $children = ! empty($config[$childrenKey])
+            ? static::getChildrenFromConfig($config[$childrenKey])
             : [];
 
         // If the menu item has no children, we will avoid further build
@@ -169,6 +167,33 @@ abstract class AbstractCompositeMenuItem implements
         }
 
         return $children;
+    }
+
+    /**
+     * Retrieves the key in the configuration array that contains the child
+     * items for this menu item. This is used to identify where the child
+     * items are located in the configuration. Note this method can be
+     * overriden in subclasses to provide a different key if needed.
+     *
+     * @return string
+     */
+    protected static function getChildrenConfigKey(): string
+    {
+        return 'submenu';
+    }
+
+    /**
+     * Retrieves the name of the slot variable used to render child items
+     * within the blade component. This is used to inject the rendered child
+     * items into the main slot of the component. By default, it is set to
+     * 'slot', but it can be overridden in subclasses if a different slot
+     * name is used in the blade component.
+     *
+     * @return string
+     */
+    protected static function getChildrenSlotVariable(): string
+    {
+        return 'slot';
     }
 
     /**
@@ -239,11 +264,13 @@ abstract class AbstractCompositeMenuItem implements
         // is a View instance, pass the blade component's data to the view
         // and render it accordingly.
 
+        $slotVar = static::getChildrenSlotVariable();
+
         if (is_string($view)) {
-            $view = str_replace('{{ $slot }}', $childrenHtml, $view);
+            $view = str_replace("{{ $$slotVar }}", $childrenHtml, $view);
         } else {
             $viewData = $this->bladeComponent->data();
-            $viewData['slot'] = new HtmlString($childrenHtml);
+            $viewData[$slotVar] = new HtmlString($childrenHtml);
             $view = $view->with($viewData)->render();
         }
 
