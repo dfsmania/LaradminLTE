@@ -95,7 +95,7 @@ class Link extends Component
      */
     protected function getLinkClasses(?string $color): string
     {
-        $classes = ['nav-link'];
+        $classes = ['nav-link', 'align-items-center'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";

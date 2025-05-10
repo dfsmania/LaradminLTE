@@ -16,7 +16,7 @@
         @if(! empty($togglerIcon))
             <i class="nav-arrow {{ $togglerIcon }}"></i>
         @else
-            <span class="nav-arrow h3">&rsaquo;</span>
+            <span class="nav-arrow fs-3">&rsaquo;</span>
         @endif
 
         {{-- Badge (optional) --}}

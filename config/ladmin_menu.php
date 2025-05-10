@@ -90,7 +90,7 @@ return [
         [
             'type' => MenuItemType::HEADER,
             'label' => 'Basic Link Tests',
-            'icon' => 'bi bi-bookmark',
+            'icon' => 'bi bi-bookmark fs-5',
             'class' => 'text-uppercase fw-bold',
             'color' => 'success',
         ],
@@ -98,21 +98,21 @@ return [
             'type' => MenuItemType::LINK,
             'label' => 'Link 1',
             'url' => 'link_1',
-            'icon' => 'bi bi-circle',
+            'icon' => 'bi bi-circle fs-5',
             'class' => 'active',
         ],
         [
             'type' => MenuItemType::LINK,
             'label' => 'Link 2',
             'url' => 'link_2',
-            'icon' => 'bi bi-square',
+            'icon' => 'bi bi-square fs-5',
             'color' => 'warning',
         ],
         [
             'type' => MenuItemType::LINK,
             'label' => 'Link 3',
             'url' => 'link_3',
-            'icon' => 'bi bi-record-circle',
+            'icon' => 'bi bi-record-circle fs-5',
             'badge' => '5',
             'badge_color' => 'info',
         ],
@@ -120,7 +120,7 @@ return [
             'type' => MenuItemType::LINK,
             'label' => 'Link 4',
             'url' => 'link_4',
-            'icon' => 'bi bi-star-fill text-primary',
+            'icon' => 'bi bi-star-fill fs-5 text-primary',
             'color' => 'info',
             'badge' => '7',
             'badge_color' => 'danger',
@@ -129,14 +129,14 @@ return [
         [
             'type' => MenuItemType::HEADER,
             'label' => 'Treeview Menu Tests',
-            'icon' => 'bi bi-bookmark',
+            'icon' => 'bi bi-bookmark fs-5',
             'class' => 'text-uppercase fw-bold',
             'color' => 'success',
         ],
         [
             'type' => MenuItemType::MENU,
             'label' => 'Menu 1',
-            'icon' => 'bi bi-boxes',
+            'icon' => 'bi bi-boxes fs-5',
             'submenu' => [
                 [
                     'type' => MenuItemType::LINK,
@@ -172,14 +172,14 @@ return [
                         ],
                     ],
                 ],
-            ]
+            ],
         ],
         [
             'type' => MenuItemType::MENU,
             'label' => 'Menu 2',
             'color' => 'warning',
-            'icon' => 'bi bi-boxes',
-            'toggler_icon' => 'bi bi-arrow-right',
+            'icon' => 'bi bi-boxes fs-5',
+            'toggler_icon' => 'bi bi-arrow-right fs-5',
             'submenu' => [
                 [
                     'type' => MenuItemType::LINK,
@@ -193,7 +193,7 @@ return [
                     'url' => 'link_f',
                     'icon' => 'bi bi-circle-fill',
                 ],
-            ]
+            ],
         ],
     ],
 ];
