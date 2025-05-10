@@ -5,7 +5,7 @@
 
         {{-- Icon (optional) --}}
         @if(! empty($icon))
-            <i class="{{ $icon }}"></i>
+            <i class="{{ empty($label) ? $icon : "$icon me-1" }}"></i>
         @endif
 
         {{-- Label (optional) --}}
