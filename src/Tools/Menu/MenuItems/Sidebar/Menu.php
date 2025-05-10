@@ -24,7 +24,6 @@ class Menu extends AbstractCompositeMenuItem
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
         'label' => 'required|string',
-        'position' => 'sometimes|in:left,right',
         'submenu' => 'required|array',
         'toggler_icon' => 'sometimes|string',
         'type' => 'required',
