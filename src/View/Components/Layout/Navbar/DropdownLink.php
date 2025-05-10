@@ -95,7 +95,7 @@ class DropdownLink extends Component
      */
     protected function getLinkClasses(?string $color): string
     {
-        $classes = ['dropdown-item', 'd-flex'];
+        $classes = ['dropdown-item', 'd-flex', 'align-items-center'];
 
         if (! empty($color)) {
             $classes[] = "link-{$color}";

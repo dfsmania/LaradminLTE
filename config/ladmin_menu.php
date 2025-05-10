@@ -21,7 +21,7 @@ return [
         // --------------------------------------------------------------------
         [
             'type' => MenuItemType::LINK,
-            'icon' => 'bi bi-list h5',
+            'icon' => 'bi bi-list fs-5',
             'url' => '#',
             'position' => 'left',
             'role' => 'button',
@@ -32,8 +32,8 @@ return [
         // --------------------------------------------------------------------
         [
             'type' => MenuItemType::FULLSCREEN_TOGGLER,
-            'icon_expand' => 'bi bi-fullscreen',
-            'icon_collapse' => 'bi bi-fullscreen-exit',
+            'icon_expand' => 'bi bi-fullscreen fs-5',
+            'icon_collapse' => 'bi bi-fullscreen-exit fs-5',
             'position' => 'right',
         ],
 
@@ -57,7 +57,7 @@ return [
         ],
         [
             'type' => MenuItemType::LINK,
-            'icon' => 'bi bi-bell-fill h5',
+            'icon' => 'bi bi-bell-fill fs-5',
             'url' => 'notifications',
             'badge' => '5',
             'badge_color' => 'info',
@@ -66,7 +66,7 @@ return [
         ],
         [
             'type' => MenuItemType::LINK,
-            'icon' => 'bi bi-envelope-fill h5',
+            'icon' => 'bi bi-envelope-fill fs-5',
             'url' => 'messages',
             'badge' => '7',
             'badge_color' => 'danger',

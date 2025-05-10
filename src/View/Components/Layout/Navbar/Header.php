@@ -54,7 +54,13 @@ class Header extends Component
      */
     protected function getHeaderClasses(?string $color): string
     {
-        $classes = ['nav-item', 'nav-link', 'pe-none'];
+        $classes = [
+            'nav-item',
+            'nav-link',
+            'pe-none',
+            'd-flex',
+            'align-items-center'
+        ];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";

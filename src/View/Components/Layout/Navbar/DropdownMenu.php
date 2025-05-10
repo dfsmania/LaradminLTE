@@ -72,7 +72,12 @@ class DropdownMenu extends Component
      */
     protected function getLinkClasses(?string $color): string
     {
-        $classes = ['nav-link', 'dropdown-toggle'];
+        $classes = [
+            'nav-link',
+            'dropdown-toggle',
+            'd-flex',
+            'align-items-center'
+        ];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";

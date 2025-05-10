@@ -57,7 +57,7 @@ class FullscreenToggler extends Component
      */
     protected function getLinkClasses(?string $color): string
     {
-        $classes = ['nav-link'];
+        $classes = ['nav-link', 'd-flex', 'align-items-center'];
 
         if (! empty($color)) {
             $classes[] = "link-{$color}";
