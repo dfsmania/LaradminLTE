@@ -54,7 +54,10 @@ class Header extends Component
      */
     protected function getHeaderClasses(?string $color): string
     {
-        $classes = ['nav-header', 'd-flex', 'align-items-center'];
+        // TODO: Add d-flex and align-items-center classes to the header when
+        // solve the issue on the AdminLTE package, add !inportant flag to the
+        // display:none property when sidebar-mini is collapsed.
+        $classes = ['nav-header'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
