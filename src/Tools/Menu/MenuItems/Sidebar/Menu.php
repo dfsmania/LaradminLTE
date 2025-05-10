@@ -41,10 +41,11 @@ class Menu extends AbstractCompositeMenuItem
     ];
 
     /**
-     * Specifies where child items will be rendered within the admin panel
-     * layout. For example, valid placements could be 'navbar' or 'sidebar'.
+     * Specifies where the child items will be rendered within the admin panel
+     * layout. This is required because the building process of a menu item
+     * may be different depending on its placement.
      *
-     * @var string
+     * @var MenuPlacement
      */
     protected static MenuPlacement $childrenPlacement = MenuPlacement::SIDEBAR;
 
