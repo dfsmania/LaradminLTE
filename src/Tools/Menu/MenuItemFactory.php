@@ -25,7 +25,6 @@ class MenuItemFactory
     protected static array $builders = [
 
         // The set of menu item builders allowed for the navbar.
-        // TODO: Add support for dropdown menus in the navbar.
         MenuPlacement::NAVBAR->value => [
             MenuItemType::FULLSCREEN_TOGGLER->value => [
                 MenuItems\Navbar\FullscreenToggler::class,
@@ -37,6 +36,10 @@ class MenuItemFactory
             ],
             MenuItemType::LINK->value => [
                 MenuItems\Navbar\Link::class,
+                'createFromConfig'
+            ],
+            MenuItemType::MENU->value => [
+                MenuItems\Navbar\Menu::class,
                 'createFromConfig'
             ],
         ],
@@ -53,6 +56,14 @@ class MenuItemFactory
             ],
             MenuItemType::MENU->value => [
                 MenuItems\Sidebar\Menu::class,
+                'createFromConfig'
+            ],
+        ],
+
+        // The set of menu item builders allowed for the navbar dropdown.
+        MenuPlacement::NAVBAR_DROPDOWN->value => [
+            MenuItemType::LINK->value => [
+                MenuItems\Navbar\DropdownLink::class,
                 'createFromConfig'
             ],
         ],

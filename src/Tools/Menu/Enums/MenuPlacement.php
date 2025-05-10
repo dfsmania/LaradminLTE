@@ -11,5 +11,6 @@ namespace DFSmania\LaradminLte\Tools\Menu\Enums;
 enum MenuPlacement: string
 {
     case NAVBAR = 'navbar';
+    case NAVBAR_DROPDOWN = 'navbar-dropdown';
     case SIDEBAR = 'sidebar';
 }
