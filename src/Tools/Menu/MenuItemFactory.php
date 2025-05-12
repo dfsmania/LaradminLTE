@@ -50,6 +50,10 @@ class MenuItemFactory
 
         // The set of menu item builders allowed for the sidebar.
         MenuPlacement::SIDEBAR->value => [
+            MenuItemType::DIVIDER->value => [
+                MenuItems\Sidebar\Divider::class,
+                'createFromConfig'
+            ],
             MenuItemType::HEADER->value => [
                 MenuItems\Sidebar\Header::class,
                 'createFromConfig'

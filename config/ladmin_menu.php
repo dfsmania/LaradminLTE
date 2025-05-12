@@ -121,13 +121,13 @@ return [
                 [
                     'type' => MenuItemType::LINK,
                     'label' => 'Help',
-                    'url' => 'link_help',
+                    'url' => 'help',
                     'icon' => 'bi bi-question-circle-fill fs-5',
                 ],
                 [
                     'type' => MenuItemType::LINK,
                     'label' => 'About Us',
-                    'url' => 'link_about_us',
+                    'url' => 'about_us',
                     'icon' => 'bi bi-info-circle-fill fs-5',
                 ],
             ],
@@ -184,6 +184,9 @@ return [
             'badge' => '7',
             'badge_color' => 'danger',
             'badge_classes' => 'rounded-circle',
+        ],
+        [
+            'type' => MenuItemType::DIVIDER,
         ],
         [
             'type' => MenuItemType::HEADER,
