@@ -40,17 +40,23 @@ return [
         // Add your custom menu items here to extend the navbar menu.
         // --------------------------------------------------------------------
         [
+            'type' => MenuItemType::DIVIDER,
+        ],
+        [
             'type' => MenuItemType::HEADER,
             'label' => 'Header',
             'icon' => 'bi bi-bookmark-fill',
-            'color' => 'dark',
             'position' => 'left',
             'class' => 'text-uppercase fw-bold',
         ],
         [
+            'type' => MenuItemType::DIVIDER,
+        ],
+        [
             'type' => MenuItemType::LINK,
-            'label' => 'Contact',
-            'url' => 'contact',
+            'label' => 'Home',
+            'icon' => 'bi bi-house-door-fill fs-5',
+            'url' => 'home',
             'color' => 'success',
             'position' => 'left',
             'id' => 'link-contact',

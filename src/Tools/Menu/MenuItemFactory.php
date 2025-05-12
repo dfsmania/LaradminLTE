@@ -26,6 +26,10 @@ class MenuItemFactory
 
         // The set of menu item builders allowed for the navbar.
         MenuPlacement::NAVBAR->value => [
+            MenuItemType::DIVIDER->value => [
+                MenuItems\Navbar\Divider::class,
+                'createFromConfig'
+            ],
             MenuItemType::FULLSCREEN_TOGGLER->value => [
                 MenuItems\Navbar\FullscreenToggler::class,
                 'createFromConfig'
