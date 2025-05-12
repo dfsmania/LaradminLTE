@@ -73,6 +73,55 @@ return [
             'badge_classes' => 'border border-dark border-1 rounded-circle animate__animated animate__infinite animate__flash animate__slower',
             'position' => 'right',
         ],
+        [
+            'type' => MenuItemType::MENU,
+            'icon' => 'bi bi-gear fs-5',
+            'menu_color' => 'primary-subtle',
+            'position' => 'right',
+            'submenu' => [
+                [
+                    'type' => MenuItemType::HEADER,
+                    'label' => 'Settings',
+                    'icon' => 'bi bi-tag fs-5',
+                    'class' => 'text-uppercase fw-bold',
+                    'color' => 'primary',
+                ],
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'Profile',
+                    'icon' => 'bi bi-person-fill fs-5',
+                    'url' => 'profile',
+                ],
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'Preferences',
+                    'icon' => 'bi bi-sliders fs-5',
+                    'url' => 'preferences',
+                    'badge' => 'new',
+                    'badge_color' => 'primary',
+                    'badge_classes' => 'rounded-pill',
+                ],
+                [
+                    'type' => MenuItemType::HEADER,
+                    'label' => 'Support',
+                    'icon' => 'bi bi-tag fs-5',
+                    'class' => 'text-uppercase fw-bold',
+                    'color' => 'primary',
+                ],
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'Help',
+                    'url' => 'link_help',
+                    'icon' => 'bi bi-question-circle-fill fs-5',
+                ],
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'About Us',
+                    'url' => 'link_about_us',
+                    'icon' => 'bi bi-info-circle-fill fs-5',
+                ],
+            ],
+        ],
     ],
 
     /*

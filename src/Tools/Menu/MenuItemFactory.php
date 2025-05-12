@@ -61,7 +61,14 @@ class MenuItemFactory
         ],
 
         // The set of menu item builders allowed for the navbar dropdown.
+        // TODO: Support for nested submenus may be added in the future.
+        // This feature would require foundational support from the AdminLTE
+        // package or Bootstrap 5, as it is not currently supported.
         MenuPlacement::NAVBAR_DROPDOWN->value => [
+            MenuItemType::HEADER->value => [
+                MenuItems\Navbar\DropdownHeader::class,
+                'createFromConfig'
+            ],
             MenuItemType::LINK->value => [
                 MenuItems\Navbar\DropdownLink::class,
                 'createFromConfig'

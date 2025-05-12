@@ -34,6 +34,7 @@ class Menu extends AbstractCompositeMenuItem
      * @var MenuItemType[]
      */
     protected static array $allowedChildTypes = [
+        MenuItemType::HEADER,
         MenuItemType::LINK,
     ];
 
