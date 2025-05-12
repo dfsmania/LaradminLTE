@@ -19,9 +19,7 @@ use Illuminate\View\Component;
  * child items. It provides methods for creating instances from configuration,
  * rendering the menu item as HTML, and checking for child items.
  */
-abstract class AbstractCompositeMenuItem implements
-    MenuItem,
-    BuildableFromConfig
+abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuItem
 {
     /**
      * Defines the validation rules for the menu item configuration. These
@@ -250,7 +248,7 @@ abstract class AbstractCompositeMenuItem implements
         // single string.
 
         $childrenHtml = implode('', array_map(
-            fn(MenuItem $child) => $child->renderToHtml(),
+            fn (MenuItem $child) => $child->renderToHtml(),
             $this->children
         ));
 

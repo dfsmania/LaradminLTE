@@ -47,7 +47,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         // lifecycle within the same request-response cycle.
 
         $this->app->singleton(LaradminLte::class, function ($app) {
-            return new LaradminLte();
+            return new LaradminLte;
         });
     }
 

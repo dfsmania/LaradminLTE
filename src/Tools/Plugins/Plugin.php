@@ -2,7 +2,6 @@
 
 namespace DFSmania\LaradminLte\Tools\Plugins;
 
-use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
 use Illuminate\Support\Facades\Validator;
 
 class Plugin

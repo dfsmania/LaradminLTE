@@ -2,10 +2,6 @@
 
 namespace DFSmania\LaradminLte\Tools\Plugins;
 
-use DFSmania\LaradminLte\Tools\Plugins\Plugin;
-use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
-use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
-
 class PluginsManager
 {
     /**

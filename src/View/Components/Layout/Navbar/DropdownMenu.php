@@ -76,7 +76,7 @@ class DropdownMenu extends Component
             'nav-link',
             'dropdown-toggle',
             'd-flex',
-            'align-items-center'
+            'align-items-center',
         ];
 
         if (! empty($color)) {
@@ -90,7 +90,7 @@ class DropdownMenu extends Component
      * Gets the set of CSS classes for the dropdown menu that holds the
      * children items.
      *
-     * @param  string   $color  The Bootstrap background color for the menu
+     * @param  string  $color  The Bootstrap background color for the menu
      * @param  ?string  $extraClasses  A set of extra CSS classes for the menu
      * @return string
      */

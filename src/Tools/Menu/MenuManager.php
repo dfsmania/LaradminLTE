@@ -2,9 +2,8 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu;
 
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
-use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 
 class MenuManager
 {

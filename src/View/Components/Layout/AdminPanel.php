@@ -2,7 +2,6 @@
 
 namespace DFSmania\LaradminLte\View\Components\Layout;
 
-use DFSmania\LaradminLte\Tools\Plugins\PluginsManager;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -16,7 +15,7 @@ class AdminPanel extends Component
      */
     protected array $validBootstrapThemes = [
         'light',
-        'dark'
+        'dark',
     ];
 
     /**

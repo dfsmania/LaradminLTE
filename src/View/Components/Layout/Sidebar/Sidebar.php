@@ -14,7 +14,7 @@ class Sidebar extends Component
      */
     protected $validBootstrapThemes = [
         'light',
-        'dark'
+        'dark',
     ];
 
     /**

@@ -52,7 +52,7 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
-     * @param  string   $label  The label of the link
+     * @param  string  $label  The label of the link
      * @param  ?string  $icon  The icon associated with the link
      * @param  ?string  $url  The URL (href attribute) of the link
      * @param  ?string  $color  The Bootstrap color for the link
@@ -107,7 +107,7 @@ class Link extends Component
     /**
      * Gets the set of CSS classes for the badge.
      *
-     * @param  string   $color  The Bootstrap background color for the badge
+     * @param  string  $color  The Bootstrap background color for the badge
      * @param  ?string  $extraClasses  A set of extra CSS classes for the badge
      * @return string
      */

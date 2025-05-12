@@ -107,7 +107,7 @@ class Link extends Component
     /**
      * Gets the set of CSS classes for the badge.
      *
-     * @param  string   $color  The Bootstrap background color for the badge
+     * @param  string  $color  The Bootstrap background color for the badge
      * @param  ?string  $extraClasses  A set of extra CSS classes for the badge
      * @return string
      */

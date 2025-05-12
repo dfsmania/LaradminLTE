@@ -52,7 +52,7 @@ class TreeviewMenu extends Component
     /**
      * Create a new component instance.
      *
-     * @param  string   $label  The label of the treeview menu
+     * @param  string  $label  The label of the treeview menu
      * @param  ?string  $icon  The icon associated with the treeview menu
      * @param  ?string  $color  The Bootstrap color for the treeview menu
      * @param  ?string  $badge  The text for the badge of the treeview menu
@@ -107,7 +107,7 @@ class TreeviewMenu extends Component
     /**
      * Gets the set of CSS classes for the badge.
      *
-     * @param  string   $color  The Bootstrap background color for the badge
+     * @param  string  $color  The Bootstrap background color for the badge
      * @param  ?string  $extraClasses  A set of extra CSS classes for the badge
      * @return string
      */

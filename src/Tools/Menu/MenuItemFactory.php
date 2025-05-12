@@ -5,7 +5,6 @@ namespace DFSmania\LaradminLte\Tools\Menu;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems;
 
 class MenuItemFactory
 {
@@ -28,23 +27,23 @@ class MenuItemFactory
         MenuPlacement::NAVBAR->value => [
             MenuItemType::DIVIDER->value => [
                 MenuItems\Navbar\Divider::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::FULLSCREEN_TOGGLER->value => [
                 MenuItems\Navbar\FullscreenToggler::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::HEADER->value => [
                 MenuItems\Navbar\Header::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::LINK->value => [
                 MenuItems\Navbar\Link::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::MENU->value => [
                 MenuItems\Navbar\Menu::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
         ],
 
@@ -52,19 +51,19 @@ class MenuItemFactory
         MenuPlacement::SIDEBAR->value => [
             MenuItemType::DIVIDER->value => [
                 MenuItems\Sidebar\Divider::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::HEADER->value => [
                 MenuItems\Sidebar\Header::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::LINK->value => [
                 MenuItems\Sidebar\Link::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::MENU->value => [
                 MenuItems\Sidebar\Menu::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
         ],
 
@@ -75,15 +74,15 @@ class MenuItemFactory
         MenuPlacement::NAVBAR_DROPDOWN->value => [
             MenuItemType::DIVIDER->value => [
                 MenuItems\Navbar\DropdownDivider::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::HEADER->value => [
                 MenuItems\Navbar\DropdownHeader::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
             MenuItemType::LINK->value => [
                 MenuItems\Navbar\DropdownLink::class,
-                'createFromConfig'
+                'createFromConfig',
             ],
         ],
     ];

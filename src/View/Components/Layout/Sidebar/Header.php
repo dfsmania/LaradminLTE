@@ -31,7 +31,7 @@ class Header extends Component
     /**
      * Create a new component instance.
      *
-     * @param  string   $label  The label text for the header
+     * @param  string  $label  The label text for the header
      * @param  ?string  $icon  The icon associated with the header
      * @param  ?string  $color  The Bootstrap color of the header
      * @return void

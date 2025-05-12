@@ -2,7 +2,6 @@
 
 namespace DFSmania\LaradminLte\Tools\Plugins;
 
-use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;

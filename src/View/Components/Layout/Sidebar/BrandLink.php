@@ -58,7 +58,7 @@ class BrandLink extends Component
      *
      * @param  ?string  $label  The text label for the brand link
      * @param  ?string  $logoUrl  The URL to the logo image
-     * @param  string   $url  The URL the brand link points to
+     * @param  string  $url  The URL the brand link points to
      * @param  ?string  $logoAlt  The alternative text for the logo image
      * @param  ?string  $labelClasses  Additional CSS classes for the label
      * @param  ?string  $logoClasses  Additional CSS classes for the logo
