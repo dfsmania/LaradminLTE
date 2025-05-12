@@ -1,4 +1,4 @@
-{{-- Treeview menu --}}
+{{-- Sidebar treeview menu --}}
 <li class="nav-item">
 
     {{-- Treeview link --}}

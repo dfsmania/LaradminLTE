@@ -1,4 +1,4 @@
-{{-- Sidebar header --}}
+{{-- Navbar header --}}
 <li {{ $attributes->merge(['class' => $headerClasses]) }}>
 
     {{-- Icon (optional) --}}

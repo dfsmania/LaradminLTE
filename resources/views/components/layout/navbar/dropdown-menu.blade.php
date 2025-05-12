@@ -1,4 +1,4 @@
-{{-- Dropdown menu --}}
+{{-- Navbar dropdown menu --}}
 <li class="nav-item dropdown">
 
     {{-- Dropdown toggler link --}}
