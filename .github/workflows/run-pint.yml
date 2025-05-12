@@ -1,0 +1,42 @@
+# A workflow to run Laravel Pint on the codebase and commit any changes made by
+# Pint.
+name: Fix Code Style (Pint)
+
+# This workflow is triggered on push and pull request events. It also can be
+# manually triggered using the workflow_dispatch event from the GitHub Actions
+# tab.
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+
+  # The job to run Pint and commit any changes.
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.4]
+    steps:
+      # Checkout the code.
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up PHP with the specified version and extensions.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json, dom, curl, libxml, mbstring
+          coverage: none
+
+      # Install Laravel Pint.
+      - name: Install Pint
+        run: composer global require laravel/pint
+
+      # Run Laravel Pint.
+      - name: Run Pint
+        run: pint
+
+      # Commits the changes made by Pint.
+      - name: Commit linted files
+        uses: stefanzweifel/git-auto-commit-action@v5
