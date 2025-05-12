@@ -65,6 +65,10 @@ class MenuItemFactory
         // This feature would require foundational support from the AdminLTE
         // package or Bootstrap 5, as it is not currently supported.
         MenuPlacement::NAVBAR_DROPDOWN->value => [
+            MenuItemType::DIVIDER->value => [
+                MenuItems\Navbar\DropdownDivider::class,
+                'createFromConfig'
+            ],
             MenuItemType::HEADER->value => [
                 MenuItems\Navbar\DropdownHeader::class,
                 'createFromConfig'

@@ -102,6 +102,10 @@ return [
                     'badge_classes' => 'rounded-pill',
                 ],
                 [
+                    'type' => MenuItemType::DIVIDER,
+                    'class' => 'mx-1',
+                ],
+                [
                     'type' => MenuItemType::HEADER,
                     'label' => 'Support',
                     'icon' => 'bi bi-tag fs-5',
