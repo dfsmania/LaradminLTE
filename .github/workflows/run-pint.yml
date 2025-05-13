@@ -1,6 +1,6 @@
 # A workflow to run Laravel Pint on the codebase and commit any changes made by
 # Pint.
-name: Fix Code Style (Pint)
+name: Pint Code Style
 
 # This workflow is triggered on push and pull request events. It also can be
 # manually triggered using the workflow_dispatch event from the GitHub Actions
