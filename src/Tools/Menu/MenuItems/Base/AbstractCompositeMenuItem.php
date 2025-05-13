@@ -7,7 +7,6 @@ use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
@@ -112,12 +111,17 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
 
         // Now, retrieve the additional attributes for the menu item. These
         // attributes will be rendered as extra HTML attributes on the main
-        // wrapper tag of the menu item blade component.
+        // wrapper tag of the menu item blade component. Note that we only
+        // include scalar values and null values, as arrays or objects are
+        // not valid HTML attributes.
 
-        $extraAttrs = Arr::except(
-            $config,
-            array_keys(static::$cfgValidationRules)
-        );
+        $extraAttrs = collect($config)
+            ->except(array_keys(static::$cfgValidationRules))
+            ->filter(fn ($value) => is_scalar($value) || is_null($value))
+            ->all();
+
+        // Finally, we will create the blade component for the menu item. This
+        // component will be responsible for rendering the menu item in a view.
 
         $component = static::makeBladeComponent($config);
         $component->withAttributes($extraAttrs);
