@@ -28,10 +28,13 @@ class Divider extends AbstractLeafMenuItem
      * component that will be used to render the menu item.
      *
      * @param  array  $config  The configuration array of the menu item
+     * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */
-    protected static function makeBladeComponent(array $config): Component
-    {
+    protected static function makeBladeComponent(
+        array $config,
+        bool $isActive = false
+    ): Component {
         return new Layout\Sidebar\Divider(color: $config['color'] ?? null);
     }
 }

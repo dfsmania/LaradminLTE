@@ -57,10 +57,14 @@ class Menu extends AbstractCompositeMenuItem
      * component that will be used to render the menu item.
      *
      * @param  array  $config  The configuration array of the menu item
+     * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */
-    protected static function makeBladeComponent(array $config): Component
-    {
+    protected static function makeBladeComponent(
+        array $config,
+        bool $isActive = false
+    ): Component {
+
         // Setup the toggler icon for the menu item. Fallback to the default
         // icon if no other is provided.
 
@@ -77,6 +81,7 @@ class Menu extends AbstractCompositeMenuItem
             badgeColor: $config['badge_color'] ?? null,
             badgeClasses: $config['badge_classes'] ?? null,
             togglerIcon: $togglerIcon,
+            isActive: $isActive,
         );
     }
 }

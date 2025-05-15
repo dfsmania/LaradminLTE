@@ -120,11 +120,13 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
             ->filter(fn ($value) => is_scalar($value) || is_null($value))
             ->all();
 
-        // Finally, we will create the blade component for the menu item. This
-        // component will be responsible for rendering the menu item in a view.
+        // Create the blade component for the menu item. This component will be
+        // responsible for rendering the menu item in a view.
 
         $component = static::makeBladeComponent($config);
         $component->withAttributes($extraAttrs);
+
+        // Create and return a new instance of the class.
 
         return new static($component, $children);
     }
@@ -206,10 +208,12 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
      * component that will be used to render the menu item.
      *
      * @param  array  $config  The configuration array of the menu item
+     * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */
     abstract protected static function makeBladeComponent(
-        array $config
+        array $config,
+        bool $isActive = false
     ): Component;
 
     /**

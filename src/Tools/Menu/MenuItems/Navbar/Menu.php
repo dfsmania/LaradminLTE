@@ -57,10 +57,14 @@ class Menu extends AbstractCompositeMenuItem
      * component that will be used to render the menu item.
      *
      * @param  array  $config  The configuration array of the menu item
+     * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */
-    protected static function makeBladeComponent(array $config): Component
-    {
+    protected static function makeBladeComponent(
+        array $config,
+        bool $isActive = false
+    ): Component {
+
         // Setup the dropdown menu classes.
 
         $menuClasses = ($config['position'] ?? 'left') === 'right'
@@ -75,6 +79,7 @@ class Menu extends AbstractCompositeMenuItem
             color: $config['color'] ?? null,
             menuColor: $config['menu_color'] ?? null,
             menuClasses: $menuClasses,
+            isActive: $isActive,
         );
     }
 }
