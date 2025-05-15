@@ -45,6 +45,7 @@ class DropdownMenu extends Component
      * @param  ?string  $color  The Bootstrap color for the dropdown toggler
      * @param  ?string  $menuColor  The Bootstrap background color of the menu
      * @param  ?string  $menuClasses  A set of extra CSS classes for the menu
+     * @param  bool  $isActive  Whether the menu should be marked as active
      * @return void
      */
     public function __construct(
@@ -53,10 +54,11 @@ class DropdownMenu extends Component
         ?string $color = null,
         ?string $menuColor = null,
         ?string $menuClasses = null,
+        bool $isActive = false
     ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
-        $this->linkClasses = $this->getLinkClasses($color);
+        $this->linkClasses = $this->getLinkClasses($color, $isActive);
 
         // Setup the CSS classes for the dropdown menu. The menu is the one
         // that holds the children items.
@@ -68,9 +70,10 @@ class DropdownMenu extends Component
      * Gets the set of CSS classes for the dropdown link toggler.
      *
      * @param  ?string  $color  The Bootstrap color for the link toggler
+     * @param  bool  $isActive  Whether the link should be marked as active
      * @return string
      */
-    protected function getLinkClasses(?string $color): string
+    protected function getLinkClasses(?string $color, bool $isActive): string
     {
         $classes = [
             'nav-link',
@@ -81,6 +84,10 @@ class DropdownMenu extends Component
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
+        }
+
+        if ($isActive) {
+            $classes[] = 'active';
         }
 
         return implode(' ', $classes);

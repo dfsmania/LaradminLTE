@@ -59,6 +59,7 @@ class TreeviewMenu extends Component
      * @param  ?string  $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
      * @param  ?string  $togglerIcon  The icon of the menu toggler
+     * @param  bool  $isActive  Whether the menu should be marked as active
      * @return void
      */
     public function __construct(
@@ -68,13 +69,14 @@ class TreeviewMenu extends Component
         ?string $badge = null,
         ?string $badgeColor = null,
         ?string $badgeClasses = null,
-        ?string $togglerIcon = null
+        ?string $togglerIcon = null,
+        bool $isActive = false
     ) {
         $this->label = html_entity_decode($label);
         $this->icon = $icon;
         $this->badge = html_entity_decode($badge);
         $this->togglerIcon = $togglerIcon;
-        $this->linkClasses = $this->getLinkClasses($color);
+        $this->linkClasses = $this->getLinkClasses($color, $isActive);
 
         // If the badge is not empty, set the CSS classes for the badge.
         // Otherwise, set them to null. The default color for the badge is
@@ -91,14 +93,19 @@ class TreeviewMenu extends Component
      * Gets the set of CSS classes for the link.
      *
      * @param  ?string  $color  The Bootstrap color for the link
+     * @param  bool  $isActive  Whether the link should be marked as active
      * @return string
      */
-    protected function getLinkClasses(?string $color): string
+    protected function getLinkClasses(?string $color, bool $isActive): string
     {
         $classes = ['nav-link', 'align-items-center'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
+        }
+
+        if ($isActive) {
+            $classes[] = 'active';
         }
 
         return implode(' ', $classes);

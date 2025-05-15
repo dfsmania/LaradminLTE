@@ -59,6 +59,7 @@ class DropdownLink extends Component
      * @param  ?string  $badge  The text for the badge of the link
      * @param  ?string  $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
+     * @param  bool  $isActive  Whether the link should be marked as active
      * @return void
      */
     public function __construct(
@@ -68,13 +69,14 @@ class DropdownLink extends Component
         ?string $color = null,
         ?string $badge = null,
         ?string $badgeColor = null,
-        ?string $badgeClasses = null
+        ?string $badgeClasses = null,
+        bool $isActive = false
     ) {
         $this->icon = $icon;
         $this->label = html_entity_decode($label);
         $this->url = filter_var($url, FILTER_VALIDATE_URL) ? $url : '#';
         $this->badge = html_entity_decode($badge);
-        $this->linkClasses = $this->getLinkClasses($color);
+        $this->linkClasses = $this->getLinkClasses($color, $isActive);
 
         // If the badge is not empty, set the CSS classes for the badge.
         // Otherwise, set them to null. The default color for the badge is
@@ -91,14 +93,19 @@ class DropdownLink extends Component
      * Gets the set of CSS classes for the link.
      *
      * @param  ?string  $color  The Bootstrap color for the link
+     * @param  bool  $isActive  Whether the link should be marked as active
      * @return string
      */
-    protected function getLinkClasses(?string $color): string
+    protected function getLinkClasses(?string $color, bool $isActive): string
     {
         $classes = ['dropdown-item', 'd-flex', 'align-items-center'];
 
         if (! empty($color)) {
             $classes[] = "link-{$color}";
+        }
+
+        if ($isActive) {
+            $classes[] = 'active';
         }
 
         return implode(' ', $classes);
