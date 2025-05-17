@@ -29,6 +29,14 @@ class TreeviewMenu extends Component
     public ?string $icon;
 
     /**
+     * The set of CSS classes for the main nav-item wrapper, as a
+     * space-separated string.
+     *
+     * @var string
+     */
+    public string $navItemClasses;
+
+    /**
      * The label of the treeview menu.
      *
      * @var string
@@ -76,6 +84,7 @@ class TreeviewMenu extends Component
         $this->icon = $icon;
         $this->badge = html_entity_decode($badge);
         $this->togglerIcon = $togglerIcon;
+        $this->navItemClasses = $this->getNavItemClasses($isActive);
         $this->linkClasses = $this->getLinkClasses($color, $isActive);
 
         // If the badge is not empty, set the CSS classes for the badge.
@@ -87,6 +96,23 @@ class TreeviewMenu extends Component
         $this->badgeClasses = ! empty($badge)
             ? $this->getBadgeClasses($badgeColor, $badgeClasses)
             : null;
+    }
+
+    /**
+     * Gets the set of CSS classes for the main nav-item wrapper.
+     *
+     * @param  bool  $isActive  Whether the menu should be marked as active
+     * @return string
+     */
+    protected function getNavItemClasses(bool $isActive): string
+    {
+        $classes = ['nav-item'];
+
+        if ($isActive) {
+            $classes[] = 'menu-open';
+        }
+
+        return implode(' ', $classes);
     }
 
     /**

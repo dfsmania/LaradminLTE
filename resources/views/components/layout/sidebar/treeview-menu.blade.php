@@ -1,5 +1,5 @@
 {{-- Sidebar treeview menu --}}
-<li class="nav-item">
+<li class="{{ $navItemClasses }}">
 
     {{-- Treeview link --}}
     <a href="#" {{ $attributes->merge(['class' => $linkClasses]) }}>
