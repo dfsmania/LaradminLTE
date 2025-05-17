@@ -2,6 +2,8 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Navbar;
 
+use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\UrlActiveStrategy;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesMenuItemUrl;
 use DFSmania\LaradminLte\View\Components\Layout;
@@ -55,5 +57,23 @@ class DropdownLink extends AbstractLeafMenuItem
             badgeClasses: $config['badge_classes'] ?? null,
             isActive: $isActive,
         );
+    }
+
+    /**
+     * Creates a new instance of the active strategy for the menu item.
+     *
+     * This method is responsible for creating the appropriate active strategy
+     * based on the provided configuration. It should return an instance of the
+     * active strategy that'll be used to determine if the menu item is active.
+     *
+     * @param  array  $config  The configuration array of the menu item
+     * @return ?ActiveStrategy
+     */
+    protected static function makeActiveStrategy(array $config): ?ActiveStrategy
+    {
+        // The active strategy for a link menu item is determined by the URL
+        // specified in the configuration.
+
+        return new UrlActiveStrategy(static::getUrlFromConfig($config));
     }
 }

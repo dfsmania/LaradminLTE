@@ -2,6 +2,8 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Base;
 
+use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\CompositeActiveStrategy;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\BuildableFromConfig;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
@@ -63,16 +65,29 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
     protected array $children;
 
     /**
+     * Indicates whether the menu item is currently active. An active menu item
+     * will be rendered as selected or highlighted in the menu.
+     *
+     * @var bool
+     */
+    protected bool $isActive;
+
+    /**
      * Create a new class instance.
      *
      * @param  Component  $component  The blade component for rendering the item
      * @param  MenuItem[]  $children  The child menu items of this item
+     * @param  bool  $isActive  Whether the item should be marked as active
      * @return void
      */
-    public function __construct(Component $component, array $children = [])
-    {
+    public function __construct(
+        Component $component,
+        array $children = [],
+        bool $isActive = false
+    ) {
         $this->bladeComponent = $component;
         $this->children = $children;
+        $this->isActive = $isActive;
     }
 
     /**
@@ -94,8 +109,19 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
             return null;
         }
 
+        // Retrieve the additional attributes for the menu item. These
+        // attributes will be rendered as extra HTML attributes on the main
+        // wrapper tag of the menu item blade component. Note that we only
+        // include scalar values and null values, as arrays or objects are
+        // not valid HTML attributes.
+
+        $extraAttrs = collect($config)
+            ->except(array_keys(static::$cfgValidationRules))
+            ->filter(fn ($value) => is_scalar($value) || is_null($value))
+            ->all();
+
         // Check if the menu item has children. If so, we will first create
-        // the child menu item instances from its configuration.
+        // the child menu item instances from their configuration.
 
         $childrenKey = static::getChildrenConfigKey();
         $children = ! empty($config[$childrenKey])
@@ -109,26 +135,27 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
             return null;
         }
 
-        // Now, retrieve the additional attributes for the menu item. These
-        // attributes will be rendered as extra HTML attributes on the main
-        // wrapper tag of the menu item blade component. Note that we only
-        // include scalar values and null values, as arrays or objects are
-        // not valid HTML attributes.
+        // Retrieve the active strategy for the menu item. This strategy will be
+        // used to determine if the menu item is currently active. Note a
+        // concrete class inheriting from this abstract class may override the
+        // 'makeActiveStrategy' method to provide a custom active strategy.
 
-        $extraAttrs = collect($config)
-            ->except(array_keys(static::$cfgValidationRules))
-            ->filter(fn ($value) => is_scalar($value) || is_null($value))
-            ->all();
+        $activeStrategy = static::makeActiveStrategy($config, $children);
+        $isActive = $activeStrategy ? $activeStrategy->isActive() : false;
 
         // Create the blade component for the menu item. This component will be
-        // responsible for rendering the menu item in a view.
+        // responsible for rendering the menu item in a view. We notify the
+        // blade component about the active state of the menu item, so it can
+        // render it accordingly.
 
-        $component = static::makeBladeComponent($config);
+        $component = static::makeBladeComponent($config, $isActive);
         $component->withAttributes($extraAttrs);
 
-        // Create and return a new instance of the class.
+        // Return a new instance of the class. Note, we save the active state
+        // on the menu item instance, so it can be used later to guess the
+        // active state of a possible parent of that item.
 
-        return new static($component, $children);
+        return new static($component, $children, $isActive);
     }
 
     /**
@@ -217,6 +244,29 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
     ): Component;
 
     /**
+     * Creates a new instance of the active strategy for the menu item.
+     *
+     * This method is responsible for creating the appropriate active strategy
+     * based on the provided configuration. It should return an instance of the
+     * active strategy that'll be used to determine if the menu item is active.
+     *
+     * @param  array  $config  The configuration array of the menu item
+     * @param  MenuItem[]  $children  The child menu items of this item
+     * @return ?MenuItemActiveStrategy
+     */
+    protected static function makeActiveStrategy(
+        array $config,
+        array $children
+    ): ?ActiveStrategy {
+        // By default, we return a CompositeActiveStrategy instance, which
+        // checks if any of the child items are active. Concrete classes
+        // inheriting from this abstract class may override this method to
+        // provide a custom active strategy.
+
+        return new CompositeActiveStrategy(children: $children);
+    }
+
+    /**
      * Determines if the menu item has child items.
      *
      * This method should return true for composite menu items that contain
@@ -281,5 +331,17 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
         }
 
         return new HtmlString($view);
+    }
+
+    /**
+     * Returns whether the menu item is currently active.
+     *
+     * An active menu item is rendered as selected or highlighted in the menu.
+     *
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->isActive;
     }
 }

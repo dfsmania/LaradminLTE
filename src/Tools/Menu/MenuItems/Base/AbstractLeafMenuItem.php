@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Base;
 
+use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\BuildableFromConfig;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use Illuminate\Support\Facades\Validator;
@@ -36,14 +37,24 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
     protected Component $bladeComponent;
 
     /**
+     * Indicates whether the menu item is currently active. An active menu item
+     * will be rendered as selected or highlighted in the menu.
+     *
+     * @var bool
+     */
+    protected bool $isActive;
+
+    /**
      * Create a new class instance.
      *
      * @param  Component  $component  The blade component for rendering the item
+     * @param  bool  $isActive  Whether the item should be marked as active
      * @return void
      */
-    public function __construct(Component $component)
+    public function __construct(Component $component, bool $isActive = false)
     {
         $this->bladeComponent = $component;
+        $this->isActive = $isActive;
     }
 
     /**
@@ -65,7 +76,7 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
             return null;
         }
 
-        // Now, retrieve the additional attributes for the menu item. These
+        // Retrieve the additional attributes for the menu item. These
         // attributes will be rendered as extra HTML attributes on the main
         // wrapper tag of the menu item blade component. Note that we only
         // include scalar values and null values, as arrays or objects are
@@ -76,15 +87,27 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
             ->filter(fn ($value) => is_scalar($value) || is_null($value))
             ->all();
 
-        // Create the blade component for the menu item. This component will be
-        // responsible for rendering the menu item in a view.
+        // Retrieve the active strategy for the menu item. This strategy is
+        // used to determine if the menu item is currently active. Note a
+        // concrete class inheriting from this abstract class may override the
+        // 'makeActiveStrategy' method to provide a custom active strategy.
 
-        $component = static::makeBladeComponent($config);
+        $activeStrategy = static::makeActiveStrategy($config);
+        $isActive = $activeStrategy ? $activeStrategy->isActive() : false;
+
+        // Create the blade component for the menu item. This component will be
+        // responsible for rendering the menu item in a view. We notify the
+        // blade component about the active state of the menu item, so it can
+        // render it accordingly.
+
+        $component = static::makeBladeComponent($config, $isActive);
         $component->withAttributes($extraAttrs);
 
-        // Return a new instance of the class.
+        // Return a new instance of the class. Note, we save the active state
+        // on the menu item instance, so it can be used later to guess the
+        // active state of a possible parent of that item.
 
-        return new static($component);
+        return new static($component, $isActive);
     }
 
     /**
@@ -102,6 +125,25 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
         array $config,
         bool $isActive = false
     ): Component;
+
+    /**
+     * Creates a new instance of the active strategy for the menu item.
+     *
+     * This method is responsible for creating the appropriate active strategy
+     * based on the provided configuration. It should return an instance of the
+     * active strategy that'll be used to determine if the menu item is active.
+     *
+     * @param  array  $config  The configuration array of the menu item
+     * @return ?ActiveStrategy
+     */
+    protected static function makeActiveStrategy(array $config): ?ActiveStrategy
+    {
+        // By default, we return null, indicating that no active strategy is
+        // defined. Concrete classes inheriting from this abstract class may
+        // override this method to provide a custom active strategy.
+
+        return null;
+    }
 
     /**
      * Determines if the menu item has child items.
@@ -157,5 +199,17 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
         // inserted into the DOM without escaping.
 
         return new HtmlString($view);
+    }
+
+    /**
+     * Returns whether the menu item is currently active.
+     *
+     * An active menu item is rendered as selected or highlighted in the menu.
+     *
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->isActive;
     }
 }

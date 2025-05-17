@@ -51,4 +51,13 @@ interface MenuItem
      * @return HtmlString
      */
     public function renderToHtml(): HtmlString;
+
+    /**
+     * Returns whether the menu item is currently active.
+     *
+     * An active menu item is rendered as selected or highlighted in the menu.
+     *
+     * @return bool
+     */
+    public function isActive(): bool;
 }

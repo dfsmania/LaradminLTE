@@ -158,7 +158,6 @@ return [
             'label' => 'Link 1',
             'url' => 'link_1',
             'icon' => 'bi bi-circle',
-            'class' => 'active',
         ],
         [
             'type' => MenuItemType::LINK,
