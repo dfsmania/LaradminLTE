@@ -12,6 +12,7 @@ use DFSmania\LaradminLte\Tools\Menu\MenuItemFactory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 /**
  * Abstract class representing a composite menu item in the menu system.
@@ -252,7 +253,7 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
      *
      * @param  array  $config  The configuration array of the menu item
      * @param  MenuItem[]  $children  The child menu items of this item
-     * @return ?MenuItemActiveStrategy
+     * @return ?ActiveStrategy
      */
     protected static function makeActiveStrategy(
         array $config,
@@ -310,25 +311,24 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
             $this->children
         ));
 
-        // Now, render the underlying blade component. This will return a
-        // string or a View instance.
-
-        $view = $this->bladeComponent->render();
-
-        // If the rendered view is a string, inject the children into the
-        // component's main slot and render it as is. Otherwise, if the view
-        // is a View instance, pass the blade component's data to the view
-        // and render it accordingly.
+        // Now, render the underlying blade component with the children inside
+        // the configured slot. This will return a string or a View instance.
 
         $slotVar = static::getChildrenSlotVariable();
+        $view = $this->bladeComponent->render()
+            ->with([$slotVar => new HtmlString($childrenHtml)]);
 
-        if (is_string($view)) {
-            $view = str_replace("{{ $$slotVar }}", $childrenHtml, $view);
-        } else {
+        // If the rendered output is a View instance, we will pass the data
+        // from the blade component to the view and render it again.
+
+        if ($view instanceof View) {
             $viewData = $this->bladeComponent->data();
-            $viewData[$slotVar] = new HtmlString($childrenHtml);
             $view = $view->with($viewData)->render();
         }
+
+        // Finally, we will return the rendered output as an HtmlString. This
+        // ensures that the output is treated as safe HTML and can be directly
+        // inserted into the DOM without escaping.
 
         return new HtmlString($view);
     }
