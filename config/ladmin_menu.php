@@ -152,9 +152,9 @@ return [
             'url' => 'welcome',
             'icon' => 'bi bi-emoji-wink-fill',
             // Test with the is_active callable.
-            'is_active' => function () {
+            'is_active' => function ($cfg) {
                 return preg_match(
-                    '@(home|laradminlte_test|welcome)$@',
+                    "@({$cfg['url']}|home|laradminlte_test)$@",
                     request()->path()
                 );
             },

@@ -76,10 +76,11 @@ class Link extends AbstractLeafMenuItem
     {
         // If a callable is provided in the configuration, we will use it to
         // determine the active status of the menu item. The callable should
-        // return a boolean indicating whether the item is active or not.
+        // accept the menu item raw configuration as an argument and return
+        // a boolean value indicating the active status.
 
         if (isset($config['is_active']) && is_callable($config['is_active'])) {
-            return new CallableActiveStrategy($config['is_active']);
+            return new CallableActiveStrategy($config['is_active'], $config);
         }
 
         // Otherwise, the active strategy for a link menu item will be

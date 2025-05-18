@@ -15,22 +15,35 @@ class CallableActiveStrategy implements ActiveStrategy
     /**
      * The callable to determine the active status of the menu item.
      * This property contains a callable that will be executed to determine if
-     * the menu item is active. The callable should return a boolean indicating
-     * whether the item is active or not.
+     * the menu item is active. The callable should accept the menu item raw
+     * configuration as an argument and return a boolean value indicating the
+     * active status.
      *
      * @var callable
      */
     protected $callable;
 
     /**
+     * The raw configuration of the menu item.
+     * This property contains the raw configuration array of the menu item that
+     * will be passed to the callable to help determine its active status. This
+     * may be really useful when the menu is built dynamically.
+     *
+     * @var array
+     */
+    protected array $rawConfig;
+
+    /**
      * Create a new class instance.
      *
      * @param  callable  $callable  The callable to determine the active status
+     * @param  array  $rawConfig  The raw configuration of the menu item
      * @return void
      */
-    public function __construct(callable $callable)
+    public function __construct(callable $callable, array $rawConfig = [])
     {
         $this->callable = $callable;
+        $this->rawConfig = $rawConfig;
     }
 
     /**
@@ -40,6 +53,6 @@ class CallableActiveStrategy implements ActiveStrategy
      */
     public function isActive(): bool
     {
-        return (bool) call_user_func($this->callable);
+        return (bool) call_user_func($this->callable, $this->rawConfig);
     }
 }
