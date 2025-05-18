@@ -24,6 +24,7 @@ class UrlActiveStrategy implements ActiveStrategy
      * Create a new class instance.
      *
      * @param  string  $url  The URL to check against the current request's URL
+     * @return void
      */
     public function __construct(string $url)
     {

@@ -15,10 +15,8 @@ use Illuminate\Support\HtmlString;
  *
  * TODO: Explore the implementation of Laravel-AdminLTE filters for menu items,
  * the idea is to extend this interface to support the following features:
- * 1) How can we determine if a menu item is currently active, i.e., its URL
- * matches the current request's URL path?
- * 2) How can we determine if a menu item should be displayed, based on
- * Laravel's Gate or Policy checks?
+ * 1) How can we determine if a menu item should be displayed (allowed), based
+ * on Laravel's Gate or Policy checks?
  */
 interface MenuItem
 {

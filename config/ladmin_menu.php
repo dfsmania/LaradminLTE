@@ -147,6 +147,19 @@ return [
 
     MenuPlacement::SIDEBAR->value => [
         [
+            'type' => MenuItemType::LINK,
+            'label' => 'Welcome',
+            'url' => 'welcome',
+            'icon' => 'bi bi-emoji-wink-fill',
+            // Test with the is_active callable.
+            'is_active' => function () {
+                return preg_match(
+                    '@(home|laradminlte_test|welcome)$@',
+                    request()->path()
+                );
+            },
+        ],
+        [
             'type' => MenuItemType::HEADER,
             'label' => 'Basic Link Tests',
             'icon' => 'bi bi-bookmark',

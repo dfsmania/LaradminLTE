@@ -26,6 +26,7 @@ class CompositeActiveStrategy implements ActiveStrategy
      * Create a new class instance.
      *
      * @param  MenuItem[]  $children  The child items to check for active status
+     * @return void
      */
     public function __construct(array $children)
     {

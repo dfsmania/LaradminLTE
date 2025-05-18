@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Navbar;
 
+use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\CallableActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\UrlActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
@@ -26,6 +27,7 @@ class DropdownLink extends AbstractLeafMenuItem
         'badge_color' => 'sometimes|string',
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
+        'is_active' => 'sometimes',
         'label' => 'required_without:icon|string',
         'route' => 'sometimes|array',
         'type' => 'required',
@@ -71,8 +73,16 @@ class DropdownLink extends AbstractLeafMenuItem
      */
     protected static function makeActiveStrategy(array $config): ?ActiveStrategy
     {
-        // The active strategy for a link menu item is determined by the URL
-        // specified in the configuration.
+        // If a callable is provided in the configuration, we will use it to
+        // determine the active status of the menu item. The callable should
+        // return a boolean indicating whether the item is active or not.
+
+        if (isset($config['is_active']) && is_callable($config['is_active'])) {
+            return new CallableActiveStrategy($config['is_active']);
+        }
+
+        // Otherwise, the active strategy for a link menu item will be
+        // determined by inspecting the URL specified in the configuration.
 
         return new UrlActiveStrategy(static::getUrlFromConfig($config));
     }

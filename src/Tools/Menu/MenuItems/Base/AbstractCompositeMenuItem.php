@@ -264,7 +264,7 @@ abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuIte
         // inheriting from this abstract class may override this method to
         // provide a custom active strategy.
 
-        return new CompositeActiveStrategy(children: $children);
+        return new CompositeActiveStrategy($children);
     }
 
     /**
