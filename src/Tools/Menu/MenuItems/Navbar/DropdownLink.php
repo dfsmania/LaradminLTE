@@ -73,17 +73,34 @@ class DropdownLink extends AbstractLeafMenuItem
      */
     protected static function makeActiveStrategy(array $config): ?ActiveStrategy
     {
-        // If a callable is provided in the configuration, we will use it to
-        // determine the active status of the menu item. The callable should
-        // accept the menu item raw configuration as an argument and return
-        // a boolean value indicating the active status.
+        // If a callable or a custom ActiveStrategy is provided in the
+        // configuration, we will use it to determine the active status of the
+        // menu item.
 
-        if (isset($config['is_active']) && is_callable($config['is_active'])) {
-            return new CallableActiveStrategy($config['is_active'], $config);
+        if (! empty($config['is_active'])) {
+            // If an instance of ActiveStrategy is provided, we will use it
+            // directly. This allows for custom active strategies to be used
+            // in the configuration.
+
+            if ($config['is_active'] instanceof ActiveStrategy) {
+                return $config['is_active'];
+            }
+
+            // If a callable is provided, we will create a new instance of
+            // the CallableActiveStrategy class. This allows for custom logic
+            // to be used to determine the active status of the menu item.
+
+            if (is_callable($config['is_active'])) {
+                return new CallableActiveStrategy(
+                    $config['is_active'],
+                    $config
+                );
+            }
         }
 
-        // Otherwise, the active strategy for a link menu item will be
-        // determined by inspecting the URL specified in the configuration.
+        // Otherwise, by default, the active strategy for a link menu item will
+        // be determined by comparing the URL specified in the configuration
+        // with the current request URL.
 
         return new UrlActiveStrategy(static::getUrlFromConfig($config));
     }
