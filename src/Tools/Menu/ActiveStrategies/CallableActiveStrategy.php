@@ -15,9 +15,9 @@ class CallableActiveStrategy implements ActiveStrategy
     /**
      * The callable to determine the active status of the menu item.
      * This property contains a callable that will be executed to determine if
-     * the menu item is active. The callable should accept the menu item raw
-     * configuration as an argument and return a boolean value indicating the
-     * active status.
+     * the menu item is active. The callable may optional accept the menu item
+     * raw configuration as an argument and return a boolean value indicating
+     * the active status.
      *
      * @var callable
      */
@@ -53,6 +53,15 @@ class CallableActiveStrategy implements ActiveStrategy
      */
     public function isActive(): bool
     {
-        return (bool) call_user_func($this->callable, $this->rawConfig);
+        $ref = new \ReflectionFunction(\Closure::fromCallable($this->callable));
+
+        // If the callable accepts no parameters, we call it without any
+        // arguments. Otherwise, we pass the raw configuration array.
+
+        $isActive = $ref->getNumberOfParameters() === 0
+            ? call_user_func($this->callable)
+            : call_user_func($this->callable, $this->rawConfig);
+
+        return (bool) $isActive;
     }
 }
