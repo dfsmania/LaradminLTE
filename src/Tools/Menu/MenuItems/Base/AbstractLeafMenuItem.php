@@ -2,7 +2,9 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Base;
 
+use DFSmania\LaradminLte\Tools\Menu\AllowStrategies\CallableAllowStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
+use DFSmania\LaradminLte\Tools\Menu\Contracts\AllowStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\BuildableFromConfig;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\MenuItem;
 use Illuminate\Support\Facades\Validator;
@@ -76,6 +78,22 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
             return null;
         }
 
+        // Retrieve the allow strategy for the menu item. This strategy is used
+        // to determine if the menu item is allowed to be shown. Note a
+        // concrete class inheriting from this abstract class may override the
+        // 'makeAllowStrategy' method to provide a custom allow strategy.
+
+        $allowStrategy = static::makeAllowStrategy($config);
+        $isAllowed = $allowStrategy ? $allowStrategy->isAllowed() : true;
+
+        // If the menu item is not allowed to be shown, we will return null to
+        // indicate that the menu item should not be displayed and avoid
+        // further menu item creation.
+
+        if (! $isAllowed) {
+            return null;
+        }
+
         // Retrieve the additional attributes for the menu item. These
         // attributes will be rendered as extra HTML attributes on the main
         // wrapper tag of the menu item blade component. Note that we only
@@ -141,6 +159,51 @@ abstract class AbstractLeafMenuItem implements BuildableFromConfig, MenuItem
         // By default, we return null, indicating that no active strategy is
         // defined. Concrete classes inheriting from this abstract class may
         // override this method to provide a custom active strategy.
+
+        return null;
+    }
+
+    /**
+     * Creates a new instance of the allow's strategy for the menu item.
+     *
+     * This method is responsible for creating the appropriate allow's strategy
+     * based on the provided configuration. It should return an instance of the
+     * strategy that'll be used to determine if the menu item is allowed to be
+     * shown.
+     *
+     * @param  array  $config  The configuration array of the menu item
+     * @return ?AllowStrategy
+     */
+    protected static function makeAllowStrategy(array $config): ?AllowStrategy
+    {
+        // If a callable or a custom AllowStrategy is provided in the
+        // configuration, we will use it to determine the allowed status of the
+        // menu item.
+
+        if (! empty($config['is_allowed'])) {
+            // If an instance of AllowStrategy is provided, we will use it
+            // directly. This add support for custom allow strategies to be
+            // used in the configuration.
+
+            if ($config['is_allowed'] instanceof AllowStrategy) {
+                return $config['is_allowed'];
+            }
+
+            // If a callable is provided, we will create a new instance of
+            // the CallableAllowStrategy class. This allows for custom logic
+            // to be used to determine the allowed status of the menu item.
+
+            if (is_callable($config['is_allowed'])) {
+                return new CallableAllowStrategy(
+                    $config['is_allowed'],
+                    $config
+                );
+            }
+        }
+
+        // By default, we return null, indicating that no allow's strategy is
+        // defined. Concrete classes inheriting from this abstract class may
+        // override this method to provide a custom allow strategy.
 
         return null;
     }

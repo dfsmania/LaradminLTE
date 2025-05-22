@@ -19,6 +19,7 @@ class FullscreenToggler extends AbstractLeafMenuItem
         'color' => 'sometimes|string',
         'icon_collapse' => 'required|string',
         'icon_expand' => 'required|string',
+        'is_allowed' => 'sometimes',
         'position' => 'sometimes|in:left,right',
         'type' => 'required',
     ];

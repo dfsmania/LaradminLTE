@@ -12,11 +12,6 @@ use Illuminate\Support\HtmlString;
  * uniformly whether they are individual items or composites with children. This
  * allows for creating hierarchical menu structures, where a menu item can have
  * sub-items or child items.
- *
- * TODO: Explore the implementation of Laravel-AdminLTE filters for menu items,
- * the idea is to extend this interface to support the following features:
- * 1) How can we determine if a menu item should be displayed (allowed), based
- * on Laravel's Gate or Policy checks?
  */
 interface MenuItem
 {

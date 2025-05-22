@@ -17,6 +17,7 @@ class Divider extends AbstractLeafMenuItem
      */
     protected static array $cfgValidationRules = [
         'color' => 'sometimes|string',
+        'is_allowed' => 'sometimes',
         'type' => 'required',
     ];
 

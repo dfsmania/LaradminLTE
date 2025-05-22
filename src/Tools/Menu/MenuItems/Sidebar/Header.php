@@ -18,6 +18,7 @@ class Header extends AbstractLeafMenuItem
     protected static array $cfgValidationRules = [
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
+        'is_allowed' => 'sometimes',
         'label' => 'required|string',
         'type' => 'required',
     ];

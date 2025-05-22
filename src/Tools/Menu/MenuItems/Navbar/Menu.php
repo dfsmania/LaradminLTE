@@ -20,6 +20,7 @@ class Menu extends AbstractCompositeMenuItem
     protected static array $cfgValidationRules = [
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
+        'is_allowed' => 'sometimes',
         'menu_color' => 'sometimes|string',
         'label' => 'required_without:icon|string',
         'position' => 'sometimes|in:left,right',

@@ -23,6 +23,7 @@ class Menu extends AbstractCompositeMenuItem
         'badge_color' => 'sometimes|string',
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
+        'is_allowed' => 'sometimes',
         'label' => 'required|string',
         'submenu' => 'required|array',
         'toggler_icon' => 'sometimes|string',

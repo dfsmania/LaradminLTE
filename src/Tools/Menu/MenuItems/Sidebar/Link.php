@@ -28,6 +28,7 @@ class Link extends AbstractLeafMenuItem
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
         'is_active' => 'sometimes',
+        'is_allowed' => 'sometimes',
         'label' => 'required_without:icon|string',
         'route' => 'sometimes|array',
         'type' => 'required',
