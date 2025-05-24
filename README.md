@@ -1,15 +1,15 @@
 [![Pint Code Style](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml)
 
-# LaradminLte: AdminLTE v4 for Laravel
+# LaradminLTE: AdminLTE v4 for Laravel
 
-LaradminLte is a package designed to integrate the [AdminLTE v4](https://adminlte-v4.netlify.app) administration dashboard template seamlessly into [Laravel](https://laravel.com/) (version 10 or higher). Currently in development, this package aims to provide a quick and efficient way to set up an administration panel with advanced configuration options and a [Blade component](https://laravel.com/docs/blade#components) for rendering the layout.
+**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte-v4.netlify.app) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels using Laravel [Blade components](https://laravel.com/docs/blade#components) and configuration files.
 
-> [!IMPORTANT]
-> This package is in active development. So, features, configurations, and behavior are subject to significant changes until the first stable release.
+> [!CAUTION]
+> **Active Development**: LaradminLTE is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
 
 ## Requirements
 
-- **Laravel**: 10.x or higher
+- **Laravel**: 10 or higher
 - **PHP**: 8.1 or higher
 
 ## Installation and Setup
