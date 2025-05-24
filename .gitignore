@@ -1,5 +1,9 @@
-build
-composer.lock
-vendor
 .idea
 .phpunit.result.cache
+build
+composer.lock
+docs/.vitepress/cache
+docs/.vitepress/dist
+node_modules
+phpunit.xml
+vendor
