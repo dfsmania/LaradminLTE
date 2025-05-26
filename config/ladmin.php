@@ -1,5 +1,18 @@
 <?php
 
+/*
+|------------------------------------------------------------------------------
+| LaradminLTE Layout Configuration
+|------------------------------------------------------------------------------
+|
+| This file contains the configuration settings for the layout of your admin
+| panel. You can customize various aspects of the layout, including basic
+| information, favicons, brand logo, multiple layout options, and more.
+|
+| For more details, refer to the online documentation:
+| TBD
+|
+*/
 return [
 
     /*
@@ -9,9 +22,6 @@ return [
     |
     | Here you can setup the basic information of your admin panel. By default,
     | most of this information will appear in the footer section.
-    |
-    | For more details, refer to the online documentation:
-    | TBD
     |
     */
 
@@ -38,9 +48,6 @@ return [
     | small icons displayed in browser tabs, bookmarks, and other areas. They
     | will be searched in the "favicons" folder within your configured Laravel
     | asset_url, typically located in the public directory.
-    |
-    | For more details, refer to the online documentation:
-    | TBD
     |
     */
 
@@ -73,9 +80,6 @@ return [
     | Here you can setup the brand logo of your admin panel. By default, the
     | logo will appear in the top-left corner of your admin panel.
     |
-    | For more details, refer to the online documentation:
-    | TBD
-    |
     */
 
     'logo' => [
@@ -105,9 +109,6 @@ return [
     | this package works with Bootstrap Icons, but FontAwesome library is also
     | supported.
     |
-    | For more details, refer to the online documentation:
-    | TBD
-    |
     */
 
     'icons' => [
@@ -120,9 +121,6 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can change the layout options of your admin panel.
-    |
-    | For more details, refer to the online documentation:
-    | TBD
     |
     */
 
@@ -151,9 +149,6 @@ return [
     |
     | Here you can customize the top navbar section of your admin panel.
     |
-    | For more details, refer to the online documentation:
-    | TBD
-    |
     */
 
     'navbar' => [
@@ -168,9 +163,6 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can customize the sidebar section of your admin panel.
-    |
-    | For more details, refer to the online documentation:
-    | TBD
     |
     */
 
@@ -210,9 +202,6 @@ return [
     |
     | Here you can customize the footer section of your admin panel.
     |
-    | For more details, refer to the online documentation:
-    | TBD
-    |
     */
 
     'footer' => [
@@ -227,9 +216,6 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can customize the main content section of your admin panel.
-    |
-    | For more details, refer to the online documentation:
-    | TBD
     |
     */
 

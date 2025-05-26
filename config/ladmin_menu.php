@@ -3,6 +3,19 @@
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 
+/*
+|------------------------------------------------------------------------------
+| LaradminLTE Menu Configuration
+|------------------------------------------------------------------------------
+|
+| This file lets you statically define the menu items for your admin panel.
+| You can fully customize their placement, appearance, icons, URLs, and other
+| properties to tailor the navigation experience to your needs.
+|
+| For more details, refer to the online documentation:
+| TBD
+|
+*/
 return [
 
     /*

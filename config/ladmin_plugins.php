@@ -2,6 +2,19 @@
 
 use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 
+/*
+|------------------------------------------------------------------------------
+| LaradminLTE Plugins Configuration
+|------------------------------------------------------------------------------
+|
+| This file defines the configuration for the plugins used in your admin panel,
+| when not utilizing an asset bundler (like Vite). You can customize plugin
+| loading order, resource types, and other settings to suit your needs.
+|
+| For more details, refer to the online documentation:
+| TBD
+|
+*/
 return [
 
     /*
@@ -125,9 +138,6 @@ return [
     | used within the views of your admin panel. You can specify plugins here
     | to extend or customize the functionality of your application. Please,
     | note the plugins are loaded in the order they are defined here.
-    |
-    | For details you can look the online documentation here:
-    | TBD
     |
     */
 
