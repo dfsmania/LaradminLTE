@@ -6,6 +6,11 @@ hero:
   name: "LaradminLTE"
   text: "AdminLTE v4 for Laravel"
   tagline: "Effortless integration of AdminLTE v4 with Laravel for modern, responsive dashboards."
+
+  image:
+    src: "/images/logo.png"
+    alt: "LaradminLTE"
+
   actions:
     - theme: brand
       text: What is LaradminLTE?
@@ -44,4 +49,3 @@ features:
     title: Built-in Authentication Scaffolding
     details: Includes ready-to-use authentication views and logic powered by Laravel Fortify, with seamless integration into the dashboard.
 ---
-
