@@ -1,0 +1,7 @@
+/* This file is used to override the default styles of the VitePress theme. */
+
+:root {
+  --vp-c-brand-1: #925efa;
+  --vp-c-brand-2: #7837fa;
+  --vp-c-brand-3: #925efa;
+}
