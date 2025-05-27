@@ -1,6 +1,6 @@
 # What is LaradminLTE?
 
-**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte-v4.netlify.app) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels using Laravel [Blade components](https://laravel.com/docs/blade#components) and configuration files.
+**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte-v4.netlify.app) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels using a Laravel [Blade component](https://laravel.com/docs/blade#components) to quick access the layout and configuration files to customize it.
 
 > [!CAUTION]
 > **Active Development**: LaradminLTE is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
@@ -11,7 +11,7 @@
 
 - **Responsive Admin Dashboard**: Built on the modern **AdminLTE v4** template and powered by **Bootstrap 5**, offers a mobile-first administration panel with responsive design that works seamlessly across all devices.
 
-- **Powerful Menu System**: Config-driven and extensible menu builder with support for: *nested items*, *links*, *section headers* and *dividers*.
+- **Powerful Menu System**: Config-driven and extensible menu system with support for: *nested items*, *links*, *section headers* and *dividers*.
   - Support to permission-based visibility that integrates well with **Laravel's Gate/Policies** or other authorization tool.
   - Automatic active state detection based on the current route, with support for custom logics.
 
