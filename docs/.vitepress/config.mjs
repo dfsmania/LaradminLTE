@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "LaradminLTE",
-  description: "AdminLTE v4 for Laravel",
+  title: 'LaradminLTE',
+  description: 'AdminLTE v4 for Laravel',
   lastUpdated: true,
 
   themeConfig: {
@@ -20,7 +20,7 @@ export default defineConfig({
         text: 'Overview',
         collapsed: false,
         items: [
-          { text: "What is LaradminLTE?", link: '/sections/overview/what-is-laradminlte' },
+          { text: 'What is LaradminLTE?', link: '/sections/overview/what-is-laradminlte' },
           { text: 'Getting Started', link: '/sections/overview/getting-started' }
         ]
       },

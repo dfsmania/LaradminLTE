@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: "LaradminLTE"
-  text: "AdminLTE v4 for Laravel"
-  tagline: "Effortless integration of AdminLTE v4 with Laravel for modern, responsive dashboards."
+  name: LaradminLTE
+  text: AdminLTE v4 for Laravel
+  tagline: Effortless integration of AdminLTE v4 with Laravel for modern, responsive dashboards.
 
   image:
-    src: "/images/logo.png"
+    src: /images/logo.png
     alt: "LaradminLTE"
 
   actions:
