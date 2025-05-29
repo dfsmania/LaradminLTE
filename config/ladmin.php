@@ -44,10 +44,10 @@ return [
     | Favicons
     |--------------------------------------------------------------------------
     |
-    | Here you can configure the favicons for your admin panel. Favicons are
-    | small icons displayed in browser tabs, bookmarks, and other areas. They
-    | will be searched in the "favicons" folder within your configured Laravel
-    | asset_url, typically located in the public directory.
+    | Here you can configure the favicons markup for your admin panel. Favicons
+    | are small icons displayed in browser tabs, bookmarks, and other areas.
+    | They will be searched in the "favicons" folder within your configured
+    | Laravel asset_url, typically located in the public directory.
     |
     */
 
@@ -85,16 +85,16 @@ return [
     'logo' => [
         // The URL path to the logo image file. Can be a relative path to the
         // public directory or an absolute URL.
-        'image' => 'vendor/ladmin/img/AdminLTELogo.png',
+        'image' => 'vendor/ladmin/img/LaradminLTE.png',
 
         // The alternative text for the logo image, used for accessibility.
-        'image_alt' => 'AdminLTE Logo',
+        'image_alt' => 'LaradminLTE Logo',
 
         // The CSS classes applied to style the logo image.
-        'image_classes' => ['rounded-circle', 'shadow', 'opacity-75'],
+        'image_classes' => ['rounded-circle', 'shadow'],
 
         // The text displayed alongside the logo.
-        'text' => 'AdminLTE',
+        'text' => 'LaradminLTE',
 
         // The CSS classes applied to style the logo text.
         'text_classes' => ['fw-bold'],
