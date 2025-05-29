@@ -18,6 +18,9 @@ hero:
     - theme: alt
       text: Quickstart
       link: /sections/overview/getting-started
+    - theme: alt
+      text: Config Reference
+      link: /sections/config/layout
 
 features:
   - icon:

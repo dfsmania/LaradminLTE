@@ -24,6 +24,15 @@ export default defineConfig({
           { text: 'Getting Started', link: '/sections/overview/getting-started' }
         ]
       },
+      {
+        text: 'Configuration',
+        collapsed: false,
+        items: [
+          { text: 'Layout', link: '/sections/config/layout' },
+          { text: 'Menu', link: '/sections/config/menu' },
+          { text: 'Plugins', link: '/sections/config/plugins' },
+        ]
+      },
     ],
 
     socialLinks: [
