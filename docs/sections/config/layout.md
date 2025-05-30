@@ -167,3 +167,237 @@ An array listing the favicon image sizes (in pixels) that you have included in t
 ```
 
 These sizes ensure compatibility with various browser requirements.
+
+::: tip
+To easily generate a complete set of favicon files from your brand logo, use online tools such as [favicon.io](https://favicon.io/) or [RealFaviconGenerator](https://realfavicongenerator.net/). These services create all the recommended favicon formats and sizes for modern browsers and platforms. After generating the files, download and place them in your `public/favicons` directory as described above.
+:::
+
+## Brand Logo
+
+The `logo` section allows you to configure the brand logo displayed in the admin panel. The logo appears in the top-left corner of the layout and helps visually identify your panel or application.
+
+::: details Example {open}
+```php
+'logo' => [
+    'image' => 'vendor/ladmin/img/LaradminLTE.png',
+    'image_alt' => 'LaradminLTE Logo',
+    'image_classes' => ['rounded-circle', 'shadow'],
+    'text' => 'LaradminLTE',
+    'text_classes' => ['fw-bold'],
+]
+```
+:::
+
+### `image`:
+
+- Type: `string (path | URL)`
+- Example: `'image' => 'vendor/ladmin/img/LaradminLTE.png'`
+
+The path or URL to the logo image file. You can use a relative path (from the `public/` directory) or an absolute URL. This image is used as the main brand icon in the admin panel header.
+
+### `image_alt`:
+
+- Type: `string`
+- Example: `'image_alt' => 'LaradminLTE Logo'`
+
+Alternative text for the logo image, which improves accessibility and SEO (*Search Engine Optimization*). It's displayed when the image cannot be loaded and is also used by screen readers.
+
+### `image_classes`:
+
+- Type: `array<string>`
+- Example: `'image_classes' => ['rounded-circle', 'shadow']`
+
+An array of CSS utility classes (e.g., from `Bootstrap` or custom styles) that are applied to the logo image element. These allow you to visually style the image with effects such as borders, shadows, or rounded corners.
+
+### `text`:
+
+- Type: `string`
+- Example: `'text' => 'LaradminLTE'`
+
+The textual portion of the brand logo, displayed next to the image. This is helpful for adding your application name or a short label to the header.
+
+### `text_classes`:
+
+- Type: `array<string>`
+- Example: `'text_classes' => ['fw-bold']`
+
+An array of CSS utility classes applied to the logo text. This lets you control its typography and visual presentation, such as font weight, color, spacing, etc.
+
+## Layout
+
+The `layout` section lets you customize the overall structure and appearance of your admin panel. These options affect the positioning of interface components like the `header`, `sidebar`, and `footer`, and support both light and dark themes.
+
+::: details Example {open}
+```php
+'layout' => [
+    'bootstrap_theme' => 'light',
+    'fixed_footer' => false,
+    'fixed_navbar' => true,
+    'fixed_sidebar' => true,
+    'rtl' => false,
+]
+```
+:::
+
+### `bootstrap_theme`:
+
+- Type: `string ('light' | 'dark')`
+- Example: `'bootstrap_theme' => 'light'`
+
+Defines the visual theme used by `Bootstrap` across the panel. Choose between `'light'` for a bright interface or `'dark'` for a darker appearance, depending on your brand or user preference.
+
+### `fixed_footer`:
+
+- Type: `bool`
+- Example: `'fixed_footer' => false`
+
+Controls whether the footer stays fixed at the bottom of the viewport as the user scrolls. Useful for keeping persistent actions or status indicators visible.
+
+### `fixed_navbar`:
+
+- Type: `bool`
+- Example: `'fixed_navbar' => true`
+
+Determines if the top navigation bar remains fixed at the top while scrolling. This helps maintain access to navigation or user actions at all times.
+
+### `fixed_sidebar`:
+
+- Type: `bool`
+- Example: `'fixed_sidebar' => true`
+
+Enables a fixed sidebar that stays in place while the main content scrolls. A fixed sidebar is useful for dashboards or admin panels with extensive navigation.
+
+### `rtl`:
+
+- Type: `bool`
+- Example: `'rtl' => false`
+
+Enables support for `right-to-left` (RTL) layouts. Useful for languages like *Arabic*, *Hebrew*, or *Persian*. When set to `true`, the layout direction is reversed to suit RTL writing systems.
+
+## Navbar
+
+The `navbar` section allows you to customize the appearance of the top navigation bar in your admin panel. You can use this to control its styling using `Bootstrap` utility classes or your own custom classes.
+
+::: details Example {open}
+```php
+'navbar' => [
+    'classes' => ['bg-body'],
+]
+```
+:::
+
+### `classes`:
+
+- Type: `array<string>`
+- Example: `'classes' => ['bg-body']`
+
+An array of CSS classes applied to the `<nav>` element of the top navbar. These classes typically define background color, text color, borders, spacing, or other visual properties. For example, you might use `bg-primary-subtle` and `navbar-light` to get a light blue navbar.
+
+::: tip
+You can experiment with different navbar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your navbar, making it easy to customize the appearance before applying the classes to your configuration.
+:::
+
+## Sidebar
+
+The `sidebar` section provides full control over the behavior and appearance of the sidebar navigation in your admin panel. You can configure visual styles, layout responsiveness, collapsibility, and interactive features like accordion menus and mini-sidebar mode.
+
+::: details Example {open}
+```php
+'sidebar' => [
+    'accordion' => false,
+    'bootstrap_theme' => 'dark',
+    'classes' => ['bg-body-secondary', 'shadow'],
+    'default_collapsed' => false,
+    'expand_breakpoint' => 'lg',
+    'mini_sidebar' => true,
+]
+```
+:::
+
+### `accordion`:
+
+- Type: `bool`
+- Example: `'accordion' => false`
+
+When enabled (`true`), opening one sidebar submenu will automatically collapse any other open submenus. Useful for reducing clutter in navigation-heavy panels.
+
+### `bootstrap_theme`:
+
+- Type: `string ('light' | 'dark') | null`
+- Example: `'bootstrap_theme' => 'dark'`
+
+Sets the visual theme of the sidebar independently from the global layout. Use `'light'` or `'dark'` to apply a specific `Bootstrap` theme, or `null` to inherit from the layout’s theme setting.
+
+### `classes`:
+
+- Type: `array<string>`
+- Example: `'classes' => ['bg-body-secondary', 'shadow']`
+
+An array of CSS classes applied to the sidebar container. These control visual styling such as background color and shadows using `Bootstrap` utility classes or custom styles.
+
+::: tip
+You can experiment with different sidebar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your sidebar, making it easy to customize the appearance before applying the classes to your configuration.
+:::
+
+### `default_collapsed`:
+
+- Type: `bool`
+- Example: `'default_collapsed' => false`
+
+If set to `true`, the sidebar will be collapsed by default when the page loads. This is useful for saving screen space, especially on smaller devices or in minimalist UIs.
+
+### `expand_breakpoint`:
+
+- Type: `string ('sm' | 'md' | 'lg' | 'xl' | 'xxl')`
+- Example: `'expand_breakpoint' => 'lg'`
+
+Determines the `Bootstrap` breakpoint at which the sidebar automatically expands or collapses. Below the specified size, the sidebar may be hidden or minimized for responsive behavior.
+
+### `mini_sidebar`:
+
+- Type: `bool`
+- Example: `'mini_sidebar' => true`
+
+Enables a compact **"mini sidebar"** mode when the sidebar is manually collapsed. Instead of hiding completely, the sidebar shrinks to show only icons — a useful feature for experienced users familiar with the menu structure.
+
+## Footer
+
+The `footer` section allows you to customize the appearance of the bottom footer in your admin panel. This typically includes background styling, shadows, or spacing using `Bootstrap` utility classes.
+
+::: details Example {open}
+```php
+'footer' => [
+    'classes' => ['bg-body'],
+]
+```
+:::
+
+### `classes`:
+
+- Type: `array<string>`
+- Example: `'classes' => ['bg-body']`
+
+An array of CSS classes applied to the `<footer>` element. You can use `Bootstrap` utility classes or custom styles to define background color, borders, or other visual features of the footer.
+
+::: tip
+You can experiment with different footer styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your footer, making it easy to customize the appearance before applying the classes to your configuration.
+:::
+
+## Main Content
+
+The `main_content` section controls the styling of the central content area where most pages, widgets, and dashboards are rendered.
+
+::: details Example {open}
+```php
+'main_content' => [
+    'classes' => ['bg-body-tertiary'],
+]
+```
+:::
+
+### `classes`:
+
+- Type: `array<string>`
+- Example: `'classes' => ['bg-body-tertiary']`
+
+A list of CSS classes applied to the main content container. These classes affect the background color and general styling of the page body. Useful for aligning your content area with your overall design theme.
