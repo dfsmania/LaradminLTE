@@ -76,18 +76,18 @@ The currently available menu item types are:
 
 The following sections provide detailed information about the available properties for each menu item type, including usage examples and configuration options.
 
-## MenuItemType::DIVIDER
+## DIVIDER
 
 The `DIVIDER` type inserts a visual separator between menu items, helping to organize and group related links. In the `SIDEBAR`, it appears as a horizontal line; in the `NAVBAR`, it renders as a vertical line. Dividers improve menu clarity, especially in complex navigation structures.
 
 ### Accepted Properties
 
-| Property   | Type                    | Description                                                                 |
-|------------|-------------------------|-----------------------------------------------------------------------------|
-| type       | `MenuItemType::DIVIDER` | (**Required**) Identifies the item as a divider.                            |
-| color      | `string`                | (Optional) Bootstrap contextual color (e.g., `primary`, `secondary`).       |
-| position   | `'left' or 'right'`     | (Optional) For `NAVBAR` only: places the divider on the left or right side. |
-| is_allowed | `callable`              | (Optional) Closure to conditionally display the divider.                    |
+| Property   | Type                    | Description                                                           |
+|------------|-------------------------|-----------------------------------------------------------------------|
+| type       | `MenuItemType::DIVIDER` | (**Required**) Identifies the item as a divider.                      |
+| color      | `string`                | (Optional) Bootstrap contextual color (e.g., `primary`, `secondary`). |
+| position   | `'left' or 'right'`     | (Optional) Determines placement in the `NAVBAR`.                      |
+| is_allowed | `callable`              | (Optional) Closure to conditionally display the divider.              |
 
 ### Example
 
@@ -101,6 +101,66 @@ This example shows how you could add a colored divider to the right section of t
 ]
 ```
 
+## FULLSCREEN_TOGGLER
+
+The `FULLSCREEN_TOGGLER` type inserts a special menu item that toggles the browser’s fullscreen mode. It is only supported in the `NAVBAR` and provides visual feedback by switching icons when entering or exiting fullscreen.
+
+This item is useful for enhancing the user experience in data-dense admin interfaces by allowing users to focus on the content without UI distractions.
+
+### Accepted Properties
+
+| Property      | Type                              | Description                                                     |
+|---------------|-----------------------------------|-----------------------------------------------------------------|
+| type          | `MenuItemType::FULLSCREEN_TOGGLER`| (**Required**) Identifies the item as a fullscreen toggler.     |
+| icon_expand   | `string`                          | (**Required**) Icon shown when fullscreen mode is not active.   |
+| icon_collapse | `string`                          | (**Required**) Icon shown when fullscreen mode is active.       |
+| color         | `string`                          | (Optional) Bootstrap contextual color (e.g., `info`, `danger`). |
+| position      | `'left' or 'right'`               | (Optional) Determines placement in the `NAVBAR`.                |
+| is_allowed    | `callable`                        | (Optional) Closure to conditionally display the toggler.        |
+
+### Example
+
+This example shows how you could add a fullscreen toggler to the right section of the `NAVBAR`:
+
+```php
+[
+    'type' => MenuItemType::FULLSCREEN_TOGGLER,
+    'icon_expand' => 'bi bi-fullscreen',
+    'icon_collapse' => 'bi bi-fullscreen-exit',
+    'position' => 'right',
+]
+```
+
+## HEADER
+
+The `HEADER` type creates a non-interactive label within your menu, helping to visually organize and separate groups of related items. Headers can be enhanced with icons, contextual colors, and custom `CSS` classes for improved clarity and branding.
+
+You can use headers in the `SIDEBAR` to categorize menu sections, or in the `NAVBAR` to display prominent labels. This improves navigation by making complex menus easier to scan and understand.
+
+### Accepted Properties
+
+| Property   | Type                    | Description                                                      |
+|------------|-------------------------|------------------------------------------------------------------|
+| type       | `MenuItemType::HEADER`  | (**Required**) Identifies the item as a header.                  |
+| label      | `string`                | (**Required**) Text to display as the section header.            |
+| icon       | `string`                | (Optional) Icon to display alongside the label.                  |
+| color      | `string`                | (Optional) Bootstrap contextual color (e.g., `success`, `info`). |
+| position   | `'left' or 'right'`     | (Optional) Determines placement in the `NAVBAR`.                 |
+| is_allowed | `callable`              | (Optional) Closure to conditionally display the header.          |
+
+### Example
+
+This example shows how to add a styled header with an icon and color, positioned somewhere in the `SIDEBAR`:
+
+```php
+[
+    'type' => MenuItemType::HEADER,
+    'label' => 'Account Management',
+    'icon' => 'bi bi-person-fill-gear',
+    'color' => 'primary',
+]
+```
+
 ## Adding Extra Properties
 
 Each menu item type supports a set of standard properties, but you can also add custom properties to further tailor your menu items. These extra properties are included as `HTML` attributes on the rendered menu element, enabling advanced customization such as adding data attributes, custom classes, or ARIA labels.
@@ -109,7 +169,7 @@ For example, you might want to add a custom data attribute and a `CSS` class to 
 
 ```php
 [
-    // Standard Properties for a link...
+    // Standard properties for a link...
     'type' => MenuItemType::LINK,
     'label' => 'Reports',
     'url' => 'reports',
@@ -137,3 +197,7 @@ When rendered on the layout, this menu item could produce the following `HTML`:
 ```
 
 This approach allows you to extend the functionality and accessibility of your menu items without modifying the core configuration structure. Use extra properties to integrate with JavaScript, apply custom styles, or enhance accessibility as needed.
+
+## Properties Reference
+
+This section provides a comprehensive reference for all supported menu item properties, including their descriptions and usage. Use this guide to understand each property’s purpose and how it affects the appearance and behavior of your menu items.
