@@ -161,6 +161,50 @@ This example shows how to add a styled header with an icon and color, positioned
 ]
 ```
 
+## LINK
+
+The `LINK` type defines a clickable navigation item that routes the user to a specific `URL` or `named route`. It can be displayed in both the `SIDEBAR` and `NAVBAR`, and supports rich visual customization such as icons, badges, and colors.
+
+Links are the most commonly used menu items, ideal for directing users to different parts of your application.
+
+### Accepted Properties
+
+| Property      | Type                         | Description                                                                              |
+|---------------|------------------------------|------------------------------------------------------------------------------------------|
+| type          | `MenuItemType::LINK`         | (**Required**) Identifies the item as a standard link.                                   |
+| label         | `string`                     | (**Required** if no icon) Text to display for the link.                                  |
+| icon          | `string`                     | (Optional) Icon to display alongside the label.                                          |
+| color         | `string`                     | (Optional) Bootstrap contextual color for the link (e.g., `warning`, `info`).            |
+| url           | `string`                     | (**Required** if no route) Target `URL` for the link.                                    |
+| route         | `array`                      | (Optional) Named route definition (e.g., `['home']`).                                    |
+| badge         | `string`                     | (Optional) Small text badge (e.g., notification count).                                  |
+| badge_color   | `string`                     | (Optional) Bootstrap badge color (e.g., `danger`, `success`).                            |
+| badge_classes | `string`                     | (Optional) Additional `CSS` classes for styling the badge.                               |
+| position      | `'left' or 'right'`          | (Optional) Determines placement in the `NAVBAR`.                                         |
+| is_active     | `callable or ActiveStrategy` | (Optional) Closure or custom `ActiveStrategy` to control when the link is marked active. |
+| is_allowed    | `callable`                   | (Optional) Closure to conditionally display the link.                                    |
+
+::: info Usage Notes
+- Each link item must have at least an **icon** or a **label**.
+- You can specify the link destination using either the `route` or `url` property, but **not both at the same time**.
+- Use the `is_active` property to customize when a link is marked as active. By default, a link is active if its `url` or `route` matches the current request.
+:::
+
+### Example
+
+This example defines a sidebar link with an icon, badge, and route:
+
+```php
+[
+    'type' => MenuItemType::LINK,
+    'label' => 'Notifications',
+    'icon' => 'bi bi-bell-fill',
+    'route' => ['notifications'],
+    'badge' => '3',
+    'badge_color' => 'info',
+]
+```
+
 ## Adding Extra Properties
 
 Each menu item type supports a set of standard properties, but you can also add custom properties to further tailor your menu items. These extra properties are included as `HTML` attributes on the rendered menu element, enabling advanced customization such as adding data attributes, custom classes, or ARIA labels.
