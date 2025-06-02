@@ -184,7 +184,7 @@ Links are the most commonly used menu items, ideal for directing users to differ
 | is_active     | `callable or ActiveStrategy` | (Optional) Closure or custom `ActiveStrategy` to control when the link is marked active. |
 | is_allowed    | `callable`                   | (Optional) Closure to conditionally display the link.                                    |
 
-::: info Usage Notes
+::: info INFO: Usage Notes
 - Each link item must have at least an **icon** or a **label**.
 - You can specify the link destination using either the `route` or `url` property, but **not both at the same time**.
 - Use the `is_active` property to customize when a link is marked as active. By default, a link is active if its `url` or `route` matches the current request.
@@ -219,20 +219,20 @@ This item type enhances navigational structure by organizing related links into 
 
 #### Shared
 
-These are the set of properties shared for `SIDEBAR` and `NAVBAR` menu items:
+These are the set of properties shared for `SIDEBAR` and `NAVBAR` menus:
 
 | Property   | Type                  | Description                                                      |
 |------------|-----------------------|------------------------------------------------------------------|
 | type       | `MenuItemType::MENU`  | (**Required**) Identifies the item as a menu container.          |
 | label      | `string`              | (**Required** in sidebar, or when no icon in navbar) Text label. |
-| icon       | `string`              | (Optional) Icon to display next to the label.                    |
+| icon       | `string`              | (Optional) Icon to display alongside the label.                  |
 | color      | `string`              | (Optional) Bootstrap contextual color for the parent item.       |
 | is_allowed | `callable`            | (Optional) Closure to conditionally display the menu.            |
 | submenu    | `array`               | (**Required**) Array of child menu items.                        |
 
 #### Additional for `NAVBAR`
 
-The following properties are specific to menu items defined within the `NAVBAR`:
+The following properties are specific to menus defined within the `NAVBAR`:
 
 | Property   | Type                | Description                                                   |
 |------------|---------------------|---------------------------------------------------------------|
@@ -241,7 +241,7 @@ The following properties are specific to menu items defined within the `NAVBAR`:
 
 #### Additional for `SIDEBAR`
 
-The following properties are specific to menu items defined within the `NAVBAR`:
+The following properties are specific to menus defined within the `SIDEBAR`:
 
 | Property      | Type     | Description                                                    |
 |---------------|----------|----------------------------------------------------------------|
@@ -252,12 +252,14 @@ The following properties are specific to menu items defined within the `NAVBAR`:
 
 ### Allowed Child Types
 
-Each menu item supports only certain types of child items. The following table summarizes the current restrictions:
+Each menu supports only certain types of child items. The following table summarizes the current restrictions:
 
 | Context | Allowed Types                                      |
 |---------|----------------------------------------------------|
 | NAVBAR  | `MenuItemType::LINK`, `HEADER`, `DIVIDER`          |
 | SIDEBAR | `MenuItemType::LINK`, `MENU` (recursive)           |
+
+Sidebar treeview menus support unlimited nesting, allowing you to create deeply hierarchical menu structures. In contrast, navbar dropdown menus only allow a single level of submenu items. Nested dropdowns are **not supported** due to **Bootstrap 5 limitation** ([See Allowed Dropdown Content](https://getbootstrap.com/docs/5.3/components/dropdowns/#menu-content)). This ensures consistent behavior and compatibility with the **Bootstrap 5** framework.
 
 ### Examples
 

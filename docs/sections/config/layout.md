@@ -112,11 +112,11 @@ This configuration block defines how your application declares and serves favico
 ```
 :::
 
-::: info
+::: info INFO: About `{asset_url}` Placeholder
 The `{asset_url}` placeholder in the examples represents the base URL used for serving assets in your Laravel application. It corresponds to the value returned by Laravel’s `asset()` helper, which uses the `ASSET_URL` environment variable if defined, or falls back to `APP_URL` by default. All asset paths typically resolve to files stored in the **public** directory.
 :::
 
-::: warning
+::: warning WARNING: Favicons Storing Folder
 To ensure this configuration works correctly, all favicon files must be placed in the `public/favicons` directory (or in the `favicons` folder of the corresponding path resolved by your `ASSET_URL` setting). Additionally, make sure each file follows the expected naming convention, such as `favicon-32x32.png`, to match the declared sizes in the configuration.
 :::
 
@@ -168,7 +168,7 @@ An array listing the favicon image sizes (in pixels) that you have included in t
 
 These sizes ensure compatibility with various browser requirements.
 
-::: tip
+::: tip TIP: Favicons Generator Tools
 To easily generate a complete set of favicon files from your brand logo, use online tools such as [favicon.io](https://favicon.io/) or [RealFaviconGenerator](https://realfavicongenerator.net/). These services create all the recommended favicon formats and sizes for modern browsers and platforms. After generating the files, download and place them in your `public/favicons` directory as described above.
 :::
 
@@ -293,7 +293,7 @@ The `navbar` section allows you to customize the appearance of the top navigatio
 
 An array of CSS classes applied to the `<nav>` element of the top navbar. These classes typically define background color, text color, borders, spacing, or other visual properties. For example, you might use `bg-primary-subtle` and `navbar-light` to get a light blue navbar.
 
-::: tip
+::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different navbar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your navbar, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 
@@ -335,7 +335,7 @@ Sets the visual theme of the sidebar independently from the global layout. Use `
 
 An array of CSS classes applied to the sidebar container. These control visual styling such as background color and shadows using `Bootstrap` utility classes or custom styles.
 
-::: tip
+::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different sidebar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your sidebar, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 
@@ -379,7 +379,7 @@ The `footer` section allows you to customize the appearance of the bottom footer
 
 An array of CSS classes applied to the `<footer>` element. You can use `Bootstrap` utility classes or custom styles to define background color, borders, or other visual features of the footer.
 
-::: tip
+::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different footer styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your footer, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 

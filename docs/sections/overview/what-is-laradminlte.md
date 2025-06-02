@@ -2,8 +2,9 @@
 
 **LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte-v4.netlify.app) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels using a Laravel [Blade component](https://laravel.com/docs/blade#components) to quick access the layout and configuration files to customize it.
 
-> [!CAUTION]
-> **Active Development**: LaradminLTE is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
+::: danger CAUTION: Active Development
+**LaradminLTE** is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
+:::
 
 ## Key Features
 

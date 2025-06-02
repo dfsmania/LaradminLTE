@@ -9,8 +9,9 @@
 
 Follow these steps to install, configure, and test LaradminLTE in your Laravel application:
 
-> [!CAUTION]
-> **Active Development**: This documentation is a work in progress. The installation steps and usage instructions may change as the package evolves. Use them as a temporary guide for testing and exploring the current development state.
+::: danger CAUTION: Active Development
+This documentation is a work in progress. The installation steps and usage instructions may change as the package evolves. Use them as a temporary guide for testing and exploring the current development state.
+:::
 
 ### 1. Install the Package
 
