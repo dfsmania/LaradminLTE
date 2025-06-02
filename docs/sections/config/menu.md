@@ -205,6 +205,120 @@ This example defines a sidebar link with an icon, badge, and route:
 ]
 ```
 
+## MENU
+
+The `MENU` type defines a menu item that contains a list of child items. It behaves slightly different depending on its location:
+
+- `SIDEBAR`: Renders as a **treeview menu** that can be deeply nested. Suitable for grouping multiple related links.
+
+- `NAVBAR`: Renders as a **dropdown menu**. Only a single level of child items is allowed (no nested submenus).
+
+This item type enhances navigational structure by organizing related links into expandable/collapsible groups.
+
+### Accepted Properties
+
+#### Shared
+
+These are the set of properties shared for `SIDEBAR` and `NAVBAR` menu items:
+
+| Property   | Type                  | Description                                                      |
+|------------|-----------------------|------------------------------------------------------------------|
+| type       | `MenuItemType::MENU`  | (**Required**) Identifies the item as a menu container.          |
+| label      | `string`              | (**Required** in sidebar, or when no icon in navbar) Text label. |
+| icon       | `string`              | (Optional) Icon to display next to the label.                    |
+| color      | `string`              | (Optional) Bootstrap contextual color for the parent item.       |
+| is_allowed | `callable`            | (Optional) Closure to conditionally display the menu.            |
+| submenu    | `array`               | (**Required**) Array of child menu items.                        |
+
+#### Additional for `NAVBAR`
+
+The following properties are specific to menu items defined within the `NAVBAR`:
+
+| Property   | Type                | Description                                                   |
+|------------|---------------------|---------------------------------------------------------------|
+| position   | `'left' or 'right'` | (Optional) Determines placement in the `NAVBAR`.              |
+| menu_color | `string`            | (Optional) Bootstrap color class for the dropdown background. |
+
+#### Additional for `SIDEBAR`
+
+The following properties are specific to menu items defined within the `NAVBAR`:
+
+| Property      | Type     | Description                                                    |
+|---------------|----------|----------------------------------------------------------------|
+| badge         | `string` | (Optional) Small badge to display next to the label.           |
+| badge_color   | `string` | (Optional) Bootstrap badge color (e.g., `danger`, `primary`).  |
+| badge_classes | `string` | (Optional) Additional CSS classes for the badge.               |
+| toggler_icon  | `string` | (Optional) Icon used to indicate expand/collapse in treeview.  |
+
+### Allowed Child Types
+
+Each menu item supports only certain types of child items. The following table summarizes the current restrictions:
+
+| Context | Allowed Types                                      |
+|---------|----------------------------------------------------|
+| NAVBAR  | `MenuItemType::LINK`, `HEADER`, `DIVIDER`          |
+| SIDEBAR | `MenuItemType::LINK`, `MENU` (recursive)           |
+
+### Examples
+
+#### NAVBAR Dropdown Menu
+
+This example defines a dropdown menu for the `NAVBAR`:
+
+```php
+[
+    'type' => MenuItemType::MENU,
+    'label' => 'Tools',
+    'icon' => 'bi bi-tools',
+    'position' => 'right',
+    'submenu' => [
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Logs',
+            'route' => ['logs.index'],
+        ],
+        [
+            'type' => MenuItemType::DIVIDER,
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Settings',
+            'url' => '/settings',
+        ],
+    ],
+]
+```
+
+#### SIDEBAR Treeview Menu
+
+This example defines a treeview menu for the `SIDEBAR`:
+
+```php
+[
+    'type' => MenuItemType::MENU,
+    'label' => 'Management',
+    'icon' => 'bi bi-gear',
+    'submenu' => [
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Users',
+            'route' => ['users.index'],
+        ],
+        [
+            'type' => MenuItemType::MENU,
+            'label' => 'Projects',
+            'submenu' => [
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'Active Projects',
+                    'url' => '/projects/active',
+                ],
+            ],
+        ],
+    ],
+]
+```
+
 ## Adding Extra Properties
 
 Each menu item type supports a set of standard properties, but you can also add custom properties to further tailor your menu items. These extra properties are included as `HTML` attributes on the rendered menu element, enabling advanced customization such as adding data attributes, custom classes, or ARIA labels.
