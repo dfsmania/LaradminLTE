@@ -7,7 +7,7 @@
 
 ## Installation and Setup
 
-Follow these steps to install, configure, and test LaradminLTE in your Laravel application:
+Follow these steps to install, configure, and test **LaradminLTE** in your Laravel application:
 
 ::: danger CAUTION: Active Development
 This documentation is a work in progress. The installation steps and usage instructions may change as the package evolves. Use them as a temporary guide for testing and exploring the current development state.
@@ -64,6 +64,14 @@ As example, save the following content in `resources/views/laradminlte-test.blad
 
 </x-ladmin-panel>
 ```
+
+Finally, to visualize the admin layout, open your browser and navigate to:
+
+```sh
+http://your-app.test/laradminlte_test
+```
+
+Replace `your-app.test` with your local development URL.
 
 ### 4. Customize Configuration
 
