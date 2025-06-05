@@ -12,7 +12,7 @@ php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServicePr
 
 The `basic` section allows you to define essential metadata for your admin panel. This information is primarily used in the footer (by default) and potentially in other components such as "About" modals or system metadata sections.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'basic' => [
     'company' => 'Acme Inc.',
@@ -23,28 +23,28 @@ The `basic` section allows you to define essential metadata for your admin panel
 ```
 :::
 
-### `company`:
+### *company*:
 
 - Type: `string`
 - Example: `'company' => 'Acme Inc.'`
 
 The name of the company or organization that owns and develops the Laravel admin panel. Displayed in the footer or anywhere a company reference is needed.
 
-### `company_url`:
+### *company_url*:
 
 - Type: `string (URL)`
 - Example: `'company_url' => 'https://acme.example'`
 
 The link to the company website. It is typically shown next to or below the company name. Useful for users to quickly navigate to the company's homepage from the panel UI.
 
-### `start_year`:
+### *start_year*:
 
 - Type: `int | string`
 - Example: `'start_year' => 2024`
 
 The year your admin panel or application was launched or started development. Allows the footer to show a date range like `© 2024 - 2025 Company Name`.
 
-### `version`:
+### *version*:
 
 - Type: `string`
 - Example: `'version' => '2.1.0'`
@@ -56,8 +56,9 @@ The current version number of your admin panel. Displayed in the footer or a cus
 This configuration block defines how your application declares and serves favicon assets (those small icons displayed in browser tabs, bookmarks, home screen shortcuts, and other interfaces). Note that this configuration does not generate favicon files; it only helps produce the appropriate `HTML` markup to reference the favicon files you’ve already prepared.
 
 ::: details Example 1: Setup Minimal Favicon Support {open}
-**Configuration:**
-```php
+::: code-group
+
+```php [Favicons Config]
 'favicons' => [
     'full_support' => false,
     'brand_logo_color' => '#6f42c1', // Still present, but ignored
@@ -66,16 +67,16 @@ This configuration block defines how your application declares and serves favico
 ],
 ```
 
-**Generated HTML:**
-```html
+```html [Generated HTML]
 <!-- Standard favicon (fallback for older browsers) -->
 <link rel="icon" type="image/x-icon" href="{asset_url}/favicons/favicon.ico">
 ```
 :::
 
 ::: details Example 2: Setup Full Favicon Support
-**Configuration:**
-```php
+::: code-group
+
+```php [Favivons Config]
 'favicons' => [
     'full_support' => true,
     'brand_logo_color' => '#6f42c1',
@@ -84,8 +85,7 @@ This configuration block defines how your application declares and serves favico
 ],
 ```
 
-**Generated HTML:**
-```html
+```html [Generated HTML]
 <!-- Standard favicon (fallback for older browsers) -->
 <link rel="icon" type="image/x-icon" href="{asset_url}/favicons/favicon.ico">
 
@@ -120,7 +120,7 @@ The `{asset_url}` placeholder in the examples represents the base URL used for s
 To ensure this configuration works correctly, all favicon files must be placed in the `public/favicons` directory (or in the `favicons` folder of the corresponding path resolved by your `ASSET_URL` setting). Additionally, make sure each file follows the expected naming convention, such as `favicon-32x32.png`, to match the declared sizes in the configuration.
 :::
 
-### `full_support`:
+### *full_support*:
 
 - Type: `bool`
 - Example: `'full_support' => true`
@@ -135,14 +135,14 @@ When set to `true`, the configuration will generate all recommended tags for bro
 
 Use `true` for best cross-platform appearance, or `false` if you only need basic favicon support.
 
-### `brand_logo_color`:
+### *brand_logo_color*:
 
 - Type: `string (any HTML color)`
 - Example: `'brand_logo_color' => '#6f42c1'`
 
 Defines the foreground color of your app's logo. Used in some environments like Android's maskable icons or Safari pinned tabs. Use a color that provides strong contrast with the background and is visually consistent with your branding.
 
-### `brand_background_color`:
+### *brand_background_color*:
 
 - Type: `string (any HTML color)`
 - Example: `'brand_background_color' => '#ffffff'`
@@ -155,7 +155,7 @@ Specifies the background color used in various contexts, including:
 
 Choose a color that complements your logo and maintains readability.
 
-### `png_sizes`:
+### *png_sizes*:
 
 - Type: `array<string>`
 - Example: `'png_sizes' => ['16x16', '32x32', '96x96']`
@@ -176,7 +176,7 @@ To easily generate a complete set of favicon files from your brand logo, use onl
 
 The `logo` section allows you to configure the brand logo displayed in the admin panel. The logo appears in the top-left corner of the layout and helps visually identify your panel or application.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'logo' => [
     'image' => 'vendor/ladmin/img/LaradminLTE.png',
@@ -188,46 +188,46 @@ The `logo` section allows you to configure the brand logo displayed in the admin
 ```
 :::
 
-### `image`:
+### *image*:
 
 - Type: `string (path | URL)`
 - Example: `'image' => 'vendor/ladmin/img/LaradminLTE.png'`
 
 The path or URL to the logo image file. You can use a relative path (from the `public/` directory) or an absolute URL. This image is used as the main brand icon in the admin panel header.
 
-### `image_alt`:
+### *image_alt*:
 
 - Type: `string`
 - Example: `'image_alt' => 'LaradminLTE Logo'`
 
 Alternative text for the logo image, which improves accessibility and SEO (*Search Engine Optimization*). It's displayed when the image cannot be loaded and is also used by screen readers.
 
-### `image_classes`:
+### *image_classes*:
 
 - Type: `array<string>`
 - Example: `'image_classes' => ['rounded-circle', 'shadow']`
 
-An array of CSS utility classes (e.g., from `Bootstrap` or custom styles) that are applied to the logo image element. These allow you to visually style the image with effects such as borders, shadows, or rounded corners.
+An array of `CSS` utility classes (e.g., from `Bootstrap` or custom styles) that are applied to the logo image element. These allow you to visually style the image with effects such as borders, shadows, or rounded corners.
 
-### `text`:
+### *text*:
 
 - Type: `string`
 - Example: `'text' => 'LaradminLTE'`
 
 The textual portion of the brand logo, displayed next to the image. This is helpful for adding your application name or a short label to the header.
 
-### `text_classes`:
+### *text_classes*:
 
 - Type: `array<string>`
 - Example: `'text_classes' => ['fw-bold']`
 
-An array of CSS utility classes applied to the logo text. This lets you control its typography and visual presentation, such as font weight, color, spacing, etc.
+An array of `CSS` utility classes applied to the logo text. This lets you control its typography and visual presentation, such as font weight, color, spacing, etc.
 
 ## Layout
 
 The `layout` section lets you customize the overall structure and appearance of your admin panel. These options affect the positioning of interface components like the `header`, `sidebar`, and `footer`, and support both light and dark themes.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'layout' => [
     'bootstrap_theme' => 'light',
@@ -239,35 +239,35 @@ The `layout` section lets you customize the overall structure and appearance of 
 ```
 :::
 
-### `bootstrap_theme`:
+### *bootstrap_theme*:
 
 - Type: `string ('light' | 'dark')`
 - Example: `'bootstrap_theme' => 'light'`
 
 Defines the visual theme used by `Bootstrap` across the panel. Choose between `'light'` for a bright interface or `'dark'` for a darker appearance, depending on your brand or user preference.
 
-### `fixed_footer`:
+### *fixed_footer*:
 
 - Type: `bool`
 - Example: `'fixed_footer' => false`
 
 Controls whether the footer stays fixed at the bottom of the viewport as the user scrolls. Useful for keeping persistent actions or status indicators visible.
 
-### `fixed_navbar`:
+### *fixed_navbar*:
 
 - Type: `bool`
 - Example: `'fixed_navbar' => true`
 
 Determines if the top navigation bar remains fixed at the top while scrolling. This helps maintain access to navigation or user actions at all times.
 
-### `fixed_sidebar`:
+### *fixed_sidebar*:
 
 - Type: `bool`
 - Example: `'fixed_sidebar' => true`
 
 Enables a fixed sidebar that stays in place while the main content scrolls. A fixed sidebar is useful for dashboards or admin panels with extensive navigation.
 
-### `rtl`:
+### *rtl*:
 
 - Type: `bool`
 - Example: `'rtl' => false`
@@ -278,7 +278,7 @@ Enables support for `right-to-left` (RTL) layouts. Useful for languages like *Ar
 
 The `navbar` section allows you to customize the appearance of the top navigation bar in your admin panel. You can use this to control its styling using `Bootstrap` utility classes or your own custom classes.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'navbar' => [
     'classes' => ['bg-body'],
@@ -286,12 +286,12 @@ The `navbar` section allows you to customize the appearance of the top navigatio
 ```
 :::
 
-### `classes`:
+### *classes*:
 
 - Type: `array<string>`
 - Example: `'classes' => ['bg-body']`
 
-An array of CSS classes applied to the `<nav>` element of the top navbar. These classes typically define background color, text color, borders, spacing, or other visual properties. For example, you might use `bg-primary-subtle` and `navbar-light` to get a light blue navbar.
+An array of `CSS` classes applied to the `<nav>` element of the top navbar. These classes typically define background color, text color, borders, spacing, or other visual properties. For example, you might use `bg-primary-subtle` and `navbar-light` to get a light blue navbar.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different navbar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your navbar, making it easy to customize the appearance before applying the classes to your configuration.
@@ -301,7 +301,7 @@ You can experiment with different navbar styles using the [AdminLTE v4 Theme Too
 
 The `sidebar` section provides full control over the behavior and appearance of the sidebar navigation in your admin panel. You can configure visual styles, layout responsiveness, collapsibility, and interactive features like accordion menus and mini-sidebar mode.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'sidebar' => [
     'accordion' => false,
@@ -314,46 +314,46 @@ The `sidebar` section provides full control over the behavior and appearance of 
 ```
 :::
 
-### `accordion`:
+### *accordion*:
 
 - Type: `bool`
 - Example: `'accordion' => false`
 
 When enabled (`true`), opening one sidebar submenu will automatically collapse any other open submenus. Useful for reducing clutter in navigation-heavy panels.
 
-### `bootstrap_theme`:
+### *bootstrap_theme*:
 
 - Type: `string ('light' | 'dark') | null`
 - Example: `'bootstrap_theme' => 'dark'`
 
 Sets the visual theme of the sidebar independently from the global layout. Use `'light'` or `'dark'` to apply a specific `Bootstrap` theme, or `null` to inherit from the layout’s theme setting.
 
-### `classes`:
+### *classes*:
 
 - Type: `array<string>`
 - Example: `'classes' => ['bg-body-secondary', 'shadow']`
 
-An array of CSS classes applied to the sidebar container. These control visual styling such as background color and shadows using `Bootstrap` utility classes or custom styles.
+An array of `CSS` classes applied to the sidebar container. These control visual styling such as background color and shadows using `Bootstrap` utility classes or custom styles.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different sidebar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your sidebar, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 
-### `default_collapsed`:
+### *default_collapsed*:
 
 - Type: `bool`
 - Example: `'default_collapsed' => false`
 
 If set to `true`, the sidebar will be collapsed by default when the page loads. This is useful for saving screen space, especially on smaller devices or in minimalist UIs.
 
-### `expand_breakpoint`:
+### *expand_breakpoint*:
 
 - Type: `string ('sm' | 'md' | 'lg' | 'xl' | 'xxl')`
 - Example: `'expand_breakpoint' => 'lg'`
 
 Determines the `Bootstrap` breakpoint at which the sidebar automatically expands or collapses. Below the specified size, the sidebar may be hidden or minimized for responsive behavior.
 
-### `mini_sidebar`:
+### *mini_sidebar*:
 
 - Type: `bool`
 - Example: `'mini_sidebar' => true`
@@ -364,7 +364,7 @@ Enables a compact **"mini sidebar"** mode when the sidebar is manually collapsed
 
 The `footer` section allows you to customize the appearance of the bottom footer in your admin panel. This typically includes background styling, shadows, or spacing using `Bootstrap` utility classes.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'footer' => [
     'classes' => ['bg-body'],
@@ -372,12 +372,12 @@ The `footer` section allows you to customize the appearance of the bottom footer
 ```
 :::
 
-### `classes`:
+### *classes*:
 
 - Type: `array<string>`
 - Example: `'classes' => ['bg-body']`
 
-An array of CSS classes applied to the `<footer>` element. You can use `Bootstrap` utility classes or custom styles to define background color, borders, or other visual features of the footer.
+An array of `CSS` classes applied to the `<footer>` element. You can use `Bootstrap` utility classes or custom styles to define background color, borders, or other visual features of the footer.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different footer styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/pages/generate/theme). This interactive tool lets you preview and select `Bootstrap` classes for your footer, making it easy to customize the appearance before applying the classes to your configuration.
@@ -387,7 +387,7 @@ You can experiment with different footer styles using the [AdminLTE v4 Theme Too
 
 The `main_content` section controls the styling of the central content area where most pages, widgets, and dashboards are rendered.
 
-::: details Example {open}
+::: details Quick Example {open}
 ```php
 'main_content' => [
     'classes' => ['bg-body-tertiary'],
@@ -395,9 +395,9 @@ The `main_content` section controls the styling of the central content area wher
 ```
 :::
 
-### `classes`:
+### *classes*:
 
 - Type: `array<string>`
 - Example: `'classes' => ['bg-body-tertiary']`
 
-A list of CSS classes applied to the main content container. These classes affect the background color and general styling of the page body. Useful for aligning your content area with your overall design theme.
+A list of `CSS` classes applied to the main content container. These classes affect the background color and general styling of the page body. Useful for aligning your content area with your overall design theme.
