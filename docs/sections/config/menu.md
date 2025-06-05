@@ -82,12 +82,12 @@ The `DIVIDER` type inserts a visual separator between menu items, helping to org
 
 ### Accepted Properties
 
-| Property   | Type                    | Description                                                           |
-|------------|-------------------------|-----------------------------------------------------------------------|
-| type       | `MenuItemType::DIVIDER` | (**Required**) Identifies the item as a divider.                      |
-| color      | `string`                | (Optional) Bootstrap contextual color (e.g., `primary`, `secondary`). |
-| position   | `'left' or 'right'`     | (Optional) Determines placement in the `NAVBAR`.                      |
-| is_allowed | `callable`              | (Optional) Closure to conditionally display the divider.              |
+| Property                  | Type                    | Description                                                           |
+|---------------------------|-------------------------|-----------------------------------------------------------------------|
+| [type](#type)             | `MenuItemType::DIVIDER` | (**Required**) Identifies the item as a divider.                      |
+| [color](#color)           | `string`                | (Optional) Bootstrap contextual color (e.g., `primary`, `secondary`). |
+| [position](#position)     | `'left' or 'right'`     | (Optional) Determines placement in the `NAVBAR`.                      |
+| [is_allowed](#is-allowed) | `callable`              | (Optional) Closure to conditionally display the divider.              |
 
 ### Example
 
@@ -109,14 +109,14 @@ This item is useful for enhancing the user experience in data-dense admin interf
 
 ### Accepted Properties
 
-| Property      | Type                              | Description                                                     |
-|---------------|-----------------------------------|-----------------------------------------------------------------|
-| type          | `MenuItemType::FULLSCREEN_TOGGLER`| (**Required**) Identifies the item as a fullscreen toggler.     |
-| icon_expand   | `string`                          | (**Required**) Icon shown when fullscreen mode is not active.   |
-| icon_collapse | `string`                          | (**Required**) Icon shown when fullscreen mode is active.       |
-| color         | `string`                          | (Optional) Bootstrap contextual color (e.g., `info`, `danger`). |
-| position      | `'left' or 'right'`               | (Optional) Determines placement in the `NAVBAR`.                |
-| is_allowed    | `callable`                        | (Optional) Closure to conditionally display the toggler.        |
+| Property                  | Type                               | Description                                                     |
+|---------------------------|------------------------------------|-----------------------------------------------------------------|
+| [type](#type)             | `MenuItemType::FULLSCREEN_TOGGLER` | (**Required**) Identifies the item as a fullscreen toggler.     |
+| icon_expand               | `string`                           | (**Required**) Icon shown when fullscreen mode is not active.   |
+| icon_collapse             | `string`                           | (**Required**) Icon shown when fullscreen mode is active.       |
+| [color](#color)           | `string`                           | (Optional) Bootstrap contextual color (e.g., `info`, `danger`). |
+| [position](#position)     | `'left' or 'right'`                | (Optional) Determines placement in the `NAVBAR`.                |
+| [is_allowed](#is-allowed) | `callable`                         | (Optional) Closure to conditionally display the toggler.        |
 
 ::: info INFO: Icon Properties
 The `icon_expand` and `icon_collapse` properties are used to specify the icons displayed for expanding and collapsing the fullscreen toggler. These work similarly to the standard [icon](#icon) property, but allow you to define different icons for each state. You can use any supported icon class (such as `Bootstrap Icons` or `FontAwesome`) to customize the appearance of the toggler in both modes.
@@ -143,14 +143,14 @@ You can use headers in the `SIDEBAR` to categorize menu sections, or in the `NAV
 
 ### Accepted Properties
 
-| Property   | Type                    | Description                                                      |
-|------------|-------------------------|------------------------------------------------------------------|
-| type       | `MenuItemType::HEADER`  | (**Required**) Identifies the item as a header.                  |
-| label      | `string`                | (**Required**) Text to display as the section header.            |
-| icon       | `string`                | (Optional) Icon to display alongside the label.                  |
-| color      | `string`                | (Optional) Bootstrap contextual color (e.g., `success`, `info`). |
-| position   | `'left' or 'right'`     | (Optional) Determines placement in the `NAVBAR`.                 |
-| is_allowed | `callable`              | (Optional) Closure to conditionally display the header.          |
+| Property                  | Type                   | Description                                                      |
+|---------------------------|------------------------|------------------------------------------------------------------|
+| [type](#type)             | `MenuItemType::HEADER` | (**Required**) Identifies the item as a header.                  |
+| [label](#label)           | `string`               | (**Required**) Text to display as the section header.            |
+| [icon](#icon)             | `string`               | (Optional) Icon to display alongside the label.                  |
+| [color](#color)           | `string`               | (Optional) Bootstrap contextual color (e.g., `success`, `info`). |
+| [position](#position)     | `'left' or 'right'`    | (Optional) Determines placement in the `NAVBAR`.                 |
+| [is_allowed](#is-allowed) | `callable`             | (Optional) Closure to conditionally display the header.          |
 
 ### Example
 
@@ -173,20 +173,20 @@ Links are the most commonly used menu items, ideal for directing users to differ
 
 ### Accepted Properties
 
-| Property      | Type                         | Description                                                                              |
-|---------------|------------------------------|------------------------------------------------------------------------------------------|
-| type          | `MenuItemType::LINK`         | (**Required**) Identifies the item as a standard link.                                   |
-| label         | `string`                     | (**Required** if no icon) Text to display for the link.                                  |
-| icon          | `string`                     | (Optional) Icon to display alongside the label.                                          |
-| color         | `string`                     | (Optional) Bootstrap contextual color for the link (e.g., `warning`, `info`).            |
-| url           | `string`                     | (**Required** if no route) Target `URL` for the link.                                    |
-| route         | `array`                      | (Optional) Named route definition (e.g., `['home']`).                                    |
-| badge         | `string`                     | (Optional) Small text badge (e.g., notification count).                                  |
-| badge_color   | `string`                     | (Optional) Bootstrap badge color (e.g., `danger`, `success`).                            |
-| badge_classes | `string`                     | (Optional) Additional `CSS` classes for styling the badge.                               |
-| position      | `'left' or 'right'`          | (Optional) Determines placement in the `NAVBAR`.                                         |
-| is_active     | `callable or ActiveStrategy` | (Optional) Closure or custom `ActiveStrategy` to control when the link is marked active. |
-| is_allowed    | `callable`                   | (Optional) Closure to conditionally display the link.                                    |
+| Property                        | Type                         | Description                                                                              |
+|---------------------------------|------------------------------|------------------------------------------------------------------------------------------|
+| [type](#type)                   | `MenuItemType::LINK`         | (**Required**) Identifies the item as a standard link.                                   |
+| [label](#label)                 | `string`                     | (**Required** if no icon) Text to display for the link.                                  |
+| [icon](#icon)                   | `string`                     | (Optional) Icon to display alongside the label.                                          |
+| [color](#color)                 | `string`                     | (Optional) Bootstrap contextual color for the link (e.g., `warning`, `info`).            |
+| [url](#url)                     | `string`                     | (**Required** if no route) Target `URL` for the link.                                    |
+| [route](#route)                 | `array`                      | (Optional) Named route definition (e.g., `['home']`).                                    |
+| [badge](#badge)                 | `string`                     | (Optional) Small text badge (e.g., notification count).                                  |
+| [badge_color](#badge-color)     | `string`                     | (Optional) Bootstrap badge color (e.g., `danger`, `success`).                            |
+| [badge_classes](#badge-classes) | `string`                     | (Optional) Additional `CSS` classes for styling the badge.                               |
+| [position](#position)           | `'left' or 'right'`          | (Optional) Determines placement in the `NAVBAR`.                                         |
+| [is_active](#is-active)         | `callable or ActiveStrategy` | (Optional) Closure or custom `ActiveStrategy` to control when the link is marked active. |
+| [is_allowed](#is-allowed)       | `callable`                   | (Optional) Closure to conditionally display the link.                                    |
 
 ::: info INFO: Usage Notes
 - Each link item must have at least an **icon** or a **label**.
@@ -225,34 +225,34 @@ This item type enhances navigational structure by organizing related links into 
 
 These are the set of properties shared for `SIDEBAR` and `NAVBAR` menus:
 
-| Property   | Type                  | Description                                                      |
-|------------|-----------------------|------------------------------------------------------------------|
-| type       | `MenuItemType::MENU`  | (**Required**) Identifies the item as a menu container.          |
-| label      | `string`              | (**Required** in sidebar, or when no icon in navbar) Text label. |
-| icon       | `string`              | (Optional) Icon to display alongside the label.                  |
-| color      | `string`              | (Optional) Bootstrap contextual color for the parent item.       |
-| is_allowed | `callable`            | (Optional) Closure to conditionally display the menu.            |
-| submenu    | `array`               | (**Required**) Array of child menu items.                        |
+| Property                  | Type                 | Description                                                      |
+|---------------------------|----------------------|------------------------------------------------------------------|
+| [type](#type)             | `MenuItemType::MENU` | (**Required**) Identifies the item as a menu container.          |
+| [label](#label)           | `string`             | (**Required** in sidebar, or when no icon in navbar) Text label. |
+| [icon](#icon)             | `string`             | (Optional) Icon to display alongside the label.                  |
+| [color](#color)           | `string`             | (Optional) Bootstrap contextual color for the parent item.       |
+| [is_allowed](#is-allowed) | `callable`           | (Optional) Closure to conditionally display the menu.            |
+| [submenu](#submenu)       | `array`              | (**Required**) Array of child menu items.                        |
 
 #### Additional for `NAVBAR`
 
 The following properties are specific to menus defined within the `NAVBAR`:
 
-| Property   | Type                | Description                                                   |
-|------------|---------------------|---------------------------------------------------------------|
-| position   | `'left' or 'right'` | (Optional) Determines placement in the `NAVBAR`.              |
-| menu_color | `string`            | (Optional) Bootstrap color class for the dropdown background. |
+| Property                  | Type                | Description                                                   |
+|---------------------------|---------------------|---------------------------------------------------------------|
+| [position](#position)     | `'left' or 'right'` | (Optional) Determines placement in the `NAVBAR`.              |
+| [menu_color](#menu-color) | `string`            | (Optional) Bootstrap color class for the dropdown background. |
 
 #### Additional for `SIDEBAR`
 
 The following properties are specific to menus defined within the `SIDEBAR`:
 
-| Property      | Type     | Description                                                    |
-|---------------|----------|----------------------------------------------------------------|
-| badge         | `string` | (Optional) Small badge to display next to the label.           |
-| badge_color   | `string` | (Optional) Bootstrap badge color (e.g., `danger`, `primary`).  |
-| badge_classes | `string` | (Optional) Additional CSS classes for the badge.               |
-| toggler_icon  | `string` | (Optional) Icon used to indicate expand/collapse in treeview.  |
+| Property                        | Type     | Description                                                   |
+|---------------------------------|----------|---------------------------------------------------------------|
+| [badge](#badge)                 | `string` | (Optional) Small badge to display next to the label.          |
+| [badge_color](#badge-color)     | `string` | (Optional) Bootstrap badge color (e.g., `danger`, `primary`). |
+| [badge_classes](#badge-classes) | `string` | (Optional) Additional CSS classes for the badge.              |
+| [toggler_icon](#toggler-icon)   | `string` | (Optional) Icon used to indicate expand/collapse in treeview. |
 
 ::: info INFO: Toggler Icon
 The `toggler_icon` property is used to specify the icon displayed for expanding and collapsing the treeview menu. This work similarly to the standard [icon](#icon) property. You can use any supported icon class (such as `Bootstrap Icons` or `FontAwesome`) to customize the appearance of the toggler.
@@ -262,10 +262,10 @@ The `toggler_icon` property is used to specify the icon displayed for expanding 
 
 Each menu supports only certain types of child items. The following table summarizes the current restrictions:
 
-| Context | Allowed Types                                      |
-|---------|----------------------------------------------------|
-| NAVBAR  | `MenuItemType::LINK`, `HEADER`, `DIVIDER`          |
-| SIDEBAR | `MenuItemType::LINK`, `MENU` (recursive)           |
+| Context     | Allowed Types                             |
+|-------------|-------------------------------------------|
+| **NAVBAR**  | `MenuItemType::LINK`, `HEADER`, `DIVIDER` |
+| **SIDEBAR** | `MenuItemType::LINK`, `MENU` (recursive)  |
 
 Sidebar treeview menus support unlimited nesting, allowing you to create deeply hierarchical menu structures. In contrast, navbar dropdown menus only allow a single level of submenu items. Nested dropdowns are **not supported** due to **Bootstrap 5 limitation** ([See Allowed Dropdown Content](https://getbootstrap.com/docs/5.3/components/dropdowns/#menu-content)). This ensures consistent behavior and compatibility with the **Bootstrap 5** framework.
 
@@ -370,22 +370,22 @@ This approach allows you to extend the functionality and accessibility of your m
 
 This section provides a comprehensive reference for all supported menu item properties, including their descriptions and usage. Use this guide to understand each property’s purpose and how it affects the appearance and behavior of your menu items.
 
-| Property                        | Description                                           |
-|---------------------------------|-------------------------------------------------------|
-| [badge](#badge)                 | Displays a badge next to the item label.              |
-| [badge_classes](#badge-classes) | Adds custom `CSS` classes to the badge.               |
-| [badge_color](#badge-color)     | Applies a Bootstrap contextual color to the badge.    |
-| [color](#color)                 | Sets the Bootstrap contextual color of the item.      |
-| [icon](#icon)                   | Adds an icon to the item.                             |
-| [is_active](#is-active)         | Determines the active state by custom logic.          |
-| [is_allowed](#is-allowed)       | Controls the item visibility based on custom logic.   |
-| [label](#label)                 | Text displayed for the menu item.                     |
-| [menu_color](#menu-color)       | Sets background color for dropdowns (navbar only).    |
-| [position](#position)           | Positions item in the navbar: `left` or `right`.      |
-| [route](#route)                 | Laravel route definition to generate a `URL`.         |
-| [submenu](#submenu)             | List of nested menu items.                            |
-| [type](#type)                   | Identifies the kind of menu item (always required).   |
-| [url](#url)                     | Direct `URL` for the menu item.                       |
+| Property                        | Description                                         |
+|---------------------------------|-----------------------------------------------------|
+| [badge](#badge)                 | Displays a badge next to the item label.            |
+| [badge_classes](#badge-classes) | Adds custom `CSS` classes to the badge.             |
+| [badge_color](#badge-color)     | Applies a Bootstrap contextual color to the badge.  |
+| [color](#color)                 | Sets the Bootstrap contextual color of the item.    |
+| [icon](#icon)                   | Adds an icon to the item.                           |
+| [is_active](#is-active)         | Determines the active state by custom logic.        |
+| [is_allowed](#is-allowed)       | Controls the item visibility based on custom logic. |
+| [label](#label)                 | Text displayed for the menu item.                   |
+| [menu_color](#menu-color)       | Sets background color for dropdowns (navbar only).  |
+| [position](#position)           | Positions item in the navbar: `left` or `right`.    |
+| [route](#route)                 | Laravel route definition to generate a `URL`.       |
+| [submenu](#submenu)             | List of nested menu items.                          |
+| [type](#type)                   | Identifies the kind of menu item (always required). |
+| [url](#url)                     | Direct `URL` for the menu item.                     |
 
 ### badge
 
