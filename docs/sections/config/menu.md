@@ -12,7 +12,7 @@ php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServicePr
 
 Menu items define the links, headers, dividers, and interactive elements that appear in your admin panel's navigation. Each item is configured as an array with specific properties, allowing you to customize its appearance and behavior. Understanding the available item types and their options helps you build a clear and user-friendly menu structure.
 
-Here is an example of how to define a simple link menu item in your `config/ladmin_menu.php` file:
+Here is a quick example of how to define a simple link menu item in your `config/ladmin_menu.php` file:
 
 ::: details Example: Defining a Link Menu Item {open}
 ```php
@@ -24,6 +24,8 @@ Here is an example of how to define a simple link menu item in your `config/ladm
 ]
 ```
 :::
+
+All available menu item properties are thoroughly documented in the [Properties Reference](#properties-reference) section. Refer to this section for detailed descriptions, usage examples, and guidance on how each property affects your menu configuration.
 
 ### Menu Placement
 
@@ -37,8 +39,6 @@ DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement
 - `MenuPlacement::SIDEBAR`: Items for the side menu panel.
 
 So, your `config/ladmin_menu.php` file should follow this structure:
-
-#### Example: `config/ladmin_menu.php`
 
 ```php
 <?php
@@ -179,7 +179,7 @@ Links are the most commonly used menu items, ideal for directing users to differ
 | [label](#label)                 | `string`                     | (**Required** if no icon) Text to display for the link.                                  |
 | [icon](#icon)                   | `string`                     | (Optional) Icon to display alongside the label.                                          |
 | [color](#color)                 | `string`                     | (Optional) Bootstrap contextual color for the link (e.g., `warning`, `info`).            |
-| [url](#url)                     | `string`                     | (**Required** if no route) Target `URL` for the link.                                    |
+| [url](#url)                     | `string`                     | (**Required** if no route) Target `URL` or path for the link.                            |
 | [route](#route)                 | `array`                      | (Optional) Named route definition (e.g., `['home']`).                                    |
 | [badge](#badge)                 | `string`                     | (Optional) Small text badge (e.g., notification count).                                  |
 | [badge_color](#badge-color)     | `string`                     | (Optional) Bootstrap badge color (e.g., `danger`, `success`).                            |
@@ -262,16 +262,16 @@ The `toggler_icon` property is used to specify the icon displayed for expanding 
 
 Each menu supports only certain types of child items. The following table summarizes the current restrictions:
 
-| Context     | Allowed Types                             |
-|-------------|-------------------------------------------|
-| **NAVBAR**  | `MenuItemType::LINK`, `HEADER`, `DIVIDER` |
-| **SIDEBAR** | `MenuItemType::LINK`, `MENU` (recursive)  |
+| Context     | Allowed Child Types         |
+|-------------|-----------------------------|
+| **NAVBAR**  | `LINK`, `HEADER`, `DIVIDER` |
+| **SIDEBAR** | `LINK`, `MENU` (recursive)  |
 
 Sidebar treeview menus support unlimited nesting, allowing you to create deeply hierarchical menu structures. In contrast, navbar dropdown menus only allow a single level of submenu items. Nested dropdowns are **not supported** due to **Bootstrap 5 limitation** ([See Allowed Dropdown Content](https://getbootstrap.com/docs/5.3/components/dropdowns/#menu-content)). This ensures consistent behavior and compatibility with the **Bootstrap 5** framework.
 
 ### Examples
 
-#### NAVBAR Dropdown Menu
+#### Dropdown Menu
 
 This example defines a dropdown menu for the `NAVBAR`:
 
@@ -299,7 +299,7 @@ This example defines a dropdown menu for the `NAVBAR`:
 ]
 ```
 
-#### SIDEBAR Treeview Menu
+#### Treeview Menu
 
 This example defines a treeview menu for the `SIDEBAR`:
 
@@ -318,6 +318,11 @@ This example defines a treeview menu for the `SIDEBAR`:
             'type' => MenuItemType::MENU,
             'label' => 'Projects',
             'submenu' => [
+                [
+                    'type' => MenuItemType::LINK,
+                    'label' => 'All Projects',
+                    'url' => '/projects',
+                ],
                 [
                     'type' => MenuItemType::LINK,
                     'label' => 'Active Projects',
@@ -387,35 +392,35 @@ This section provides a comprehensive reference for all supported menu item prop
 | [type](#type)                   | Identifies the kind of menu item (always required). |
 | [url](#url)                     | Direct `URL` for the menu item.                     |
 
-### badge
+### *badge*
 
 The `badge` property can be used to display a small label or count next to the menu item, commonly used to highlight notifications, pending actions, or status indicators. This helps draw attention to important updates or actionable items within your menu.
 
 - **Type**: `string`
 - **Example**: `'badge' => '5'`
 
-### badge_classes
+### *badge_classes*
 
 The `badge_classes` property lets you add one or more custom `CSS` classes to the badge element, enabling advanced styling or integration with your own design system. Use this property to adjust the badge’s shape, borders, spacing, or any other visual aspect beyond the default appearance.
 
 - **Type**: `string`
 - **Example**: `'badge_classes' => 'rounded-circle border border-light border-2'`
 
-### badge_color
+### *badge_color*
 
 The `badge_color` property allows you to set the Bootstrap contextual color class for the badge, such as `primary`, `danger`, or `success`. This property determines the badge’s background color, making it easy to visually highlight important or status-related information within your menu item.
 
 - **Type**: `string`
 - **Example**: `'badge_color' => 'danger'` for a red badge.
 
-### color
+### *color*
 
 The `color` property lets you apply a Bootstrap contextual color class (such as `primary`, `success`, or `danger`) to a menu item. This typically changes the text and icon color of a menu item. Use this property to visually highlight or categorize menu items for better navigation clarity.
 
 - **Type**: `string`
 - **Example**: `'color' => 'primary'`
 
-### icon
+### *icon*
 
 The `icon` property allows you to display an icon alongside the menu item's label. Specify any supported icon class, such as those from [Bootstrap Icons](https://icons.getbootstrap.com/) or [FontAwesome](https://fontawesome.com/). Icons enhance visual recognition and help users quickly identify menu items.
 
@@ -426,7 +431,7 @@ The `icon` property allows you to display an icon alongside the menu item's labe
 By default, LaradminLte uses `Bootstrap Icons` for all menu item icons. If you prefer to use `FontAwesome` or another icon set, you can easily switch by adjusting the [Plugins](/sections/config/plugins) configuration in your template. Refer to the Plugins section for setup instructions and compatibility details.
 :::
 
-### is_active
+### *is_active*
 
 The **active** state visually highlights the menu item that corresponds to the current page or route, helping users understand where they are in the application.
 
@@ -461,8 +466,8 @@ This approach is especially useful when your menu is generated programmatically 
 
 Suppose you have a resource listing page with a `state` query parameter (e.g., `state=all`, `state=pending`, `state=completed`). You want the "All Resources" menu item to be active only when `state=all` or when the parameter is missing, and separate menu items for "Pending" and "Completed" states. You can implement a custom `ActiveStrategy` to encapsulate this logic:
 
-**Custom `app/CustomActiveStrategies/ResourceStateActiveStrategy.php`**
-```php
+::: code-group
+```php [ResourceStateActiveStrategy.php]
 namespace App\CustomActiveStrategies;
 
 use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
@@ -486,8 +491,7 @@ class ResourceStateActiveStrategy implements ActiveStrategy
 }
 ```
 
-**Menu Config Definitions**
-```php
+```php [Menu Definitions]
 use App\CustomActiveStrategies\ResourceStateActiveStrategy;
 
 [
@@ -513,7 +517,7 @@ use App\CustomActiveStrategies\ResourceStateActiveStrategy;
 This approach ensures only the relevant menu item is marked as active based on the current `state` parameter, providing clear navigation for resource filtering.
 :::
 
-### is_allowed
+### *is_allowed*
 
 The `is_allowed` property lets you specify a closure that determines whether a menu item should be visible. This is typically used for role-based access control, permission checks, or integrating with Laravel's Gate and Policy features. If the closure returns `false`, the menu item will not be rendered. Use this property to ensure users only see menu options relevant to their permissions or roles.
 
@@ -536,39 +540,39 @@ You can use Laravel's Gate or Policy system within the `is_allowed` closure to c
 This ensures only authorized users see the relevant menu items.
 :::
 
-### label
+### *label*
 
 The `label` property specifies the text shown for the menu item. It serves as the primary identifier for users navigating the menu. In most cases, `label` is required, but for certain item types (such as links with only an icon), it may be optional if an `icon` is provided. Use clear, concise labels to ensure menu items are easily understood.
 
 - **Type**: `string`
 - **Example**: `'label' => 'Settings'`
 
-### menu_color
+### *menu_color*
 
 The `menu_color` is a special property that lets you set the background color of **dropdown menus** in the `NAVBAR` by applying a Bootstrap contextual color class (such as `dark`, `primary`, or `info`). Use this property to visually distinguish dropdown menus or align them with your application's branding. It has no effect on sidebar menus.
 
 - **Type**: `string`
 - **Example**: `'menu_color' => 'secondary-subtle'`
 
-### position
+### *position*
 
-The `position` property specifies the horizontal alignment of the menu item within the `NAVBAR`. Use `'left'` to place the item on the left side or `'right'` for the right side of the navbar. This property is ignored for sidebar menu items.
+The `position` property specifies the horizontal alignment of the menu item within the `NAVBAR` (which is `left` by default). Use `'left'` to place the item on the left side or `'right'` for the right side of the navbar. This property is ignored for sidebar menu items.
 
 - **Type**: `string ('left' | 'right')`
 - **Example**: `'position' => 'right'`
 
-### route
+### *route*
 
 The `route` property lets you define a Laravel named route (optionally with parameters) for the menu item. When set, the menu system will automatically generate the correct `URL` using Laravel’s `route()` helper, ensuring your links remain consistent even if route definitions change.
 
 - **Type**: `array`
 - **Example**: `'route' => ['users.create']`
 
-::: danger CAUTION: Use either `route` or `url`, not both!
+::: danger CAUTION: Use Either `route` or `url`, Not Both!
 You must specify only one of `route` or `url` for a menu item, never both at the same time.
 :::
 
-### submenu
+### *submenu*
 
 The `submenu` property is used to specify an array of child menu items for a parent menu of type `MENU`. This enables you to create hierarchical navigation structures, such as dropdown menus in the `NAVBAR` or expandable treeview menus in the `SIDEBAR`. Please, note each element in the array must be a valid menu item configuration, following the same structure as top-level items.
 
@@ -600,27 +604,27 @@ The `submenu` property is used to specify an array of child menu items for a par
 
 Use the `submenu` property to organize related links under a common parent, improving navigation clarity and scalability in your admin panel.
 
-### toggler_icon
+### *toggler_icon*
 
 The `toggler_icon` is a special property that allows you to customize the icon used for expanding and collapsing **treeview menus** in the `SIDEBAR`. By default, a caret or arrow icon is shown, but you can specify any supported icon class (such as from `Bootstrap Icons` or `FontAwesome`) to better match your application's style or improve clarity for users.
 
 - **Type**: `string`
 - **Example**: `'toggler_icon' => 'bi bi-arrow-right'`
 
-### type
+### *type*
 
 The `type` property specifies the kind of menu item you are defining. It determines how the item will be rendered and what additional properties are available for configuration. This property is **mandatory** for every menu item and must be set to one of the values from the `MenuItemType` enum, such as `LINK`, `MENU`, `DIVIDER`, `HEADER`, or `FULLSCREEN_TOGGLER`.
 
 - **Type**: `MenuItemType`
 - **Example**: `'type' => MenuItemType::LINK`
 
-### url
+### *url*
 
-The `url` property specifies the direct URL that a `LINK` menu item should navigate to when clicked. This property is required if the `route` property is not set. Use `url` for static or external links, or when you want to point to a specific path that is not managed by Laravel's named routes.
+The `url` property specifies the direct URL or path that a `LINK` menu item should navigate to when clicked. This property is required if the `route` property is not set. Use `url` for static or external links, or when you want to point to a specific path that is not managed by Laravel's named routes.
 
 - **Type**: `string`
 - **Example**: `'url' => '/dashboard'`
 
-::: danger CAUTION: Use either `route` or `url`, not both!
+::: danger CAUTION: Use Either `route` or `url`, Not Both!
 You must specify only one of `route` or `url` for a menu item, never both at the same time.
 :::
