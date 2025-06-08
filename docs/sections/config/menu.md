@@ -428,7 +428,7 @@ The `icon` property allows you to display an icon alongside the menu item's labe
 - **Example**: `'icon' => 'bi bi-gear'`
 
 ::: info INFO: Default Icon Class
-By default, LaradminLte uses `Bootstrap Icons` for all menu item icons. If you prefer to use `FontAwesome` or another icon set, you can easily switch by adjusting the [Plugins](/sections/config/plugins) configuration in your template. Refer to the Plugins section for setup instructions and compatibility details.
+By default, LaradminLte uses `Bootstrap Icons` for all menu item icons. If you prefer to use `FontAwesome` or another icon set, you can easily switch by adjusting the [Plugins](/sections/config/plugins) configuration in your template. Refer to the [Managing Icon Libraries](/sections/config/plugins#managing-icon-libraries) section for setup instructions and compatibility details.
 :::
 
 ### *is_active*

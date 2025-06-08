@@ -18,7 +18,7 @@ Each plugin is registered under a unique name and consists of the following:
 
 - A list of **resources** (`CSS` or `JS` files) to be included, each with customizable options.
 
-- The **resource type**, specifying when the resource should be injected relative to the core `AdminLTE v4` assets (e.g., before or after core scripts/styles).
+- The **resource type**, specifying where the resource should be injected relative to the core `AdminLTE v4` assets (e.g., before or after core scripts/styles).
 
 The default `config/ladmin_plugins.php` file comes pre-configured with a set of plugin definitions that are required for working with **Bootstrap 5** and the **AdminLTE v4** template. These examples provide a solid starting point and can be used as templates when adding or customizing plugins to suit your project's needs. Review and adjust these definitions as necessary to integrate additional frontend libraries or modify existing ones.
 
@@ -33,7 +33,7 @@ In this example the **Bootstrap 5** resource file will be included before the **
         [
             'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
             'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js',
-            'integrity' => 'sha384-...hash...',
+            'integrity' => 'sha384-...',
             'crossorigin' => 'anonymous',
         ],
     ],
@@ -55,10 +55,10 @@ Before customizing or adding new plugins, it's important to understand the struc
 
 Below is a quick overview of the available plugin settings and how to configure them in your project.
 
-| Property  | Type      | Required | Description                                                                                                              |
-|-----------|-----------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| always    | `boolean` | No       | If `true`, plugin resources are included on every page using the layout. If `false`, load it with `@ladmin_plugin(...)`. |
-| resources | `array`   | **Yes**  | List of `CSS` or `JS` resources to load. See [Resource Definition](#resource-definition) below.                          |
+| Property  | Type      | Required | Description                                                                                                           |
+|-----------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------|
+| always    | `boolean` | No       | If `true`, plugin resources are included on every page using the layout. If `false`, load it with `@ladmin_plugin()`. |
+| resources | `array`   | **Yes**  | List of `CSS` or `JS` resources to load for the plugin. See [Resource Definition](#resource-definition) below.        |
 
 ### Resource Definition
 
@@ -70,13 +70,13 @@ Each plugin defines one or more resources, which are the external or local `CSS`
 | type     | `ResourceType` | **Yes**  | The load type (e.g., `PRE_ADMINLTE_SCRIPT`, `POST_ADMINLTE_LINK`).       |
 | asset    | `boolean`      | No       | If `true`, the resource will be loaded using Laravel's `asset()` helper. |
 
-::: warning IMPORTANT: Using the `asset` Property
+::: warning WARNING: Using the `asset` Property
 When setting the `asset` property to `true` for a plugin resource, make sure the referenced file exists within your Laravel application's `public` directory (such as `public/plugins/your-plugin/`) or is accessible via the path defined in your `ASSET_URL` environment variable. The `asset()` helper generates `URLs` relative to this location. If the file is missing or not publicly accessible, the browser will not be able to load the resource, which may cause your plugin to malfunction.
 :::
 
 ### Resource Types
 
-Resource types determine the injection point in the layout. These are defined by the next enum:
+Each plugin resource must have a `type` that determines its injection point within the layout. These are defined by the following enum:
 
 ```php
 DFSmania\LaradminLte\Tools\Plugins\ResourceType
@@ -225,6 +225,6 @@ You can integrate additional icon libraries just like *Bootstrap Icons* or *Font
 
 - Keep required core plugins like `Bootstrap`, `Popper`, and `OverlayScrollbars` set to `'always' => true`.
 
-- Use `@ladmin_plugin(...)` for additional plugins like `Chart.js`, or custom scripts that are used only on specific pages.
+- Use the `@ladmin_plugin()` Blade directive for additional plugins like `Chart.js`, or custom scripts that are used only on specific pages.
 
 - Avoid mixing **bundler-managed resources** with this configuration unless clearly isolated.
