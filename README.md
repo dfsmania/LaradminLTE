@@ -2,10 +2,10 @@
 
 # LaradminLTE: AdminLTE v4 for Laravel
 
-**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte-v4.netlify.app) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels using Laravel [Blade components](https://laravel.com/docs/blade#components) and configuration files.
+**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte-v4.netlify.app) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels by using a Laravel [Blade component](https://laravel.com/docs/blade#components) to quick access the layout and configuration files to customize it.
 
 > [!CAUTION]
-> **Active Development**: LaradminLTE is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
+> **Active Development**: **LaradminLTE** is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
 
 ## Requirements
 
@@ -14,7 +14,7 @@
 
 ## Installation and Setup
 
-Follow these steps to install, configure, and test LaradminLte in your Laravel application:
+Follow these steps to install, configure, and test **LaradminLTE** in your Laravel application:
 
 ### 1. Install the Package
 
@@ -43,8 +43,8 @@ Route::get('laradminlte_test', function () {
 });
 ```
 
-Next, create a Blade view to test the package's functionality.
-Save the following content in `resources/views/laradminlte-test.blade.php`:
+Next, create a Blade view to test the package's functionality. The package provides a main blade component that should be used to render the layout.
+As example, save the following content in `resources/views/laradminlte-test.blade.php`:
 
 ```blade
 <x-ladmin-panel>
@@ -67,6 +67,14 @@ Save the following content in `resources/views/laradminlte-test.blade.php`:
 
 </x-ladmin-panel>
 ```
+
+Finally, to visualize the admin layout, open your browser and navigate to:
+
+```sh
+http://your-app.test/laradminlte_test
+```
+
+Replace `your-app.test` with your local development URL.
 
 ### 4. Customize Configuration
 
