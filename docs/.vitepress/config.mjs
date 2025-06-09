@@ -5,6 +5,7 @@ export default defineConfig({
   title: 'LaradminLTE',
   description: 'AdminLTE v4 for Laravel',
   lastUpdated: true,
+  base: '/LaradminLTE/',
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
