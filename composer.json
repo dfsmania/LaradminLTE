@@ -1,6 +1,6 @@
 {
     "name": "dfsmania/laradminlte",
-    "description": "An integration of AdminLTE v4 into Laravel",
+    "description": "AdminLTE v4 for Laravel",
     "keywords": [
         "laravel",
         "adminlte 4",
