@@ -86,4 +86,4 @@ Explore and modify the package's configuration files to suit your needs:
 
 For detailed usage instructions, advanced configuration options, and customization guides, refer to the official documentation:
 
-[LaradminLTE Documentation](https://dfsmania.github.io/LaradminLTE)
+<a href="https://dfsmania.github.io/LaradminLTE" target="_blank">LaradminLTE Documentation</a>
