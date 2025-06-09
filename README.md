@@ -83,3 +83,7 @@ Explore and modify the package's configuration files to suit your needs:
 - `config/ladmin.php`: General settings for the admin panel.
 - `config/ladmin_menu.php`: Define the menu structure.
 - `config/ladmin_plugins.php`: Manage plugins and extensions.
+
+For detailed usage instructions, advanced configuration options, and customization guides, refer to the official documentation:
+
+[LaradminLTE Documentation](https://dfsmania.github.io/LaradminLTE)

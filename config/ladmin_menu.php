@@ -13,7 +13,7 @@ use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 | properties to tailor the navigation experience to your needs.
 |
 | For more details, refer to the online documentation:
-| TBD
+| https://dfsmania.github.io/LaradminLTE/sections/config/menu.html
 |
 */
 return [

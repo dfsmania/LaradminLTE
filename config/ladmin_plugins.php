@@ -12,7 +12,7 @@ use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
 | loading order, resource types, and other settings to suit your needs.
 |
 | For more details, refer to the online documentation:
-| TBD
+| https://dfsmania.github.io/LaradminLTE/sections/config/plugins.html
 |
 */
 return [

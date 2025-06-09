@@ -10,7 +10,7 @@
 | information, favicons, brand logo, multiple layout options, and more.
 |
 | For more details, refer to the online documentation:
-| TBD
+| https://dfsmania.github.io/LaradminLTE/sections/config/layout.html
 |
 */
 return [
