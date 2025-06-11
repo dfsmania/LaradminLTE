@@ -35,13 +35,13 @@ php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServicePr
 Set up a test route in your `routes/web.php` file:
 
 ```php
-Route::get('laradminlte_test', function () {
-    return view('laradminlte-test');
+Route::get('ladmin_welcome', function () {
+    return view('laradminlte-welcome');
 });
 ```
 
 Next, create a Blade view to test the package's functionality. The package provides a main blade component that should be used to render the layout.
-As example, save the following content in `resources/views/laradminlte-test.blade.php`:
+As example, save the following content in `resources/views/laradminlte-welcome.blade.php`:
 
 ```blade
 <x-ladmin-panel>
@@ -49,16 +49,20 @@ As example, save the following content in `resources/views/laradminlte-test.blad
     {{-- Setup the content header --}}
     <x-slot name="contentHeader">
         <div class="row">
-            <div class="col-12 fw-bold">
-                CONTENT HEADER
+            <div class="col-12">
+                <h3 class="fw-bold">
+                    <i class="bi bi-heart-fill text-danger"></i>
+                    Welcome to LaradminLTE!
+                </h3>
             </div>
         </div>
     </x-slot>
 
     {{-- Setup the content body --}}
     <div class="row">
-        <div class="col-12 fw-bold">
-            CONTENT BODY
+        <div class="col-12">
+            <i class="bi bi-rocket-takeoff-fill fs-5 text-primary"></i>
+            Now, start building your next administration panel with ease and flexibility.
         </div>
     </div>
 
@@ -68,10 +72,12 @@ As example, save the following content in `resources/views/laradminlte-test.blad
 Finally, to visualize the admin layout, open your browser and navigate to:
 
 ```sh
-http://your-app.test/laradminlte_test
+http://your-app.test/ladmin_welcome
 ```
 
-Replace `your-app.test` with your local development URL.
+Replace `your-app.test` with the URL of your local development environment. You should now see the default admin layout rendered using the package’s out-of-the-box configuration:
+
+![LaradminLTE Layout Example](/images/layout-example.png)
 
 ### 4. Customize Configuration
 

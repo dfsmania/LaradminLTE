@@ -31,7 +31,6 @@ return [
 
     MenuPlacement::NAVBAR->value => [
         // Hamburger button to toggle the sidebar (REQUIRED).
-        // --------------------------------------------------------------------
         [
             'type' => MenuItemType::LINK,
             'icon' => 'bi bi-list fs-5',
@@ -42,7 +41,6 @@ return [
         ],
 
         // Fullscreen toggler (OPTIONAL).
-        // --------------------------------------------------------------------
         [
             'type' => MenuItemType::FULLSCREEN_TOGGLER,
             'icon_expand' => 'bi bi-fullscreen fs-5',
@@ -50,52 +48,18 @@ return [
             'position' => 'right',
         ],
 
-        // Add your custom menu items here to extend the navbar menu.
-        // --------------------------------------------------------------------
-        [
-            'type' => MenuItemType::DIVIDER,
-        ],
-        [
-            'type' => MenuItemType::HEADER,
-            'label' => 'Header',
-            'icon' => 'bi bi-bookmark-fill',
-            'position' => 'left',
-            'class' => 'text-uppercase fw-bold',
-        ],
-        [
-            'type' => MenuItemType::DIVIDER,
-        ],
+        // The next items are just examples that you can use as a reference
+        // for creating your own menu items.
         [
             'type' => MenuItemType::LINK,
-            'label' => 'Home',
             'icon' => 'bi bi-house-door-fill fs-5',
-            'url' => 'home',
-            'color' => 'success',
+            'url' => '#',
             'position' => 'left',
-            'id' => 'link-contact',
-        ],
-        [
-            'type' => MenuItemType::LINK,
-            'icon' => 'bi bi-bell-fill fs-5',
-            'url' => 'notifications',
-            'badge' => '5',
-            'badge_color' => 'info',
-            'badge_classes' => 'border border-dark border-1 rounded-circle',
-            'position' => 'right',
-        ],
-        [
-            'type' => MenuItemType::LINK,
-            'icon' => 'bi bi-envelope-fill fs-5',
-            'url' => 'messages',
-            'badge' => '7',
-            'badge_color' => 'danger',
-            'badge_classes' => 'border border-dark border-1 rounded-circle animate__animated animate__infinite animate__flash animate__slower',
-            'position' => 'right',
         ],
         [
             'type' => MenuItemType::MENU,
             'icon' => 'bi bi-gear fs-5',
-            'menu_color' => 'primary-subtle',
+            'menu_color' => 'light-subtle',
             'position' => 'right',
             'submenu' => [
                 [
@@ -109,13 +73,13 @@ return [
                     'type' => MenuItemType::LINK,
                     'label' => 'Profile',
                     'icon' => 'bi bi-person-fill fs-5',
-                    'url' => 'profile',
+                    'url' => '#',
                 ],
                 [
                     'type' => MenuItemType::LINK,
                     'label' => 'Preferences',
                     'icon' => 'bi bi-sliders fs-5',
-                    'url' => 'preferences',
+                    'url' => '#',
                     'badge' => 'new',
                     'badge_color' => 'primary',
                     'badge_classes' => 'rounded-pill',
@@ -134,16 +98,27 @@ return [
                 [
                     'type' => MenuItemType::LINK,
                     'label' => 'Help',
-                    'url' => 'help',
                     'icon' => 'bi bi-question-circle-fill fs-5',
+                    'url' => '#',
                 ],
                 [
                     'type' => MenuItemType::LINK,
                     'label' => 'About Us',
-                    'url' => 'about_us',
                     'icon' => 'bi bi-info-circle-fill fs-5',
+                    'url' => '#',
                 ],
             ],
+        ],
+        [
+            'type' => MenuItemType::DIVIDER,
+            'position' => 'right',
+        ],
+        [
+            'type' => MenuItemType::HEADER,
+            'label' => date('Y-m-d'),
+            'icon' => 'bi bi-calendar fs-5',
+            'position' => 'right',
+            'class' => 'text-primary fw-bold',
         ],
     ],
 
@@ -159,103 +134,87 @@ return [
     */
 
     MenuPlacement::SIDEBAR->value => [
+        // The next items are just examples that you can use as a reference
+        // for creating your own menu items.
         [
             'type' => MenuItemType::LINK,
             'label' => 'Welcome',
-            'url' => 'welcome',
             'icon' => 'bi bi-emoji-wink-fill',
-            // Test with the is_active callable.
-            'is_active' => function ($cfg) {
-                return preg_match(
-                    "@({$cfg['url']}|home|laradminlte_test)$@",
-                    request()->path()
-                );
-            },
-        ],
-        [
-            'type' => MenuItemType::HEADER,
-            'label' => 'Basic Link Tests',
-            'icon' => 'bi bi-bookmark',
-            'class' => 'text-uppercase fw-bold',
-            'color' => 'success',
-        ],
-        [
-            'type' => MenuItemType::LINK,
-            'label' => 'Link 1',
-            'url' => 'link_1',
-            'icon' => 'bi bi-circle',
-        ],
-        [
-            'type' => MenuItemType::LINK,
-            'label' => 'Link 2',
-            'url' => 'link_2',
-            'icon' => 'bi bi-square',
-            'color' => 'warning',
-        ],
-        [
-            'type' => MenuItemType::LINK,
-            'label' => 'Link 3',
-            'url' => 'link_3',
-            'icon' => 'bi bi-record-circle',
-            'badge' => '5',
-            'badge_color' => 'info',
-        ],
-        [
-            'type' => MenuItemType::LINK,
-            'label' => 'Link 4',
-            'url' => 'link_4',
-            'icon' => 'bi bi-star-fill text-primary',
-            'color' => 'info',
-            'badge' => '7',
-            'badge_color' => 'danger',
-            'badge_classes' => 'rounded-circle',
+            'url' => 'ladmin_welcome',
         ],
         [
             'type' => MenuItemType::DIVIDER,
         ],
         [
             'type' => MenuItemType::HEADER,
-            'label' => 'Treeview Menu Tests',
-            'icon' => 'bi bi-bookmark',
+            'label' => 'Links',
+            'icon' => 'bi bi-bookmark-fill',
             'class' => 'text-uppercase fw-bold',
-            'color' => 'success',
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Basic Link',
+            'icon' => 'bi bi-circle',
+            'url' => '#',
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Highlighted Link',
+            'icon' => 'bi bi-exclamation-triangle-fill',
+            'url' => '#',
+            'color' => 'warning',
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Badge Link',
+            'icon' => 'bi bi-bell-fill text-info',
+            'url' => '#',
+            'badge' => '5',
+            'badge_color' => 'info',
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Not Allowed Link',
+            'icon' => 'bi bi-ban',
+            'url' => '#',
+            'is_allowed' => fn () => false,
+        ],
+        [
+            'type' => MenuItemType::DIVIDER,
+        ],
+        [
+            'type' => MenuItemType::HEADER,
+            'label' => 'Treeview Menus',
+            'icon' => 'bi bi-bookmark-fill',
+            'class' => 'text-uppercase fw-bold',
         ],
         [
             'type' => MenuItemType::MENU,
-            'label' => 'Menu 1',
-            'icon' => 'bi bi-boxes',
+            'label' => 'Basic Menu',
+            'icon' => 'bi bi-menu-down',
             'submenu' => [
                 [
                     'type' => MenuItemType::LINK,
-                    'label' => 'Link A',
-                    'url' => 'link_a',
+                    'label' => 'Child Link',
                     'icon' => 'bi bi-circle',
-                ],
-                [
-                    'type' => MenuItemType::LINK,
-                    'label' => 'Link B',
-                    'url' => 'link_b',
-                    'icon' => 'bi bi-circle',
+                    'url' => '#',
                 ],
                 [
                     'type' => MenuItemType::MENU,
-                    'label' => 'SubMenu 1-1',
-                    'icon' => 'bi bi-boxes text-primary',
-                    'color' => 'info',
-                    'badge' => '2',
-                    'badge_color' => 'warning',
+                    'label' => 'Child Menu',
+                    'icon' => 'bi bi-menu-down',
                     'submenu' => [
                         [
                             'type' => MenuItemType::LINK,
-                            'url' => 'link_c',
-                            'label' => 'Link C',
+                            'label' => 'Child Link',
                             'icon' => 'bi bi-circle-fill',
+                            'url' => '#',
                         ],
                         [
                             'type' => MenuItemType::LINK,
-                            'url' => 'link_d',
-                            'label' => 'Link D',
+                            'label' => 'Child Link',
                             'icon' => 'bi bi-circle-fill',
+                            'url' => '#',
                         ],
                     ],
                 ],
@@ -263,22 +222,25 @@ return [
         ],
         [
             'type' => MenuItemType::MENU,
-            'label' => 'Menu 2',
-            'color' => 'warning',
-            'icon' => 'bi bi-boxes',
-            'toggler_icon' => 'bi bi-arrow-right',
+            'label' => 'Styled Menu',
+            'icon' => 'bi bi-boxes text-warning',
+            'color' => 'info',
+            'badge' => '2',
+            'badge_color' => 'danger',
+            'badge_classes' => 'rounded-pill me-4',
+            'toggler_icon' => 'bi bi-caret-right-fill text-warning',
             'submenu' => [
                 [
                     'type' => MenuItemType::LINK,
-                    'label' => 'Link E',
-                    'url' => 'link_e',
-                    'icon' => 'bi bi-circle-fill',
+                    'label' => 'Child Link',
+                    'icon' => 'bi bi-star-fill',
+                    'url' => '#',
                 ],
                 [
                     'type' => MenuItemType::LINK,
-                    'label' => 'Link F',
-                    'url' => 'link_f',
-                    'icon' => 'bi bi-circle-fill',
+                    'label' => 'Child Link',
+                    'icon' => 'bi bi-star-fill',
+                    'url' => '#',
                 ],
             ],
         ],
