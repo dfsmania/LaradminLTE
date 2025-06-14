@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte;
 
+use DFSmania\LaradminLte\Events\BuildingMenu;
 use DFSmania\LaradminLte\Tools\Menu\MenuManager;
 use DFSmania\LaradminLte\Tools\Plugins\PluginsManager;
 
@@ -30,11 +31,20 @@ class LaradminLte
      */
     public function __construct()
     {
+        // Load static menu from configuration file.
+
+        $menuCfg = is_array(config('ladmin_menu'))
+            ? config('ladmin_menu')
+            : [];
+
+        // Dispatch an event, allowing listeners to modify the menu
+        // configuration programmatically before it is used.
+
+        event(new BuildingMenu($menuCfg));
+
         // Init the menu manager with the provided menu items configuration.
 
-        $this->menu = new MenuManager(
-            is_array(config('ladmin_menu')) ? config('ladmin_menu') : []
-        );
+        $this->menu = new MenuManager($menuCfg);
 
         // Init the plugins manager with the provided plugins configuration.
 
