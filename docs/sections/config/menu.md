@@ -628,3 +628,114 @@ The `url` property specifies the direct URL or path that a `LINK` menu item shou
 ::: danger CAUTION: Use Either `route` or `url`, Not Both!
 You must specify only one of `route` or `url` for a menu item, never both at the same time.
 :::
+
+## Changing the Menu Programmatically
+
+In some cases, the static configuration provided by the `ladmin_menu.php` file may not offer enough flexibility for your application's needs. To address this, *LaradminLte* fires a `BuildingMenu` event just before the menu is being processed. By listening to this event with a [Laravel Listener](https://laravel.com/docs/events#defining-listeners), you can modify the menu at runtime by adding, removing, or updating items as needed, or even generate the entire menu dynamically, completely bypassing the static configuration file.
+
+### Creating a Laravel Listener
+
+To create a **Listener** for the `BuildingMenu` event, you can use the following Artisan command as reference:
+
+```bash
+php artisan make:listener SetupLaradminLteMenu --event="\DFSmania\LaradminLte\Events\BuildingMenu"
+```
+
+This command will generate a new listener file at `app/Listeners/SetupLaradminLteMenu.php`. You can use this file as a starting point to customize or build your menu dynamically at runtime. The generated listener will look like this:
+
+```php
+<?php
+
+namespace App\Listeners;
+
+use DFSmania\LaradminLte\Events\BuildingMenu;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class SetupLaradminLteMenu
+{
+    /**
+     * Create the event listener.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     */
+    public function handle(BuildingMenu $event): void
+    {
+        // Add your menu customization logic here.
+    }
+}
+```
+
+The `BuildingMenu` event allows you to access and modify the menu structure defined in your `ladmin_menu.php` file. You can do this by interacting with the `menu` property, which contains the entire menu configuration as specified in `ladmin_menu.php`. This means you can dynamically add, remove, or update menu items during the event, giving you full control over the final menu that will be displayed.
+
+::: details Example: Add New Item to Menu
+This basic example demonstrates how to add a new item to the static menu configuration.
+
+```php
+use DFSmania\LaradminLte\Events\BuildingMenu;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+
+/**
+ * Handle the event.
+ */
+public function handle(BuildingMenu $event): void
+{
+    // Add a new link to the SIDEBAR menu...
+
+    $newMenuItem = [
+        'type' => MenuItemType::LINK,
+        // Other properties...
+    ];
+
+    $event->menu[MenuPlacement::SIDEBAR->value][] = $newMenuItem;
+}
+```
+:::
+
+::: details Example: Generate Entire Menu Programmatically
+This basic example demonstrates how to generate your entire menu dynamically, completely replacing the static menu configuration.
+
+```php
+use DFSmania\LaradminLte\Events\BuildingMenu;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+
+/**
+ * Handle the event.
+ */
+public function handle(BuildingMenu $event): void
+{
+    // Create hamburger button to toggle the sidebar (REQUIRED).
+
+    $hamburgerBtn = [
+        'type' => MenuItemType::LINK,
+        'icon' => 'bi bi-list fs-5',
+        'url' => '#',
+        'position' => 'left',
+        'role' => 'button',
+        'data-lte-toggle' => 'sidebar',
+    ];
+
+    // Create your raw menu configuration.
+    // The methods $this->getNavbarItems() and $this->getSidebarItems() should
+    // return an array of menu items.
+
+    $navbarItems = array_merge([$hamburgerBtn], $this->getNavbarItems());
+    $sidebarItems = $this->getSidebarItems();
+
+    $event->menu = [
+        MenuPlacement::NAVBAR->value => $navbarItems,
+        MenuPlacement::SIDEBAR->value => $sidebarItems,
+    ];
+}
+```
+:::
+
+You can now implement your own custom logic inside the `handle` method to modify or change the entire menu before it is rendered.
