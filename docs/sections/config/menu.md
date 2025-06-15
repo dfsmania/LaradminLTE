@@ -672,9 +672,9 @@ class SetupLaradminLteMenu
 }
 ```
 
-The `BuildingMenu` event allows you to access and modify the menu structure defined in your `ladmin_menu.php` file. You can do this by interacting with the `menu` property, which contains the entire menu configuration as specified in `ladmin_menu.php`. This means you can dynamically add, remove, or update menu items during the event, giving you full control over the final menu that will be displayed.
+The `BuildingMenu` event allows you to access and modify the menu structure defined in your `ladmin_menu.php` file. You can do this by interacting with the `menu` property, which contains the entire menu configuration as specified in `ladmin_menu.php`. This means you can dynamically add, remove, or update menu items during the event, giving you full control over the final menu that will be displayed. The following basic examples demonstrate how to work with the event’s `menu` property inside the `handle()` method:
 
-::: details Example: Add New Item to Menu
+::: details Example: Add New Item to Menu {open}
 This basic example demonstrates how to add a new item to the static menu configuration.
 
 ```php
@@ -699,7 +699,7 @@ public function handle(BuildingMenu $event): void
 ```
 :::
 
-::: details Example: Generate Entire Menu Programmatically
+::: details Example: Generate Entire Menu Programmatically {open}
 This basic example demonstrates how to generate your entire menu dynamically, completely replacing the static menu configuration.
 
 ```php
@@ -738,4 +738,106 @@ public function handle(BuildingMenu $event): void
 ```
 :::
 
-You can now implement your own custom logic inside the `handle` method to modify or change the entire menu before it is rendered.
+You can now implement your own custom logic inside the `handle` method to modify or change the entire menu before it is rendered. Below are some more practical examples to help you leverage this feature.
+
+::: details Example: Prefixing URLs based on User's Role
+Suppose you want to dynamically prefix menu item URLs based on the authenticated user's role, and your menu definition uses relative URLs (like `/account/profile/`). For example, if the user is an admin, you might want all sidebar links to be prefixed with `/admin`, while regular users get `/user` as the prefix.
+
+Here's how you could implement this in your listener:
+
+```php
+<?php
+
+namespace App\Listeners;
+
+use DFSmania\LaradminLte\Events\BuildingMenu;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+
+class SetupLaradminLteMenu
+{
+    public function handle(BuildingMenu $event): void
+    {
+        $user = auth()->user();
+        $prefix = $user && $user->is_admin ? '/admin' : '/user';
+
+        // Prefix all sidebar LINK item URLs with the user's role-based prefix.
+
+        foreach ($event->menu[MenuPlacement::SIDEBAR->value] as &$item) {
+            $isLink = isset($item['type'], $item['url'])
+                && $item['type'] === MenuItemType::LINK;
+
+            if ($isLink) {
+                $item['url'] = $prefix . $item['url'];
+            }
+        }
+    }
+}
+```
+
+This approach lets you adjust menu URLs at runtime according to user roles, ensuring users are directed to the correct section of your application without duplicating menu definitions.
+:::
+
+::: details Example: Building Menu from Database Entries
+Suppose you store your menu definitions in a database table (e.g., `admin_menus`). You can fetch the menu items and convert them into the required menu array structure in your listener. For the sake of simplicity, we won't take nested menus into account in this example.
+
+```php
+<?php
+
+namespace App\Listeners;
+
+use DFSmania\LaradminLte\Events\BuildingMenu;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use App\Models\AdminMenu;
+
+class SetupLaradminLteMenu
+{
+    public function handle(BuildingMenu $event): void
+    {
+        // Fetch menu items from the database, ordered as needed.
+
+        $dbMenus = AdminMenu::orderBy('placement')->orderBy('order')->get();
+
+        // Group by placement (navbar/sidebar).
+
+        $menusByPlacement = $dbMenus->groupBy('placement');
+
+        // Helper to convert database rows to menu arrays (no nesting).
+        // Here we assume properties not used by some menu item types are null
+        // on the database (e.g. 'url' is null for HEADERS).
+
+        $toMenuArray = fn($items) => $items->map(function ($item) {
+            return [
+                'type'  => $item->type,
+                'label' => $item->label,
+                'icon'  => $item->icon,
+                'url'   => $item->url,
+                // Add other properties as needed...
+            ];
+        })->values()->all();
+
+        // Create the raw menu config.
+
+        $navbarItems = $toMenuArray(
+            $menusByPlacement[MenuPlacement::NAVBAR->value] ?? collect()
+        );
+
+        $sidebarItems = $toMenuArray(
+            $menusByPlacement[MenuPlacement::SIDEBAR->value] ?? collect()
+        );
+
+        $event->menu = [
+            MenuPlacement::NAVBAR->value => $navbarItems,
+            MenuPlacement::SIDEBAR->value  => $sidebarItems,
+        ];
+    }
+}
+```
+
+This approach lets you manage your menu structure directly from the database.
+:::
+
+::: warning WARNING: Just Examples
+The previous examples are provided solely to illustrate potential use cases. They are not production-ready code and may require additional logic, validation, error handling, and security considerations before use in a production environment. Please, just use them as reference of what can be done.
+:::
