@@ -28,7 +28,28 @@ For more details, refer to the [Pull Requests guide](https://help.github.com/art
 ### Pull Request Guidelines
 
 - Ensure all automated checks pass before requesting a review.
-- If your *Pull Request* introduces a new feature, please add or update the relevant documentation in the `docs` folder, or include proposed documentation in the *Pull Request* description.
+- If your *Pull Request* introduces a new feature, please add or update the relevant documentation in the `docs` folder (see [Documentation Contributions](#documentation-contributions)), or include proposed documentation in the *Pull Request* description.
 - Keep contributions focused on the core functionality of the package. Avoid adding support for unrelated packages or highly specific use cases, as these can increase maintenance complexity.
 
 We appreciate your efforts to make **LaradminLTE** better!
+
+### Documentation Contributions
+
+To contribute to the documentation, which is built with [Vitepress](https://vitepress.dev/):
+
+1. **Navigate to the `docs` Directory:** All documentation source files are located in the `docs` folder at the root of the repository.
+2. **Edit or Add Markdown Files:** Make your changes or add new documentation pages using Markdown (`.md`) files.
+3. **Preview Locally:**
+    - Install dependencies if you haven't already:
+      ```bash
+      npm install
+      ```
+    - Start the Vitepress dev server to preview your changes:
+      ```bash
+      npm run docs:dev
+      ```
+    - Visit the local URL (usually `http://localhost:5173/LaradminLTE`) to review your updates.
+4. **Commit and Push:** Commit your documentation changes to your branch and push them to your fork.
+5. **Pull Request:** Open a Pull Request as described above. Clearly mention that your changes affect the documentation.
+
+Please ensure your documentation is clear, concise, and follows the existing style and structure.
