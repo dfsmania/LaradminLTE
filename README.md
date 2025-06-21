@@ -92,3 +92,7 @@ Explore and modify the package's configuration files to suit your needs:
 - `config/ladmin_plugins.php`: Manage plugins and extensions.
 
 For detailed usage instructions, advanced configuration options, and customization guides, refer to the [Official LaradminLTE Documentation](https://dfsmania.github.io/LaradminLTE).
+
+## Contributing
+
+Thank you for your interest in contributing to *LaradminLTE*! We welcome and appreciate all contributions that help improve the project. Please take a moment to review our guidelines on [the Contribute page](https://github.com/dfsmania/LaradminLTE/contribute) before getting started.
