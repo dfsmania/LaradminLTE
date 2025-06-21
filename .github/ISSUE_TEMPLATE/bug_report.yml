@@ -1,0 +1,46 @@
+name: Bug Report
+description: "Report something that's broken."
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report. Please provide as much detail as possible to help us understand the issue.
+  - type: input
+    attributes:
+      label: LaradminLTE Version
+      description: Provide the LaradminLTE version that you are using.
+      placeholder: dev-main
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Laravel Version
+      description: Provide the Laravel version that you are using.
+      placeholder: 12.18.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: PHP Version
+      description: Provide the PHP version that you are using.
+      placeholder: 8.3.20
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Issue Description
+      description: Provide a detailed description of the issue you are facing, and a clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: Provide detailed steps to reproduce your issue. If necessary, please provide screenshots, videos or code snippets to help us understand the problem.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment and Additional Context
+      description: Provide any additional context or information that may be relevant to the issue, such as your browser version, operating system, ideas for a fix, or any other relevant details.
+    validations:
+      required: false

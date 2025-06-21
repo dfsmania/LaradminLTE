@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Request
+    url: https://github.com/dfsmania/LaradminLTE/discussions
+    about: For ideas or feature requests, start a new discussion
+  - name: Support & Questions
+    url: https://dfsmania.github.io/LaradminLTE/
+    about: For support or questions, please visit the LaradminLTE documentation, or open a discussion as last resort
