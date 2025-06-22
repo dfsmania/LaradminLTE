@@ -57,8 +57,8 @@ return [
         'resources' => [
             [
                 'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
-                'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js',
-                'integrity' => 'sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ',
+                'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js',
+                'integrity' => 'sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK',
                 'crossorigin' => 'anonymous',
             ],
         ],
@@ -71,8 +71,8 @@ return [
         'resources' => [
             [
                 'type' => ResourceType::PRE_ADMINLTE_LINK,
-                'source' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css',
-                'integrity' => 'sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI=',
+                'source' => 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css',
+                'integrity' => 'sha256-pdY4ejLKO67E0CM2tbPtq1DJ3VGDVVdqAR6j3ZwdiE4=',
                 'crossorigin' => 'anonymous',
             ],
         ],
@@ -86,8 +86,8 @@ return [
         'resources' => [
             [
                 'type' => ResourceType::PRE_ADMINLTE_LINK,
-                'source' => 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.3.0/css/all.min.css',
-                'integrity' => 'sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=',
+                'source' => 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css',
+                'integrity' => 'sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=',
                 'crossorigin' => 'anonymous',
             ],
         ],
@@ -116,14 +116,14 @@ return [
         'resources' => [
             [
                 'type' => ResourceType::PRE_ADMINLTE_LINK,
-                'source' => 'https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/styles/overlayscrollbars.min.css',
-                'integrity' => 'sha256-LWLZPJ7X1jJLI5OG5695qDemW1qQ7lNdbTfQ64ylbUY=',
+                'source' => 'https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.4/styles/overlayscrollbars.min.css',
+                'integrity' => 'sha256-dVAS2stV/bK/jvzGpnud966U/YLpnFhwqpHNoKBRgYw=',
                 'crossorigin' => 'anonymous',
             ],
             [
                 'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
-                'source' => 'https://cdn.jsdelivr.net/npm/overlayscrollbars@2.1.0/browser/overlayscrollbars.browser.es6.min.js',
-                'integrity' => 'sha256-NRZchBuHZWSXldqrtAOeCZpucH/1n1ToJ3C8mSK95NU=',
+                'source' => 'https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.4/browser/overlayscrollbars.browser.es6.min.js',
+                'integrity' => 'sha256-SzG+hSSaDHMjdGPyEfl8WY0tQh+td14SLNy+02p5MTM=',
                 'crossorigin' => 'anonymous',
             ],
         ],
