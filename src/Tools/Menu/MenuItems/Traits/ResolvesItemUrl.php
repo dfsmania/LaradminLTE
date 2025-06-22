@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits;
 
-trait ResolvesMenuItemUrl
+trait ResolvesItemUrl
 {
     /**
      * Resolves the URL associated with a menu item from its configuration.

@@ -6,13 +6,13 @@ use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\CallableActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\UrlActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesMenuItemUrl;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemUrl;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;
 
 class DropdownLink extends AbstractLeafMenuItem
 {
-    use ResolvesMenuItemUrl;
+    use ResolvesItemUrl;
 
     /**
      * Defines the validation rules for the menu item configuration. These
