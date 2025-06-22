@@ -30,6 +30,8 @@ php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServicePr
 php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
 ```
 
+The published assets include the *AdminLTE v4* distribution files and image logos required for the package's layout and branding.
+
 ### 3. Create a Test Route and View
 
 Set up a test route in your `routes/web.php` file:
