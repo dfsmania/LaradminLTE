@@ -196,7 +196,7 @@ return [
 
         // The animation speed in milliseconds to use when toggling a sidebar
         // treeview menu between expanded and collapsed states.
-        'treewiew_animation_speed' => 300,
+        'treeview_animation_speed' => 300,
     ],
 
     /*
