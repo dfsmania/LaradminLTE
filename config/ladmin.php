@@ -193,6 +193,10 @@ return [
         // collapsed, the sidebar shrinks to a compact size displaying icons
         // only, instead of fully collapsing.
         'mini_sidebar' => true,
+
+        // The animation speed in milliseconds to use when toggling a sidebar
+        // treeview menu between expanded and collapsed states.
+        'treewiew_animation_speed' => 300,
     ],
 
     /*

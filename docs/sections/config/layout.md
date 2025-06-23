@@ -310,6 +310,7 @@ The `sidebar` section provides full control over the behavior and appearance of 
     'default_collapsed' => false,
     'expand_breakpoint' => 'lg',
     'mini_sidebar' => true,
+    'treeview_animation_speed' => 300,
 ]
 ```
 :::
@@ -359,6 +360,13 @@ Determines the `Bootstrap` breakpoint at which the sidebar automatically expands
 - Example: `'mini_sidebar' => true`
 
 Enables a compact **"mini sidebar"** mode when the sidebar is manually collapsed. Instead of hiding completely, the sidebar shrinks to show only icons — a useful feature for experienced users familiar with the menu structure.
+
+### *treeview_animation_speed*:
+
+- Type: `int (> 0)`
+- Example: `'treeview_animation_speed' => 300`
+
+Specifies the duration (in milliseconds) of the expand/collapse animation for sidebar **treeview menus**. Adjust this value to control how quickly submenu items appear or disappear when toggling treeview sections. Higher values result in slower, smoother transitions, while lower values make the animation faster.
 
 ## Footer
 
