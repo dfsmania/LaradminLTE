@@ -5,11 +5,14 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractCompositeMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;
 
 class Menu extends AbstractCompositeMenuItem
 {
+    use ResolvesItemLocalization;
+
     /**
      * Defines the validation rules for the menu item configuration. These
      * rules are used with the Laravel Validator to ensure the configuration
@@ -71,6 +74,17 @@ class Menu extends AbstractCompositeMenuItem
 
         $togglerIcon = $config['toggler_icon']
             ?? config('ladmin.icons.treeview_toggler');
+
+        // Resolve translations for the label and the badge, if they are
+        // provided in the configuration.
+
+        if (! empty($config['label'])) {
+            $config['label'] = static::getTranslation($config['label']);
+        }
+
+        if (! empty($config['badge'])) {
+            $config['badge'] = static::getTranslation($config['badge']);
+        }
 
         // Create and return the blade component for the menu item.
 

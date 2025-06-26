@@ -5,11 +5,14 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Navbar;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractCompositeMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;
 
 class Menu extends AbstractCompositeMenuItem
 {
+    use ResolvesItemLocalization;
+
     /**
      * Defines the validation rules for the menu item configuration. These
      * rules are used with the Laravel Validator to ensure the configuration
@@ -71,6 +74,12 @@ class Menu extends AbstractCompositeMenuItem
         $menuClasses = ($config['position'] ?? 'left') === 'right'
             ? 'dropdown-menu-end'
             : 'dropdown-menu-start';
+
+        // Resolve translations for the label, if it is provided in the config.
+
+        if (! empty($config['label'])) {
+            $config['label'] = static::getTranslation($config['label']);
+        }
 
         // Create and return the blade component for the menu item.
 

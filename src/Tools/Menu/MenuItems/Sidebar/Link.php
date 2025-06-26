@@ -6,13 +6,14 @@ use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\CallableActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\UrlActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemUrl;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;
 
 class Link extends AbstractLeafMenuItem
 {
-    use ResolvesItemUrl;
+    use ResolvesItemLocalization, ResolvesItemUrl;
 
     /**
      * Defines the validation rules for the menu item configuration. These
@@ -50,6 +51,20 @@ class Link extends AbstractLeafMenuItem
         array $config,
         bool $isActive = false
     ): Component {
+
+        // Resolve translations for the label and the badge, if they are
+        // provided in the configuration.
+
+        if (! empty($config['label'])) {
+            $config['label'] = static::getTranslation($config['label']);
+        }
+
+        if (! empty($config['badge'])) {
+            $config['badge'] = static::getTranslation($config['badge']);
+        }
+
+        // Create the blade component for the link menu item.
+
         return new Layout\Sidebar\Link(
             icon: $config['icon'] ?? null,
             label: $config['label'] ?? null,

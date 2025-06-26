@@ -228,4 +228,24 @@ return [
         // typically used to configure its background color and styling.
         'classes' => ['bg-body-tertiary'],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Menu Translations
+    |--------------------------------------------------------------------------
+    |
+    | Here you can enable and setup how to translate the menu items of your
+    | admin panel. This will enhance user experience by allowing localization
+    | of menu labels and other text elements to create multilingual interfaces.
+    |
+    */
+
+    'menu_translations' => [
+        // Determines whether to enable the menu translations feature.
+        'enabled' => true,
+
+        // The name of the PHP file that will be used to resolve menu
+        // translations when using short keys translations syntax.
+        'php_file' => 'ladmin_menu',
+    ],
 ];

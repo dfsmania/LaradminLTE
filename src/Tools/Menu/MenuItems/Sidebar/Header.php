@@ -3,11 +3,14 @@
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\View\Component;
 
 class Header extends AbstractLeafMenuItem
 {
+    use ResolvesItemLocalization;
+
     /**
      * Defines the validation rules for the menu item configuration. These
      * rules are used with the Laravel Validator to ensure the configuration
@@ -39,7 +42,7 @@ class Header extends AbstractLeafMenuItem
         bool $isActive = false
     ): Component {
         return new Layout\Sidebar\Header(
-            label: $config['label'],
+            label: static::getTranslation($config['label']),
             icon: $config['icon'] ?? null,
             color: $config['color'] ?? null,
         );
