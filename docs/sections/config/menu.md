@@ -398,6 +398,7 @@ The `badge` property can be used to display a small label or count next to the m
 
 - **Type**: `string`
 - **Example**: `'badge' => '5'`
+- **Extra feature**: [Supports translations](#translations)
 
 ### *badge_classes*
 
@@ -546,6 +547,7 @@ The `label` property specifies the text shown for the menu item. It serves as th
 
 - **Type**: `string`
 - **Example**: `'label' => 'Settings'`
+- **Extra feature**: [Supports translations](#translations)
 
 ### *menu_color*
 
@@ -841,3 +843,133 @@ This approach lets you manage your menu structure directly from the database.
 ::: warning WARNING: Just Examples
 The previous examples are provided solely to illustrate potential use cases. They are not production-ready code and may require additional logic, validation, error handling, and security considerations before use in a production environment. Please, just use them as reference of what can be done.
 :::
+
+## Translations
+
+When the menu translation feature is enabled by configuration, *LaradminLTE* will use [Laravel's translation features](https://laravel.com/docs/localization) to automatically translate menu item properties such as *label* and *badge* according to the following process:
+
+1. **PHP Array-Based Translation:** The system will first attempt to resolve the property value as a short translation key using your configured [PHP language file](/sections/config/layout#php-file) located in the `lang` directory of your Laravel application.
+2. **JSON String-Based Translation:** If no translation is found using the PHP file, it will then attempt to translate the full string value using your application's JSON language files, also located in the `lang` directory.
+3. **Fallback to Raw Value:** If neither translation method yields a result, the original property value will be displayed as-is.
+
+This approach ensures full compatibility with both of Laravel’s translation strategies, allowing you to choose the method that best fits your workflow and localization requirements.
+
+### 1. Short Key Translations (PHP Files)
+
+To use short key translations for your menu entries, first configure the [PHP language file](/sections/config/layout#php-file) that will be used for translation lookups. Then, define your menu item properties (such as *label*) using concise translation keys instead of hardcoded strings.
+
+Below is a basic example demonstrating this approach. In this scenario, the configured PHP language file is named `ladmin_menu`. The example shows how to define menu entries in your configuration file and how to provide *English* and *Spanish* translations for those keys.
+
+::: code-group
+```php [config/ladmin_menu.php]
+<?php
+
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+
+return [
+    MenuPlacement::NAVBAR->value => [
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'about_us', // Translation key
+            'icon' => 'bi bi-question-circle-fill',
+            'url' => '/about_us',
+        ],
+    ],
+
+    MenuPlacement::SIDEBAR->value => [
+        [
+            'type' => MenuItemType::HEADER,
+            'label' => 'management', // Translation key
+            'icon' => 'bi bi-person-fill-gear',
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'users', // Translation key
+            'icon' => 'bi bi-people-fill',
+            'url' => '/users',
+        ],
+    ],
+];
+```
+
+```php [lang/en/ladmin_menu.php]
+<?php
+
+return [
+    'about_us' => 'About Us',
+    'management'=> 'Management',
+    'users' => 'Users',
+];
+```
+
+```php [lang/es/ladmin_menu.php]
+<?php
+
+return [
+    'about_us' => 'Acerca de Nosotros',
+    'management'=> 'Administración',
+    'users' => 'Usuarios',
+];
+```
+:::
+
+With this setup, *LaradminLTE* will automatically resolve the *label* properties using the appropriate language file based on the current locale of your Laravel application, ensuring your menu is fully localized and easy to maintain.
+
+### 2. Full String Translations (JSON Files)
+
+To use full string translations for your menu entries, define your menu item properties (such as *label*) using the complete, human-readable strings you want to display. Then, for each supported language, create a `{locale}.json` file inside your `lang` directory, mapping each full string to its translation.
+
+Below is a basic example illustrating this approach. The configuration file uses full strings for menu labels, and the corresponding JSON language files provide both *English* and *Spanish* translations.
+
+::: code-group
+```php [config/ladmin_menu.php]
+<?php
+
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+
+return [
+    MenuPlacement::NAVBAR->value => [
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'About Us',
+            'icon' => 'bi bi-question-circle-fill',
+            'url' => '/about_us',
+        ],
+    ],
+
+    MenuPlacement::SIDEBAR->value => [
+        [
+            'type' => MenuItemType::HEADER,
+            'label' => 'Management',
+            'icon' => 'bi bi-person-fill-gear',
+        ],
+        [
+            'type' => MenuItemType::LINK,
+            'label' => 'Users',
+            'icon' => 'bi bi-people-fill',
+            'url' => '/users',
+        ],
+    ],
+];
+```
+
+```json [lang/en.json]
+{
+    "About Us": "About Us",
+    "Management": "Management",
+    "Users": "Users"
+}
+```
+
+```json [lang/es.json]
+{
+    "About Us": "Acerca de Nosotros",
+    "Management": "Administración",
+    "Users": "Usuarios"
+}
+```
+:::
+
+With this setup, *LaradminLTE* will automatically translate the *label* properties using the appropriate JSON language file based on the current locale of your Laravel application, ensuring your menu is fully localized.
