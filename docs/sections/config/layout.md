@@ -409,3 +409,32 @@ The `main_content` section controls the styling of the central content area wher
 - Example: `'classes' => ['bg-body-tertiary']`
 
 A list of `CSS` classes applied to the main content container. These classes affect the background color and general styling of the page body. Useful for aligning your content area with your overall design theme.
+
+## Menu Translations
+
+The `menu_translations` section allows you to enable and configure the localization system for menu items. When enabled, some attributes in the menu items (like the *label* and *badge*) will be translated automatically using [Laravel's translation features](https://laravel.com/docs/localization), supporting both **PHP array** and **JSON-based** translations. This helps create multilingual admin panels more easily.
+
+::: details Quick Example {open}
+```php
+'menu_translations' => [
+    'enabled' => true,
+    'php_file' => 'ladmin_menu',
+]
+```
+:::
+
+For usage details, review the [Menu > Translations](/sections/config/menu#translations) section.
+
+### *enabled*:
+
+- Type: `bool`
+- Example: `'enabled' => true`
+
+Specifies whether to enable automatic translation of menu item attributes such as *label* and *badge*. When set to `true`, these attributes will be passed through Laravel’s translation utilities, allowing your menu to support multiple languages. If set to `false`, the original values will be displayed without translation.
+
+### *php_file*:
+
+- Type: `string`
+- Example: `'php_file' => 'ladmin_menu'`
+
+Specifies the name of the PHP language file used for translating menu items properties defined with short keys. When a menu item's *label* or *badge* is set to a short key (for example, `'dashboard'`), it will be resolved as `'{php_file}.dashboard'` using the translations defined in that file. This option is only relevant when the value is not a full translation string and you prefer to use Laravel’s PHP array translation files instead of JSON-based translations.
