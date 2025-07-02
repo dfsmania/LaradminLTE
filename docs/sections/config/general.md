@@ -1,8 +1,8 @@
-# Layout Configuration
+# General Configuration
 
-These settings allow you to customize the layout, branding, and appearance of your admin panel.
+These settings allow you to customize the features, layout, branding, and appearance of your admin panel.
 
-The layout settings are managed in the `config/ladmin.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
+The general settings are managed in the `config/ladmin.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
 php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
@@ -53,7 +53,7 @@ The current version number of your admin panel. Displayed in the footer or a cus
 
 ## Favicons
 
-This configuration block defines how your application declares and serves favicon assets (those small icons displayed in browser tabs, bookmarks, home screen shortcuts, and other interfaces). Note that this configuration does not generate favicon files; it only helps produce the appropriate *HTML markup* to reference the favicon files you’ve already prepared.
+This configuration block defines how your application declares and serves favicon assets (those small icons displayed in browser tabs, bookmarks, home screen shortcuts, and other interfaces). Please, note that this configuration does not generate any favicon files; it only helps produce the appropriate *HTML markup* to reference the favicon files you’ve already prepared.
 
 ::: details Example 1: Setup Minimal Favicon Support {open}
 ::: code-group
@@ -138,7 +138,7 @@ To ensure this configuration works correctly, all favicon files must be placed i
 - Type: `bool`
 - Example: `'full_support' => true`
 
-Determines whether your application should output a full set of `<link>` and `<meta>` tags to maximize favicon and branding support across multiple platforms (iOS, Android Chrome, Windows tiles, Safari pinned tabs, etc.).
+Determines whether your application should output a full set of `<link>` and `<meta>` tags to maximize favicon and branding support across multiple platforms (*iOS*, *Android Chrome*, *Windows tiles*, *Safari pinned tabs*, *etc.*).
 
 When set to `true`, the configuration will generate all recommended tags for broad compatibility, leveraging the other favicon options you configure. When set to `false`, only a minimal favicon declaration will be included:
 

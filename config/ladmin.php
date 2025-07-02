@@ -2,15 +2,15 @@
 
 /*
 |------------------------------------------------------------------------------
-| LaradminLTE Layout Configuration
+| LaradminLTE General Configuration
 |------------------------------------------------------------------------------
 |
-| This file contains the configuration settings for the layout of your admin
-| panel. You can customize various aspects of the layout, including basic
-| information, favicons, brand logo, multiple layout options, and more.
+| This file contains the general configuration settings of your admin panel.
+| You can customize various aspects of the panel, including basic information,
+| favicons, brand logo, multiple layout options, and more.
 |
 | For more details, refer to the online documentation:
-| https://dfsmania.github.io/LaradminLTE/sections/config/layout.html
+| https://dfsmania.github.io/LaradminLTE/sections/config/general.html
 |
 */
 return [

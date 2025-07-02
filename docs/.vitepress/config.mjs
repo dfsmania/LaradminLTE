@@ -29,7 +29,7 @@ export default defineConfig({
         text: 'Configuration',
         collapsed: false,
         items: [
-          { text: 'Layout', link: '/sections/config/layout' },
+          { text: 'General', link: '/sections/config/general' },
           { text: 'Menu', link: '/sections/config/menu' },
           { text: 'Plugins', link: '/sections/config/plugins' },
         ]

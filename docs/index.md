@@ -20,7 +20,7 @@ hero:
       link: /sections/overview/getting-started
     - theme: alt
       text: Config Reference
-      link: /sections/config/layout
+      link: /sections/config/general
 
 features:
   - icon:
