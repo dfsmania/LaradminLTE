@@ -1,8 +1,8 @@
 # Plugins Configuration
 
-This section explains how to configure frontend plugins used in the Admin panel layout. Plugins such as `Bootstrap`, `FontAwesome`, and custom `CSS/JS` libraries can be registered to control how and when they are loaded.
+This section explains how to configure frontend plugins used in the Admin panel layout. Plugins such as *Bootstrap*, *FontAwesome*, and custom *CSS/JS* libraries can be registered to control how and when they are loaded.
 
-These settings apply only when you are not using an **asset bundler** (like `Vite`). If you rely on a bundler, plugin assets should be imported via your build pipeline instead.
+These settings apply only when you are not using an **asset bundler** (like [Vite](https://laravel.com/docs/vite)). If you rely on a bundler, plugin assets should be imported via your build pipeline instead.
 
 The plugins settings are managed in the `config/ladmin_plugins.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
@@ -16,14 +16,13 @@ Each plugin is registered under a unique name and consists of the following:
 
 - The **always** flag, which determines if the plugin’s resources are loaded on every page or only when explicitly requested.
 
-- A list of **resources** (`CSS` or `JS` files) to be included, each with customizable options.
+- A list of **resources** (*CSS* or *JS* files) to be included, each with customizable options.
 
-- The **resource type**, specifying where the resource should be injected relative to the core `AdminLTE v4` assets (e.g., before or after core scripts/styles).
+- The **resource type**, specifying where the resource should be injected relative to the core *AdminLTE v4* assets (e.g., before or after core scripts/styles).
 
 The default `config/ladmin_plugins.php` file comes pre-configured with a set of plugin definitions that are required for working with **Bootstrap 5** and the **AdminLTE v4** template. These examples provide a solid starting point and can be used as templates when adding or customizing plugins to suit your project's needs. Review and adjust these definitions as necessary to integrate additional frontend libraries or modify existing ones.
 
 ::: details Quick Example {open}
-
 In this example the **Bootstrap 5** resource file will be included before the **AdminLTE 4 core** script file.
 
 ```php
@@ -32,7 +31,7 @@ In this example the **Bootstrap 5** resource file will be included before the **
     'resources' => [
         [
             'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
-            'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js',
+            'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js',
             'integrity' => 'sha384-...',
             'crossorigin' => 'anonymous',
         ],
@@ -41,10 +40,10 @@ In this example the **Bootstrap 5** resource file will be included before the **
 ```
 :::
 
-Please, note plugins are included in your layout in the exact order they are defined within the `config/ladmin_plugins.php` file. This means that dependencies between plugins, such as loading `jQuery` before a plugin that requires it, are respected only if you register them in the correct sequence. Review and arrange your plugin definitions carefully to ensure that all required assets are loaded in the proper order for your application to function as expected.
+Please, note plugins are included in your layout in the exact order they are defined within the `config/ladmin_plugins.php` file. This means that dependencies between plugins, such as loading *jQuery* before a plugin that requires it, are respected only if you register them in the correct sequence. Review and arrange your plugin definitions carefully to ensure that all required assets are loaded in the proper order for your application to function as expected.
 
 ::: tip TIP: Conditional Plugin Loading
-To include a plugin only on certain pages, set its `always` property to `false` in the configuration. Then, you can use the custom `@ladmin_plugin('PluginName')` Blade directive on any view where you want the plugin loaded. For details, refer to the [Conditional Plugin Loading](#conditional-plugin-loading) section.
+To include a plugin only on certain pages, set its **always** property to `false` in the configuration. Then, you can use the custom `@ladmin_plugin('PluginName')` Blade directive on any view where you want the plugin loaded. For details, refer to the [Conditional Plugin Loading](#conditional-plugin-loading) section.
 :::
 
 ## Plugin Definition
@@ -55,28 +54,28 @@ Before customizing or adding new plugins, it's important to understand the struc
 
 Below is a quick overview of the available plugin settings and how to configure them in your project.
 
-| Property  | Type      | Required | Description                                                                                                           |
-|-----------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------|
-| always    | `boolean` | No       | If `true`, plugin resources are included on every page using the layout. If `false`, load it with `@ladmin_plugin()`. |
-| resources | `array`   | **Yes**  | List of `CSS` or `JS` resources to load for the plugin. See [Resource Definition](#resource-definition) below.        |
+| Property  | Type      | Required | Description                                                                                                                   |
+|-----------|-----------|----------|-------------------------------------------------------------------------------------------------------------------------------|
+| always    | `boolean` | No       | If `true`, plugin resources are included on every page using the layout. If `false`, you can load it with `@ladmin_plugin()`. |
+| resources | `array`   | **Yes**  | List of *CSS* or *JS* resources to load for the plugin. See [Resource Definition](#resource-definition) below.                |
 
 ### Resource Definition
 
-Each plugin defines one or more resources, which are the external or local `CSS` and `JS` files that should be loaded as part of the plugin. Resources specify the file location, type (`CSS` or `JS`), and how and when they are injected into the page. This flexible structure allows you to precisely control the inclusion and order of frontend assets for each plugin.
+Each plugin defines one or more resources, which are the external or local *CSS* and *JS* files that should be loaded as part of the plugin. Resources specify the file location, its type, and how and when they are injected into the page. This flexible structure allows you to precisely control the inclusion and order of frontend assets for each plugin.
 
 | Property | Type           | Required | Description                                                              |
 |----------|----------------|----------|--------------------------------------------------------------------------|
-| source   | `string`       | **Yes**  | The URL or asset path to the resource (`JS` or `CSS`).                   |
+| source   | `string`       | **Yes**  | The URL or asset path to the resource (*JS* or *CSS*).                   |
 | type     | `ResourceType` | **Yes**  | The load type (e.g., `PRE_ADMINLTE_SCRIPT`, `POST_ADMINLTE_LINK`).       |
 | asset    | `boolean`      | No       | If `true`, the resource will be loaded using Laravel's `asset()` helper. |
 
-::: warning WARNING: Using the `asset` Property
-When setting the `asset` property to `true` for a plugin resource, make sure the referenced file exists within your Laravel application's `public` directory (such as `public/plugins/your-plugin/`) or is accessible via the path defined in your `ASSET_URL` environment variable. The `asset()` helper generates `URLs` relative to this location. If the file is missing or not publicly accessible, the browser will not be able to load the resource, which may cause your plugin to malfunction.
+::: warning WARNING: Using the *Asset* Property
+When setting the **asset** property to `true` for a plugin resource, make sure the referenced file exists within your Laravel application's `public` directory (such as `public/plugins/your-plugin/`) or is accessible via the path defined in your `ASSET_URL` environment variable. The `asset()` helper generates *URLs* relative to this location. If the file is missing or not publicly accessible, the browser will not be able to load the resource, which may cause your plugin to malfunction.
 :::
 
 ### Resource Types
 
-Each plugin resource must have a `type` that determines its injection point within the layout. These are defined by the following enum:
+Each plugin resource must have a **type** that determines its injection point within the layout, relative to the **AdminLTE** core files. These are defined by the following enum:
 
 ```php
 DFSmania\LaradminLte\Tools\Plugins\ResourceType
@@ -93,7 +92,7 @@ Choose the appropriate resource type based on whether your asset needs to be loa
 
 ## Conditional Plugin Loading
 
-To load a plugin only on specific views, set its `always` property to `false` in the `config/ladmin_plugins.php` file. Then, include the plugin in any Blade view where it is needed using the custom directive:
+To load a plugin only on specific views, set its **always** property to `false` in the `config/ladmin_plugins.php` file. Then, include the plugin in any Blade view where it is needed using the custom directive:
 
 ```blade
 @ladmin_plugin('PluginName')
@@ -103,7 +102,7 @@ This directive signals the layout to inject the plugin’s resources for that pa
 
 ## Adding Extra Properties
 
-Each plugin resource supports a set of standard properties, but you can also add custom properties to further tailor how resources are included in your layout. These extra properties are rendered as `HTML` attributes on the corresponding `<link>` or `<script>` tag, enabling advanced customization such as adding `integrity`, `crossorigin`, or custom data attributes.
+Each plugin resource supports a set of standard properties, but you can also add custom properties to further tailor how resources are included in your layout. These extra properties are rendered as *HTML* attributes on the corresponding `<link>` or `<script>` tag, enabling advanced customization such as adding `integrity`, `crossorigin`, or custom data attributes.
 
 For example, you might want to add `integrity`, `crossorigin`, and `defer` attributes to an external-loaded script:
 ```php
@@ -119,7 +118,7 @@ For example, you might want to add `integrity`, `crossorigin`, and `defer` attri
 ]
 ```
 
-When rendered in the layout, this resource could produce the following `HTML`:
+When rendered in the layout, this resource could produce the following *HTML markup*:
 
 ```html
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -139,10 +138,10 @@ Both **Bootstrap Icons** and **FontAwesome** are pre-configured as plugins in th
 By default, both icon libraries are available and supported, but only the resources for plugins with `'always' => true` will be loaded on every page. To control which icon set is included:
 
 - **_Enable Bootstrap Icons:_**
-    Set `'always' => true` for the `BootstrapIcons` plugin and `'always' => false` for `FontAwesome` in the config file.
+    Set `'always' => true` for the *BootstrapIcons* plugin and `'always' => false` for *FontAwesome* in the config file.
 
 - **_Enable FontAwesome Icons:_**
-    Set `'always' => true` for the `FontAwesome` plugin and `'always' => false` for `BootstrapIcons`.
+    Set `'always' => true` for the *FontAwesome* plugin and `'always' => false` for *BootstrapIcons*.
 
 - **_Use Both:_**
     Set `'always' => true` for both plugins if you want both icon sets available globally.
@@ -181,7 +180,7 @@ By default, both icon libraries are available and supported, but only the resour
 
 Once the desired icon set is loaded, you can use their respective classes in your Blade templates or when defining menu entries in your configuration files.
 
-#### **Using Icons in Blade Templates**
+#### Using Icons in Blade Templates
 
 - *Bootstrap Icons:*
     ```html
@@ -193,9 +192,9 @@ Once the desired icon set is loaded, you can use their respective classes in you
     <i class="fa-solid fa-bell"></i>
     ```
 
-#### **Using Icons in Menu Definitions**
+#### Using Icons in Menu Definitions
 
-When defining menu items (for example, in your `config/ladmin_menu.php`), specify the icon class in the `icon` property:
+When defining menu items (for example, in your `config/ladmin_menu.php`), specify the icon class in the **icon** property:
 
 - *Bootstrap Icons:*
     ```php
@@ -218,13 +217,13 @@ When defining menu items (for example, in your `config/ladmin_menu.php`), specif
 The menu system will automatically render the appropriate `<i>` tag with the provided class, ensuring your chosen icon set appears correctly in the sidebar or navigation. This approach allows you to seamlessly integrate and switch between icon libraries throughout your application, both in your views and navigation menus.
 
 ::: info INFO: Using Other Icon Sets
-You can integrate additional icon libraries just like *Bootstrap Icons* or *FontAwesome Icons*. To do this, register the icon set as a plugin in your `config/ladmin_plugins.php` file and ensure its resources are loaded as needed. For menu items, any icon library will work as long as it uses `CSS` classes applied to `<i>` tags. After registering the plugin, simply use the correct syntax in your Blade templates to display icons from your chosen library.
+You can integrate additional icon libraries just like *Bootstrap Icons* or *FontAwesome Icons*. To do this, register the icon set as a plugin in your `config/ladmin_plugins.php` file and ensure its resources are loaded as needed. For menu items, any icon library will work as long as it uses *CSS* classes applied to `<i>` tags. After registering the plugin, simply use the correct syntax in your Blade templates to display icons from your chosen library.
 :::
 
 ## Best Practices
 
-- Keep required core plugins like `Bootstrap`, `Popper`, and `OverlayScrollbars` set to `'always' => true`.
+- Keep required core plugins like *Bootstrap*, *Popper*, and *OverlayScrollbars* set to `'always' => true`.
 
-- Use the `@ladmin_plugin()` Blade directive for additional plugins like `Chart.js`, or custom scripts that are used only on specific pages.
+- Use the `@ladmin_plugin()` Blade directive for additional plugins like *Chart.js*, or custom scripts that are used only on specific pages.
 
 - Avoid mixing **bundler-managed resources** with this configuration unless clearly isolated.

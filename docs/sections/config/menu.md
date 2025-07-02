@@ -848,7 +848,7 @@ The previous examples are provided solely to illustrate potential use cases. The
 
 When the menu translation feature is enabled by configuration, *LaradminLTE* will use [Laravel's translation features](https://laravel.com/docs/localization) to automatically translate menu item properties such as *label* and *badge* according to the following process:
 
-1. **PHP Array-Based Translation:** The system will first attempt to resolve the property value as a short translation key using your configured [PHP language file](/sections/config/layout#php-file) located in the `lang` directory of your Laravel application.
+1. **PHP Array-Based Translation:** The system will first attempt to resolve the property value as a short translation key using your configured [PHP language file](/sections/config/general#php-file) located in the `lang` directory of your Laravel application.
 2. **JSON String-Based Translation:** If no translation is found using the PHP file, it will then attempt to translate the full string value using your application's JSON language files, also located in the `lang` directory.
 3. **Fallback to Raw Value:** If neither translation method yields a result, the original property value will be displayed as-is.
 
@@ -856,7 +856,7 @@ This approach ensures full compatibility with both of Laravel’s translation st
 
 ### 1. Short Key Translations (PHP Files)
 
-To use short key translations for your menu entries, first configure the [PHP language file](/sections/config/layout#php-file) that will be used for translation lookups. Then, define your menu item properties (such as *label*) using concise translation keys instead of hardcoded strings.
+To use short key translations for your menu entries, first configure the [PHP language file](/sections/config/general#php-file) that will be used for translation lookups. Then, define your menu item properties (such as *label*) using concise translation keys instead of hardcoded strings.
 
 Below is a basic example demonstrating this approach. In this scenario, the configured PHP language file is named `ladmin_menu`. The example shows how to define menu entries in your configuration file and how to provide *English* and *Spanish* translations for those keys.
 
