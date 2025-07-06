@@ -22,7 +22,7 @@ class Header extends AbstractLeafMenuItem
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
         'is_allowed' => 'sometimes',
-        'label' => 'required|string',
+        'label' => 'required|ladmin_translatable',
         'position' => 'sometimes|in:left,right',
         'type' => 'required',
     ];

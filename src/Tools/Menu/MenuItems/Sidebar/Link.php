@@ -23,14 +23,14 @@ class Link extends AbstractLeafMenuItem
      * @var array<string, string|array>
      */
     protected static array $cfgValidationRules = [
-        'badge' => 'sometimes|string',
+        'badge' => 'sometimes|ladmin_translatable',
         'badge_classes' => 'sometimes|string',
         'badge_color' => 'sometimes|string',
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
         'is_active' => 'sometimes',
         'is_allowed' => 'sometimes',
-        'label' => 'required_without:icon|string',
+        'label' => 'required_without:icon|ladmin_translatable',
         'route' => 'sometimes|array',
         'type' => 'required',
         'url' => 'required_without:route|string',

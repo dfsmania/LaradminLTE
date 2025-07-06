@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte;
 
 use DFSmania\LaradminLte\View\Components\Layout;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class LaradminLteServiceProvider extends ServiceProvider
@@ -70,9 +71,13 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->loadTranslations();
 
-        // Register the custom blade directives of the package.
+        // Load the custom blade directives of the package.
 
-        $this->registerBladeDirectives();
+        $this->loadCustomBladeDirectives();
+
+        // Load the custom validators of the package.
+
+        $this->loadCustomValidators();
 
         // Declare the publishable resources of the package. Ensure publishable
         // resources are only available in console context.
@@ -154,11 +159,11 @@ class LaradminLteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the package custom blade directives.
+     * Load the custom blade directives of the package.
      *
      * @return void
      */
-    private function registerBladeDirectives(): void
+    private function loadCustomBladeDirectives(): void
     {
         // Register the "ladmin_plugin" directive to explicitly include plugin
         // resources in the HTML document.
@@ -168,6 +173,26 @@ class LaradminLteServiceProvider extends ServiceProvider
             $phpCode .= "\PluginsManager::setPluginAsRequired($pluginName);";
 
             return "<?php {$phpCode} ?>";
+        });
+    }
+
+    /**
+     * Load the custom validators of the package.
+     *
+     * @return void
+     */
+    private function loadCustomValidators(): void
+    {
+        // Register a custom validator for validating translatable values.
+        // This validator checks if the value is a string or an array with a
+        // string as the first element and an optional array as the second
+        // element.
+
+        $alias = "{$this->pkgPrefix}_translatable";
+
+        Validator::extend($alias, function ($attribute, $value): bool {
+            return is_string($value)
+                || (is_array($value) && $this->isTranslatableArray($value));
         });
     }
 
@@ -228,5 +253,21 @@ class LaradminLteServiceProvider extends ServiceProvider
     private function packagePath(string $path): string
     {
         return __DIR__."/../{$path}";
+    }
+
+    /**
+     * Checks if the given array is a valid translatable array.
+     *
+     * A valid translatable array should have a string as the first element
+     * and an optional array as the second element.
+     *
+     * @param  array  $arr  The array to check.
+     * @return bool
+     */
+    private function isTranslatableArray(array $arr): bool
+    {
+        return isset($arr[0])
+            && is_string($arr[0])
+            && (! isset($arr[1]) || is_array($arr[1]));
     }
 }

@@ -25,7 +25,7 @@ class Menu extends AbstractCompositeMenuItem
         'icon' => 'sometimes|string',
         'is_allowed' => 'sometimes',
         'menu_color' => 'sometimes|string',
-        'label' => 'required_without:icon|string',
+        'label' => 'required_without:icon|ladmin_translatable',
         'position' => 'sometimes|in:left,right',
         'submenu' => 'required|array',
         'type' => 'required',

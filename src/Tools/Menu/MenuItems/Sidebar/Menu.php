@@ -21,13 +21,13 @@ class Menu extends AbstractCompositeMenuItem
      * @var array<string, string|array>
      */
     protected static array $cfgValidationRules = [
-        'badge' => 'sometimes|string',
+        'badge' => 'sometimes|ladmin_translatable',
         'badge_classes' => 'sometimes|string',
         'badge_color' => 'sometimes|string',
         'color' => 'sometimes|string',
         'icon' => 'sometimes|string',
         'is_allowed' => 'sometimes',
-        'label' => 'required|string',
+        'label' => 'required|ladmin_translatable',
         'submenu' => 'required|array',
         'toggler_icon' => 'sometimes|string',
         'type' => 'required',
