@@ -396,9 +396,13 @@ This section provides a comprehensive reference for all supported menu item prop
 
 The `badge` property can be used to display a small label or count next to the menu item, commonly used to highlight notifications, pending actions, or status indicators. This helps draw attention to important updates or actionable items within your menu.
 
-- **Type**: `string`
+- **Type**: `string|array`
 - **Example**: `'badge' => '5'`
 - **Extra feature**: [Supports translations](#translations)
+
+::: warning WARNING: About Using Array Type
+The property should only be defined as an `array` when you need to provide a translation definition with parameters (for example, `['users_count', ['count' => 5]]`). In all other cases, just use a `string` for the property.
+:::
 
 ### *badge_classes*
 
@@ -545,9 +549,13 @@ This ensures only authorized users see the relevant menu items.
 
 The `label` property specifies the text shown for the menu item. It serves as the primary identifier for users navigating the menu. In most cases, a label is required, but for certain item types (such as links with only an icon), it may be optional if an icon is provided. Use clear, concise labels to ensure menu items are easily understood.
 
-- **Type**: `string`
+- **Type**: `string|array`
 - **Example**: `'label' => 'Settings'`
 - **Extra feature**: [Supports translations](#translations)
+
+::: warning WARNING: About Using Array Type
+The property should only be defined as an `array` when you need to provide a translation definition with parameters (for example, `['users_count', ['count' => 5]]`). In all other cases, just use a `string` for the property.
+:::
 
 ### *menu_color*
 
@@ -881,7 +889,35 @@ When the menu translation feature is enabled by configuration, *LaradminLTE* wil
 
 This approach ensures full compatibility with both of Laravel’s translation strategies, allowing you to choose the method that best fits your workflow and localization requirements.
 
-### 1. Short Key Translations (PHP Files)
+### Supported Translation Formats
+
+Menu item properties that support translations (such as `label` and `badge`) can be defined in the following formats:
+
+##### Short Key Translation (PHP Array File)
+
+- **Example**: `'label' => 'dashboard'`.
+
+This will look up the `dashboard` key in your *PHP* language file (e.g., `lang/en/ladmin_menu.php`).
+
+##### Full String Translation (JSON File)
+
+- **Example**: `'label' => 'Dashboard'`.
+
+This will look up the full string in your *JSON* language file (e.g., `lang/en.json`).
+
+##### Short Key Translation With Parameters (PHP Array File)
+
+- **Example**: `'label' => ['welcome', ['name' => 'John']]`.
+
+This will use the `welcome` key in your *PHP* language file and pass the parameters for replacement.
+
+##### Full String Translation With Parameters (JSON File)
+
+- **Example**: `'label' => ['Welcome :name', ['name' => 'John']]`.
+
+This will use the full string as the translation key in your *JSON* language file and replace `:name` with `John`.
+
+### Short Key Translations (PHP Files)
 
 To use short key translations for your menu entries, first configure the [PHP language file](/sections/config/general#php-file) that will be used for translation lookups. Then, define your menu item properties (such as *label*) using concise translation keys instead of hardcoded strings.
 
@@ -943,7 +979,7 @@ return [
 
 With this setup, *LaradminLTE* will automatically resolve the *label* properties using the appropriate language file based on the current locale of your Laravel application, ensuring your menu is fully localized and easy to maintain.
 
-### 2. Full String Translations (JSON Files)
+### Full String Translations (JSON Files)
 
 To use full string translations for your menu entries, define your menu item properties (such as *label*) using the complete, human-readable strings you want to display. Then, for each supported language, create a `{locale}.json` file inside your `lang` directory, mapping each full string to its translation.
 
