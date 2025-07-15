@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
+namespace DFSmania\LaradminLte\View\Layout\Navbar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -62,6 +62,6 @@ class Navbar extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.navbar.navbar');
+        return view('ladmin::layout.navbar.navbar');
     }
 }

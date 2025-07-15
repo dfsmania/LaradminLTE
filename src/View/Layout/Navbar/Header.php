@@ -1,11 +1,11 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
+namespace DFSmania\LaradminLte\View\Layout\Navbar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class DropdownHeader extends Component
+class Header extends Component
 {
     /**
      * The icon associated with the header (optional).
@@ -54,7 +54,13 @@ class DropdownHeader extends Component
      */
     protected function getHeaderClasses(?string $color): string
     {
-        $classes = ['dropdown-header', 'd-flex', 'align-items-center'];
+        $classes = [
+            'nav-item',
+            'nav-link',
+            'pe-none',
+            'd-flex',
+            'align-items-center',
+        ];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
@@ -70,6 +76,6 @@ class DropdownHeader extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.navbar.dropdown-header');
+        return view('ladmin::layout.navbar.header');
     }
 }

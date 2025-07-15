@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
+namespace DFSmania\LaradminLte\View\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -127,6 +127,6 @@ class BrandLink extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.sidebar.brand-link');
+        return view('ladmin::layout.sidebar.brand-link');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
+namespace DFSmania\LaradminLte\View\Layout\Navbar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -125,6 +125,6 @@ class DropdownMenu extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.navbar.dropdown-menu');
+        return view('ladmin::layout.navbar.dropdown-menu');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Head;
+namespace DFSmania\LaradminLte\View\Layout\Head;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -90,6 +90,6 @@ class Favicons extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.head.favicons');
+        return view('ladmin::layout.head.favicons');
     }
 }

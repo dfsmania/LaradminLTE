@@ -1,11 +1,11 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
+namespace DFSmania\LaradminLte\View\Layout\Navbar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Header extends Component
+class DropdownHeader extends Component
 {
     /**
      * The icon associated with the header (optional).
@@ -54,10 +54,7 @@ class Header extends Component
      */
     protected function getHeaderClasses(?string $color): string
     {
-        // TODO: Add d-flex and align-items-center classes to the header when
-        // solve the issue on the AdminLTE package, add !inportant flag to the
-        // display:none property when sidebar-mini is collapsed.
-        $classes = ['nav-header'];
+        $classes = ['dropdown-header', 'd-flex', 'align-items-center'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
@@ -73,6 +70,6 @@ class Header extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.sidebar.header');
+        return view('ladmin::layout.navbar.dropdown-header');
     }
 }

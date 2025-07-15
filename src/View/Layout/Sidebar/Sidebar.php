@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
+namespace DFSmania\LaradminLte\View\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -142,6 +142,6 @@ class Sidebar extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.sidebar.sidebar');
+        return view('ladmin::layout.sidebar.sidebar');
     }
 }

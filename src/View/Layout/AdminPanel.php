@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout;
+namespace DFSmania\LaradminLte\View\Layout;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -211,6 +211,6 @@ class AdminPanel extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.admin-panel');
+        return view('ladmin::layout.admin-panel');
     }
 }

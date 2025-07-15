@@ -1,19 +1,19 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Footer;
+namespace DFSmania\LaradminLte\View\Layout\MainContent;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class Footer extends Component
+class MainContent extends Component
 {
     /**
-     * The set of CSS classes that will be applied to the footer wrapper, as a
-     * space-separated string
+     * The set of CSS classes that will be applied to the main content wrapper,
+     * as a space-separated string.
      *
      * @var string
      */
-    public string $footerClasses;
+    public string $mainContentClasses;
 
     /**
      * Create a new component instance.
@@ -22,23 +22,25 @@ class Footer extends Component
      */
     public function __construct()
     {
-        $this->footerClasses = $this->getFooterClasses();
+        $this->mainContentClasses = $this->getMainContentClasses();
     }
 
     /**
-     * Gets the set of CSS classes for the footer wrapper.
+     * Gets the set of CSS classes for the main content wrapper.
      *
      * @return string
      */
-    protected function getFooterClasses(): string
+    protected function getMainContentClasses(): string
     {
         // Setup base footer classes.
 
-        $classes = ['app-footer'];
+        $classes = ['app-main'];
 
         // Add extra classes from the configuration file.
 
-        $cfgClasses = config('ladmin.footer.classes', ['bg-body']);
+        $cfgClasses = config('ladmin.main_content.classes', [
+            'bg-body-tertiary',
+        ]);
 
         if (is_array($cfgClasses)) {
             $classes = array_merge($classes, array_filter($cfgClasses));
@@ -56,6 +58,6 @@ class Footer extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.footer.footer');
+        return view('ladmin::layout.main_content.main-content');
     }
 }

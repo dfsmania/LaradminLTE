@@ -6,7 +6,7 @@ use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractCompositeMenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
-use DFSmania\LaradminLte\View\Components\Layout;
+use DFSmania\LaradminLte\View\Layout;
 use Illuminate\View\Component;
 
 class Menu extends AbstractCompositeMenuItem

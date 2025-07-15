@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Sidebar;
+namespace DFSmania\LaradminLte\View\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -46,6 +46,6 @@ class Divider extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.sidebar.divider');
+        return view('ladmin::layout.sidebar.divider');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Footer;
+namespace DFSmania\LaradminLte\View\Layout\Footer;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -58,6 +58,6 @@ class DefaultFooterContent extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.footer.default-footer-content');
+        return view('ladmin::layout.footer.default-footer-content');
     }
 }

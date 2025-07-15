@@ -4,7 +4,7 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
 use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
-use DFSmania\LaradminLte\View\Components\Layout;
+use DFSmania\LaradminLte\View\Layout;
 use Illuminate\View\Component;
 
 class Header extends AbstractLeafMenuItem

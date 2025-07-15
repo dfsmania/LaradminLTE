@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
+namespace DFSmania\LaradminLte\View\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -54,13 +54,11 @@ class Header extends Component
      */
     protected function getHeaderClasses(?string $color): string
     {
-        $classes = [
-            'nav-item',
-            'nav-link',
-            'pe-none',
-            'd-flex',
-            'align-items-center',
-        ];
+        // TODO: Header style should be reviewed and improved in the AdminLTE
+        // 4.0 package, there's currently a overflow issue when sidebar toggles
+        // between collapsed and expanded states, also maybe the display
+        // property may be changed to flex as it's done with the links.
+        $classes = ['nav-header'];
 
         if (! empty($color)) {
             $classes[] = "text-{$color}";
@@ -76,6 +74,6 @@ class Header extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.navbar.header');
+        return view('ladmin::layout.sidebar.header');
     }
 }

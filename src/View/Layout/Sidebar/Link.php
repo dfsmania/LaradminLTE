@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Components\Layout\Navbar;
+namespace DFSmania\LaradminLte\View\Layout\Sidebar;
 
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -29,11 +29,11 @@ class Link extends Component
     public ?string $icon;
 
     /**
-     * The label of the link (optional).
+     * The label of the link.
      *
-     * @var ?string
+     * @var string
      */
-    public ?string $label;
+    public string $label;
 
     /**
      * The set of CSS classes for the link, as a space-separated string.
@@ -52,10 +52,10 @@ class Link extends Component
     /**
      * Create a new component instance.
      *
+     * @param  string  $label  The label of the link
      * @param  ?string  $icon  The icon associated with the link
-     * @param  ?string  $label  The label of the link
      * @param  ?string  $url  The URL (href attribute) of the link
-     * @param  ?string  $color  The Bootstrap color of the link
+     * @param  ?string  $color  The Bootstrap color for the link
      * @param  ?string  $badge  The text for the badge of the link
      * @param  ?string  $badgeColor  The Bootstrap background color of the badge
      * @param  ?string  $badgeClasses  A set of extra CSS classes for the badge
@@ -63,8 +63,8 @@ class Link extends Component
      * @return void
      */
     public function __construct(
+        string $label,
         ?string $icon = null,
-        ?string $label = null,
         ?string $url = null,
         ?string $color = null,
         ?string $badge = null,
@@ -72,8 +72,8 @@ class Link extends Component
         ?string $badgeClasses = null,
         bool $isActive = false
     ) {
-        $this->icon = $icon;
         $this->label = html_entity_decode($label);
+        $this->icon = $icon;
         $this->url = filter_var($url, FILTER_VALIDATE_URL) ? $url : '#';
         $this->badge = html_entity_decode($badge);
         $this->linkClasses = $this->getLinkClasses($color, $isActive);
@@ -98,10 +98,10 @@ class Link extends Component
      */
     protected function getLinkClasses(?string $color, bool $isActive): string
     {
-        $classes = ['nav-link', 'd-flex', 'align-items-center'];
+        $classes = ['nav-link', 'align-items-center'];
 
         if (! empty($color)) {
-            $classes[] = "link-{$color}";
+            $classes[] = "text-{$color}";
         }
 
         if ($isActive) {
@@ -122,7 +122,7 @@ class Link extends Component
         string $color,
         ?string $extraClasses
     ): string {
-        $classes = ['navbar-badge', 'badge', 'fw-bold', "bg-{$color}"];
+        $classes = ['nav-badge', 'badge', 'fw-bold', "bg-{$color}"];
 
         if (! empty($extraClasses)) {
             $classes[] = trim($extraClasses);
@@ -138,6 +138,6 @@ class Link extends Component
      */
     public function render(): View|string
     {
-        return view('ladmin::components.layout.navbar.link');
+        return view('ladmin::layout.sidebar.link');
     }
 }
