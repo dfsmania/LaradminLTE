@@ -45,8 +45,7 @@ class AdminPanel extends Component
     public string $bootstrapTheme;
 
     /**
-     * The title that will be displayed on the browser's window. Defaults to
-     * config('app.name') when not provided.
+     * The title that will be displayed on the browser's window.
      *
      * @var string
      */
@@ -80,7 +79,7 @@ class AdminPanel extends Component
         $this->htmlDir = $this->getHtmlDir();
         $this->htmlLang = $this->getHtmlLang();
         $this->bootstrapTheme = $this->getBootstrapTheme();
-        $this->title = $title ?? config('app.name');
+        $this->title = $this->getBrowserTitle($title);
 
         // Setup the AdminLTE stylesheet file path (LTR or RTL).
 
@@ -123,6 +122,20 @@ class AdminPanel extends Component
         $bsTheme = config('ladmin.layout.bootstrap_theme', '');
 
         return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
+    }
+
+    /**
+     * Gets the title for the browser's window. The title would be a combination
+     * of the application name and the provided subtitle, if any.
+     *
+     * @param  ?string  $subtitle  The subtitle to be displayed.
+     * @return string
+     */
+    protected function getBrowserTitle(?string $subtitle = null): string
+    {
+        $appName = config('app.name');
+
+        return ! empty($subtitle) ? "{$appName} - {$subtitle}" : $appName;
     }
 
     /**

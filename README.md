@@ -48,7 +48,7 @@ Next, create a Blade view to test the package's functionality. The package provi
 As example, save the following content in `resources/views/laradminlte-welcome.blade.php`:
 
 ```blade
-<x-ladmin-panel>
+<x-ladmin-panel title="Welcome">
 
     {{-- Setup the content header --}}
     <x-slot name="contentHeader">
@@ -72,6 +72,8 @@ As example, save the following content in `resources/views/laradminlte-welcome.b
 
 </x-ladmin-panel>
 ```
+
+The `title` attribute of the main component sets the page title, which is automatically appended to your application's name and shown in the browser's title bar.
 
 Finally, to visualize the admin layout, open your browser and navigate to:
 
