@@ -73,6 +73,9 @@
             {{ $resource->renderToHtml() }}
         @endforeach
 
+        {{-- OverlayScrollbars plugin initialization script --}}
+        <x-ladmin-os-init/>
+
     </body>
 
 </html>
