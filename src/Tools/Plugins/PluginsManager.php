@@ -124,6 +124,77 @@ class PluginsManager
     }
 
     /**
+     * Retrieve the resources of one or more plugins by their names.
+     *
+     * @param  string|array  $pluginNames  The name(s) of the plugin(s)
+     * @param  ?ResourceType  $type  The type of resources to retrieve
+     * @return PluginResource[]
+     */
+    public function getPluginResources(
+        string|array $pluginNames,
+        ?ResourceType $type = null
+    ): array {
+        // Normalize the plugin names into an array.
+
+        $pluginNames = is_array($pluginNames) ? $pluginNames : [$pluginNames];
+
+        // Iterate through each plugin name and retrieve its resources.
+
+        $resources = [];
+
+        foreach ($pluginNames as $pluginName) {
+            array_push($resources, ...$this->getResources($pluginName, $type));
+        }
+
+        return $resources;
+    }
+
+    /**
+     * Retrieve the resources of a specific plugin by its name. If the plugin
+     * is not defined, an empty array will be returned.
+     *
+     * @param  string  $pluginName  The name of the plugin to retrieve
+     * @param  ?ResourceType  $type  The type of resources to retrieve
+     * @return PluginResource[]
+     */
+    protected function getResources(
+        string $pluginName,
+        ?ResourceType $type = null
+    ): array {
+        // Retrieve the plugin configuration from the config file. If the
+        // plugin is not defined, the configuration will be null.
+
+        $pluginConfig = config("ladmin_plugins.{$pluginName}");
+
+        // If the plugin config is empty, return an empty array.
+
+        if (empty($pluginConfig)) {
+            return [];
+        }
+
+        // Create a plugin instance from the configuration. If the config is
+        // invalid, the plugin instance will be null.
+
+        $plugin = Plugin::createFromConfig($pluginName, $pluginConfig);
+
+        if (empty($plugin)) {
+            return [];
+        }
+
+        // If a specific resource type is requested, filter the resources
+        // accordingly. If no type is specified, return all resources.
+
+        if (! empty($type)) {
+            return array_filter(
+                $plugin->resources,
+                fn ($resource) => $resource->type === $type
+            );
+        }
+
+        return $plugin->resources;
+    }
+
+    /**
      * Read, validate and classify the resources of the provided plugins into
      * one of the available categories.
      *
