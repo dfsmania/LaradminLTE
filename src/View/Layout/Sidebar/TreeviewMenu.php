@@ -99,6 +99,16 @@ class TreeviewMenu extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.sidebar.treeview-menu');
+    }
+
+    /**
      * Gets the set of CSS classes for the main nav-item wrapper.
      *
      * @param  bool  $isActive  Whether the menu should be marked as active
@@ -155,15 +165,5 @@ class TreeviewMenu extends Component
         }
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.sidebar.treeview-menu');
     }
 }

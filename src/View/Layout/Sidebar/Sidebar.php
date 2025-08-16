@@ -62,6 +62,16 @@ class Sidebar extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.sidebar.sidebar');
+    }
+
+    /**
      * Gets the set of CSS classes for the sidebar wrapper.
      *
      * @return string
@@ -133,15 +143,5 @@ class Sidebar extends Component
         return is_array($cfgClasses)
             ? implode(' ', array_filter($cfgClasses))
             : '';
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.sidebar.sidebar');
     }
 }

@@ -47,6 +47,16 @@ class Header extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.sidebar.header');
+    }
+
+    /**
      * Gets the set of CSS classes for the header.
      *
      * @param  ?string  $color  The Bootstrap color for the header text
@@ -65,15 +75,5 @@ class Header extends Component
         }
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.sidebar.header');
     }
 }

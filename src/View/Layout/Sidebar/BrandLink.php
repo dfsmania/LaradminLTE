@@ -87,6 +87,16 @@ class BrandLink extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.sidebar.brand-link');
+    }
+
+    /**
      * Gets the set of CSS classes for the label.
      *
      * @param  ?string  $extraClasses  A set of extra CSS classes for the label
@@ -118,15 +128,5 @@ class BrandLink extends Component
         }
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.sidebar.brand-link');
     }
 }

@@ -90,6 +90,16 @@ class DropdownLink extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.navbar.dropdown-link');
+    }
+
+    /**
      * Gets the set of CSS classes for the link.
      *
      * @param  ?string  $color  The Bootstrap color for the link
@@ -129,15 +139,5 @@ class DropdownLink extends Component
         }
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.navbar.dropdown-link');
     }
 }

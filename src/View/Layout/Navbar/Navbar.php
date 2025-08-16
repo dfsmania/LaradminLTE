@@ -26,6 +26,16 @@ class Navbar extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.navbar.navbar');
+    }
+
+    /**
      * Gets the set of CSS classes for the navbar wrapper.
      *
      * @return string
@@ -53,15 +63,5 @@ class Navbar extends Component
         // Return the classes as a space-separated string.
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.navbar.navbar');
     }
 }

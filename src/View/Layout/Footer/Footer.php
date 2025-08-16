@@ -26,6 +26,16 @@ class Footer extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.footer.footer');
+    }
+
+    /**
      * Gets the set of CSS classes for the footer wrapper.
      *
      * @return string
@@ -47,15 +57,5 @@ class Footer extends Component
         // Return the classes as a space-separated string.
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.footer.footer');
     }
 }

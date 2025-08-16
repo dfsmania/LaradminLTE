@@ -91,6 +91,16 @@ class AdminPanel extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.admin-panel');
+    }
+
+    /**
      * Gets the 'dir' attribute for the main HTML tag. This property depends on
      * whether layout RTL configuration is enabled or not.
      *
@@ -215,15 +225,5 @@ class AdminPanel extends Component
         }
 
         return "sidebar-expand-{$breakpoint}";
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.admin-panel');
     }
 }

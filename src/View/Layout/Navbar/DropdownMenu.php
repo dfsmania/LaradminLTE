@@ -67,6 +67,16 @@ class DropdownMenu extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.navbar.dropdown-menu');
+    }
+
+    /**
      * Gets the set of CSS classes for the dropdown link toggler.
      *
      * @param  ?string  $color  The Bootstrap color for the link toggler
@@ -116,15 +126,5 @@ class DropdownMenu extends Component
         }
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.navbar.dropdown-menu');
     }
 }

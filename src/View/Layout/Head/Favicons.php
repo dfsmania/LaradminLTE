@@ -68,6 +68,16 @@ class Favicons extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.head.favicons');
+    }
+
+    /**
      * Get the PNG sizes from the configuration and ensure they are valid.
      *
      * @return string[]
@@ -81,15 +91,5 @@ class Favicons extends Component
         return array_filter($sizes, function ($size) {
             return is_string($size) && preg_match('/^\d+x\d+$/', $size);
         });
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.head.favicons');
     }
 }

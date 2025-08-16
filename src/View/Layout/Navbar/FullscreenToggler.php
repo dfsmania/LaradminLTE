@@ -50,6 +50,16 @@ class FullscreenToggler extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.navbar.fullscreen-toggler');
+    }
+
+    /**
      * Gets the set of CSS classes for the fullscreen toggler link.
      *
      * @param  ?string  $color  The Bootstrap color for the toggler link
@@ -64,15 +74,5 @@ class FullscreenToggler extends Component
         }
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.navbar.fullscreen-toggler');
     }
 }

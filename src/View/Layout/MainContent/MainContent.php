@@ -26,6 +26,16 @@ class MainContent extends Component
     }
 
     /**
+     * Get the view / contents that represent the component.
+     *
+     * @return View|string
+     */
+    public function render(): View|string
+    {
+        return view('ladmin::layout.main_content.main-content');
+    }
+
+    /**
      * Gets the set of CSS classes for the main content wrapper.
      *
      * @return string
@@ -49,15 +59,5 @@ class MainContent extends Component
         // Return the classes as a space-separated string.
 
         return implode(' ', $classes);
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return View|string
-     */
-    public function render(): View|string
-    {
-        return view('ladmin::layout.main_content.main-content');
     }
 }
