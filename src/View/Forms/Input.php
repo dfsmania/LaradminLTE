@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\View\Forms;
 
+use DFSmania\LaradminLte\View\Forms\Traits\ResolvesErrorKey;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -10,6 +11,7 @@ class Input extends Component
 {
     // TODO: Implement next trait.
     // use Traits\OldValueSupportTrait;
+    use ResolvesErrorKey;
 
     /**
      * The id attribute of the input element.
@@ -37,10 +39,15 @@ class Input extends Component
     {
         $this->name = $name;
         $this->id = $id ?? $name;
+
+        // Resolve the lookup key for validation errors. Note this
+        // initialization uses a dedicated Trait method.
+
+        $this->resolveErrorKey($this->name);
     }
 
     /**
-     * Resolve base classes depending on validation state.
+     * Resolve base classes depending on the validation state.
      *
      * @param  ViewErrorBag  $errors  The errors bag instance
      * @return string
@@ -49,7 +56,7 @@ class Input extends Component
     {
         $classes = ['form-control'];
 
-        if ($errors->has($this->name)) {
+        if ($errors->has($this->errorKey)) {
             $classes[] = 'is-invalid';
         } elseif (! $errors->isEmpty()) {
             $classes[] = 'is-valid';

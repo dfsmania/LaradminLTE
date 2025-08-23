@@ -2,11 +2,14 @@
 
 namespace DFSmania\LaradminLte\View\Forms;
 
+use DFSmania\LaradminLte\View\Forms\Traits\ResolvesErrorKey;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class InputGroup extends Component
 {
+    use ResolvesErrorKey;
+
     /**
      * The name attribute of the underlying input element. This is required to
      * detect validation errors. An input group should always be associated
@@ -50,15 +53,6 @@ class InputGroup extends Component
     public string $inputGroupClasses;
 
     /**
-     * The lookup key to use when searching for validation errors inside the
-     * errors bag. The lookup key will be generated from the "inputName"
-     * property.
-     *
-     * @var string
-     */
-    public string $errorKey;
-
-    /**
      * Create a new component instance.
      *
      * @param  string  $for  A reference to the name of the input element
@@ -90,10 +84,6 @@ class InputGroup extends Component
 
         $size = in_array($igroupSize, ['sm', 'lg']) ? $igroupSize : null;
 
-        // Setup the lookup key for validation errors.
-
-        $this->errorKey = $this->getErrorKeyFromName();
-
         // Set the CSS classes for the "form-group", "input-group" and label
         // elements.
 
@@ -104,6 +94,11 @@ class InputGroup extends Component
             $size,
             $igroupClasses
         );
+
+        // Resolve the lookup key for validation errors. Note this
+        // initialization uses a dedicated Trait method.
+
+        $this->resolveErrorKey($this->inputName);
     }
 
     /**
@@ -175,21 +170,5 @@ class InputGroup extends Component
         }
 
         return implode(' ', $classesArray);
-    }
-
-    /**
-     * Gets the error key that will be used to search for validation errors.
-     * The error key is generated from the 'name' property.
-     * Examples:
-     * $name = 'files[]'         => $errorKey = 'files'.
-     * $name = 'person[2][name]' => $errorKey = 'person.2.name'.
-     *
-     * @return string
-     */
-    protected function getErrorKeyFromName(): string
-    {
-        $errKey = preg_replace('@\[\]$@', '', $this->inputName);
-
-        return preg_replace('@\[([^]]+)\]@', '.$1', $errKey);
     }
 }
