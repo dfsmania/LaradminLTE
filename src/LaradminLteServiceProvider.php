@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte;
 
+use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
@@ -31,6 +32,16 @@ class LaradminLteServiceProvider extends ServiceProvider
         'panel' => Layout\AdminPanel::class,
         'sidebar' => Layout\Sidebar\Sidebar::class,
         'sidebar-brand' => Layout\Sidebar\BrandLink::class,
+    ];
+
+    /**
+     * A mapping of form component aliases to their corresponding class names.
+     *
+     * @var array<string, class-string>
+     */
+    protected array $formComponents = [
+        'input-group' => Forms\InputGroup::class,
+        'input' => Forms\Input::class,
     ];
 
     /**
@@ -142,7 +153,8 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Load all the blade-x components.
 
         $components = array_merge(
-            $this->layoutComponents,
+            $this->formComponents,
+            $this->layoutComponents
         );
 
         $this->loadViewComponentsAs($this->pkgPrefix, $components);
