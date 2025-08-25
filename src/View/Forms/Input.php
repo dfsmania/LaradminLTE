@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte\View\Forms;
 
+use DFSmania\LaradminLte\View\Forms\Traits\HandlesOldInput;
 use DFSmania\LaradminLte\View\Forms\Traits\ResolvesErrorKey;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Component;
@@ -9,9 +10,7 @@ use Illuminate\View\View;
 
 class Input extends Component
 {
-    // TODO: Implement next trait.
-    // use Traits\OldValueSupportTrait;
-    use ResolvesErrorKey;
+    use HandlesOldInput, ResolvesErrorKey;
 
     /**
      * The id attribute of the input element.

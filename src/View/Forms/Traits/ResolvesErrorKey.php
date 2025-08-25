@@ -2,6 +2,11 @@
 
 namespace DFSmania\LaradminLte\View\Forms\Traits;
 
+/**
+ * Trait for resolving error keys for form inputs. This trait provides
+ * methods to generate and resolve error keys based on the input field's
+ * name.
+ */
 trait ResolvesErrorKey
 {
     /**
