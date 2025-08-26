@@ -32,12 +32,21 @@ class Input extends Component
      *
      * @param  string  $name  The name attribute of the input element
      * @param  ?string  $id  The id attribute of the input element
+     * @param  bool  $withoutOldInput  Whether to disable old input support
      * @return void
      */
-    public function __construct(string $name, ?string $id = null)
-    {
+    public function __construct(
+        string $name,
+        ?string $id = null,
+        bool $withoutOldInput = false
+    ) {
         $this->name = $name;
         $this->id = $id ?? $name;
+
+        // Setup whether to use old input values (this is handled by the
+        // HandlesOldInput trait).
+
+        $this->useOldInput = ! $withoutOldInput;
 
         // Resolve the lookup key for validation errors. Note this
         // initialization uses a dedicated Trait method.
