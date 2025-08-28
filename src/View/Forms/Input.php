@@ -28,17 +28,26 @@ class Input extends Component
     public string $name;
 
     /**
+     * Whether to show validation feedback style on the input element. This is
+     * useful when the input is used in a form that requires validation.
+     *
+     * @var bool
+     */
+    public bool $useValidationFeedback;
+
+    /**
      * Create a new component instance.
      *
      * @param  string  $name  The name attribute of the input element
      * @param  ?string  $id  The id attribute of the input element
-     * @param  bool  $withoutOldInput  Whether to disable old input support
+     * @param  bool  $noOldInput  Whether to disable old input support
      * @return void
      */
     public function __construct(
         string $name,
         ?string $id = null,
-        bool $withoutOldInput = false
+        bool $noOldInput = false,
+        bool $noValidationFeedback = false
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -46,7 +55,11 @@ class Input extends Component
         // Setup whether to use old input values (this is handled by the
         // HandlesOldInput trait).
 
-        $this->useOldInput = ! $withoutOldInput;
+        $this->useOldInput = ! $noOldInput;
+
+        // Setup whether to use validation feedback.
+
+        $this->useValidationFeedback = ! $noValidationFeedback;
 
         // Resolve the lookup key for validation errors. Note this
         // initialization uses a dedicated Trait method.
@@ -64,10 +77,12 @@ class Input extends Component
     {
         $classes = ['form-control'];
 
-        if ($errors->has($this->errorKey)) {
-            $classes[] = 'is-invalid';
-        } elseif (! $errors->isEmpty()) {
-            $classes[] = 'is-valid';
+        if ($this->useValidationFeedback) {
+            if ($errors->has($this->errorKey)) {
+                $classes[] = 'is-invalid';
+            } elseif (! $errors->isEmpty()) {
+                $classes[] = 'is-valid';
+            }
         }
 
         return implode(' ', $classes);

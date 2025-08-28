@@ -33,18 +33,20 @@
     @endif
 
     {{-- Validation error feedback --}}
-    @error($errorKey)
-        <div class="invalid-feedback">
-            <strong>{{ $message }}</strong>
-        </div>
-    @elseif(session()->has('errors'))
-        {{-- TODO: Implement valid feedback --}}
-        {{-- Text might be set in the component or default value from language files --}}
-        {{--
-        <div class="valid-feedback">
-            <strong>{{ $validFeedback ?? 'Looks good!' }}</strong>
-        </div>
-        --}}
-    @enderror
+    @if($useValidationFeedback)
+        @error($errorKey)
+            <div class="invalid-feedback">
+                <strong>{{ $message }}</strong>
+            </div>
+        @elseif(session()->has('errors'))
+            {{-- TODO: Implement valid feedback --}}
+            {{-- Text might be set in the component or default value from language files --}}
+            {{--
+            <div class="valid-feedback">
+                <strong>{{ $validFeedback ?? 'Looks good!' }}</strong>
+            </div>
+            --}}
+        @enderror
+    @endif
 
 </div>

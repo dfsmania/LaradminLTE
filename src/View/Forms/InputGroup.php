@@ -53,6 +53,15 @@ class InputGroup extends Component
     public string $inputGroupClasses;
 
     /**
+     * Whether to show validation feedback (error messages) below the input
+     * element. This is useful when the input group is used in a form that
+     * requires validation.
+     *
+     * @var bool
+     */
+    public bool $useValidationFeedback;
+
+    /**
      * Create a new component instance.
      *
      * @param  string  $for  A reference to the name of the input element
@@ -61,6 +70,7 @@ class InputGroup extends Component
      * @param  ?string  $labelClasses  Custom classes for the label element
      * @param  ?string  $fgroupClasses  Custom classes for the "form-group"
      * @param  ?string  $igroupClasses  Custom classes for the "input-group"
+     * @param  bool  $noValidationFeedback  Whether to disable validation feedback
      * @return void
      */
     public function __construct(
@@ -69,7 +79,8 @@ class InputGroup extends Component
         ?string $igroupSize = null,
         ?string $labelClasses = null,
         ?string $fgroupClasses = null,
-        ?string $igroupClasses = null
+        ?string $igroupClasses = null,
+        bool $noValidationFeedback = false
     ) {
         $this->inputName = $for;
 
@@ -99,6 +110,10 @@ class InputGroup extends Component
         // initialization uses a dedicated Trait method.
 
         $this->resolveErrorKey($this->inputName);
+
+        // Setup whether to use validation feedback.
+
+        $this->useValidationFeedback = ! $noValidationFeedback;
     }
 
     /**
