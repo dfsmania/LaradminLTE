@@ -1,10 +1,9 @@
 {{-- Form group structure --}}
 <div class="{{ $formGroupClasses }}">
 
-    {{-- Input group label --}}
-    {{-- TODO: Check if we can support floating labels too --}}
-    @if(! empty($label))
-        <label for="{{ $inputName }}" @if(! empty($labelClasses)) class="{{ $labelClasses }}" @endif>
+    {{-- Input group label (non-floating mode) --}}
+    @if(! empty($label) && ! $floatingLabelMode)
+        <label for="{{ $inputName }}" class="{{ $labelClasses }}">
             {{ $label }}
         </label>
     @endif
@@ -18,7 +17,18 @@
         @endif
 
         {{-- Slot for the underlying input element --}}
-        {{ $slot }}
+        @if(! empty($label) && $floatingLabelMode)
+            <div class="form-floating">
+                {{ $slot }}
+
+                {{-- Input group label (floating mode) --}}
+                <label for="{{ $inputName }}" class="{{ $labelClasses }}">
+                    {{ $label }}
+                </label>
+            </div>
+        @else
+            {{ $slot }}
+        @endif
 
         {{-- Input append slot --}}
         @if(! empty($append))

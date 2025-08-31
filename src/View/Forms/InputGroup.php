@@ -62,6 +62,13 @@ class InputGroup extends Component
     public bool $useValidationFeedback;
 
     /**
+     * Whether to use floating label mode for the input group.
+     *
+     * @var bool
+     */
+    public bool $floatingLabelMode;
+
+    /**
      * Create a new component instance.
      *
      * @param  string  $for  A reference to the name of the input element
@@ -71,6 +78,7 @@ class InputGroup extends Component
      * @param  ?string  $fgroupClasses  Custom classes for the "form-group"
      * @param  ?string  $igroupClasses  Custom classes for the "input-group"
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
+     * @param  bool  $floatingLabel  Whether to use floating label mode
      * @return void
      */
     public function __construct(
@@ -80,7 +88,8 @@ class InputGroup extends Component
         ?string $labelClasses = null,
         ?string $fgroupClasses = null,
         ?string $igroupClasses = null,
-        bool $noValidationFeedback = false
+        bool $noValidationFeedback = false,
+        bool $floatingLabel = false
     ) {
         $this->inputName = $for;
 
@@ -94,6 +103,14 @@ class InputGroup extends Component
         // allowed values.
 
         $size = in_array($igroupSize, ['sm', 'lg']) ? $igroupSize : null;
+
+        // Setup whether to use validation feedback.
+
+        $this->useValidationFeedback = ! $noValidationFeedback;
+
+        // Setup whether to use floating label mode.
+
+        $this->floatingLabelMode = $floatingLabel;
 
         // Set the CSS classes for the "form-group", "input-group" and label
         // elements.
@@ -110,10 +127,6 @@ class InputGroup extends Component
         // initialization uses a dedicated Trait method.
 
         $this->resolveErrorKey($this->inputName);
-
-        // Setup whether to use validation feedback.
-
-        $this->useValidationFeedback = ! $noValidationFeedback;
     }
 
     /**
@@ -153,7 +166,11 @@ class InputGroup extends Component
      */
     protected function getLabelClasses(?string $classes = null): string
     {
-        $classesArray = ['form-label'];
+        $classesArray = [];
+
+        if (! $this->floatingLabelMode) {
+            $classesArray[] = 'form-label';
+        }
 
         if (! empty($classes)) {
             $classesArray[] = trim($classes);
