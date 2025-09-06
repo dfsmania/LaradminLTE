@@ -62,6 +62,14 @@ class InputGroup extends Component
     public bool $useValidationFeedback;
 
     /**
+     * An optional message to display as feedback when the input is valid. This
+     * is shown when there are no validation errors for the input.
+     *
+     * @var ?string
+     */
+    public ?string $validFeedbackMessage;
+
+    /**
      * Whether to use floating label mode for the input group.
      *
      * @var bool
@@ -88,10 +96,12 @@ class InputGroup extends Component
         ?string $labelClasses = null,
         ?string $fgroupClasses = null,
         ?string $igroupClasses = null,
+        ?string $validFeedbackMessage = null,
         bool $noValidationFeedback = false,
         bool $floatingLabel = false
     ) {
         $this->inputName = $for;
+        $this->validFeedbackMessage = $validFeedbackMessage;
 
         // If a label is provided, use html_entity_decode() method to support
         // HTML entities in the label text. Otherwise, set it to null.

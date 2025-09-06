@@ -48,14 +48,10 @@
             <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
             </div>
-        @elseif(session()->has('errors'))
-            {{-- TODO: Implement valid feedback --}}
-            {{-- Text might be set in the component or default value from language files --}}
-            {{--
-            <div class="valid-feedback">
-                <strong>{{ $validFeedback ?? 'Looks good!' }}</strong>
+        @elseif(session()->has('errors') && ! empty($validFeedbackMessage))
+            <div class="valid-feedback d-block">
+                <strong>{{ $validFeedbackMessage }}</strong>
             </div>
-            --}}
         @enderror
     @endif
 
