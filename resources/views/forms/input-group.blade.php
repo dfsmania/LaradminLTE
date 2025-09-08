@@ -42,7 +42,7 @@
         <div class="form-text">{{ $help }}</div>
     @endif
 
-    {{-- Validation error feedback --}}
+    {{-- Validation feedback --}}
     @if($useValidationFeedback)
         @error($errorKey)
             <div class="invalid-feedback">

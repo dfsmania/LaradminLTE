@@ -41,6 +41,7 @@ class Input extends Component
      * @param  string  $name  The name attribute of the input element
      * @param  ?string  $id  The id attribute of the input element
      * @param  bool  $noOldInput  Whether to disable old input support
+     * @param  bool  $noValidationFeedback  Whether to disable validation feedback
      * @return void
      */
     public function __construct(

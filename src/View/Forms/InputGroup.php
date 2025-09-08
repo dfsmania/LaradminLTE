@@ -12,8 +12,8 @@ class InputGroup extends Component
 
     /**
      * The name attribute of the underlying input element. This is required to
-     * detect validation errors. An input group should always be associated
-     * with a specific input element.
+     * detect validation errors and to bind the label. An input group should
+     * always be associated with a specific input element.
      *
      * @var string
      */
@@ -62,15 +62,18 @@ class InputGroup extends Component
     public bool $useValidationFeedback;
 
     /**
-     * An optional message to display as feedback when the input is valid. This
-     * is shown when there are no validation errors for the input.
+     * An optional message to display as feedback when the underlying input
+     * element is valid. The message will be shown when there are no validation
+     * errors for the input.
      *
      * @var ?string
      */
     public ?string $validFeedbackMessage;
 
     /**
-     * Whether to use floating label mode for the input group.
+     * Whether to use the floating label mode for the input group. When
+     * enabled, the label appears as a placeholder inside the input and
+     * transitions above the input when focused or populated.
      *
      * @var bool
      */
@@ -85,6 +88,7 @@ class InputGroup extends Component
      * @param  ?string  $labelClasses  Custom classes for the label element
      * @param  ?string  $fgroupClasses  Custom classes for the "form-group"
      * @param  ?string  $igroupClasses  Custom classes for the "input-group"
+     * @param  ?string  $validFeedbackMessage  Message for valid feedback
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
      * @param  bool  $floatingLabel  Whether to use floating label mode
      * @return void
@@ -101,7 +105,6 @@ class InputGroup extends Component
         bool $floatingLabel = false
     ) {
         $this->inputName = $for;
-        $this->validFeedbackMessage = $validFeedbackMessage;
 
         // If a label is provided, use html_entity_decode() method to support
         // HTML entities in the label text. Otherwise, set it to null.
@@ -114,11 +117,13 @@ class InputGroup extends Component
 
         $size = in_array($igroupSize, ['sm', 'lg']) ? $igroupSize : null;
 
-        // Setup whether to use validation feedback.
+        // Setup the valid feedback message and whether to use validation
+        // feedback.
 
+        $this->validFeedbackMessage = $validFeedbackMessage;
         $this->useValidationFeedback = ! $noValidationFeedback;
 
-        // Setup whether to use floating label mode.
+        // Setup whether to use the floating label mode.
 
         $this->floatingLabelMode = $floatingLabel;
 
