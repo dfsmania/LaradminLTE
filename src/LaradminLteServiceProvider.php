@@ -40,6 +40,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      * @var array<string, class-string>
      */
     protected array $formComponents = [
+        'button' => Forms\Button::class,
         'input-group' => Forms\InputGroup::class,
         'input' => Forms\Input::class,
     ];
