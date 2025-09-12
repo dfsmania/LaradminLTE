@@ -5,13 +5,13 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\CallableActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\UrlActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemUrl;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Abstracts\LeafMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Concerns\ResolvesItemLocalization;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Concerns\ResolvesItemUrl;
 use DFSmania\LaradminLte\View\Layout;
 use Illuminate\View\Component;
 
-class Link extends AbstractLeafMenuItem
+class Link extends LeafMenuItem
 {
     use ResolvesItemLocalization, ResolvesItemUrl;
 

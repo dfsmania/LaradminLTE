@@ -4,12 +4,12 @@ namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Navbar;
 
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractCompositeMenuItem;
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits\ResolvesItemLocalization;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Abstracts\CompositeMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Concerns\ResolvesItemLocalization;
 use DFSmania\LaradminLte\View\Layout;
 use Illuminate\View\Component;
 
-class Menu extends AbstractCompositeMenuItem
+class Menu extends CompositeMenuItem
 {
     use ResolvesItemLocalization;
 

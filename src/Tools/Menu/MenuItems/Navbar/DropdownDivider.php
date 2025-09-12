@@ -2,11 +2,11 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Navbar;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Abstracts\LeafMenuItem;
 use DFSmania\LaradminLte\View\Layout;
 use Illuminate\View\Component;
 
-class DropdownDivider extends AbstractLeafMenuItem
+class DropdownDivider extends LeafMenuItem
 {
     /**
      * Defines the validation rules for the menu item configuration. These

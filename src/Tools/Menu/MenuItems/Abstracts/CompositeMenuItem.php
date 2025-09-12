@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Base;
+namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Abstracts;
 
 use DFSmania\LaradminLte\Tools\Menu\ActiveStrategies\CompositeActiveStrategy;
 use DFSmania\LaradminLte\Tools\Menu\AllowStrategies\CallableAllowStrategy;
@@ -23,7 +23,7 @@ use Illuminate\View\View;
  * child items. It provides methods for creating instances from configuration,
  * rendering the menu item as HTML, and checking for child items.
  */
-abstract class AbstractCompositeMenuItem implements BuildableFromConfig, MenuItem
+abstract class CompositeMenuItem implements BuildableFromConfig, MenuItem
 {
     /**
      * Defines the validation rules for the menu item configuration. These

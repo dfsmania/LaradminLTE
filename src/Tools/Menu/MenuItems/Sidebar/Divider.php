@@ -2,11 +2,11 @@
 
 namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Sidebar;
 
-use DFSmania\LaradminLte\Tools\Menu\MenuItems\Base\AbstractLeafMenuItem;
+use DFSmania\LaradminLte\Tools\Menu\MenuItems\Abstracts\LeafMenuItem;
 use DFSmania\LaradminLte\View\Layout;
 use Illuminate\View\Component;
 
-class Divider extends AbstractLeafMenuItem
+class Divider extends LeafMenuItem
 {
     /**
      * Defines the validation rules for the menu item configuration. These

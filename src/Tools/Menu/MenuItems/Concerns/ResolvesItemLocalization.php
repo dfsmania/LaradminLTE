@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Traits;
+namespace DFSmania\LaradminLte\Tools\Menu\MenuItems\Concerns;
 
 use Illuminate\Support\Facades\Lang;
 
