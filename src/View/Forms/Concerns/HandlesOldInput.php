@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Forms\Traits;
+namespace DFSmania\LaradminLte\View\Forms\Concerns;
 
 /**
  * Trait for handling old input values in forms. This trait provides methods to

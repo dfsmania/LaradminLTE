@@ -2,8 +2,8 @@
 
 namespace DFSmania\LaradminLte\View\Forms\Abstracts;
 
-use DFSmania\LaradminLte\View\Forms\Traits\HandlesOldInput;
-use DFSmania\LaradminLte\View\Forms\Traits\ResolvesErrorKey;
+use DFSmania\LaradminLte\View\Forms\Concerns\HandlesOldInput;
+use DFSmania\LaradminLte\View\Forms\Concerns\ResolvesErrorKey;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Component;
 use Illuminate\View\View;

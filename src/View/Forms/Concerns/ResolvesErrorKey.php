@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\View\Forms\Traits;
+namespace DFSmania\LaradminLte\View\Forms\Concerns;
 
 /**
  * Trait for resolving error keys for form inputs. This trait provides

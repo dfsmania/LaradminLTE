@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\View\Forms;
 
-use DFSmania\LaradminLte\View\Forms\Traits\ResolvesErrorKey;
+use DFSmania\LaradminLte\View\Forms\Concerns\ResolvesErrorKey;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
