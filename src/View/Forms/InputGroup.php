@@ -84,7 +84,7 @@ class InputGroup extends Component
      *
      * @param  string  $for  A reference to the name of the input element
      * @param  ?string  $label  The label for the input group
-     * @param  ?string  $igroupSize  The size of the input group
+     * @param  ?string  $size  The size of the input group
      * @param  ?string  $labelClasses  Custom classes for the label element
      * @param  ?string  $fgroupClasses  Custom classes for the "form-group"
      * @param  ?string  $igroupClasses  Custom classes for the "input-group"
@@ -96,7 +96,7 @@ class InputGroup extends Component
     public function __construct(
         string $for,
         ?string $label = null,
-        ?string $igroupSize = null,
+        ?string $size = null,
         ?string $labelClasses = null,
         ?string $fgroupClasses = null,
         ?string $igroupClasses = null,
@@ -115,7 +115,7 @@ class InputGroup extends Component
         // for default sizing. The size is validated to ensure it is one of the
         // allowed values.
 
-        $size = in_array($igroupSize, ['sm', 'lg']) ? $igroupSize : null;
+        $size = in_array($size, ['sm', 'lg']) ? $size : null;
 
         // Setup the valid feedback message and whether to use validation
         // feedback.
