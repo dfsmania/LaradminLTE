@@ -28,6 +28,9 @@
         {{-- Favicons markup --}}
         <x-ladmin-favicons/>
 
+        {{-- Inline CSS injected from child views using @push('css') --}}
+        @stack('css')
+
     </head>
 
     <body class="{{ $bodyClasses }}">
@@ -75,6 +78,9 @@
 
         {{-- OverlayScrollbars plugin initialization script --}}
         <x-ladmin-os-init/>
+
+        {{-- Inline JavaScript injected from child views using @push('js') --}}
+        @stack('js')
 
     </body>
 
