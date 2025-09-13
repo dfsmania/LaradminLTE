@@ -84,7 +84,7 @@ class InputGroup extends Component
      *
      * @param  string  $for  A reference to the name of the input element
      * @param  ?string  $label  The label for the input group
-     * @param  ?string  $size  The size of the input group
+     * @param  ?string  $sizing  The size modifier for the input group
      * @param  ?string  $labelClasses  Custom classes for the label element
      * @param  ?string  $fgroupClasses  Custom classes for the "form-group"
      * @param  ?string  $igroupClasses  Custom classes for the "input-group"
@@ -96,7 +96,7 @@ class InputGroup extends Component
     public function __construct(
         string $for,
         ?string $label = null,
-        ?string $size = null,
+        ?string $sizing = null,
         ?string $labelClasses = null,
         ?string $fgroupClasses = null,
         ?string $igroupClasses = null,
@@ -115,7 +115,7 @@ class InputGroup extends Component
         // for default sizing. The size is validated to ensure it is one of the
         // allowed values.
 
-        $size = in_array($size, ['sm', 'lg']) ? $size : null;
+        $size = in_array($sizing, ['sm', 'lg']) ? $sizing : null;
 
         // Setup the valid feedback message and whether to use validation
         // feedback.
@@ -166,6 +166,8 @@ class InputGroup extends Component
     {
         $classesArray = ['mb-3'];
 
+        // Add any custom classes provided by the user.
+
         if (! empty($classes)) {
             $classesArray[] = trim($classes);
         }
@@ -183,9 +185,14 @@ class InputGroup extends Component
     {
         $classesArray = [];
 
+        // In non-floating label mode, the label should have the "form-label"
+        // class. In floating label mode, the label does not need this class.
+
         if (! $this->floatingLabelMode) {
             $classesArray[] = 'form-label';
         }
+
+        // Add any custom classes provided by the user.
 
         if (! empty($classes)) {
             $classesArray[] = trim($classes);
@@ -208,9 +215,13 @@ class InputGroup extends Component
 
         $classesArray = ['input-group'];
 
+        // Add size modifier class if a valid size is provided.
+
         if (! empty($size)) {
             $classesArray[] = "input-group-{$size}";
         }
+
+        // Add any custom classes provided by the user.
 
         if (! empty($classes)) {
             $classesArray[] = $classes;
