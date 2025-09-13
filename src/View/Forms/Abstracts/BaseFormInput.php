@@ -13,6 +13,24 @@ abstract class BaseFormInput extends Component
     use HandlesOldInput, ResolvesErrorKey;
 
     /**
+     * The default Bootstrap CSS class applied to the input element.
+     * Child classes may override this value to use a different base class
+     * (e.g., 'form-select' for select elements).
+     *
+     * @var string
+     */
+    protected string $baseClass = 'form-control';
+
+    /**
+     * An optional size modifier for the input element.
+     * Accepts 'sm' for small, 'lg' for large, or null for default sizing.
+     * This determines the Bootstrap size class applied to the input.
+     *
+     * @var ?string
+     */
+    protected ?string $sizing;
+
+    /**
      * The id attribute of the input element.
      *
      * @var string
@@ -40,6 +58,7 @@ abstract class BaseFormInput extends Component
      *
      * @param  string  $name  The name attribute of the input element
      * @param  ?string  $id  The id attribute of the input element
+     * @param  ?string  $sizing  The size modifier for the input element
      * @param  bool  $noOldInput  Whether to disable old input support
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
      * @return void
@@ -47,11 +66,18 @@ abstract class BaseFormInput extends Component
     public function __construct(
         string $name,
         ?string $id = null,
+        ?string $sizing = null,
         bool $noOldInput = false,
         bool $noValidationFeedback = false
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
+
+        // Setup the size of the input element. It can be 'sm', 'lg', or null
+        // for default sizing. The size is validated to ensure it is one of the
+        // allowed values.
+
+        $this->sizing = in_array($sizing, ['sm', 'lg']) ? $sizing : null;
 
         // Setup whether to use old input values (this is handled by the
         // HandlesOldInput trait).
@@ -77,7 +103,15 @@ abstract class BaseFormInput extends Component
      */
     public function getBaseClasses(ViewErrorBag $errors): string
     {
-        $classes = ['form-control'];
+        $classes = [$this->baseClass];
+
+        // Add size modifier class if a valid size is provided.
+
+        if (! empty($this->sizing)) {
+            $classes[] = $this->baseClass.'-'.$this->sizing;
+        }
+
+        // Add validation state classes if validation feedback is enabled.
 
         if ($this->useValidationFeedback) {
             if ($errors->has($this->errorKey)) {
