@@ -43,6 +43,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         'button' => Forms\Button::class,
         'input-group' => Forms\InputGroup::class,
         'input' => Forms\Input::class,
+        'select' => Forms\Select::class,
         'textarea' => Forms\Textarea::class,
     ];
 
