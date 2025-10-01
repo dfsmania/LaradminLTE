@@ -48,7 +48,7 @@
             <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
             </div>
-        @elseif(session()->has('errors') && ! empty($validFeedbackMessage))
+        @elseif($errors->any() && ! empty($validFeedbackMessage))
             <div class="valid-feedback d-block">
                 <strong>{{ $validFeedbackMessage }}</strong>
             </div>
