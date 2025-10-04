@@ -116,7 +116,7 @@ abstract class BaseFormInput extends Component
         if ($this->useValidationFeedback) {
             if ($errors->has($this->errorKey)) {
                 $classes[] = 'is-invalid';
-            } elseif (! $errors->isEmpty()) {
+            } elseif ($errors->any()) {
                 $classes[] = 'is-valid';
             }
         }

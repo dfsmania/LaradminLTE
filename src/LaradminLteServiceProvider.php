@@ -41,6 +41,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     protected array $formComponents = [
         'button' => Forms\Button::class,
+        'checkbox' => Forms\Checkbox::class,
         'input-group' => Forms\InputGroup::class,
         'input' => Forms\Input::class,
         'select' => Forms\Select::class,
