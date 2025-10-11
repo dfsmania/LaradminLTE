@@ -2,6 +2,7 @@
 
 namespace DFSmania\LaradminLte;
 
+use DFSmania\LaradminLte\View\Auth;
 use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
 use Illuminate\Support\Facades\Blade;
@@ -46,6 +47,17 @@ class LaradminLteServiceProvider extends ServiceProvider
         'input' => Forms\Input::class,
         'select' => Forms\Select::class,
         'textarea' => Forms\Textarea::class,
+    ];
+
+    /**
+     * A mapping of authentication component aliases to their corresponding
+     * class names.
+     *
+     * @var array<string, class-string>
+     */
+    protected array $authComponents = [
+        'auth-base' => Auth\AuthBase::class,
+        'auth-logo' => Auth\AuthLogo::class,
     ];
 
     /**
@@ -157,6 +169,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Load all the blade-x components.
 
         $components = array_merge(
+            $this->authComponents,
             $this->formComponents,
             $this->layoutComponents
         );

@@ -112,6 +112,8 @@ return [
     */
 
     'icons' => [
+        // The icon used for the sidebar treeview menu items. This icon is used
+        // to indicate that the menu can be expanded to show additional items.
         'treeview_toggler' => 'bi bi-chevron-right',
     ],
 
@@ -227,6 +229,48 @@ return [
         // A list of additional CSS classes applied to the main content,
         // typically used to configure its background color and styling.
         'classes' => ['bg-body-tertiary'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Scaffolding
+    |--------------------------------------------------------------------------
+    |
+    | Here you can customize some aspects of the authentication scaffolding
+    | provided by the package. Note the authentication scaffolding uses Laravel
+    | Fortify package as the backend implementation.
+    |
+    */
+
+    'auth' => [
+        // A list of CSS classes applied to the authentication layout's body
+        // tag, used to configure its background color and styling.
+        'background_classes' => ['bg-body-secondary', 'bg-gradient'],
+
+        // Settings related to the logo displayed on authentication pages.
+        'logo' => [
+            // The URL path to the logo image file. Can be a relative path to
+            // the public directory or an absolute URL.
+            'image' => 'vendor/ladmin/img/LaradminLTE-Auth.png',
+
+            // The alternative text for the logo image, used for accessibility.
+            'image_alt' => 'LaradminLTE Auth Logo',
+
+            // The CSS classes applied to style the logo image.
+            'image_classes' => ['shadow-sm', 'me-1'],
+
+            // The height of the authentication logo image.
+            'image_height' => '55px',
+
+            // The width of the authentication logo image.
+            'image_width' => '55px',
+
+            // The text displayed alongside the logo.
+            'text' => 'LaradminLTE',
+
+            // The CSS classes applied to style the logo text.
+            'text_classes' => ['fw-bold', 'text-secondary'],
+        ],
     ],
 
     /*
