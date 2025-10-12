@@ -77,6 +77,14 @@ class AuthBase extends Component
     public string $bodyClasses;
 
     /**
+     * The inline styles for the body tag, usually used to apply a background
+     * image when configured.
+     *
+     * @var string
+     */
+    public string $bodyStyles;
+
+    /**
      * The list of plugin links to be included in the head section, before the
      * AdminLTE stylesheet link.
      *
@@ -109,9 +117,10 @@ class AuthBase extends Component
 
         $this->adminlteCssFile = $this->getAdminlteCssFile();
 
-        // Setup the body classes.
+        // Setup the body classes and styles.
 
         $this->bodyClasses = $this->getBodyClasses();
+        $this->bodyStyles = $this->getBodyStyles();
 
         // Setup the pre-AdminLTE plugin resources.
 
@@ -217,17 +226,45 @@ class AuthBase extends Component
 
         // Add background classes from the configuration file.
 
-        $bgClasses = config('ladmin.auth.background_classes', [
-            'bg-body-secondary',
-            'bg-gradient',
-        ]);
+        if (empty(config('ladmin.auth.background_image', null))) {
+            $bgClasses = config('ladmin.auth.background_classes', [
+                'bg-body-secondary',
+                'bg-gradient',
+            ]);
 
-        if (is_array($bgClasses)) {
-            $classes = array_merge($classes, array_filter($bgClasses));
+            if (is_array($bgClasses)) {
+                $classes = array_merge($classes, array_filter($bgClasses));
+            }
         }
 
         // Return the CSS classes as a space-separated string.
 
         return implode(' ', $classes);
+    }
+
+    /**
+     * Gets the inline styles for the body tag, usually used to apply a
+     * background image when configured.
+     *
+     * @return string
+     */
+    protected function getBodyStyles(): string
+    {
+        $styles = [];
+        $bgImage = config('ladmin.auth.background_image', null);
+
+        // If a background image is configured, set it up to cover the entire
+        // body of the authentication layout.
+
+        if (! empty($bgImage)) {
+            $styles[] = "background-image: url('{$bgImage}')";
+            $styles[] = 'background-repeat: no-repeat';
+            $styles[] = 'background-size: cover';
+            $styles[] = 'background-position: center';
+        }
+
+        // Return the inline styles as a semicolon-separated string.
+
+        return implode(';', $styles);
     }
 }

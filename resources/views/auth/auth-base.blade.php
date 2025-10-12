@@ -28,7 +28,7 @@
 
     </head>
 
-    <body class="{{ $bodyClasses }}">
+    <body class="{{ $bodyClasses }}" style="{{ $bodyStyles }}">
 
         {{-- Authentication box --}}
         <div class="login-box">

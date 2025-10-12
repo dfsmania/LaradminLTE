@@ -247,6 +247,12 @@ return [
         // tag, used to configure its background color and styling.
         'background_classes' => ['bg-body-secondary', 'bg-gradient'],
 
+        // The URL path to a background image for the authentication layout.
+        // Can be a relative path to the public directory or an absolute URL.
+        // When an image is set, background classes will be ignored, and the
+        // background image will cover the entire body.
+        'background_image' => null,
+
         // Settings related to the logo displayed on authentication pages.
         'logo' => [
             // The URL path to the logo image file. Can be a relative path to
