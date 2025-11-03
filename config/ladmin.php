@@ -260,7 +260,7 @@ return [
             'image' => 'vendor/ladmin/img/LaradminLTE-Auth.png',
 
             // The alternative text for the logo image, used for accessibility.
-            'image_alt' => 'LaradminLTE Auth Logo',
+            'image_alt' => 'LaradminLTE Logo',
 
             // The CSS classes applied to style the logo image.
             'image_classes' => ['shadow-sm', 'me-1'],

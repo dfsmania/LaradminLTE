@@ -109,17 +109,6 @@ return [
                 ],
             ],
         ],
-        [
-            'type' => MenuItemType::DIVIDER,
-            'position' => 'right',
-        ],
-        [
-            'type' => MenuItemType::HEADER,
-            'label' => date('Y-m-d'),
-            'icon' => 'bi bi-calendar fs-5',
-            'position' => 'right',
-            'class' => 'text-primary fw-bold',
-        ],
     ],
 
     /*
