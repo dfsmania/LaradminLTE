@@ -45,7 +45,7 @@
     {{-- Validation feedback --}}
     @if($useValidationFeedback)
         @error($errorKey)
-            <div class="invalid-feedback">
+            <div class="invalid-feedback d-block">
                 <strong>{{ $message }}</strong>
             </div>
         @elseif($errors->any() && ! empty($validFeedbackMessage))
