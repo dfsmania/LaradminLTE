@@ -243,6 +243,9 @@ return [
     */
 
     'auth' => [
+        // Determines whether to enable the authentication scaffolding feature.
+        'enabled' => true,
+
         // A list of CSS classes applied to the authentication layout's body
         // tag, used to configure its background color and styling.
         'background_classes' => ['bg-body-secondary', 'bg-gradient'],

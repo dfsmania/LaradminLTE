@@ -14,6 +14,11 @@
             @foreach(ladmin()->menu->getRightNavbarItems() as $item)
                 {{ $item->renderToHtml() }}
             @endforeach
+
+            {{-- User menu dropdown --}}
+            @if(config('ladmin.auth.enabled', false) && Auth::check())
+                <x-ladmin-navbar-user-menu/>
+            @endif
         </ul>
 
     </div>

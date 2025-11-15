@@ -8,6 +8,8 @@ use DFSmania\LaradminLte\View\Layout;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Features;
+use Laravel\Fortify\Fortify;
 
 class LaradminLteServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         'footer' => Layout\Footer\Footer::class,
         'main-content' => Layout\MainContent\MainContent::class,
         'navbar' => Layout\Navbar\Navbar::class,
+        'navbar-user-menu' => Layout\Navbar\UserMenu::class,
         'os-init' => Layout\Scripts\OverlayScrollbarsInit::class,
         'panel' => Layout\AdminPanel::class,
         'sidebar' => Layout\Sidebar\Sidebar::class,
@@ -106,6 +109,10 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Load the custom validators of the package.
 
         $this->loadCustomValidators();
+
+        // Setup the Laravel Fortify package (backend for the auth scaffolding).
+
+        $this->setupFortify();
 
         // Declare the publishable resources of the package. Ensure publishable
         // resources are only available in console context.
@@ -224,6 +231,65 @@ class LaradminLteServiceProvider extends ServiceProvider
             return is_string($value)
                 || (is_array($value) && $this->isTranslatableArray($value));
         });
+    }
+
+    /**
+     * Setup the Laravel Fortify package that's used as the backend for the
+     * authentication scaffolding.
+     *
+     * @return void
+     */
+    private function setupFortify(): void
+    {
+        // If the authentication scaffolding is disabled via the package
+        // configuration, ignore the Fortify routes and return early.
+
+        if (! config('ladmin.auth.enabled', false)) {
+            Fortify::ignoreRoutes();
+
+            return;
+        }
+
+        // Register the views to use with Laravel's Fortify package.
+
+        $this->registerFortifyViews();
+
+        // Configure the Laravel's Fortify features that will be supported.
+
+        $this->configureFortifyFeatures();
+    }
+
+    /**
+     * Register the views to use with Laravel's Fortify package.
+     *
+     * @return void
+     */
+    private function registerFortifyViews(): void
+    {
+        Fortify::loginView(function () {
+            return view("{$this->pkgPrefix}::auth.login");
+        });
+    }
+
+    /**
+     * Configure the Laravel's Fortify features that will be supported.
+     *
+     * @return void
+     */
+    private function configureFortifyFeatures(): void
+    {
+        $features = [];
+
+        // Manage the set of enabled Fortify features via our package
+        // configuration file.
+
+        if (config('ladmin.auth.features.registration', false)) {
+            $features[] = Features::registration();
+        }
+
+        // Configure enabled features in Fortify.
+
+        config(['fortify.features' => $features]);
     }
 
     /**
