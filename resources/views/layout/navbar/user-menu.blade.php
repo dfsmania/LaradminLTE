@@ -9,7 +9,7 @@
 
     {{-- User menu dropdown --}}
     {{-- TODO: Background classes should be read from config --}}
-    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end bg-body">
+    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
 
         {{-- User menu header --}}
         <li class="user-header">

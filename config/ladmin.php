@@ -246,6 +246,12 @@ return [
         // Determines whether to enable the authentication scaffolding feature.
         'enabled' => true,
 
+        // The accent theme used for the authentication pages. You can set this
+        // to any of the defined accent themes in the "accent_themes" section
+        // of this configuration to change the color scheme of various elements
+        // on the authentication pages.
+        'accent_theme' => 'default',
+
         // A list of CSS classes applied to the authentication layout's body
         // tag, used to configure its background color and styling.
         'background_classes' => ['bg-body-secondary', 'bg-gradient'],
@@ -279,6 +285,43 @@ return [
 
             // The CSS classes applied to style the logo text.
             'text_classes' => ['fw-bold', 'text-secondary'],
+        ],
+
+        // Definitions of the available accent color themes for the auth pages.
+        // You can create your own themes by adding new keys.
+        'accent_themes' => [
+            'default' => [
+                'background' => 'bg-body-tertiary',
+                'button' => 'secondary',
+            ],
+            'blue' => [
+                'background' => 'bg-primary-subtle bg-gradient',
+                'button' => 'primary',
+            ],
+            'green' => [
+                'background' => 'bg-success-subtle bg-gradient',
+                'button' => 'success',
+            ],
+            'red' => [
+                'background' => 'bg-danger-subtle bg-gradient',
+                'button' => 'danger',
+            ],
+            'yellow' => [
+                'background' => 'bg-warning-subtle bg-gradient',
+                'button' => 'warning',
+            ],
+            'skyblue' => [
+                'background' => 'bg-info-subtle bg-gradient',
+                'button' => 'info',
+            ],
+            'gray' => [
+                'background' => 'bg-secondary-subtle bg-gradient',
+                'button' => 'secondary',
+            ],
+            'black' => [
+                'background' => 'bg-dark text-white bg-gradient',
+                'button' => 'dark',
+            ],
         ],
     ],
 
