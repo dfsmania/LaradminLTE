@@ -2,7 +2,7 @@
 
 This configuration defines the static menu structure of your admin panel. You can use it to declare your *navbar* and *sidebar* menu items.
 
-The menu settings are managed in the `config/ladmin_menu.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
+The menu settings are managed in the `config/ladmin/menu.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
 php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
@@ -12,7 +12,7 @@ php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServicePr
 
 Menu items define the links, headers, dividers, and interactive elements that appear in your admin panel's navigation. Each item is configured as an array with specific properties, allowing you to customize its appearance and behavior. Understanding the available item types and their options helps you build a clear and user-friendly menu structure.
 
-Here is a quick example of how to define a simple link menu item in your `config/ladmin_menu.php` file:
+Here is a quick example of how to define a simple link menu item in your `config/ladmin/menu.php` file:
 
 ::: details Example: Defining a Link Menu Item {open}
 ```php
@@ -38,7 +38,7 @@ DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement
 - `MenuPlacement::NAVBAR`: Items for the top navigation bar.
 - `MenuPlacement::SIDEBAR`: Items for the side menu panel.
 
-So, your `config/ladmin_menu.php` file should follow this structure:
+So, your `config/ladmin/menu.php` file should follow this structure:
 
 ```php
 <?php
@@ -668,7 +668,7 @@ You must specify only one of `route` or `url` for a menu item, never both at the
 
 ## Changing the Menu Programmatically
 
-In some cases, the static configuration provided by the `ladmin_menu.php` file may not offer enough flexibility for your application's needs. To address this, *LaradminLte* fires a `BuildingMenu` event just before the menu is being processed. By listening to this event with a [Laravel Listener](https://laravel.com/docs/events#defining-listeners), you can modify the menu at runtime by adding, removing, or updating items as needed, or even generate the entire menu dynamically, completely bypassing the static configuration file.
+In some cases, the static configuration provided by the `config/ladmin/menu.php` file may not offer enough flexibility for your application's needs. To address this, *LaradminLte* fires a `BuildingMenu` event just before the menu is being processed. By listening to this event with a [Laravel Listener](https://laravel.com/docs/events#defining-listeners), you can modify the menu at runtime by adding, removing, or updating items as needed, or even generate the entire menu dynamically, completely bypassing the static configuration file.
 
 ### Creating a Laravel Listener
 
@@ -709,7 +709,7 @@ class SetupLaradminLteMenu
 }
 ```
 
-The `BuildingMenu` event allows you to access and modify the menu structure defined in your `ladmin_menu.php` file. You can do this by interacting with the `menu` property, which contains the entire menu configuration as specified in `ladmin_menu.php`. This means you can dynamically add, remove, or update menu items during the event, giving you full control over the final menu that will be displayed. The following basic examples demonstrate how to work with the event’s `menu` property inside the `handle()` method:
+The `BuildingMenu` event allows you to access and modify the menu structure defined in your `config/ladmin/menu.php` file. You can do this by interacting with the `menu` property, which contains the entire menu configuration as specified in `config/ladmin/menu.php`. This means you can dynamically add, remove, or update menu items during the event, giving you full control over the final menu that will be displayed. The following basic examples demonstrate how to work with the event’s `menu` property inside the `handle()` method:
 
 ::: details Example: Add New Item to Menu {open}
 This basic example demonstrates how to add a new item to the static menu configuration.
@@ -924,7 +924,7 @@ To use short key translations for your menu entries, first configure the [PHP la
 Below is a basic example demonstrating this approach. In this scenario, the configured PHP language file is named `ladmin_menu`. The example shows how to define menu entries in your configuration file and how to provide *English* and *Spanish* translations for those keys.
 
 ::: code-group
-```php [config/ladmin_menu.php]
+```php [config/ladmin/menu.php]
 <?php
 
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
@@ -986,7 +986,7 @@ To use full string translations for your menu entries, define your menu item pro
 Below is a basic example illustrating this approach. The configuration file uses full strings for menu labels, and the corresponding JSON language files provide both *English* and *Spanish* translations.
 
 ::: code-group
-```php [config/ladmin_menu.php]
+```php [config/ladmin/menu.php]
 <?php
 
 use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;

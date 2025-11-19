@@ -2,7 +2,7 @@
 
 These settings allow you to customize the features, layout, branding, and appearance of your admin panel.
 
-The general settings are managed in the `config/ladmin.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
+The general settings are managed in the `config/ladmin/main.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
 php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"

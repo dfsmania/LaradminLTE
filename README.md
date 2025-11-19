@@ -13,9 +13,9 @@
 - **Laravel**: 10 or higher
 - **PHP**: 8.1 or higher
 
-## Installation and Setup
+## Installation
 
-Follow these steps to install, configure, and test **LaradminLTE** in your Laravel application:
+Follow these steps to install **LaradminLTE** in your Laravel application:
 
 ### 1. Install the Package
 
@@ -30,11 +30,19 @@ composer require dfsmania/laradminlte:dev-main --prefer-stable
 Run the following commands to publish the basic package's assets and configuration files:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="assets"
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
+php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="assets" --tag="config"
 ```
 
-### 3. Create a Test Route and View
+This command will publish the following elements to your application:
+
+- **Assets**: The set of **AdminLTE v4** distribution files (`CSS`, `JS`) and some images in the `public/vendor/ladmin` folder of your Laravel application.
+- **Config**: The package configuration files in the `config/ladmin` folder of your Laravel application.
+
+## Usage
+
+Follow these steps to use, configure and test **LaradminLTE** in your Laravel application:
+
+### 1. Create a Test Route and View
 
 Set up a test route in your `routes/web.php` file:
 
@@ -70,12 +78,25 @@ As example, save the following content in `resources/views/laradminlte-welcome.b
         </div>
     </div>
 
+    {{-- Push inline scripts if needed --}}
+    @push('js')
+        <script>
+            console.log('LaradminLTE is successfully loaded!');
+        </script>
+    @endpush
+
 </x-ladmin-panel>
 ```
 
-The `title` attribute of the main component sets the page title, which is automatically appended to your application's name and shown in the browser's title bar.
+- The `title` attribute of the main component sets the page title, which is automatically appended to your application's name and shown in the browser's title bar.
+- The `contentHeader` slot is used to define the header section of the content area.
+- The main content body is placed directly within the main component tags.
+- The `@push('js')` directive allows you to add custom JavaScript code that will be included in the layout.
+- The `@push('css')` directive can also be used to add custom CSS styles if needed.
 
-Finally, to visualize the admin layout, open your browser and navigate to:
+### 2. Test your Route/View
+
+To visualize the admin layout, open your browser and navigate to:
 
 ```sh
 http://your-app.test/ladmin_welcome
@@ -85,13 +106,13 @@ Replace `your-app.test` with your local development URL. You should now see the 
 
 !["LaradminLTE Layout Example"](docs/public/images/layout-example.png "LaradminLTE Layout Example")
 
-### 4. Customize Configuration
+### 3. Customize Configuration
 
 Explore and modify the package's configuration files to suit your needs:
 
-- `config/ladmin.php`: General settings for the admin panel.
-- `config/ladmin_menu.php`: Define the menu structure.
-- `config/ladmin_plugins.php`: Manage plugins and extensions.
+- `config/ladmin/main.php`: General settings for the admin panel.
+- `config/ladmin/menu.php`: Define the menu structure.
+- `config/ladmin/plugins.php`: Manage plugins and extensions.
 
 For detailed usage instructions, advanced configuration options, and customization guides, refer to the [Official LaradminLTE Documentation](https://dfsmania.github.io/LaradminLTE).
 

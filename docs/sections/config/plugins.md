@@ -4,7 +4,7 @@ This section explains how to configure frontend plugins used in the Admin panel 
 
 These settings apply only when you are not using an **asset bundler** (like [Vite](https://laravel.com/docs/vite)). If you rely on a bundler, plugin assets should be imported via your build pipeline instead.
 
-The plugins settings are managed in the `config/ladmin_plugins.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
+The plugins settings are managed in the `config/ladmin/plugins.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
 php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
@@ -20,7 +20,7 @@ Each plugin is registered under a unique name and consists of the following:
 
 - The **resource type**, specifying where the resource should be injected relative to the core *AdminLTE v4* assets (e.g., before or after core scripts/styles).
 
-The default `config/ladmin_plugins.php` file comes pre-configured with a set of plugin definitions that are required for working with **Bootstrap 5** and the **AdminLTE v4** template. These examples provide a solid starting point and can be used as templates when adding or customizing plugins to suit your project's needs. Review and adjust these definitions as necessary to integrate additional frontend libraries or modify existing ones.
+The default `config/ladmin/plugins.php` file comes pre-configured with a set of plugin definitions that are required for working with **Bootstrap 5** and the **AdminLTE v4** template. These examples provide a solid starting point and can be used as templates when adding or customizing plugins to suit your project's needs. Review and adjust these definitions as necessary to integrate additional frontend libraries or modify existing ones.
 
 ::: details Quick Example {open}
 In this example the **Bootstrap 5** resource file will be included before the **AdminLTE 4 core** script file.
@@ -40,7 +40,7 @@ In this example the **Bootstrap 5** resource file will be included before the **
 ```
 :::
 
-Please, note plugins are included in your layout in the exact order they are defined within the `config/ladmin_plugins.php` file. This means that dependencies between plugins, such as loading *jQuery* before a plugin that requires it, are respected only if you register them in the correct sequence. Review and arrange your plugin definitions carefully to ensure that all required assets are loaded in the proper order for your application to function as expected.
+Please, note plugins are included in your layout in the exact order they are defined within the `config/ladmin/plugins.php` file. This means that dependencies between plugins, such as loading *jQuery* before a plugin that requires it, are respected only if you register them in the correct sequence. Review and arrange your plugin definitions carefully to ensure that all required assets are loaded in the proper order for your application to function as expected.
 
 ::: tip TIP: Conditional Plugin Loading
 To include a plugin only on certain pages, set its **always** property to `false` in the configuration. Then, you can use the custom `@ladmin_plugin('PluginName')` Blade directive on any view where you want the plugin loaded. For details, refer to the [Conditional Plugin Loading](#conditional-plugin-loading) section.
@@ -92,7 +92,7 @@ Choose the appropriate resource type based on whether your asset needs to be loa
 
 ## Conditional Plugin Loading
 
-To load a plugin only on specific views, set its **always** property to `false` in the `config/ladmin_plugins.php` file. Then, include the plugin in any Blade view where it is needed using the custom directive:
+To load a plugin only on specific views, set its **always** property to `false` in the `config/ladmin/plugins.php` file. Then, include the plugin in any Blade view where it is needed using the custom directive:
 
 ```blade
 @ladmin_plugin('PluginName')
@@ -131,7 +131,7 @@ This approach allows you to extend the functionality and security of your plugin
 
 ## Managing Icon Libraries
 
-Both **Bootstrap Icons** and **FontAwesome** are pre-configured as plugins in the default `config/ladmin_plugins.php` file. You can easily switch between them or use both, depending on your project's requirements.
+Both **Bootstrap Icons** and **FontAwesome** are pre-configured as plugins in the default `config/ladmin/plugins.php` file. You can easily switch between them or use both, depending on your project's requirements.
 
 ### How to Use a Specific Icon Set
 
@@ -217,7 +217,7 @@ When defining menu items (for example, in your `config/ladmin_menu.php`), specif
 The menu system will automatically render the appropriate `<i>` tag with the provided class, ensuring your chosen icon set appears correctly in the sidebar or navigation. This approach allows you to seamlessly integrate and switch between icon libraries throughout your application, both in your views and navigation menus.
 
 ::: info INFO: Using Other Icon Sets
-You can integrate additional icon libraries just like *Bootstrap Icons* or *FontAwesome Icons*. To do this, register the icon set as a plugin in your `config/ladmin_plugins.php` file and ensure its resources are loaded as needed. For menu items, any icon library will work as long as it uses *CSS* classes applied to `<i>` tags. After registering the plugin, simply use the correct syntax in your Blade templates to display icons from your chosen library.
+You can integrate additional icon libraries just like *Bootstrap Icons* or *FontAwesome Icons*. To do this, register the icon set as a plugin in your `config/ladmin/plugins.php` file and ensure its resources are loaded as needed. For menu items, any icon library will work as long as it uses *CSS* classes applied to `<i>` tags. After registering the plugin, simply use the correct syntax in your Blade templates to display icons from your chosen library.
 :::
 
 ## Best Practices
