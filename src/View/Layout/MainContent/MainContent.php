@@ -48,7 +48,7 @@ class MainContent extends Component
 
         // Add extra classes from the configuration file.
 
-        $cfgClasses = config('ladmin.main_content.classes', [
+        $cfgClasses = config('ladmin.main.main_content.classes', [
             'bg-body-tertiary',
         ]);
 

@@ -108,7 +108,7 @@ class AdminPanel extends Component
      */
     protected function getHtmlDir(): string
     {
-        return empty(config('ladmin.layout.rtl', false)) ? 'ltr' : 'rtl';
+        return empty(config('ladmin.main.layout.rtl', false)) ? 'ltr' : 'rtl';
     }
 
     /**
@@ -129,7 +129,7 @@ class AdminPanel extends Component
      */
     protected function getBootstrapTheme(): string
     {
-        $bsTheme = config('ladmin.layout.bootstrap_theme', '');
+        $bsTheme = config('ladmin.main.layout.bootstrap_theme', '');
 
         return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
@@ -156,7 +156,7 @@ class AdminPanel extends Component
      */
     protected function getAdminlteCssFile(): string
     {
-        $file = empty(config('ladmin.layout.rtl', false))
+        $file = empty(config('ladmin.main.layout.rtl', false))
             ? 'adminlte.min.css'
             : 'adminlte.rtl.min.css';
 
@@ -181,27 +181,27 @@ class AdminPanel extends Component
 
         // Add the mini sidebar class if the feature is enabled.
 
-        if (! empty(config('ladmin.sidebar.mini_sidebar', false))) {
+        if (! empty(config('ladmin.main.sidebar.mini_sidebar', false))) {
             $classes[] = 'sidebar-mini';
         }
 
         // Add the sidebar collapsed class if the feature is enabled.
 
-        if (! empty(config('ladmin.sidebar.default_collapsed', false))) {
+        if (! empty(config('ladmin.main.sidebar.default_collapsed', false))) {
             $classes[] = 'sidebar-collapse';
         }
 
         // Add CSS classes relative to fixed layout options.
 
-        if (! empty(config('ladmin.layout.fixed_sidebar', false))) {
+        if (! empty(config('ladmin.main.layout.fixed_sidebar', false))) {
             $classes[] = 'layout-fixed';
         }
 
-        if (! empty(config('ladmin.layout.fixed_navbar', false))) {
+        if (! empty(config('ladmin.main.layout.fixed_navbar', false))) {
             $classes[] = 'fixed-header';
         }
 
-        if (! empty(config('ladmin.layout.fixed_footer', false))) {
+        if (! empty(config('ladmin.main.layout.fixed_footer', false))) {
             $classes[] = 'fixed-footer';
         }
 
@@ -218,7 +218,7 @@ class AdminPanel extends Component
      */
     protected function getSidebarExpandBreakpointClass(): string
     {
-        $breakpoint = config('ladmin.sidebar.expand_breakpoint', 'lg');
+        $breakpoint = config('ladmin.main.sidebar.expand_breakpoint', 'lg');
 
         if (! in_array($breakpoint, $this->validScreenBreakpoints)) {
             $breakpoint = 'lg';

@@ -54,7 +54,7 @@ class Navbar extends Component
 
         // Add extra CSS classes from the configuration file.
 
-        $cfgClasses = config('ladmin.navbar.classes', ['bg-body']);
+        $cfgClasses = config('ladmin.main.navbar.classes', ['bg-body']);
 
         if (is_array($cfgClasses)) {
             $classes = array_merge($classes, array_filter($cfgClasses));

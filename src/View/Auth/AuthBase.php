@@ -153,7 +153,7 @@ class AuthBase extends Component
      */
     protected function getHtmlDir(): string
     {
-        return empty(config('ladmin.layout.rtl', false)) ? 'ltr' : 'rtl';
+        return empty(config('ladmin.main.layout.rtl', false)) ? 'ltr' : 'rtl';
     }
 
     /**
@@ -174,7 +174,7 @@ class AuthBase extends Component
      */
     protected function getBootstrapTheme(): string
     {
-        $bsTheme = config('ladmin.layout.bootstrap_theme', '');
+        $bsTheme = config('ladmin.main.layout.bootstrap_theme', '');
 
         return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
@@ -201,7 +201,7 @@ class AuthBase extends Component
      */
     protected function getAdminlteCssFile(): string
     {
-        $file = empty(config('ladmin.layout.rtl', false))
+        $file = empty(config('ladmin.main.layout.rtl', false))
             ? 'adminlte.min.css'
             : 'adminlte.rtl.min.css';
 

@@ -164,7 +164,7 @@ class PluginsManager
         // Retrieve the plugin configuration from the config file. If the
         // plugin is not defined, the configuration will be null.
 
-        $pluginConfig = config("ladmin_plugins.{$pluginName}");
+        $pluginConfig = config("ladmin.plugins.{$pluginName}");
 
         // If the plugin config is empty, return an empty array.
 

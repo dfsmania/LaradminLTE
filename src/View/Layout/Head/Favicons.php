@@ -50,19 +50,19 @@ class Favicons extends Component
         // Initialize the component properties based on the configuration.
 
         $this->fullSupport = (bool) config(
-            'ladmin.favicons.full_support',
+            'ladmin.main.favicons.full_support',
             false
         );
 
         $this->pngSizes = $this->getPngSizes();
 
         $this->brandLogoColor = config(
-            'ladmin.favicons.brand_logo_color',
+            'ladmin.main.favicons.brand_logo_color',
             '#000000'
         );
 
         $this->brandBackgroundColor = config(
-            'ladmin.favicons.brand_background_color',
+            'ladmin.main.favicons.brand_background_color',
             '#ffffff'
         );
     }
@@ -86,7 +86,7 @@ class Favicons extends Component
     {
         // Get the PNG sizes from the configuration and ensure they are valid.
 
-        $sizes = config('ladmin.favicons.png_sizes', ['16x16', '32x32']);
+        $sizes = config('ladmin.main.favicons.png_sizes', ['16x16', '32x32']);
 
         return array_filter($sizes, function ($size) {
             return is_string($size) && preg_match('/^\d+x\d+$/', $size);

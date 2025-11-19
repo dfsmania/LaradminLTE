@@ -48,7 +48,7 @@ class Footer extends Component
 
         // Add extra classes from the configuration file.
 
-        $cfgClasses = config('ladmin.footer.classes', ['bg-body']);
+        $cfgClasses = config('ladmin.main.footer.classes', ['bg-body']);
 
         if (is_array($cfgClasses)) {
             $classes = array_merge($classes, array_filter($cfgClasses));

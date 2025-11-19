@@ -84,7 +84,9 @@ class Sidebar extends Component
 
         // Add extra classes from the configuration file.
 
-        $cfgClasses = config('ladmin.sidebar.classes', ['bg-body-secondary']);
+        $cfgClasses = config('ladmin.main.sidebar.classes', [
+            'bg-body-secondary',
+        ]);
 
         if (is_array($cfgClasses)) {
             $classes = array_merge($classes, array_filter($cfgClasses));
@@ -102,7 +104,7 @@ class Sidebar extends Component
      */
     protected function getBootstrapTheme(): string
     {
-        $bsTheme = config('ladmin.sidebar.bootstrap_theme', 'dark');
+        $bsTheme = config('ladmin.main.sidebar.bootstrap_theme', 'dark');
 
         return in_array($bsTheme, $this->validBootstrapThemes) ? $bsTheme : '';
     }
@@ -117,7 +119,7 @@ class Sidebar extends Component
         // Retrieve classes from the configuration file, defaulting to an empty
         // array if not set.
 
-        $cfgClasses = config('ladmin.logo.text_classes', []);
+        $cfgClasses = config('ladmin.main.logo.text_classes', []);
 
         // Return the classes as a space-separated string.
 
@@ -136,7 +138,7 @@ class Sidebar extends Component
         // Retrieve classes from the configuration file, defaulting to an empty
         // array if not set.
 
-        $cfgClasses = config('ladmin.logo.image_classes', []);
+        $cfgClasses = config('ladmin.main.logo.image_classes', []);
 
         // Return the classes as a space-separated string.
 

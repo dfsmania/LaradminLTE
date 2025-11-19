@@ -33,8 +33,8 @@ class LaradminLte
     {
         // Load static menu from configuration file.
 
-        $menuCfg = is_array(config('ladmin_menu'))
-            ? config('ladmin_menu')
+        $menuCfg = is_array(config('ladmin.menu'))
+            ? config('ladmin.menu')
             : [];
 
         // Dispatch an event, allowing listeners to modify the menu
@@ -49,7 +49,7 @@ class LaradminLte
         // Init the plugins manager with the provided plugins configuration.
 
         $this->plugins = new PluginsManager(
-            is_array(config('ladmin_plugins')) ? config('ladmin_plugins') : []
+            is_array(config('ladmin.plugins')) ? config('ladmin.plugins') : []
         );
     }
 }

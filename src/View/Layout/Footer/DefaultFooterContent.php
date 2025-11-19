@@ -45,10 +45,10 @@ class DefaultFooterContent extends Component
         // Setup the properties of the component by reading the configuration
         // file.
 
-        $this->version = config('ladmin.basic.version', '1.0.0');
-        $this->company = config('ladmin.basic.company', 'Company Name');
-        $this->companyUrl = config('ladmin.basic.company_url', '#');
-        $this->startYear = config('ladmin.basic.start_year', '2024');
+        $this->version = config('ladmin.main.basic.version', '1.0.0');
+        $this->company = config('ladmin.main.basic.company', 'Company Name');
+        $this->companyUrl = config('ladmin.main.basic.company_url', '#');
+        $this->startYear = config('ladmin.main.basic.start_year', '2024');
     }
 
     /**

@@ -21,7 +21,7 @@ class OverlayScrollbarsInit extends Component
      */
     public function __construct()
     {
-        $this->theme = config('ladmin.sidebar.bootstrap_theme') === 'light'
+        $this->theme = config('ladmin.main.sidebar.bootstrap_theme') === 'light'
             ? 'os-theme-dark'
             : 'os-theme-light';
     }

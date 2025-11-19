@@ -24,7 +24,7 @@ trait ResolvesItemLocalization
     {
         // Check that the value is not empty and that translations are enabled.
 
-        $enabled = config('ladmin.menu_translations.enabled', false);
+        $enabled = config('ladmin.main.menu_translations.enabled', false);
 
         if (! $enabled || empty($value)) {
             return is_array($value) ? ($value[0] ?? '') : $value;
@@ -64,7 +64,10 @@ trait ResolvesItemLocalization
         // First, try to lookup for a short key translation, as namespaced key
         // (i.e. using PHP array translation mode).
 
-        $phpFile = config('ladmin.menu_translations.php_file', 'ladmin_menu');
+        $phpFile = config(
+            'ladmin.main.menu_translations.php_file',
+            'ladmin_menu'
+        );
         $phpKey = "{$phpFile}.{$key}";
 
         if (Lang::has($phpKey)) {

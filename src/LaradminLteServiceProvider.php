@@ -70,7 +70,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Register the configuration of the package.
+        // Register the configuration files of the package.
 
         $this->registerConfig();
 
@@ -125,7 +125,7 @@ class LaradminLteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the package configuration.
+     * Register the package configuration files.
      *
      * @return void
      */
@@ -134,22 +134,29 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Register the main package configuration file.
 
         $this->mergeConfigFrom(
-            $this->packagePath("config/{$this->pkgPrefix}.php"),
-            $this->pkgPrefix
+            $this->packagePath("config/{$this->pkgPrefix}/main.php"),
+            "{$this->pkgPrefix}.main"
         );
 
         // Register the dedicated menu configuration file.
 
         $this->mergeConfigFrom(
-            $this->packagePath("config/{$this->pkgPrefix}_menu.php"),
-            "{$this->pkgPrefix}_menu"
+            $this->packagePath("config/{$this->pkgPrefix}/menu.php"),
+            "{$this->pkgPrefix}.menu"
         );
 
         // Register the dedicated plugins configuration file.
 
         $this->mergeConfigFrom(
-            $this->packagePath("config/{$this->pkgPrefix}_plugins.php"),
-            "{$this->pkgPrefix}_plugins"
+            $this->packagePath("config/{$this->pkgPrefix}/plugins.php"),
+            "{$this->pkgPrefix}.plugins"
+        );
+
+        // Register the dedicated authentication scaffolding configuration file.
+
+        $this->mergeConfigFrom(
+            $this->packagePath("config/{$this->pkgPrefix}/auth.php"),
+            "{$this->pkgPrefix}.auth"
         );
     }
 
@@ -313,16 +320,10 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     private function setConfigAsPublishable(): void
     {
-        $mainCfg = $this->packagePath("config/{$this->pkgPrefix}.php");
-        $menuCfg = $this->packagePath("config/{$this->pkgPrefix}_menu.php");
-        $pluginsCfg = $this->packagePath(
-            "config/{$this->pkgPrefix}_plugins.php"
-        );
+        $path = $this->packagePath("config/{$this->pkgPrefix}");
 
         $this->publishes([
-            $mainCfg => config_path("{$this->pkgPrefix}.php"),
-            $menuCfg => config_path("{$this->pkgPrefix}_menu.php"),
-            $pluginsCfg => config_path("{$this->pkgPrefix}_plugins.php"),
+            $path => config_path($this->pkgPrefix),
         ], 'config');
     }
 

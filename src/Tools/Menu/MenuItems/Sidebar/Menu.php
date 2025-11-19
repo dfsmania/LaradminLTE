@@ -73,7 +73,7 @@ class Menu extends CompositeMenuItem
         // icon if no other is provided.
 
         $togglerIcon = $config['toggler_icon']
-            ?? config('ladmin.icons.treeview_toggler');
+            ?? config('ladmin.main.icons.treeview_toggler');
 
         // Resolve translations for the label and the badge, if they are
         // provided in the configuration.
