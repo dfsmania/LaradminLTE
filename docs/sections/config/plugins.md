@@ -194,7 +194,7 @@ Once the desired icon set is loaded, you can use their respective classes in you
 
 #### Using Icons in Menu Definitions
 
-When defining menu items (for example, in your `config/ladmin_menu.php`), specify the icon class in the **icon** property:
+When defining menu items (for example, in your `config/ladmin/menu.php`), specify the icon class in the **icon** property:
 
 - *Bootstrap Icons:*
     ```php

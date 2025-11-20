@@ -554,7 +554,7 @@ The `label` property specifies the text shown for the menu item. It serves as th
 - **Extra feature**: [Supports translations](#translations)
 
 ::: warning WARNING: About Using Array Type
-The property should only be defined as an `array` when you need to provide a translation definition with parameters (for example, `['users_count', ['count' => 5]]`). In all other cases, just use a `string` for the property.
+The property should only be defined as an `array` when you need to provide a translation definition with parameters (for example, `['welcome_user', ['name' => 'John']]`). In all other cases, just use a `string` for the property.
 :::
 
 ### *menu_color*
