@@ -307,7 +307,7 @@ The **navbar** section allows you to customize the appearance of the top navigat
 An array of *CSS* classes applied to the `<nav>` element of the top navbar. These classes typically define background color, text color, borders, spacing, or other visual properties. For example, you might use `bg-primary-subtle` and `navbar-light` to get a light blue navbar.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
-You can experiment with different navbar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your navbar, making it easy to customize the appearance before applying the classes to your configuration.
+You can experiment with different navbar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your navbar, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 
 ## Sidebar
@@ -350,7 +350,7 @@ Sets the visual theme of the sidebar independently from the global layout. Use `
 An array of *CSS* classes applied to the sidebar container. These control visual styling such as background color and shadows using *Bootstrap* utility classes or custom styles.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
-You can experiment with different sidebar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your sidebar, making it easy to customize the appearance before applying the classes to your configuration.
+You can experiment with different sidebar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your sidebar, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 
 ### *default_collapsed*:
@@ -401,7 +401,7 @@ The **footer** section allows you to customize the appearance of the bottom foot
 An array of *CSS* classes applied to the `<footer>` element. You can use *Bootstrap* utility classes or custom styles to define background color, borders, or other visual features of the footer.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
-You can experiment with different footer styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/dist/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your footer, making it easy to customize the appearance before applying the classes to your configuration.
+You can experiment with different footer styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your footer, making it easy to customize the appearance before applying the classes to your configuration.
 :::
 
 ## Main Content
