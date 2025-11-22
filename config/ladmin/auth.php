@@ -77,6 +77,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Authentication Features
+    |--------------------------------------------------------------------------
+    |
+    | Here you can setup the available features for the authentication
+    | scaffolding.
+    |
+    */
+
+    'features' => [
+        // Enables the user registration feature, allowing new users to create
+        // accounts.
+        'registration' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Accent Color Themes
     |--------------------------------------------------------------------------
     |

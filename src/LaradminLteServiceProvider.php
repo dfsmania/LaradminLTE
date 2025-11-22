@@ -277,9 +277,20 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     private function registerFortifyViews(): void
     {
+        // Register the login view.
+
         Fortify::loginView(function () {
             return view("{$this->pkgPrefix}::auth.login");
         });
+
+        // Register the registration view, only if the registration feature
+        // is enabled.
+
+        if (config('ladmin.auth.features.registration', false)) {
+            Fortify::registerView(function () {
+                return view("{$this->pkgPrefix}::auth.register");
+            });
+        }
     }
 
     /**

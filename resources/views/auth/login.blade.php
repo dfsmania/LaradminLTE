@@ -56,9 +56,20 @@
                 {{-- Sign in button --}}
                 <div class="w-100 clearfix">
                     <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" label="{{ __('ladmin::auth.login.sign_in') }}"
-                        icon="bi bi-box-arrow-in-right fs-5 me-1" class="float-end bg-gradient"/>
+                        icon="bi bi-box-arrow-in-right fs-5 me-1" class="float-end d-flex align-items-center bg-gradient"/>
                 </div>
 
+                {{-- Additional links --}}
+                <div class="mt-1">
+
+                    {{-- Register link --}}
+                    @if(config('ladmin.auth.features.registration', false))
+                        <a class="link-{{ $linkTheme }}" href="{{ route('register') }}">
+                            {{ __('ladmin::auth.login.register_account') }}
+                        </a>
+                    @endif
+
+                </div>
             </form>
         </div>
 
