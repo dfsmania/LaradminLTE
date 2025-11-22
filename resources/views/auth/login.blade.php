@@ -4,6 +4,8 @@
     $accentTheme = config('ladmin.auth.accent_theme', 'default');
     $backgroundClass = config("ladmin.auth.accent_themes.{$accentTheme}.background", 'bg-body-tertiary');
     $buttonTheme = config("ladmin.auth.accent_themes.{$accentTheme}.button", 'secondary');
+    $iconTheme = config("ladmin.auth.accent_themes.{$accentTheme}.icon", 'secondary');
+    $linkTheme = config("ladmin.auth.accent_themes.{$accentTheme}.link", 'secondary');
 @endphp
 
 {{-- Define the layout of the page --}}
@@ -26,35 +28,37 @@
                 @csrf
 
                 {{-- Email address --}}
-                <x-ladmin-input-group for="email" label="{{ __('ladmin::auth.login.email') }}" floating-label>
+                <x-ladmin-input-group for="email" label="{{ __('ladmin::auth.inputs.email') }}" floating-label>
                     <x-ladmin-input name="email" type="email" placeholder="" required/>
 
-                    <x-slot name="prepend">
+                    <x-slot name="append">
                         <span class="input-group-text bg-body-tertiary">
-                            <i class="bi bi-envelope fs-5"></i>
+                            <i class="bi bi-envelope-fill fs-5 text-{{ $iconTheme }}"></i>
                         </span>
                     </x-slot>
                 </x-ladmin-input-group>
 
                 {{-- Password --}}
-                <x-ladmin-input-group for="password" label="{{ __('ladmin::auth.login.password') }}" floating-label no-validation-feedback>
-                    <x-ladmin-input name="password" type="password" placeholder="" no-validation-feedback required/>
+                <x-ladmin-input-group for="password" label="{{ __('ladmin::auth.inputs.password') }}" floating-label no-validation-feedback>
+                    <x-ladmin-input name="password" type="password" placeholder="" required no-validation-feedback/>
 
-                    <x-slot name="prepend">
+                    <x-slot name="append">
                         <span class="input-group-text bg-body-tertiary">
-                            <i class="bi bi-lock fs-5"></i>
+                            <i class="bi bi-lock-fill fs-5 text-{{ $iconTheme }}"></i>
                         </span>
                     </x-slot>
                 </x-ladmin-input-group>
 
                 {{-- Remember me --}}
-                <x-ladmin-checkbox name="remember_me" label="{{ __('ladmin::auth.login.remember_me') }}"
-                    class="shadow-none" no-validation-feedback/>
+                <x-ladmin-checkbox name="remember_me" label="{{ __('ladmin::auth.inputs.remember_me') }}" class="shadow-none"
+                    no-validation-feedback/>
 
                 {{-- Sign in button --}}
-                <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" label="{{ __('ladmin::auth.login.sign_in') }}"
-                    icon="bi bi-box-arrow-in-right fs-5 me-1"
-                    class="float-end d-flex align-items-center bg-gradient"/>
+                <div class="w-100 clearfix">
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" label="{{ __('ladmin::auth.login.sign_in') }}"
+                        icon="bi bi-box-arrow-in-right fs-5 me-1" class="float-end bg-gradient"/>
+                </div>
+
             </form>
         </div>
 

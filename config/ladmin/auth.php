@@ -76,7 +76,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can setup the available accent color themes for the auth pages.
-    | You can create your own themes by adding new keys.
+    | You can create your own themes by adding new keys. The values of each key
+    | are defined like this:
+    | - background: CSS Bootstrap classes for the background of the auth pages.
+    | - button, icon, link: Bootstrap color theme names for buttons, icons, and
+    |   links (e.g., 'primary', 'secondary', 'success', etc.)
     |
     */
 
@@ -84,34 +88,50 @@ return [
         'default' => [
             'background' => 'bg-body-tertiary',
             'button' => 'secondary',
+            'icon' => 'body-tertiary',
+            'link' => 'secondary',
         ],
         'blue' => [
             'background' => 'bg-primary-subtle bg-gradient',
             'button' => 'primary',
+            'icon' => 'primary',
+            'link' => 'primary',
         ],
         'green' => [
             'background' => 'bg-success-subtle bg-gradient',
             'button' => 'success',
+            'icon' => 'success',
+            'link' => 'success',
         ],
         'red' => [
             'background' => 'bg-danger-subtle bg-gradient',
             'button' => 'danger',
+            'icon' => 'danger',
+            'link' => 'danger',
         ],
         'yellow' => [
             'background' => 'bg-warning-subtle bg-gradient',
             'button' => 'warning',
+            'icon' => 'warning',
+            'link' => 'warning',
         ],
         'skyblue' => [
             'background' => 'bg-info-subtle bg-gradient',
             'button' => 'info',
+            'icon' => 'info',
+            'link' => 'info',
         ],
         'gray' => [
             'background' => 'bg-secondary-subtle bg-gradient',
             'button' => 'secondary',
+            'icon' => 'secondary',
+            'link' => 'secondary',
         ],
         'black' => [
             'background' => 'bg-dark text-white bg-gradient',
             'button' => 'dark',
+            'icon' => 'dark',
+            'link' => 'dark',
         ],
     ],
 ];
