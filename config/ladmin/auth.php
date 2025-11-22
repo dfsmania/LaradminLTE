@@ -37,6 +37,11 @@ return [
     // image will cover the entire body.
     'background_image' => null,
 
+    // Defines the path where users will get redirected during authentication
+    // or password reset when the operations are successful and the user is
+    // authenticated.
+    'home_path' => '/home',
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Logo Configuration

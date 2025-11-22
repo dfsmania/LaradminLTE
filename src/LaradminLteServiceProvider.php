@@ -257,6 +257,10 @@ class LaradminLteServiceProvider extends ServiceProvider
             return;
         }
 
+        // Setup the Fortify home path after login or password reset.
+
+        config(['fortify.home' => config('ladmin.auth.home_path', '/home')]);
+
         // Register the views to use with Laravel's Fortify package.
 
         $this->registerFortifyViews();
