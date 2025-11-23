@@ -32,14 +32,6 @@ class Checkbox extends BaseFormInput
     public string $labelClasses;
 
     /**
-     * The inline style for the label element (optional). This is used to apply
-     * custom styles to the label, such as font size adjustments for sizing.
-     *
-     * @var ?string
-     */
-    public ?string $labelStyle;
-
-    /**
      * The base inline style for the checkbox input element (optional). This is
      * used to apply custom styles to the checkbox, such as scaling for sizing.
      *
@@ -103,15 +95,13 @@ class Checkbox extends BaseFormInput
         // Setup the set of CSS classes for the label element. This includes
         // the default classes plus any custom classes provided by the user.
 
-        $this->labelClasses = $this->getLabelClasses($labelClasses);
+        $this->labelClasses = $this->getLabelClasses($sizing, $labelClasses);
 
         // Handle sizing for the checkbox. Since checkboxes do not have
         // specific Bootstrap sizing classes, we will apply custom styles
         // based on the provided sizing option.
 
-        $styles = $this->resolveSizingStyles($sizing);
-        $this->labelStyle = $styles['label'];
-        $this->checkboxStyle = $styles['checkbox'];
+        $this->checkboxStyle = $this->resolveSizingStyles($sizing);
     }
 
     /**
@@ -134,12 +124,28 @@ class Checkbox extends BaseFormInput
     /**
      * Get the set of CSS classes for the "label" element.
      *
+     * @param  ?string  $sizing  The size modifier ('sm', 'lg', or null)
      * @param  ?string  $classes  Set of custom classes to be added
      * @return string
      */
-    protected function getLabelClasses(?string $classes = null): string
-    {
-        $classesArray = ['form-check-label', 'ms-1'];
+    protected function getLabelClasses(
+        ?string $sizing = null,
+        ?string $classes = null
+    ): string {
+        $classesArray = ['form-check-label'];
+
+        // If required, add a margin adjustment class based on the sizing
+        // option.
+
+        $marginLeftClass = match ($sizing) {
+            'sm' => null,
+            'lg' => $this->isSwitch ? 'ms-3' : 'ms-1',
+            default => $this->isSwitch ? 'ms-1' : null,
+        };
+
+        if (! empty($marginLeftClass)) {
+            $classesArray[] = $marginLeftClass;
+        }
 
         // Add any custom classes provided by the user.
 
@@ -151,29 +157,26 @@ class Checkbox extends BaseFormInput
     }
 
     /**
-     * Resolve inline styles for sizing adjustments based on the provided
-     * sizing option. This method returns an array with styles for both the
-     * label and the checkbox input element.
+     * Resolve inline checkbox styles for sizing adjustments based on the
+     * provided sizing option. This method returns a specific inline style
+     * string to scale the checkbox appropriately.
      *
      * @param  ?string  $sizing  The size modifier ('sm', 'lg', or null)
-     * @return array
+     * @return ?string
      */
-    protected function resolveSizingStyles(?string $sizing = null): array
+    protected function resolveSizingStyles(?string $sizing = null): ?string
     {
-        return match ($sizing) {
-            'sm' => [
-                'label' => 'font-size:0.875rem;',
-                'checkbox' => 'transform:scale(0.85);',
-            ],
-            'lg' => [
-                'label' => 'font-size:1.25rem;',
-                'checkbox' => 'transform:scale(1.3);margin-top:0.45rem;',
-            ],
-            default => [
-                'label' => null,
-                'checkbox' => null,
-            ],
-        };
+        if ($sizing === 'sm') {
+            $marginLeft = $this->isSwitch ? '-2.6em' : '-1.6em';
+
+            return "transform:scale(0.85);margin-left:{$marginLeft};";
+        } elseif ($sizing === 'lg') {
+            $marginLeft = $this->isSwitch ? '-2.1em' : '-1.4em';
+
+            return "transform:scale(1.3);margin-left:{$marginLeft};";
+        }
+
+        return null;
     }
 
     /**

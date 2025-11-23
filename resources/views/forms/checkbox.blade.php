@@ -11,7 +11,7 @@
 
     {{-- Checkbox label --}}
     @if (! empty($label))
-        <label for="{{ $id }}" class="{{ $labelClasses }}" style="{{ $labelStyle }}">
+        <label for="{{ $id }}" class="{{ $labelClasses }}">
             {{ $label }}
         </label>
     @endif
