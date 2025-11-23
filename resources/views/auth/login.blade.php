@@ -50,8 +50,8 @@
                 </x-ladmin-input-group>
 
                 {{-- Remember me --}}
-                <x-ladmin-checkbox name="remember_me" label="{{ __('ladmin::auth.inputs.remember_me') }}" class="shadow-none"
-                    no-validation-feedback/>
+                <x-ladmin-checkbox name="remember_me" theme="{{ $buttonTheme }}" label="{{ __('ladmin::auth.inputs.remember_me') }}"
+                    class="shadow-none" sizing="lg" no-validation-feedback/>
 
                 {{-- Sign in button --}}
                 <div class="w-100 clearfix">
