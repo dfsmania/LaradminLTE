@@ -17,3 +17,13 @@
     @endif
 
 </div>
+
+{{-- Checkbox theme customization styles --}}
+@push('css')
+    <style>
+        #{{ $id }}:checked {
+            border-color: var(--bs-{{ $theme }});
+            background-color: var(--bs-{{ $theme }});
+        }
+    </style>
+@endpush

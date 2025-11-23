@@ -15,6 +15,15 @@ class Checkbox extends BaseFormInput
     protected string $baseFormClass = 'form-check-input';
 
     /**
+     * The color theme for the checkbox. Accepts any valid Bootstrap theme such
+     * as 'primary', 'secondary', 'success', 'danger', 'warning', 'info',
+     * 'light' or 'dark'. Default is 'primary'.
+     *
+     * @var string
+     */
+    public string $theme;
+
+    /**
      * The label for the checkbox element (optional). This is used to provide a
      * descriptive label for the checkbox. Note the "input-group" decorator
      * cannot be used with checkboxes, so the checkbox manages its own label.
@@ -52,6 +61,7 @@ class Checkbox extends BaseFormInput
      *
      * @param  string  $name  The name attribute of the checkbox element
      * @param  ?string  $id  The id attribute of the checkbox element
+     * @param  string  $theme  The color theme for the checkbox element
      * @param  ?string  $sizing  The size modifier for the checkbox element
      * @param  bool  $noOldInput  Whether to disable old input support
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
@@ -63,6 +73,7 @@ class Checkbox extends BaseFormInput
     public function __construct(
         string $name,
         ?string $id = null,
+        string $theme = 'primary',
         ?string $sizing = null,
         bool $noOldInput = false,
         bool $noValidationFeedback = false,
@@ -82,6 +93,10 @@ class Checkbox extends BaseFormInput
             noOldInput: $noOldInput,
             noValidationFeedback: $noValidationFeedback
         );
+
+        // Setup the color theme for the checkbox.
+
+        $this->theme = $theme;
 
         // Setup whether the checkbox should be rendered as a switch.
 
