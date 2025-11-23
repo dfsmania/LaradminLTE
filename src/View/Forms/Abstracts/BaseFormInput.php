@@ -13,16 +13,13 @@ abstract class BaseFormInput extends Component
     use HandlesOldInput, ResolvesErrorKey;
 
     /**
-     * The default set of CSS classes applied to the input element.
-     * Child elements may override this value to use a different set of base
-     * classes (e.g., 'form-select' for select elements).
+     * The default Bootstrap CSS form class for the input element.
+     * Child elements may override this value to use a different base class
+     * (e.g., 'form-select' for select elements).
      *
-     * @var string[]
+     * @var string
      */
-    protected array $baseClasses = [
-        'form-control',
-        'disable-adminlte-validations',
-    ];
+    protected string $baseFormClass = 'form-control';
 
     /**
      * An optional size modifier for the input element.
@@ -106,12 +103,19 @@ abstract class BaseFormInput extends Component
      */
     public function getBaseClasses(ViewErrorBag $errors): string
     {
-        $classes = $this->baseClasses;
+        // Start with the base form class, plus:
+        // - disable-adminlte-validations: to disable default AdminLTE client
+        // side validations.
+
+        $classes = [
+            $this->baseFormClass,
+            'disable-adminlte-validations',
+        ];
 
         // Add size modifier class if a valid size is provided.
 
         if (! empty($this->sizing)) {
-            $classes[] = $this->baseClass.'-'.$this->sizing;
+            $classes[] = $this->baseFormClass.'-'.$this->sizing;
         }
 
         // Add validation state classes if validation feedback is enabled.

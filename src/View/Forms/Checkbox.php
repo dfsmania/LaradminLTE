@@ -8,14 +8,11 @@ use Illuminate\Support\ViewErrorBag;
 class Checkbox extends BaseFormInput
 {
     /**
-     * The default set of CSS classes applied to the input element.
+     * The default Bootstrap CSS form class for the input element.
      *
-     * @var string[]
+     * @var string
      */
-    protected array $baseClasses = [
-        'form-check-input',
-        'disable-adminlte-validations',
-    ];
+    protected string $baseFormClass = 'form-check-input';
 
     /**
      * The label for the checkbox element (optional). This is used to provide a

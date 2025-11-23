@@ -7,14 +7,11 @@ use DFSmania\LaradminLte\View\Forms\Abstracts\BaseFormInput;
 class Select extends BaseFormInput
 {
     /**
-     * The default set of CSS classes applied to the input element.
+     * The default Bootstrap CSS form class for the input element.
      *
-     * @var string[]
+     * @var string
      */
-    protected array $baseClasses = [
-        'form-select',
-        'disable-adminlte-validations',
-    ];
+    protected string $baseFormClass = 'form-select';
 
     /**
      * The set of options for the select element. Each option is represented
