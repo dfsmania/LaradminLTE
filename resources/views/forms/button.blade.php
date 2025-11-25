@@ -1,5 +1,6 @@
 {{-- Button element --}}
-<button {{ $attributes->merge(['class' => "btn btn-{$theme}"]) }}>
+<button {{ $attributes->merge(['class' => $buttonClasses]) }}>
+
     {{-- Icon --}}
     @if(! empty($icon))
         <i class="{{ $icon }}"></i>
@@ -12,4 +13,5 @@
 
     {{-- Slot content, to support custom markup --}}
     {{ $slot }}
+
 </button>
