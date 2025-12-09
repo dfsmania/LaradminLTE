@@ -54,7 +54,7 @@ return [
     'logo' => [
         // The URL path to the logo image file. Can be a relative path to
         // the public directory or an absolute URL.
-        'image' => 'vendor/ladmin/img/LaradminLTE-Auth.png',
+        'image' => '/vendor/ladmin/img/LaradminLTE-Auth.png',
 
         // The alternative text for the logo image, used for accessibility.
         'image_alt' => 'LaradminLTE Logo',
