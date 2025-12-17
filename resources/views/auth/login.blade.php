@@ -55,24 +55,42 @@
 
                 {{-- Sign in button --}}
                 <div class="w-100 clearfix">
-                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" label="{{ __('ladmin::auth.login.sign_in') }}"
-                        icon="bi bi-box-arrow-in-right fs-5 me-1" class="float-end d-flex align-items-center bg-gradient"/>
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-box-arrow-in-right fs-5 me-1"
+                        label="{{ __('ladmin::auth.login.sign_in') }}" class="float-end d-flex align-items-center bg-gradient"/>
                 </div>
 
                 {{-- Additional links --}}
-                <div class="mt-1">
+                <div>
+                    {{-- Reset password link --}}
+                    @if(config('ladmin.auth.features.password_reset', false))
+                        <p class="mt-1 mb-0">
+                            <a class="link-{{ $linkTheme }}" href="{{ route('password.request') }}">
+                                {{ __('ladmin::auth.login.forgot_password') }}
+                            </a>
+                        </p>
+                    @endif
 
                     {{-- Register link --}}
                     @if(config('ladmin.auth.features.registration', false))
-                        <a class="link-{{ $linkTheme }}" href="{{ route('register') }}">
-                            {{ __('ladmin::auth.login.register_account') }}
-                        </a>
+                        <p class="mt-1 mb-0">
+                            <a class="link-{{ $linkTheme }}" href="{{ route('register') }}">
+                                {{ __('ladmin::auth.login.register_account') }}
+                            </a>
+                        </p>
                     @endif
-
                 </div>
             </form>
         </div>
 
     </div>
+
+    {{-- Password reset status message --}}
+    @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show text-center shadow mt-3" role="alert">
+            <i class="bi bi-check-circle-fill me-1"></i>
+            {{ session('status') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
 
 </x-ladmin-auth-base>

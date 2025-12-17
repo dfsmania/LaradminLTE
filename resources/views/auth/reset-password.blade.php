@@ -10,33 +10,25 @@
 
 {{-- Define the layout of the page --}}
 
-<x-ladmin-auth-base title="{{ __('ladmin::auth.register.page_title') }}">
+<x-ladmin-auth-base title="{{ __('ladmin::auth.reset_password.page_title') }}">
 
-    {{-- Register card --}}
+    {{-- Reset password card --}}
     <div class="card shadow">
 
         {{-- Card header --}}
         <div class="card-header border-bottom-0 {{ $backgroundClass }}">
             <p class="card-title w-100 text-center">
-                {{ __('ladmin::auth.register.box_title') }}
+                {{ __('ladmin::auth.reset_password.box_title') }}
             </p>
         </div>
 
         {{-- Card body --}}
         <div class="card-body login-card-body">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 
-                {{-- Name --}}
-                <x-ladmin-input-group for="name" label="{{ __('ladmin::auth.inputs.name') }}" floating-label>
-                    <x-ladmin-input name="name" type="text" placeholder="" required/>
-
-                    <x-slot name="append">
-                        <span class="input-group-text bg-body-tertiary">
-                            <i class="bi bi-person-fill fs-5 text-{{ $iconTheme }}"></i>
-                        </span>
-                    </x-slot>
-                </x-ladmin-input-group>
+                {{-- Password reset token --}}
+                <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                 {{-- Email address --}}
                 <x-ladmin-input-group for="email" label="{{ __('ladmin::auth.inputs.email') }}" floating-label>
@@ -72,20 +64,11 @@
                     </x-slot>
                 </x-ladmin-input-group>
 
-                {{-- Register button --}}
+                {{-- Reset password button --}}
                 <div class="w-100 clearfix">
-                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-person-plus-fill fs-5 me-1"
-                        label="{{ __('ladmin::auth.register.register') }}" class="float-end d-flex align-items-center bg-gradient"/>
-                </div>
-
-                {{-- Additional links --}}
-                <div>
-                    {{-- Login link --}}
-                    <p class="mb-0">
-                        <a class="link-{{ $linkTheme }}" href="{{ route('login') }}">
-                            {{ __('ladmin::auth.register.already_have_account') }}
-                        </a>
-                    </p>
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-person-lock fs-5 me-1"
+                        label="{{ __('ladmin::auth.reset_password.reset_password') }}"
+                        class="w-100 d-flex justify-content-center align-items-center bg-gradient"/>
                 </div>
             </form>
         </div>

@@ -283,12 +283,25 @@ class LaradminLteServiceProvider extends ServiceProvider
             return view("{$this->pkgPrefix}::auth.login");
         });
 
-        // Register the registration view, only if the registration feature
-        // is enabled.
+        // Register the registration view, only if the feature is enabled.
 
         if (config('ladmin.auth.features.registration', false)) {
             Fortify::registerView(function () {
                 return view("{$this->pkgPrefix}::auth.register");
+            });
+        }
+
+        // Register the views for the password reset feature, only if the
+        // feature is enabled.
+
+        if (config('ladmin.auth.features.password_reset', false)) {
+            Fortify::requestPasswordResetLinkView(function () {
+                return view("{$this->pkgPrefix}::auth.forgot-password");
+            });
+            Fortify::resetPasswordView(function ($request) {
+                return view("{$this->pkgPrefix}::auth.reset-password", [
+                    'request' => $request,
+                ]);
             });
         }
     }
@@ -307,6 +320,10 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         if (config('ladmin.auth.features.registration', false)) {
             $features[] = Features::registration();
+        }
+
+        if (config('ladmin.auth.features.password_reset', false)) {
+            $features[] = Features::resetPasswords();
         }
 
         // Configure enabled features in Fortify.
