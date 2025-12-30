@@ -74,7 +74,7 @@
 
                 {{-- Register button --}}
                 <div class="w-100 clearfix">
-                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-person-plus-fill fs-5 me-1"
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-person-plus-fill fs-5"
                         label="{{ __('ladmin::auth.register.register') }}" class="float-end d-flex align-items-center bg-gradient"/>
                 </div>
 

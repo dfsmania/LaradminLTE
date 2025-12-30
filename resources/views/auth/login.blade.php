@@ -55,7 +55,7 @@
 
                 {{-- Sign in button --}}
                 <div class="w-100 clearfix">
-                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-box-arrow-in-right fs-5 me-1"
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-box-arrow-in-right fs-5"
                         label="{{ __('ladmin::auth.login.sign_in') }}" class="float-end d-flex align-items-center bg-gradient"/>
                 </div>
 

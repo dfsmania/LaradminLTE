@@ -43,7 +43,7 @@
 
                 {{-- Request password reset link button --}}
                 <div class="w-100 clearfix">
-                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-envelope fs-5 me-1"
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-envelope-arrow-up-fill fs-5"
                         label="{{ __('ladmin::auth.forgot_password.request_reset_link') }}"
                         class="w-100 d-flex justify-content-center align-items-center bg-gradient"/>
                 </div>
