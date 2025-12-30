@@ -3,7 +3,7 @@
 
     {{-- Icon --}}
     @if(! empty($icon))
-        <i class="{{ $icon }}"></i>
+        <i class="{{ $icon }} @if(! empty($label)) me-2 @endif"></i>
     @endif
 
     {{-- Label --}}
