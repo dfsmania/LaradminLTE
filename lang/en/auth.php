@@ -27,7 +27,7 @@ return [
 
     // Forgot password translations
     'forgot_password' => [
-        'page_title' => 'Forgot Password',
+        'page_title' => 'Password Forgotten',
         'box_title' => 'Request password reset link',
         'box_help' => 'Forgot your password? No problem. Enter your email and we will send you a link that will allow you to reset it.',
         'request_reset_link' => 'Request Password Reset Link',
@@ -36,7 +36,7 @@ return [
 
     // Reset password translations
     'reset_password' => [
-        'page_title' => 'Reset Password',
+        'page_title' => 'Password Reset',
         'box_title' => 'Reset your password',
         'reset_password' => 'Reset Password',
     ],
@@ -47,5 +47,15 @@ return [
         'box_title' => 'Register a new account',
         'register' => 'Register',
         'already_have_account' => 'Already registered?',
+    ],
+
+    // Verify email translations
+    'verify_email' => [
+        'page_title' => 'Email Verification',
+        'box_title' => 'Verify your email address',
+        'box_help' => 'Thanks for signing up! Please confirm your email address using the link we emailed to you. You may request a new email if needed.',
+        'resend_email' => 'Resend Verification Email',
+        'resend_ok_message' => 'A new email verification link has been emailed to you!',
+        'sign_out' => 'Sign out and verify later?',
     ],
 ];

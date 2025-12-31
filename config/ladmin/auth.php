@@ -92,15 +92,18 @@ return [
 
         // Enables the password reset feature, allowing users to reset their
         // passwords if they forget them. This feature requires you to properly
-        // configure your mailing service in your application, by setting the
+        // configure a mailing service in your application, by setting the
         // corresponding "MAIL_*" environment variables.
         'password_reset' => false,
 
         // Enables the email verification feature, requiring users to verify
         // their email addresses upon registration. This feature also requires
-        // you to properly configure your mailing service in your application,
-        // by setting the corresponding "MAIL_*" environment variables.
-        // 'email_verification' => false,
+        // you to properly configure a mailing service in your application, by
+        // setting the corresponding "MAIL_*" environment variables, to
+        // implement the Illuminate\Contracts\Auth\MustVerifyEmail interface on
+        // your User model, and to add the 'verified' middleware to routes that
+        // should only be accessible to verified users.
+        'email_verification' => false,
     ],
 
     /*

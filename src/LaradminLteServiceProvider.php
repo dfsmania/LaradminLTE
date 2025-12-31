@@ -304,6 +304,14 @@ class LaradminLteServiceProvider extends ServiceProvider
                 ]);
             });
         }
+
+        // Register the email verification view, only if the feature is enabled.
+
+        if (config('ladmin.auth.features.email_verification', false)) {
+            Fortify::verifyEmailView(function () {
+                return view("{$this->pkgPrefix}::auth.verify-email");
+            });
+        }
     }
 
     /**
@@ -324,6 +332,10 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         if (config('ladmin.auth.features.password_reset', false)) {
             $features[] = Features::resetPasswords();
+        }
+
+        if (config('ladmin.auth.features.email_verification', false)) {
+            $features[] = Features::emailVerification();
         }
 
         // Configure enabled features in Fortify.
