@@ -25,6 +25,15 @@ return [
         'sign_out' => 'Sign Out',
     ],
 
+    // Confirm password translations
+    'confirm_password' => [
+        'page_title' => 'Password Confirmation',
+        'box_title' => 'Confirm your password',
+        'box_help' => 'This is a secure area of the application. Please confirm your password to continue.',
+        'confirm_password' => 'Confirm',
+        'return_back' => 'Return back?',
+    ],
+
     // Forgot password translations
     'forgot_password' => [
         'page_title' => 'Password Forgotten',

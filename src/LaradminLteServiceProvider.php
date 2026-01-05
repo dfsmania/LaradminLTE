@@ -277,10 +277,14 @@ class LaradminLteServiceProvider extends ServiceProvider
      */
     private function registerFortifyViews(): void
     {
-        // Register the login view.
+        // Register default fortify views: login, password confirmation, etc.
 
         Fortify::loginView(function () {
             return view("{$this->pkgPrefix}::auth.login");
+        });
+
+        Fortify::confirmPasswordView(function () {
+            return view("{$this->pkgPrefix}::auth.confirm-password");
         });
 
         // Register the registration view, only if the feature is enabled.
