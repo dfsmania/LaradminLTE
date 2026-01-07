@@ -23,7 +23,7 @@
         </div>
 
         {{-- Card body --}}
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body rounded-bottom">
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
@@ -41,21 +41,21 @@
                     </x-slot>
                 </x-ladmin-input-group>
 
-                {{-- Request password reset link button --}}
-                <div class="w-100 clearfix">
+                {{-- Actions and links --}}
+                <div class="d-flex flex-column">
+
+                    {{-- Request password reset link button --}}
                     <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-envelope-arrow-up-fill fs-5"
                         label="{{ __('ladmin::auth.forgot_password.request_reset_link') }}"
-                        class="w-100 d-flex justify-content-center align-items-center bg-gradient"/>
-                </div>
+                        class="d-flex justify-content-center align-items-center bg-gradient"/>
 
-                {{-- Additional links --}}
-                <div class="mt-3">
                     {{-- Login link --}}
-                    <p class="mb-0">
+                    <p class="mb-0 mt-3">
                         <a class="link-{{ $linkTheme }}" href="{{ route('login') }}">
                             {{ __('ladmin::auth.forgot_password.remember_password') }}
                         </a>
                     </p>
+
                 </div>
             </form>
         </div>

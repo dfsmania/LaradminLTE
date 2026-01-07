@@ -23,7 +23,7 @@
         </div>
 
         {{-- Card body --}}
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body rounded-bottom">
 
             {{-- Verification email resend form --}}
             <form method="POST" action="{{ route('verification.send') }}">
@@ -32,11 +32,14 @@
                 {{-- Help text --}}
                 <p>{{ __('ladmin::auth.verify_email.box_help') }}</p>
 
-                {{-- Resend verification email link button --}}
-                <div class="w-100 clearfix">
+                {{-- Actions and links --}}
+                <div class="d-flex flex-column">
+
+                    {{-- Resend verification email link button --}}
                     <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-envelope-arrow-up-fill fs-5"
                         label="{{ __('ladmin::auth.verify_email.resend_email') }}"
-                        class="w-100 d-flex justify-content-center align-items-center bg-gradient"/>
+                        class="d-flex justify-content-center align-items-center bg-gradient"/>
+
                 </div>
             </form>
 

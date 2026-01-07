@@ -23,7 +23,7 @@
         </div>
 
         {{-- Card body --}}
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body rounded-bottom">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
@@ -72,20 +72,22 @@
                     </x-slot>
                 </x-ladmin-input-group>
 
-                {{-- Register button --}}
-                <div class="w-100 clearfix">
+                {{-- Actions and links --}}
+                <div class="d-flex align-items-end mt-3">
+
+                    {{-- Links --}}
+                    <div class="flex-grow-1">
+                        <p class="mt-1 mb-0">
+                            <a class="link-{{ $linkTheme }}" href="{{ route('login') }}">
+                                {{ __('ladmin::auth.register.already_have_account') }}
+                            </a>
+                        </p>
+                    </div>
+
+                    {{-- Register button --}}
                     <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-person-plus-fill fs-5"
                         label="{{ __('ladmin::auth.register.register') }}" class="float-end d-flex align-items-center bg-gradient"/>
-                </div>
 
-                {{-- Additional links --}}
-                <div>
-                    {{-- Login link --}}
-                    <p class="mb-0">
-                        <a class="link-{{ $linkTheme }}" href="{{ route('login') }}">
-                            {{ __('ladmin::auth.register.already_have_account') }}
-                        </a>
-                    </p>
                 </div>
             </form>
         </div>

@@ -23,7 +23,7 @@
         </div>
 
         {{-- Card body --}}
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body rounded-bottom">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -53,31 +53,32 @@
                 <x-ladmin-checkbox name="remember_me" theme="{{ $buttonTheme }}" label="{{ __('ladmin::auth.inputs.remember_me') }}"
                     class="shadow-none" sizing="lg" no-validation-feedback/>
 
-                {{-- Sign in button --}}
-                <div class="w-100 clearfix">
+                {{-- Actions and links --}}
+                <div class="d-flex align-items-end mt-3">
+
+                    {{-- Links --}}
+                    <div class="flex-grow-1">
+                        @if(config('ladmin.auth.features.password_reset', false))
+                            <p class="mt-1 mb-0">
+                                <a class="link-{{ $linkTheme }}" href="{{ route('password.request') }}">
+                                    {{ __('ladmin::auth.login.forgot_password') }}
+                                </a>
+                            </p>
+                        @endif
+
+                        @if(config('ladmin.auth.features.registration', false))
+                            <p class="mt-1 mb-0">
+                                <a class="link-{{ $linkTheme }}" href="{{ route('register') }}">
+                                    {{ __('ladmin::auth.login.register_account') }}
+                                </a>
+                            </p>
+                        @endif
+                    </div>
+
+                    {{-- Sign in button --}}
                     <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-box-arrow-in-right fs-5"
-                        label="{{ __('ladmin::auth.login.sign_in') }}" class="float-end d-flex align-items-center bg-gradient"/>
-                </div>
+                        label="{{ __('ladmin::auth.login.sign_in') }}" class="d-flex align-items-center bg-gradient"/>
 
-                {{-- Additional links --}}
-                <div>
-                    {{-- Reset password link --}}
-                    @if(config('ladmin.auth.features.password_reset', false))
-                        <p class="mt-1 mb-0">
-                            <a class="link-{{ $linkTheme }}" href="{{ route('password.request') }}">
-                                {{ __('ladmin::auth.login.forgot_password') }}
-                            </a>
-                        </p>
-                    @endif
-
-                    {{-- Register link --}}
-                    @if(config('ladmin.auth.features.registration', false))
-                        <p class="mt-1 mb-0">
-                            <a class="link-{{ $linkTheme }}" href="{{ route('register') }}">
-                                {{ __('ladmin::auth.login.register_account') }}
-                            </a>
-                        </p>
-                    @endif
                 </div>
             </form>
         </div>

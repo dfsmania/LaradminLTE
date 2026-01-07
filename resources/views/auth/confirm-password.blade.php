@@ -23,7 +23,7 @@
         </div>
 
         {{-- Card body --}}
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body rounded-bottom">
             <form method="POST" action="{{ route('password.confirm.store') }}">
                 @csrf
 
@@ -41,21 +41,22 @@
                     </x-slot>
                 </x-ladmin-input-group>
 
-                {{-- Confirm password button --}}
-                <div class="w-100 clearfix">
-                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-check-circle-fill fs-5"
-                        label="{{ __('ladmin::auth.confirm_password.confirm_password') }}"
-                        class="w-100 d-flex justify-content-center align-items-center bg-gradient"/>
-                </div>
+                {{-- Actions and links --}}
+                <div class="d-flex align-items-end mt-3">
 
-                {{-- Additional links --}}
-                <div class="mt-3">
-                    {{-- Return back link --}}
-                    <p class="mb-0">
-                        <a class="link-{{ $linkTheme }}" href="javascript:window.history.back()">
-                            {{ __('ladmin::auth.confirm_password.return_back') }}
-                        </a>
-                    </p>
+                    {{-- Links --}}
+                    <div class="flex-grow-1">
+                        <p class="mt-1 mb-0">
+                            <a class="link-{{ $linkTheme }}" href="javascript:window.history.back()">
+                                {{ __('ladmin::auth.confirm_password.return_back') }}
+                            </a>
+                        </p>
+                    </div>
+
+                    {{-- Confirm password button --}}
+                    <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-check-circle-fill fs-5"
+                        label="{{ __('ladmin::auth.confirm_password.confirm_password') }}" class="float-end d-flex align-items-center bg-gradient"/>
+
                 </div>
             </form>
         </div>

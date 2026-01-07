@@ -23,7 +23,7 @@
         </div>
 
         {{-- Card body --}}
-        <div class="card-body login-card-body">
+        <div class="card-body login-card-body rounded-bottom">
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
 
@@ -64,11 +64,14 @@
                     </x-slot>
                 </x-ladmin-input-group>
 
-                {{-- Reset password button --}}
-                <div class="w-100 clearfix">
+                {{-- Actions and links --}}
+                <div class="d-flex flex-column">
+
+                    {{-- Reset password button --}}
                     <x-ladmin-button type="submit" theme="{{ $buttonTheme }}" icon="bi bi-person-fill-lock fs-5"
                         label="{{ __('ladmin::auth.reset_password.reset_password') }}"
-                        class="w-100 d-flex justify-content-center align-items-center bg-gradient"/>
+                        class="d-flex justify-content-center align-items-center bg-gradient"/>
+
                 </div>
             </form>
         </div>
