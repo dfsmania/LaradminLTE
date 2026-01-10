@@ -107,7 +107,7 @@ As example, save the following content in `resources/views/laradminlte-welcome.b
 ### 2. Enable the Authentication Scaffolding (Optional)
 
 > [!IMPORTANT]
-> To use the authentication scaffolding, you need to have the default Laravel's migrations for users already set up in your database. You can can install Laravel's migrations by running: `php artisan migrate`.
+> To use the authentication scaffolding, you need to have the default Laravel's migrations for users already set up in your database. If this is not your case, then you can can install Laravel's default migrations by running: `php artisan migrate`.
 
 If you want to use the built-in authentication scaffolding, make sure to have it enabled in the `config/ladmin/auth.php` file, and setup the `home_path`. The `home_path` is the place where users will be redirected after login. Then protect your routes using the `auth` middleware:
 
