@@ -32,6 +32,7 @@ export default defineConfig({
           { text: 'General', link: '/sections/config/general' },
           { text: 'Menu', link: '/sections/config/menu' },
           { text: 'Plugins', link: '/sections/config/plugins' },
+          { text: 'Authentication', link: '/sections/config/auth' },
         ]
       },
     ],
