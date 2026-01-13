@@ -35,6 +35,41 @@ Once you have done this, you can access the login page by navigating to `/login`
 
 The authentication scaffolding offer additional features that can be enabled or disabled as needed. These features include *registration*, *password reset* and *email verification*. Also, the appearance of the authentication views can be customized by modifying the configuration file. All of these settings are explained in the next sections.
 
+## How to Customize the User Image
+
+By default, *LaradminLTE* uses [Gravatar](https://www.gravatar.com/) to display the user images in the navbar user menu based on their email addresses. However, you can customize the user image by defining a custom attribute in your `User` model.
+
+If you want to use your own user images (stored locally, on S3, or generated dynamically), you can override the default behavior by implementing the `ladmin_image` [accessor](https://laravel.com/docs/eloquent-mutators#defining-an-accessor) on your `User` model. This accessor should return the `URL` of the user image to be displayed.
+
+For example (and reference), assuming you store images locally in the `public/images/users` folder and you use the user `id` to name the image files, then you can define the `ladmin_image` accessor as follows:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
+
+class User extends Authenticatable
+{
+    /**
+     * Get the user's image URL for LaradminLTE.
+     */
+    protected function ladminImage(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Storage::url("images/users/{$this->id}.jpg"),
+        );
+    }
+}
+```
+
+::: warning WARNING: Just an Example
+The previous example is provided solely to illustrate a potential use case. It is not production-ready code and may require additional logic, validation, error handling, and security considerations before use in a production environment. Please, just use it as a reference of what can be done.
+:::
+
 ## Main Settings
 
 The main settings for the authentication scaffolding are as follows:
