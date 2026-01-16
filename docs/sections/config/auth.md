@@ -229,7 +229,7 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 This setting enables or disables the email verification feature. When set to `true`, users will be required to verify their email addresses upon registration. This feature requires you to properly configure a mailing service in your Laravel application, by setting the corresponding `MAIL_*` environment variables, to implement the `Illuminate\Contracts\Auth\MustVerifyEmail` interface on your `User` model, and to add the `verified` middleware to routes that should only be accessible to verified users.
 
-You can see [password_rest](#password-reset) for an example of environment configuration using [Mailtrap](https://mailtrap.io/). At next we provide an example of how to implement the `MustVerifyEmail` interface in the `User` model and how to protect routes using the `verified` middleware.
+You can see [password_reset](#password-reset) for an example of environment configuration using [Mailtrap](https://mailtrap.io/). At next we provide an example of how to implement the `MustVerifyEmail` interface in the `User` model and how to protect routes using the `verified` middleware.
 
 
 ::: code-group
