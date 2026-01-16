@@ -250,6 +250,37 @@ Route::middleware(['auth', 'verified'])->group(function () {
 ```
 :::
 
+### Password Confirmation
+
+The authentication scaffolding also includes password confirmation functionality, which is used to verify a user's identity before allowing access to sensitive actions or areas of the application. This feature is enabled by default and does not require any additional configuration.
+
+When a user attempts to access a route that requires password confirmation, they will be prompted to enter their password again. This helps to ensure that the user is indeed the rightful owner of the account before proceeding with the sensitive action.
+
+To protect routes with the password confirmation feature, you can use the `password.confirm` middleware of Laravel in your route definitions. For example:
+
+```php
+Route::middleware(['auth'])->group(function () {
+    // Routes that require authentication...
+
+    Route::middleware(['password.confirm'])->group(function () {
+        // Add routes that require password confirmation here...
+    });
+});
+```
+
+Or by assingning the `password.confirm` middleware to specific routes:
+
+
+```php
+Route::middleware(['auth'])->group(function () {
+    // Routes that require authentication...
+
+    Route::get('/sensitive-action', function () {
+        // Sensitive action that requires password confirmation...
+    })->middleware('password.confirm');
+});
+```
+
 ## Accent Themes
 
 The authentication scaffolding supports various accent themes that can be applied to the authentication pages. These themes change the color scheme of various elements on the pages, such as buttons and links. You can choose from the following predefined accent themes by setting the [accent_theme](#accent-theme) option in the `config/ladmin/auth.php` file: `default`, `blue`, `green`, `red`, `yellow`, `skyblue`, `gray`, and `black`.
