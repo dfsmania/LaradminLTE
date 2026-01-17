@@ -1,6 +1,6 @@
 # Authentication Scaffolding Configuration
 
-These settings allow you to customize the appearance and features of the authentication scaffolding provided by *LaradminLte*. The authentication scaffolding is built on top of the [Laravel Fortify](https://laravel.com/docs/fortify) backend, which already includes routes and controllers for login, registration, password reset, and email verification features. *LaradminLte* uses Fortify's backend to provide a complete authentication solution with pre-built views that can be easily customized.
+These settings allow you to customize the appearance and features of the authentication scaffolding provided by *LaradminLTE*. The authentication scaffolding is built on top of the [Laravel Fortify](https://laravel.com/docs/fortify) backend, which already includes routes and controllers for login, registration, password reset, and email verification features. *LaradminLTE* uses Fortify's backend to provide a complete authentication solution with pre-built views that can be easily customized.
 
 The authentication settings are managed in the `config/ladmin/auth.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
 ```
 :::
 
-Once you have done this, you can access the login page by navigating to `/login` in your application. Also, you will be redirected to the login page automatically when trying to access any protected route without being authenticated. In these cases, you should see a login form styled with the default *LaradminLte* theme:
+Once you have done this, you can access the login page by navigating to `/login` in your application. Also, you will be redirected to the login page automatically when trying to access any protected route without being authenticated. In these cases, you should see a login form styled with the default *LaradminLTE* theme:
 
 ![LaradminLTE Login Example](/images/login-example.png)
 
@@ -79,7 +79,7 @@ The main settings for the authentication scaffolding are as follows:
 - Type: `boolean`
 - Example: `'enabled' => true`
 
-This setting enables or fully disables the authentication scaffolding provided by *LaradminLte*. When set to `false`, all of the authentication views and routes will be disabled. When set to `true`, the authentication scaffolding will be available for use with a minimal setup of features: *login*, *logout* and *password confirmation*. All of the other features may be enabled or disabled individually as needed.
+This setting enables or fully disables the authentication scaffolding provided by *LaradminLTE*. When set to `false`, all of the authentication views and routes will be disabled. When set to `true`, the authentication scaffolding will be available for use with a minimal setup of features: *login*, *logout* and *password confirmation*. All of the other features may be enabled or disabled individually as needed.
 
 ### *accent_theme*:
 

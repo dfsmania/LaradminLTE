@@ -668,7 +668,7 @@ You must specify only one of `route` or `url` for a menu item, never both at the
 
 ## Changing the Menu Programmatically
 
-In some cases, the static configuration provided by the `config/ladmin/menu.php` file may not offer enough flexibility for your application's needs. To address this, *LaradminLte* fires a `BuildingMenu` event just before the menu is being processed. By listening to this event with a [Laravel Listener](https://laravel.com/docs/events#defining-listeners), you can modify the menu at runtime by adding, removing, or updating items as needed, or even generate the entire menu dynamically, completely bypassing the static configuration file.
+In some cases, the static configuration provided by the `config/ladmin/menu.php` file may not offer enough flexibility for your application's needs. To address this, *LaradminLTE* fires a `BuildingMenu` event just before the menu is being processed. By listening to this event with a [Laravel Listener](https://laravel.com/docs/events#defining-listeners), you can modify the menu at runtime by adding, removing, or updating items as needed, or even generate the entire menu dynamically, completely bypassing the static configuration file.
 
 ### Creating a Laravel Listener
 
