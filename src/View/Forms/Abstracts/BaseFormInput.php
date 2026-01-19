@@ -110,6 +110,7 @@ abstract class BaseFormInput extends Component
         $classes = [
             $this->baseFormClass,
             'disable-adminlte-validations',
+            'shadow-none',
         ];
 
         // Add size modifier class if a valid size is provided.
