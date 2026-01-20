@@ -5,6 +5,7 @@ namespace DFSmania\LaradminLte;
 use DFSmania\LaradminLte\View\Auth;
 use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
+use DFSmania\LaradminLte\View\Profile;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -61,6 +62,7 @@ class LaradminLteServiceProvider extends ServiceProvider
     protected array $authComponents = [
         'auth-base' => Auth\AuthBase::class,
         'auth-logo' => Auth\AuthLogo::class,
+        'profile-section' => Profile\ProfileSection::class,
     ];
 
     /**
