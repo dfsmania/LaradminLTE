@@ -65,6 +65,7 @@ class Checkbox extends BaseFormInput
      * @param  ?string  $sizing  The size modifier for the checkbox element
      * @param  bool  $noOldInput  Whether to disable old input support
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
+     * @param  ?string  $errorsBag  The errors bag to use for validation feedback
      * @param  ?string  $label  The label for the checkbox element
      * @param  ?string  $labelClasses  Custom classes for the label element
      * @param  bool  $switchMode  Whether to render the checkbox as a switch
@@ -77,6 +78,7 @@ class Checkbox extends BaseFormInput
         ?string $sizing = null,
         bool $noOldInput = false,
         bool $noValidationFeedback = false,
+        ?string $errorsBag = null,
         ?string $label = null,
         ?string $labelClasses = null,
         bool $switchMode = false
@@ -91,7 +93,8 @@ class Checkbox extends BaseFormInput
             id: $id,
             sizing: null,
             noOldInput: $noOldInput,
-            noValidationFeedback: $noValidationFeedback
+            noValidationFeedback: $noValidationFeedback,
+            errorsBag: $errorsBag
         );
 
         // Setup the color theme for the checkbox.
@@ -131,7 +134,7 @@ class Checkbox extends BaseFormInput
      */
     public function isChecked(ViewErrorBag $errors): bool
     {
-        return $errors->any()
+        return $this->anyErrors($errors)
             ? (bool) $this->resolveOldInput($this->errorKey)
             : $this->attributes->has('checked');
     }

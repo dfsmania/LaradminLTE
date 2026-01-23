@@ -2,13 +2,13 @@
 
 namespace DFSmania\LaradminLte\View\Forms;
 
-use DFSmania\LaradminLte\View\Forms\Concerns\ResolvesErrorKey;
+use DFSmania\LaradminLte\View\Forms\Concerns\HandlesValidationErrors;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class InputGroup extends Component
 {
-    use ResolvesErrorKey;
+    use HandlesValidationErrors;
 
     /**
      * The name attribute of the underlying input element. This is required to
@@ -91,6 +91,7 @@ class InputGroup extends Component
      * @param  ?string  $validFeedbackMessage  Message for valid feedback
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
      * @param  bool  $floatingLabel  Whether to use floating label mode
+     * @param  ?string  $errorsBag  The bag name to use when looking for errors
      * @return void
      */
     public function __construct(
@@ -102,7 +103,8 @@ class InputGroup extends Component
         ?string $igroupClasses = null,
         ?string $validFeedbackMessage = null,
         bool $noValidationFeedback = false,
-        bool $floatingLabel = false
+        bool $floatingLabel = false,
+        ?string $errorsBag = null
     ) {
         $this->inputName = $for;
 
@@ -138,10 +140,10 @@ class InputGroup extends Component
             $igroupClasses
         );
 
-        // Resolve the lookup key for validation errors. Note this
-        // initialization uses a dedicated Trait method.
+        // Initialize validation error handling using the dedicated
+        // HandlesValidationErrors trait.
 
-        $this->resolveErrorKey($this->inputName);
+        $this->initValidationErrors($this->inputName, $errorsBag);
     }
 
     /**

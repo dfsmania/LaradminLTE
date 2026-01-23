@@ -33,6 +33,7 @@ class Select extends BaseFormInput
      * @param  ?string  $sizing  The size modifier for the select element
      * @param  bool  $noOldInput  Whether to disable old input support
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
+     * @param  ?string  $errorsBag  The errors bag to use for validation feedback
      * @param  array  $options  The set of options for the select element
      * @return void
      */
@@ -42,6 +43,7 @@ class Select extends BaseFormInput
         ?string $sizing = null,
         bool $noOldInput = false,
         bool $noValidationFeedback = false,
+        ?string $errorsBag = null,
         array $options = []
     ) {
         // Call the parent constructor to initialize base properties.
@@ -51,7 +53,8 @@ class Select extends BaseFormInput
             id: $id,
             sizing: $sizing,
             noOldInput: $noOldInput,
-            noValidationFeedback: $noValidationFeedback
+            noValidationFeedback: $noValidationFeedback,
+            errorsBag: $errorsBag
         );
 
         // Setup the options for the select element, with normalization and

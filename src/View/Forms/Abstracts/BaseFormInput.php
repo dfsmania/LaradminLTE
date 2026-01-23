@@ -3,14 +3,14 @@
 namespace DFSmania\LaradminLte\View\Forms\Abstracts;
 
 use DFSmania\LaradminLte\View\Forms\Concerns\HandlesOldInput;
-use DFSmania\LaradminLte\View\Forms\Concerns\ResolvesErrorKey;
+use DFSmania\LaradminLte\View\Forms\Concerns\HandlesValidationErrors;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
 abstract class BaseFormInput extends Component
 {
-    use HandlesOldInput, ResolvesErrorKey;
+    use HandlesOldInput, HandlesValidationErrors;
 
     /**
      * The default Bootstrap CSS form class for the input element.
@@ -61,6 +61,7 @@ abstract class BaseFormInput extends Component
      * @param  ?string  $sizing  The size modifier for the input element
      * @param  bool  $noOldInput  Whether to disable old input support
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
+     * @param  ?string  $errorsBag  The bag name to use when looking for errors
      * @return void
      */
     public function __construct(
@@ -68,7 +69,8 @@ abstract class BaseFormInput extends Component
         ?string $id = null,
         ?string $sizing = null,
         bool $noOldInput = false,
-        bool $noValidationFeedback = false
+        bool $noValidationFeedback = false,
+        ?string $errorsBag = null
     ) {
         $this->name = $name;
         $this->id = $id ?? $name;
@@ -88,10 +90,10 @@ abstract class BaseFormInput extends Component
 
         $this->useValidationFeedback = ! $noValidationFeedback;
 
-        // Resolve the lookup key for validation errors. Note this
-        // initialization uses a dedicated Trait method.
+        // Initialize validation error handling using the dedicated
+        // HandlesValidationErrors trait.
 
-        $this->resolveErrorKey($this->name);
+        $this->initValidationErrors($this->name, $errorsBag);
     }
 
     /**
@@ -122,9 +124,9 @@ abstract class BaseFormInput extends Component
         // Add validation state classes if validation feedback is enabled.
 
         if ($this->useValidationFeedback) {
-            if ($errors->has($this->errorKey)) {
+            if ($this->hasError($errors)) {
                 $classes[] = 'is-invalid';
-            } elseif ($errors->any()) {
+            } elseif ($this->anyErrors($errors)) {
                 $classes[] = 'is-valid';
             }
         }
