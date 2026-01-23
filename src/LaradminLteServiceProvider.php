@@ -7,6 +7,7 @@ use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
 use DFSmania\LaradminLte\View\Profile;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Features;
@@ -115,6 +116,10 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Setup the Laravel Fortify package (backend for the auth scaffolding).
 
         $this->setupFortify();
+
+        // Load the package routes.
+
+        $this->loadRoutes();
 
         // Declare the publishable resources of the package. Ensure publishable
         // resources are only available in console context.
@@ -344,9 +349,50 @@ class LaradminLteServiceProvider extends ServiceProvider
             $features[] = Features::emailVerification();
         }
 
+        if (config('ladmin.auth.features.update_profile_information', false)) {
+            $features[] = Features::updateProfileInformation();
+        }
+
+        if (config('ladmin.auth.features.update_passwords', false)) {
+            $features[] = Features::updatePasswords();
+        }
+
         // Configure enabled features in Fortify.
 
         config(['fortify.features' => $features]);
+    }
+
+    /**
+     * Load the package routes.
+     *
+     * @return void
+     */
+    private function loadRoutes(): void
+    {
+        // Define the route group configuration for the package routes.
+        // - domain: The domain for the routes, if specified in the config.
+        // - prefix: The URL prefix for the routes, if specified in the config.
+        // - as: The route name prefix for the package routes.
+        // Actually, the routes config section is not defined in the config
+        // file, but we prepare this code for future implementations.
+
+        $routesCfg = [
+            'domain' => config('ladmin.main.routes.domain', null),
+            'prefix' => config('ladmin.main.routes.prefix', ''),
+            'as' => config('ladmin.main.routes.as', 'ladmin.'),
+        ];
+
+        // Load the package routes within the defined route group.
+
+        Route::group($routesCfg, function () {
+
+            // Load the authentication routes only if the authentication
+            // scaffolding is enabled via the package configuration.
+
+            if (config('ladmin.auth.enabled', false)) {
+                $this->loadRoutesFrom($this->packagePath('routes/auth.php'));
+            }
+        });
     }
 
     /**

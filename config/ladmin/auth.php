@@ -104,6 +104,22 @@ return [
         // your User model, and to add the 'verified' middleware to routes that
         // should only be accessible to verified users.
         'email_verification' => false,
+
+        // Enables the profile access protection feature, which requires users
+        // to confirm their password before accessing the user profile page.
+        'protect_profile_access' => true,
+
+        // Enables the profile information update feature, allowing users to
+        // update their profile information such as name and email address.
+        'update_profile_information' => true,
+
+        // Enables the password update feature, allowing users to update their
+        // account passwords.
+        'update_passwords' => true,
+
+        // Enables the account deletion feature, allowing users to delete their
+        // accounts permanently.
+        // 'delete_accounts' => true,
     ],
 
     /*

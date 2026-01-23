@@ -38,6 +38,13 @@
                 </button>
             </form>
 
+            {{-- Profile link --}}
+            <a href="{{ route(config('ladmin.main.routes.as', 'ladmin.') . 'profile.show') }}"
+                class="btn btn-outline-secondary"
+                title="{{ __('ladmin::auth.profile.title') }}">
+                <i class="bi bi-person-fill-gear fs-5"></i>
+            </a>
+
         </li>
 
     </ul>

@@ -5,8 +5,10 @@ return [
     // Input field translations
     'inputs' => [
         'confirm_password' => 'Confirm Password',
+        'current_password' => 'Current Password',
         'email' => 'Email',
         'name' => 'Name',
+        'new_password' => 'New Password',
         'password' => 'Password',
         'remember_me' => 'Remember Me',
     ],
@@ -66,5 +68,19 @@ return [
         'resend_email' => 'Resend Verification Email',
         'resend_ok_message' => 'A new email verification link has been emailed to you!',
         'sign_out' => 'Sign out and verify later?',
+    ],
+
+    // Profile translations
+    'profile' => [
+        'title' => 'User Profile',
+        'btn_save' => 'Save',
+        'profile_info' => [
+            'title' => 'Profile Information',
+            'description' => "Your account's profile information and email address.",
+        ],
+        'update_password' => [
+            'title' => 'Update Password',
+            'description' => 'Ensure your account is using a long, random password to stay secure.',
+        ],
     ],
 ];
