@@ -9,7 +9,7 @@
 
             {{-- Name --}}
             <x-ladmin-input-group for="name" label="{{ __('ladmin::auth.inputs.name') }}" errors-bag="updateProfileInformation">
-                <x-ladmin-input name="name" type="text" value="{{ $user->name }}" no-validation-feedback/>
+                <x-ladmin-input name="name" type="text" value="{{ $user->name }}" no-validation-feedback required/>
 
                 <x-slot name="prepend">
                     <span class="input-group-text bg-body-tertiary">
@@ -20,7 +20,7 @@
 
             {{-- Email address --}}
             <x-ladmin-input-group for="email" label="{{ __('ladmin::auth.inputs.email') }}" errors-bag="updateProfileInformation">
-                <x-ladmin-input name="email" type="email" value="{{ $user->email }}" no-validation-feedback/>
+                <x-ladmin-input name="email" type="email" value="{{ $user->email }}" no-validation-feedback required/>
 
                 <x-slot name="prepend">
                     <span class="input-group-text bg-body-tertiary">
