@@ -16,7 +16,7 @@
                 </span>
             </x-slot>
 
-            <x-ladmin-button type="button" theme="outline-secondary" class="toggle-password">
+            <x-ladmin-button type="button" theme="light" class="toggle-password border-secondary-subtle">
                 <i class="bi bi-eye-slash fs-5"></i>
             </x-ladmin-button>
         </x-ladmin-input-group>
@@ -31,7 +31,7 @@
                 </span>
             </x-slot>
 
-            <x-ladmin-button type="button" theme="outline-secondary" class="toggle-password">
+            <x-ladmin-button type="button" theme="light" class="toggle-password border-secondary-subtle">
                 <i class="bi bi-eye-slash fs-5"></i>
             </x-ladmin-button>
         </x-ladmin-input-group>
@@ -46,7 +46,7 @@
                 </span>
             </x-slot>
 
-            <x-ladmin-button type="button" theme="outline-secondary" class="toggle-password">
+            <x-ladmin-button type="button" theme="light" class="toggle-password border-secondary-subtle">
                 <i class="bi bi-eye-slash fs-5"></i>
             </x-ladmin-button>
         </x-ladmin-input-group>
@@ -60,7 +60,6 @@
 </x-ladmin-profile-section>
 
 {{-- Extra JS --}}
-
 @push('js')
 <script>
 
@@ -77,12 +76,10 @@
                     .querySelector('input');
 
                 // Toggle the input type between 'password' and 'text'.
-                // TODO: Icon should be configurable, see main icons
-                // config.
 
                 if (input.type === 'password') {
                     input.type = 'text';
-                    this.innerHTML = '<i class="bi bi-eye fs-5"></i>';
+                    this.innerHTML = '<i class="bi bi-eye-fill fs-5"></i>';
                 } else {
                     input.type = 'password';
                     this.innerHTML = '<i class="bi bi-eye-slash fs-5"></i>';
