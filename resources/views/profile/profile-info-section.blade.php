@@ -31,7 +31,7 @@
 
             {{-- Submit button --}}
             <x-ladmin-button type="submit" theme="secondary" icon="bi bi-save fs-5"
-                label="{{ __('ladmin::auth.profile.btn_save') }}"
+                label="{{ __('ladmin::auth.profile.buttons.save') }}"
                 class="mt-2 float-end d-flex align-items-center bg-gradient"/>
         </form>
     @else

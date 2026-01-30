@@ -73,10 +73,12 @@ return [
     // Profile translations
     'profile' => [
         'title' => 'User Profile',
-        'btn_save' => 'Save',
+        'buttons' => [
+            'save' => 'Save',
+        ],
         'profile_info' => [
             'title' => 'Profile Information',
-            'description' => "Your account's profile information and email address.",
+            'description' => "Handle your account's profile information and email address.",
         ],
         'update_password' => [
             'title' => 'Update Password',
