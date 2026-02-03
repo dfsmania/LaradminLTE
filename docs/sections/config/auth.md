@@ -35,41 +35,6 @@ Once you have done this, you can access the login page by navigating to `/login`
 
 The authentication scaffolding offer additional features that can be enabled or disabled as needed. These features include *registration*, *password reset* and *email verification*. Also, the appearance of the authentication views can be customized by modifying the configuration file. All of these settings are explained in the next sections.
 
-## How to Customize the User Image
-
-By default, *LaradminLTE* uses [Gravatar](https://www.gravatar.com/) to display the user images in the navbar user menu based on their email addresses. However, you can customize the user image by defining a custom attribute in your `User` model.
-
-If you want to use your own user images (stored locally, on S3, or generated dynamically), you can override the default behavior by implementing the `ladmin_image` [accessor](https://laravel.com/docs/eloquent-mutators#defining-an-accessor) on your `User` model. This accessor should return the `URL` of the user image to be displayed.
-
-For example (and reference), assuming you store images locally in the `public/images/users` folder and you use the user `id` to name the image files, then you can define the `ladmin_image` accessor as follows:
-
-```php
-<?php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Storage;
-
-class User extends Authenticatable
-{
-    /**
-     * Get the user's image URL for LaradminLTE.
-     */
-    protected function ladminImage(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => Storage::url("images/users/{$this->id}.jpg"),
-        );
-    }
-}
-```
-
-::: warning WARNING: Just an Example
-The previous example is provided solely to illustrate a potential use case. It is not production-ready code and may require additional logic, validation, error handling, and security considerations before use in a production environment. Please, just use it as a reference of what can be done.
-:::
-
 ## Main Settings
 
 The main settings for the authentication scaffolding are as follows:
@@ -188,6 +153,9 @@ The authentication scaffolding includes several features that can be enabled or 
     'registration' => true,
     'password_reset' => true,
     'email_verification' => false,
+    'profile_image' => true,
+    'update_profile_information' => true,
+    'update_password' => true,
 ]
 ```
 :::
@@ -250,6 +218,68 @@ Route::middleware(['auth', 'verified'])->group(function () {
 ```
 :::
 
+### *profile_image*:
+
+- Type: `boolean`
+- Example: `'profile_image' => true`
+
+This setting enables or disables the profile image management feature on the user profile page. When set to `true`, users will be able to upload and display a profile image. When set to `false`, the profile image functionality will be disabled. This feature requires a few steps to be fully functional:
+
+#### 1. Add `profile_image_path` Column to Users Table
+
+Use the provided package migration to add the `profile_image_path` column to your `users` table. You can publish the migration file by running the following command:
+
+```bash
+php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="migrations"
+```
+
+Then, run the migrations to update your database schema:
+
+```bash
+php artisan migrate
+```
+
+#### 2. Use `DFSmania\LaradminLte\Models\Concerns\HasProfileImage` Trait
+
+Include the `HasProfileImage` trait in your `User` model to add the necessary methods and relationships for handling profile images. For example:
+
+```php
+<?php
+namespace App\Models;
+
+use DFSmania\LaradminLte\Models\Concerns\HasProfileImage;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use HasProfileImage;
+
+    // ...
+}
+```
+
+#### 3. Setup Your Laravel Filesystem
+
+This feature requires you to have the [Laravel Filesystem](https://laravel.com/docs/filesystem) properly configured in your application to handle file uploads. By default, the profile images are stored in the `public` disk, which is typically linked to the `storage/app/public` directory. Make sure to run `php artisan storage:link` to create a symbolic link from `public/storage` to `storage/app/public` if you haven't done so already.
+
+#### 4. Customize Profile Image Settings (Optional)
+
+You can customize the profile image settings in the `config/ladmin/auth.php` file under the `profile_images` section. This includes options such as the *storage disk*, *maximum file size*, *allowed file types*, and *default image mode* (i.e., the default image to use when a user has not uploaded a profile image). The default image uses external services like [UI Avatars](https://ui-avatars.com/) or [Gravatar](https://gravatar.com/) to generate placeholder images based on the user's name initials or the user's email. Details about these settings can be found in the [Profile Images Configuration](#profile-images) section.
+
+### *update_profile_information*:
+
+- Type: `boolean`
+- Example: `'update_profile_information' => true`
+
+This setting enables or disables the ability for users to update their profile information on the user profile page. When set to `true`, users will be able to edit and save changes to their profile details, such as name and email address. When set to `false`, the profile information update functionality will be disabled.
+
+### *update_password*:
+
+- Type: `boolean`
+- Example: `'update_password' => true`
+
+This setting enables or disables the ability for users to update their passwords on the user profile page. When set to `true`, users will be able to change their passwords. When set to `false`, the password update functionality will be disabled.
+
 ### Password Confirmation
 
 The authentication scaffolding also includes password confirmation functionality, which is used to verify a user's identity before allowing access to sensitive actions or areas of the application. This feature is enabled by default and does not require any additional configuration.
@@ -280,6 +310,65 @@ Route::middleware(['auth'])->group(function () {
     })->middleware('password.confirm');
 });
 ```
+
+## Profile Images
+
+The `profile_images` configuration section allows you to customize the settings related to user profile images. These settings will only take effect if the [profile_image](#profile-image) feature is enabled in the `features` section of the `config/ladmin/auth.php` file.
+
+::: details Quick Example {open}
+```php
+'profile_images' => [
+    'max_size' => 1024,
+    'allowed_mime_types' => [
+        'image/jpeg',
+        'image/png',
+        'image/gif',
+    ],
+    'storage_disk' => 'public',
+    'storage_path' => 'profile-images',
+    'default_mode' => 'initials',
+]
+```
+:::
+
+### *max_size*:
+
+- Type: `integer`
+- Example: `'max_size' => 2048`
+
+This setting defines the maximum allowed file size for profile image uploads, in kilobytes.
+
+### *allowed_mime_types*:
+
+- Type: `array<string>`
+- Example:`'allowed_mime_types' => ['image/jpeg', 'image/png', 'image/gif']`
+
+This setting specifies the allowed *MIME types* for profile image uploads. You can add or remove *MIME types* as needed to control the types of images that users can upload.
+
+### *storage_disk*:
+
+- Type: `string`
+- Example: `'storage_disk' => 'public'`
+
+This setting defines the storage disk where profile images will be stored. This should correspond to a disk defined in the `filesystems.php` configuration file of your Laravel application.
+
+### *storage_path*:
+
+- Type: `string`
+- Example: `'storage_path' => 'profile-images'`
+
+This setting specifies the directory path within the storage disk where profile images will be stored.
+
+### *default_mode*:
+
+- Type: `string ('identicon'|'robohash'|'initials')`
+- Example: `'default_mode' => 'initials'`
+
+This setting defines the default image mode to be used when a user has not uploaded a profile image. Supported modes are:
+
+- **identicon**: Uses `Gravatar` service with `identicon` mode based on user's email.
+- **robohash**: Uses `Gravatar` service with `robohash` mode based on user's email.
+- **initials**: Uses `ui-avatars.com` service to generate an image with the user's initials.
 
 ## Accent Themes
 

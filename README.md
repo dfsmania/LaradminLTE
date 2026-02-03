@@ -40,6 +40,8 @@ This command will publish the following elements to your application:
 
 ### 3. Other Publishable Resources (Optional)
 
+#### Translations
+
 Additionally, you can also publish the translation files if you want to customize them or add new languages:
 
 ```bash
@@ -47,6 +49,20 @@ php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServicePr
 ```
 
 Translation files will be published to the `resources/lang/vendor/ladmin` folder of your Laravel application.
+
+#### Migrations
+
+If you plan to use the built-in authentication scaffolding with the **profile images feature**, you should publish the package's migrations:
+
+```bash
+php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="migrations"
+```
+
+Migrations will be published to the `database/migrations` folder of your Laravel application. These migrations will create the necessary columns on the `users` table to support user profile images. You can run migrations by executing:
+
+```bash
+php artisan migrate
+```
 
 ## Usage
 

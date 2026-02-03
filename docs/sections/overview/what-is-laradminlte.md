@@ -19,7 +19,7 @@
 
 - **Advanced Configuration Options**: Provides deep customization for: panel layout, branding, navbar and sidebar behavior. All options are centralized in a single config file for simplicity and maintainability.
 
-- **Built-in Authentication Scaffolding**: Out-of-the-box authentication UI powered by **Laravel Fortify**. Includes: *login*, *registration* and *password reset views*.
+- **Built-in Authentication Scaffolding**: Out-of-the-box authentication UI powered by **Laravel Fortify**, that includes: *login*, *registration*, *password reset*, *email verification*, *password confirmation* and *profile management* features.
 
 ## Who is it for?
 
