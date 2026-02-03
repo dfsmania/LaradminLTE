@@ -3,19 +3,27 @@
 
     {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{ $userImageUrl }}" class="user-image rounded-circle shadow" alt="User Image">
-        <span class="d-none d-md-inline">{{ $userName }}</span>
+
+        @if($userImageUrl)
+            <img src="{{ $userImageUrl }}" class="user-image rounded-circle shadow"
+                alt="{{ __('ladmin::auth.profile.profile_image.title') }}">
+            <span class="d-none d-md-inline">{{ $userName }}</span>
+        @else
+            <span class="d-inline">{{ $userName }}</span>
+        @endif
     </a>
 
     {{-- User menu dropdown --}}
-    {{-- TODO: Background classes should be read from config --}}
     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
 
         {{-- User menu header --}}
         <li class="user-header">
 
             {{-- User image --}}
-            <img src="{{ $userImageUrl }}" class="rounded-circle shadow" alt="User Image">
+            @if($userImageUrl)
+                <img src="{{ $userImageUrl }}" class="rounded-circle shadow border border-2 border-secondary-subtle"
+                    alt="{{ __('ladmin::auth.profile.profile_image.title') }}">
+            @endif
 
             {{-- User name --}}
             <p class="fw-bold">{{ $userName }}</p>

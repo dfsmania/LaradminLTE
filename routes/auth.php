@@ -3,29 +3,42 @@
 use DFSmania\LaradminLte\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Define the array of middlewares to be applied to the authentication routes.
+// Define the base set of middlewares applied to the authentication routes.
 
 $authMiddleware = ['web', 'auth'];
 
-if (config('ladmin.auth.features.email_verification')) {
+if (config('ladmin.auth.features.email_verification', false)) {
     $authMiddleware[] = 'verified';
 }
 
-// Define the extra middlewares applied to the get user profile route.
+// Define authentication routes within the specified middleware group.
 
-$profileMiddleware = [];
+Route::middleware($authMiddleware)->group(function () {
 
-if (config('ladmin.auth.features.protect_profile_access')) {
-    $profileMiddleware[] = 'password.confirm';
-}
+    /*
+    |--------------------------------------------------------------------------
+    | User Profile
+    |--------------------------------------------------------------------------
+    */
 
-// Define authentication related routes within the specified middleware group.
-
-Route::middleware($authMiddleware)->group(function () use ($profileMiddleware) {
-
-    // Get user profile route. This route may also be protected by the password
-    // confirmation middleware for security reasons.
     Route::get('/user/profile', [UserProfileController::class, 'show'])
-        ->name('profile.show')
-        ->middleware($profileMiddleware);
+        ->name('profile.show');
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Profile Image
+    |--------------------------------------------------------------------------
+    */
+
+    if (config('ladmin.auth.features.profile_image', false)) {
+        Route::put(
+            '/user/profile_image',
+            [UserProfileController::class, 'updateImage']
+        )->name('user-profile-image.update');
+
+        Route::delete(
+            '/user/profile_image',
+            [UserProfileController::class, 'deleteImage']
+        )->name('user-profile-image.delete');
+    }
 });

@@ -74,7 +74,13 @@ return [
     'profile' => [
         'title' => 'User Profile',
         'buttons' => [
+            'delete_image' => 'Delete Image',
             'save' => 'Save',
+            'select_new_image' => 'Select New Image',
+        ],
+        'profile_image' => [
+            'title' => 'Profile Image',
+            'description' => 'Update or delete your profile image here.',
         ],
         'profile_info' => [
             'title' => 'Profile Information',

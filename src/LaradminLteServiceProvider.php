@@ -127,6 +127,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->setAssetsAsPublishable();
             $this->setConfigAsPublishable();
+            $this->setMigrationsAsPublishable();
             $this->setTranslationsAsPublishable();
         }
     }
@@ -424,7 +425,21 @@ class LaradminLteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Declare the package translations files as a publishable resource.
+     * Declare the package migration files as a publishable resource.
+     *
+     * @return void
+     */
+    private function setMigrationsAsPublishable(): void
+    {
+        $path = $this->packagePath('database/migrations');
+
+        $this->publishes([
+            $path => database_path('migrations'),
+        ], 'migrations');
+    }
+
+    /**
+     * Declare the package translation files as a publishable resource.
      *
      * @return void
      */

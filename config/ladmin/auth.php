@@ -105,9 +105,13 @@ return [
         // should only be accessible to verified users.
         'email_verification' => false,
 
-        // Enables the profile access protection feature, which requires users
-        // to confirm their password before accessing the user profile page.
-        'protect_profile_access' => true,
+        // Enables the profile image feature, allowing users to upload and
+        // manage their profile images. This feature requires you to include
+        // the DFSmania\LaradminLte\Models\Concerns\HasProfileImage trait in
+        // your User model, run the corresponding package migration to add the
+        // profile_image_path column to your users table, and set up the proper
+        // storage disk configuration for storing profile images.
+        'profile_image' => false,
 
         // Enables the profile information update feature, allowing users to
         // update their profile information such as name and email address.
@@ -120,6 +124,50 @@ return [
         // Enables the account deletion feature, allowing users to delete their
         // accounts permanently.
         // 'delete_accounts' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Profile Images Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here you can setup the configuration dedicated to profile images. Note
+    | that the profile image feature must be enabled in order for these
+    | settings to take effect.
+    |
+    */
+
+    'profile_images' => [
+        // The maximum allowed file size for profile image uploads (in
+        // kilobytes).
+        'max_size' => 2048,
+
+        // The allowed MIME types for profile image uploads.
+        'allowed_mime_types' => [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/webp',
+        ],
+
+        // The storage disk where profile images will be stored. This should
+        // correspond to a disk defined in the "filesystems.php" configuration
+        // file of your Laravel application.
+        'storage_disk' => 'public',
+
+        // The directory path within the storage disk where profile images
+        // will be stored.
+        'storage_path' => 'profile-images',
+
+        // The default image mode to be used when a user has not uploaded a
+        // profile image. Supported modes are:
+        // - identicon: Uses Gravatar service with identicon mode based on
+        //   user's email.
+        // - robohash: Uses Gravatar service with robohash mode based on
+        //   user's email.
+        // - initials: Uses ui-avatars.com service to generate an image with
+        //   the user's initials.
+        'default_mode' => 'initials',
     ],
 
     /*
