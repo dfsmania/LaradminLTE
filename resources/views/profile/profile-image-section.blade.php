@@ -32,7 +32,7 @@
         </div>
 
         {{-- Save image button --}}
-        <x-ladmin-button type="submit" theme="secondary" icon="bi bi-save fs-5"
+        <x-ladmin-button id="btn_save_image" type="submit" theme="secondary" icon="bi bi-save fs-5" disabled
             label="{{ __('ladmin::auth.profile.buttons.save') }}"
             class="mt-2 float-end d-flex align-items-center bg-gradient"/>
     </form>
@@ -66,6 +66,11 @@
             if (! file) {
                 return;
             }
+
+            // Since a new image has been selected, enable the save button.
+
+            btnSave = document.getElementById('btn_save_image');
+            btnSave.removeAttribute('disabled');
 
             // Create a FileReader to read the file and set the preview image
             // source. Note we use readAsDataURL() to get a base64 encoded
