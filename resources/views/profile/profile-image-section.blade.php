@@ -42,9 +42,9 @@
         @method('DELETE')
         @csrf
 
-        <x-ladmin-button type="submit" theme="outline-danger" icon="bi bi-trash fs-5"
+        <x-ladmin-button type="submit" theme="danger" icon="bi bi-trash fs-5"
             label="{{ __('ladmin::auth.profile.buttons.delete_image') }}"
-            class="mt-2 me-3 float-end d-flex align-items-center"/>
+            class="mt-2 me-3 float-end d-flex align-items-center bg-gradient"/>
     </form>
 
 </x-ladmin-profile-section>
