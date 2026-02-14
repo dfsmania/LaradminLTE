@@ -156,6 +156,7 @@ The authentication scaffolding includes several features that can be enabled or 
     'profile_image' => true,
     'update_profile_information' => true,
     'update_password' => true,
+    'account_deletion' => true,
 ]
 ```
 :::
@@ -279,6 +280,13 @@ This setting enables or disables the ability for users to update their profile i
 - Example: `'update_password' => true`
 
 This setting enables or disables the ability for users to update their passwords on the user profile page. When set to `true`, users will be able to change their passwords. When set to `false`, the password update functionality will be disabled.
+
+### *account_deletion*:
+
+- Type: `boolean`
+- Example: `'account_deletion' => true`
+
+This setting enables or disables the account deletion feature on the user profile page. When set to `true`, users will have the option to permanently delete their accounts. When set to `false`, the account deletion functionality will be disabled.
 
 ### Password Confirmation
 
