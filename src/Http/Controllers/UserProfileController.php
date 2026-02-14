@@ -5,6 +5,8 @@ namespace DFSmania\LaradminLte\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserProfileController extends Controller
 {
@@ -71,5 +73,63 @@ class UserProfileController extends Controller
         $request->user()->deleteProfileImage();
 
         return back()->with('status', 'profile-image-deleted');
+    }
+
+    /**
+     * Permanently delete the user's account.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Request $request)
+    {
+        // Validate the password before allowing account deletion. We use a
+        // custom error bag named 'deleteAccount' to keep these validation
+        // errors separate from other potential errors on the profile page.
+
+        $request->validateWithBag('deleteAccount', [
+            'password' => ['required'],
+        ]);
+
+        $user = $request->user();
+
+        if (! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'password' => __('ladmin::auth.profile.delete_account.password_invalid'),
+            ])->errorBag('deleteAccount');
+        }
+
+        // At this point, the password is valid and we can proceed with account
+        // deletion. We start by deleting the profile image and revoking any
+        // tokens, if these action are required (i.e. if the corresponding
+        // methods exist on the User model). This ensures that we clean up any
+        // related resources before deleting the user account itself.
+
+        if (method_exists($user, 'deleteProfileImage')) {
+            $user->deleteProfileImage();
+        }
+
+        if (method_exists($user, 'tokens')) {
+            $user->tokens()->delete();
+        }
+
+        // Finally, we delete the user account, log out the user, invalidate
+        // the session, and regenerate the CSRF token to ensure a clean state
+        // after account deletion.
+
+        auth()->logout();
+        $user->delete();
+
+        if ($request->hasSession()) {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
+        // Redirect to the login page after account deletion.
+
+        return redirect(route('login'))->with(
+            'status',
+            __('ladmin::auth.profile.delete_account.account_deleted')
+        );
     }
 }

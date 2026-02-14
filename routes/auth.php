@@ -41,4 +41,15 @@ Route::middleware($authMiddleware)->group(function () {
             [UserProfileController::class, 'deleteImage']
         )->name('user-profile-image.delete');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Account Deletion
+    |--------------------------------------------------------------------------
+    */
+
+    if (config('ladmin.auth.features.account_deletion', false)) {
+        Route::delete('/user', [UserProfileController::class, 'destroy'])
+            ->name('user.destroy');
+    }
 });

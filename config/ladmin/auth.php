@@ -123,7 +123,7 @@ return [
 
         // Enables the account deletion feature, allowing users to delete their
         // accounts permanently.
-        // 'delete_accounts' => true,
+        'account_deletion' => true,
     ],
 
     /*

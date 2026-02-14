@@ -74,6 +74,8 @@ return [
     'profile' => [
         'title' => 'User Profile',
         'buttons' => [
+            'cancel' => 'Cancel',
+            'delete_account' => 'Delete Account',
             'delete_image' => 'Delete Image',
             'save' => 'Save',
             'select_new_image' => 'Select New Image',
@@ -89,6 +91,14 @@ return [
         'update_password' => [
             'title' => 'Update Password',
             'description' => 'Ensure your account is using a long, random password to stay secure.',
+        ],
+        'delete_account' => [
+            'title' => 'Delete Account',
+            'description' => 'Permanently delete your account.',
+            'details' => 'Once your account is deleted, all associated data will be permanently removed. Before proceeding, make sure to download any information you want to keep.',
+            'warning' => 'Are you sure you want to delete your account? Once your account is deleted, all associated data will be permanently removed. Please enter your password to confirm this action.',
+            'password_invalid' => 'The provided password is incorrect.',
+            'account_deleted' => 'Your account has been deleted.',
         ],
     ],
 ];

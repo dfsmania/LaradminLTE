@@ -85,7 +85,7 @@
 
     </div>
 
-    {{-- Password reset status message --}}
+    {{-- Password reset/account deletion status messages --}}
     @if (session('status'))
         <div class="alert alert-success alert-dismissible fade show text-center shadow mt-3" role="alert">
             <i class="bi bi-check-circle-fill me-1"></i>

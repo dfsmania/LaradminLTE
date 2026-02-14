@@ -16,4 +16,10 @@
         @include('ladmin::profile.password-update-section')
     @endif
 
+    {{-- Account deletion section --}}
+    @if(config('ladmin.auth.features.account_deletion', false))
+        <hr class="border-secondary-subtle">
+        @include('ladmin::profile.delete-account-section')
+    @endif
+
 </x-ladmin-panel>
