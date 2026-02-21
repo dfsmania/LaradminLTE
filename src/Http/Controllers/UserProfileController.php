@@ -5,8 +5,6 @@ namespace DFSmania\LaradminLte\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 class UserProfileController extends Controller
 {
@@ -68,7 +66,7 @@ class UserProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteImage(Request $request)
+    public function deleteImage(Request $request): RedirectResponse
     {
         $request->user()->deleteProfileImage();
 
@@ -81,29 +79,26 @@ class UserProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         // Validate the password before allowing account deletion. We use a
         // custom error bag named 'deleteAccount' to keep these validation
         // errors separate from other potential errors on the profile page.
 
         $request->validateWithBag('deleteAccount', [
-            'password' => ['required'],
+            'password' => [
+                'required',
+                'current_password',
+            ],
         ]);
-
-        $user = $request->user();
-
-        if (! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'password' => __('ladmin::auth.profile.delete_account.password_invalid'),
-            ])->errorBag('deleteAccount');
-        }
 
         // At this point, the password is valid and we can proceed with account
         // deletion. We start by deleting the profile image and revoking any
         // tokens, if these action are required (i.e. if the corresponding
         // methods exist on the User model). This ensures that we clean up any
         // related resources before deleting the user account itself.
+
+        $user = $request->user();
 
         if (method_exists($user, 'deleteProfileImage')) {
             $user->deleteProfileImage();
