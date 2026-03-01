@@ -26,7 +26,7 @@ composer require dfsmania/laradminlte:dev-main --prefer-stable
 Run the following commands to publish the basic package's assets and configuration files:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="assets" --tag="config"
+php artisan vendor:publish --tag="ladmin-assets" --tag="ladmin-config"
 ```
 
 This command will publish the following elements to your application:
@@ -41,7 +41,7 @@ This command will publish the following elements to your application:
 Additionally, you can also publish the translation files if you want to customize them or add new languages:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="translations"
+php artisan vendor:publish --tag="ladmin-translations"
 ```
 
 Translation files will be published to the `resources/lang/vendor/ladmin` folder of your Laravel application.
@@ -51,7 +51,7 @@ Translation files will be published to the `resources/lang/vendor/ladmin` folder
 If you plan to use the built-in authentication scaffolding with the **profile images feature**, you should publish the package's migrations:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="migrations"
+php artisan vendor:publish --tag="ladmin-migrations"
 ```
 
 Migrations will be published to the `database/migrations` folder of your Laravel application. These migrations will create the necessary columns on the `users` table to support user profile images. You can run migrations by executing:
