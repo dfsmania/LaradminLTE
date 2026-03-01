@@ -71,8 +71,8 @@ return [
                 ],
                 [
                     'type' => MenuItemType::LINK,
-                    'label' => 'Profile',
-                    'icon' => 'bi bi-person-fill fs-5',
+                    'label' => 'General Settings',
+                    'icon' => 'bi bi-gear-wide-connected fs-5',
                     'url' => '#',
                 ],
                 [
