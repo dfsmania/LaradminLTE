@@ -407,7 +407,7 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->publishes([
             $path => public_path("vendor/{$this->pkgPrefix}"),
-        ], 'assets');
+        ], "{$this->pkgPrefix}-assets");
     }
 
     /**
@@ -421,7 +421,7 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->publishes([
             $path => config_path($this->pkgPrefix),
-        ], 'config');
+        ], "{$this->pkgPrefix}-config");
     }
 
     /**
@@ -435,7 +435,7 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->publishes([
             $path => database_path('migrations'),
-        ], 'migrations');
+        ], "{$this->pkgPrefix}-migrations");
     }
 
     /**
@@ -449,7 +449,7 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         $this->publishes([
             $path => lang_path("vendor/{$this->pkgPrefix}"),
-        ], 'translations');
+        ], "{$this->pkgPrefix}-translations");
     }
 
     /**
