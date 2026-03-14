@@ -23,7 +23,7 @@ class TestCase extends BaseTestCase
     /**
      * Get the service providers of our package.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param  Application  $app
      * @return array
      */
     protected function getPackageProviders(Application $app): array
@@ -36,7 +36,7 @@ class TestCase extends BaseTestCase
     /**
      * Make common environment setup, to be applied before running each test.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param  Application  $app
      * @return void
      */
     protected function getEnvironmentSetUp(Application $app): void

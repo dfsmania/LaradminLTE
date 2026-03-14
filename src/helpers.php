@@ -10,7 +10,7 @@ if (! function_exists('ladmin')) {
      * which is registered as a singleton within the application's container.
      * The same instance is shared throughout the current request lifecycle.
      *
-     * @return \DFSmania\LaradminLte\LaradminLte
+     * @return LaradminLte
      */
     function ladmin(): LaradminLte
     {

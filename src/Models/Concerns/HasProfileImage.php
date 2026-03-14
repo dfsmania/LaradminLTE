@@ -15,7 +15,7 @@ trait HasProfileImage
     /**
      * Update the user's profile image.
      *
-     * @param  \Illuminate\Http\UploadedFile  $image  The uploaded image file.
+     * @param  UploadedFile  $image  The uploaded image file.
      * @return void
      */
     public function updateProfileImage(UploadedFile $image): void
