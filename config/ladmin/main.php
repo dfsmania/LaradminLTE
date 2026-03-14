@@ -196,6 +196,11 @@ return [
         // only, instead of fully collapsing.
         'mini_sidebar' => true,
 
+        // Determines if the sidebar should persist its state (collapsed or
+        // expanded) across page reloads by saving the state in the browser's
+        // local storage.
+        'persistence' => false,
+
         // The animation speed in milliseconds to use when toggling a sidebar
         // treeview menu between expanded and collapsed states.
         'treeview_animation_speed' => 300,

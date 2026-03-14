@@ -1,5 +1,6 @@
 {{-- Sidebar --}}
-<aside class="{{ $sidebarClasses }}" data-bs-theme="{{ $bootstrapTheme }}">
+<aside class="{{ $sidebarClasses }}" data-bs-theme="{{ $bootstrapTheme }}"
+    data-enable-persistence="{{ config('ladmin.main.sidebar.persistence', false) ? 'true' : 'false' }}">
 
     {{-- Sidebar brand --}}
     <x-ladmin-sidebar-brand label="{{ config('ladmin.main.logo.text', 'AdminLTE') }}"
