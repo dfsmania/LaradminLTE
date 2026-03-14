@@ -16,8 +16,8 @@ class UserProfileController extends Controller
     /**
      * Show the user profile screen.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @param  Request  $request
+     * @return View
      */
     public function show(Request $request): View
     {
@@ -31,8 +31,8 @@ class UserProfileController extends Controller
     /**
      * Update the user's profile image.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function updateImage(Request $request): RedirectResponse
     {
@@ -69,8 +69,8 @@ class UserProfileController extends Controller
     /**
      * Delete the user's profile image.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function deleteImage(Request $request): RedirectResponse
     {
@@ -82,8 +82,8 @@ class UserProfileController extends Controller
     /**
      * Permanently delete the user's account.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -138,8 +138,8 @@ class UserProfileController extends Controller
      * Log out the user from other browser sessions. Only current session will
      * remain active.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function logoutOtherSessions(Request $request): RedirectResponse
     {
@@ -200,8 +200,8 @@ class UserProfileController extends Controller
     /**
      * Get the sessions for the authenticated user.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Support\Collection
+     * @param  Request  $request
+     * @return Collection
      */
     protected function getSessions(Request $request): Collection
     {
