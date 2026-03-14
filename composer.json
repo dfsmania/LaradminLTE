@@ -36,7 +36,8 @@
     },
     "require": {
         "laravel/framework": ">=10.0",
-        "laravel/fortify": "^1.31"
+        "laravel/fortify": "^1.31",
+        "jenssegers/agent": "^2.6"
     },
     "require-dev": {
         "orchestra/testbench": ">=8.0",

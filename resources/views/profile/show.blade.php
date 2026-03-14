@@ -16,6 +16,12 @@
         @include('ladmin::profile.password-update-section')
     @endif
 
+    {{-- Browser sessions section --}}
+    @if(config('ladmin.auth.features.browser_sessions', false))
+        <hr class="border-secondary-subtle">
+        @include('ladmin::profile.browser-sessions-section')
+    @endif
+
     {{-- Account deletion section --}}
     @if(config('ladmin.auth.features.account_deletion', false))
         <hr class="border-secondary-subtle">

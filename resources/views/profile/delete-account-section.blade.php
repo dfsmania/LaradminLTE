@@ -32,7 +32,7 @@
             <div class="modal-body">
                 {{-- Warning message --}}
                 <p class="text-muted fw-bold">
-                    {{ __('ladmin::auth.profile.delete_account.warning') }}
+                    {{ __('ladmin::auth.profile.delete_account.modal_warning') }}
                 </p>
 
                 {{-- Password --}}

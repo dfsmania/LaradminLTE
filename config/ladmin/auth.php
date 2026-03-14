@@ -121,6 +121,13 @@ return [
         // account passwords.
         'update_passwords' => true,
 
+        // Enables the browser session management feature, allowing users to
+        // view and log out their active sessions on other browsers and devices.
+        // This feature requires the Laravel's default database session driver
+        // (i.e., "SESSION_DRIVER=database" in your .env file) and the
+        // "sessions" table, also provided by Laravel's default migrations.
+        'browser_sessions' => true,
+
         // Enables the account deletion feature, allowing users to delete their
         // accounts permanently.
         'account_deletion' => true,

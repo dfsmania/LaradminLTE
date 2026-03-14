@@ -52,4 +52,17 @@ Route::middleware($authMiddleware)->group(function () {
         Route::delete('/user', [UserProfileController::class, 'destroy'])
             ->name('user.destroy');
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Sessions
+    |--------------------------------------------------------------------------
+    */
+
+    if (config('ladmin.auth.features.browser_sessions', false)) {
+        Route::delete(
+            '/user/sessions',
+            [UserProfileController::class, 'logoutOtherSessions']
+        )->name('user-sessions.destroy');
+    }
 });
