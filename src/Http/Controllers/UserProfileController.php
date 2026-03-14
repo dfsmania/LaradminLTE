@@ -7,8 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Jenssegers\Agent\Agent;
 
 class UserProfileController extends Controller
@@ -189,7 +189,7 @@ class UserProfileController extends Controller
         // session with the current password hash, we ensure that the current
         // session remains active while all other sessions are logged out.
 
-        $passHashKey = 'password_hash_' . auth()->getDefaultDriver();
+        $passHashKey = 'password_hash_'.auth()->getDefaultDriver();
         $request->session()->put([$passHashKey => $user->getAuthPassword()]);
 
         // Redirect back with success status.
@@ -228,7 +228,7 @@ class UserProfileController extends Controller
         // string and extract information about the device and browser used.
 
         return $sessions->map(function ($session) use ($request) {
-            $agent = new Agent();
+            $agent = new Agent;
             $agent->setUserAgent($session->user_agent);
 
             $isCurrentDevice = $session->id === $request->session()->getId();
