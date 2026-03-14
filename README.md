@@ -25,6 +25,12 @@ Use [Composer](https://getcomposer.org/) to add the package to your Laravel proj
 composer require dfsmania/laradminlte:^1.0@beta
 ```
 
+Alternatively, if you want to install the latest development version, you can run:
+
+```bash
+composer require dfsmania/laradminlte:dev-main --prefer-stable
+```
+
 ### 2. Publish Required Package Resources
 
 Run the following commands to publish the basic package's assets and configuration files:
