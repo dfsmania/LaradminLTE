@@ -244,6 +244,7 @@ The **layout** section lets you customize the overall structure and appearance o
 ```php
 'layout' => [
     'bootstrap_theme' => 'light',
+    'compact_mode' => false,
     'fixed_footer' => false,
     'fixed_navbar' => true,
     'fixed_sidebar' => true,
@@ -258,6 +259,13 @@ The **layout** section lets you customize the overall structure and appearance o
 - Example: `'bootstrap_theme' => 'light'`
 
 Defines the visual theme used by *Bootstrap* across the panel. Choose between `'light'` for a bright interface or `'dark'` for a darker appearance, depending on your brand or user preference.
+
+### *compact_mode*:
+
+- Type: `bool`
+- Example: `'compact_mode' => false`
+
+When enabled (`true`), the layout will use a more compact spacing and sizing for elements like the navbar and sidebar. This is ideal for users who prefer a denser interface or have limited screen space. When set to `false`, the layout will have more generous spacing for a more open and airy feel.
 
 ### *fixed_footer*:
 

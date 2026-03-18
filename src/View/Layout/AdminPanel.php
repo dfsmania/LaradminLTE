@@ -191,6 +191,12 @@ class AdminPanel extends Component
             $classes[] = 'sidebar-collapse';
         }
 
+        // Add the compact mode class if the feature is enabled.
+
+        if (! empty(config('ladmin.main.layout.compact_mode', false))) {
+            $classes[] = 'compact-mode';
+        }
+
         // Add CSS classes relative to fixed layout options.
 
         if (! empty(config('ladmin.main.layout.fixed_sidebar', false))) {

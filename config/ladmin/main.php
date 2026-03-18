@@ -131,6 +131,10 @@ return [
         // options are 'light' or 'dark'.
         'bootstrap_theme' => 'light',
 
+        // Whether to enable the compact mode, which reduces spacing between
+        // elements in the layout to create a more compact interface.
+        'compact_mode' => false,
+
         // Whether to enable a fixed footer.
         'fixed_footer' => false,
 
