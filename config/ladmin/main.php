@@ -179,7 +179,10 @@ return [
         'bootstrap_theme' => 'dark',
 
         // A list of additional CSS classes applied to the sidebar, typically
-        // used to configure its background color and styling.
+        // used to configure its background color and styling. You can use some
+        // built-in classes here, such as 'nav-indent' to add indentation to
+        // child menu items, or 'nav-compact' to reduce the vertical spacing
+        // between menu items.
         'classes' => ['bg-body-secondary', 'shadow'],
 
         // Determines if the sidebar should be collapsed by default when the

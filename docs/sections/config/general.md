@@ -347,7 +347,10 @@ Sets the visual theme of the sidebar independently from the global layout. Use `
 - Type: `array<string>`
 - Example: `'classes' => ['bg-body-secondary', 'shadow']`
 
-An array of *CSS* classes applied to the sidebar container. These control visual styling such as background color and shadows using *Bootstrap* utility classes or custom styles.
+An array of *CSS* classes applied to the sidebar container. These control visual styling such as background color and shadows using *Bootstrap* utility classes or custom styles. *AdminLTE v4* offers us some built-in classes that can be used here, such as:
+
+- `nav-indent`: Adds indentation to submenu items for better visual hierarchy.
+- `nav-compact`: Reduces padding and margins for a more compact sidebar design.
 
 ::: tip TIP: Try AdminLTE v4 Theme Tool
 You can experiment with different sidebar styles using the [AdminLTE v4 Theme Tool](https://adminlte-v4.netlify.app/generate/theme). This interactive tool lets you preview and select *Bootstrap* classes for your sidebar, making it easy to customize the appearance before applying the classes to your configuration.
