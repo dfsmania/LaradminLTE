@@ -227,9 +227,10 @@ class UserProfileController extends Controller
         // third-party package (jenssegers/agent) to parse the user agent
         // string and extract information about the device and browser used.
 
-        return $sessions->map(function ($session) use ($request) {
-            $agent = new Agent;
-            $agent->setUserAgent($session->user_agent);
+        $agent = new Agent;
+
+        return $sessions->map(function ($session) use ($request, $agent) {
+            $agent->setUserAgent($session->user_agent ?? '');
 
             $isCurrentDevice = $session->id === $request->session()->getId();
 
