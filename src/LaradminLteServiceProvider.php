@@ -269,23 +269,21 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         config(['fortify.home' => config('ladmin.auth.home_path', '/home')]);
 
-        // Register the views to use with Laravel's Fortify package.
-
-        $this->registerFortifyViews();
-
         // Configure the Laravel's Fortify features that will be supported.
 
-        $this->configureFortifyFeatures();
+        $this->setupFortifyFeatures();
     }
 
     /**
-     * Register the views to use with Laravel's Fortify package.
+     * Configure the Laravel's Fortify features that will be supported.
      *
      * @return void
      */
-    private function registerFortifyViews(): void
+    private function setupFortifyFeatures(): void
     {
-        // Register default fortify views: login, password confirmation, etc.
+        // Register default fortify views. These views are required for the
+        // base functionality of the authentication scaffolding, so we register
+        // them regardless of the enabled features.
 
         Fortify::loginView(function () {
             return view("{$this->pkgPrefix}::auth.login");
@@ -295,21 +293,28 @@ class LaradminLteServiceProvider extends ServiceProvider
             return view("{$this->pkgPrefix}::auth.confirm-password");
         });
 
-        // Register the registration view, only if the feature is enabled.
+        // Manage the set of enabled Fortify features. For each feature
+        // enabled, we take care of registering the corresponding resources and
+        // adding the feature to the list of enabled features that will be used
+        // to configure Fortify.
+
+        $features = [];
 
         if (config('ladmin.auth.features.registration', false)) {
+            $features[] = Features::registration();
+
             Fortify::registerView(function () {
                 return view("{$this->pkgPrefix}::auth.register");
             });
         }
 
-        // Register the views for the password reset feature, only if the
-        // feature is enabled.
-
         if (config('ladmin.auth.features.password_reset', false)) {
+            $features[] = Features::resetPasswords();
+
             Fortify::requestPasswordResetLinkView(function () {
                 return view("{$this->pkgPrefix}::auth.forgot-password");
             });
+
             Fortify::resetPasswordView(function ($request) {
                 return view("{$this->pkgPrefix}::auth.reset-password", [
                     'request' => $request,
@@ -317,37 +322,12 @@ class LaradminLteServiceProvider extends ServiceProvider
             });
         }
 
-        // Register the email verification view, only if the feature is enabled.
-
         if (config('ladmin.auth.features.email_verification', false)) {
+            $features[] = Features::emailVerification();
+
             Fortify::verifyEmailView(function () {
                 return view("{$this->pkgPrefix}::auth.verify-email");
             });
-        }
-    }
-
-    /**
-     * Configure the Laravel's Fortify features that will be supported.
-     *
-     * @return void
-     */
-    private function configureFortifyFeatures(): void
-    {
-        $features = [];
-
-        // Manage the set of enabled Fortify features via our package
-        // configuration file.
-
-        if (config('ladmin.auth.features.registration', false)) {
-            $features[] = Features::registration();
-        }
-
-        if (config('ladmin.auth.features.password_reset', false)) {
-            $features[] = Features::resetPasswords();
-        }
-
-        if (config('ladmin.auth.features.email_verification', false)) {
-            $features[] = Features::emailVerification();
         }
 
         if (config('ladmin.auth.features.update_profile_information', false)) {
