@@ -187,7 +187,7 @@ return [
         // built-in classes here, such as 'nav-indent' to add indentation to
         // child menu items, or 'nav-compact' to reduce the vertical spacing
         // between menu items.
-        'classes' => ['bg-body-secondary', 'shadow'],
+        'classes' => ['bg-body-secondary', 'nav-indent', 'shadow'],
 
         // Determines if the sidebar should be collapsed by default when the
         // page loads. This is useful for creating a cleaner interface or
