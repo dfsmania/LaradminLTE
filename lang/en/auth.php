@@ -93,10 +93,12 @@ return [
         'profile_info' => [
             'title' => 'Profile Information',
             'description' => "Handle your account's profile information and email address.",
+            'info_updated' => 'Your profile information has been updated.',
         ],
         'update_password' => [
             'title' => 'Update Password',
             'description' => 'Ensure your account is using a long, random password to stay secure.',
+            'password_updated' => 'Your password has been updated.',
         ],
         'browser_sessions' => [
             'title' => 'Browser Sessions',

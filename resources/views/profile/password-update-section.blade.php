@@ -57,6 +57,17 @@
             class="mt-2 float-end d-flex align-items-center bg-gradient"/>
     </form>
 
+    {{-- Password updated message --}}
+    @if (session('status') === 'password-updated')
+        <x-slot name="extra">
+            <div class="alert alert-success alert-dismissible fade show shadow mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-1"></i>
+                {{ __('ladmin::auth.profile.update_password.password_updated') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </x-slot>
+    @endif
+
 </x-ladmin-profile-section>
 
 {{-- Extra JS --}}

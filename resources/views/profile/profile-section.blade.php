@@ -14,6 +14,9 @@
                 {{ $slot }}
             </div>
         </div>
+
+        {{-- Extra content slot (e.g. alert messages) --}}
+        {{ $extra ?? '' }}
     </div>
 
 </div>
