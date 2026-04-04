@@ -111,22 +111,6 @@
 <script>
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Get the confirmation modal and its form element.
-
-        const modal = document.getElementById('logoutOtherSessionsModal');
-        const form = modal.querySelector('form');
-
-        // Listen for the form submission event and save the current scroll
-        // position in localStorage, so we can restore it later if the form
-        // fails validation.
-
-        form.addEventListener('submit', function () {
-            localStorage.setItem(
-                'ladmin.scroll.position',
-                window.scrollY || document.documentElement.scrollTop
-            );
-        });
-
         // Check if there are validation errors in the 'logoutOtherSessions'
         // error bag. If there are, it means the form was submitted but failed
         // validation. In that case, we show the modal again so the user can
@@ -135,15 +119,8 @@
         const valErrors = @json($errors->logoutOtherSessions->isNotEmpty());
 
         if (valErrors) {
-            const scrollPos = localStorage.getItem('ladmin.scroll.position');
+            const modal = document.getElementById('logoutOtherSessionsModal');
             (new bootstrap.Modal(modal)).show();
-
-            if (scrollPos) {
-                setTimeout(() => {
-                    window.scrollTo(0, parseInt(scrollPos));
-                    localStorage.removeItem('ladmin.scroll.position');
-                }, 50);
-            }
         }
     });
 
