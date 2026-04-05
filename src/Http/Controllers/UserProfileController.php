@@ -130,7 +130,7 @@ class UserProfileController extends Controller
 
         return redirect(route('login'))->with(
             'status',
-            __('ladmin::auth.profile.delete_account.account_deleted')
+            __('ladmin::auth.profile.delete_account.deleted_alert')
         );
     }
 

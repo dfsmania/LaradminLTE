@@ -47,6 +47,25 @@
             class="mt-2 me-3 float-end d-flex align-items-center bg-gradient"/>
     </form>
 
+    {{-- Image updated/deleted messages --}}
+    @if (session('status') === 'profile-image-updated')
+        <x-slot name="extra">
+            <div class="alert alert-success alert-dismissible fade show shadow mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-1"></i>
+                {{ __('ladmin::auth.profile.profile_image.updated_alert') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </x-slot>
+    @elseif (session('status') === 'profile-image-deleted')
+        <x-slot name="extra">
+            <div class="alert alert-success alert-dismissible fade show shadow mt-3" role="alert">
+                <i class="bi bi-check-circle-fill me-1"></i>
+                {{ __('ladmin::auth.profile.profile_image.deleted_alert') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        </x-slot>
+    @endif
+
 </x-ladmin-profile-section>
 
 {{-- Extra JS --}}

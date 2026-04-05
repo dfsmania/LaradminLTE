@@ -89,16 +89,18 @@ return [
         'profile_image' => [
             'title' => 'Profile Image',
             'description' => 'Update or delete your profile image here.',
+            'updated_alert' => 'Your profile image has been updated.',
+            'deleted_alert' => 'Your profile image has been deleted.',
         ],
         'profile_info' => [
             'title' => 'Profile Information',
             'description' => "Handle your account's profile information and email address.",
-            'info_updated' => 'Your profile information has been updated.',
+            'updated_alert' => 'Your profile information has been updated.',
         ],
         'update_password' => [
             'title' => 'Update Password',
             'description' => 'Ensure your account is using a long, random password to stay secure.',
-            'password_updated' => 'Your password has been updated.',
+            'updated_alert' => 'Your password has been updated.',
         ],
         'browser_sessions' => [
             'title' => 'Browser Sessions',
@@ -112,7 +114,7 @@ return [
             'description' => 'Permanently delete your account.',
             'details' => 'Once your account is deleted, all associated data will be permanently removed. Before proceeding, make sure to download any information you want to keep.',
             'modal_warning' => 'Are you sure you want to delete your account? Once your account is deleted, all associated data will be permanently removed. Please enter your password to confirm this action.',
-            'account_deleted' => 'Your account has been deleted.',
+            'deleted_alert' => 'Your account has been deleted.',
         ],
     ],
 ];
