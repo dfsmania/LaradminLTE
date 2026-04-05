@@ -1,5 +1,10 @@
 <?php
 
+use DFSmania\LaradminLte\Actions\Auth\CreateNewUser;
+use DFSmania\LaradminLte\Actions\Auth\ResetUserPassword;
+use DFSmania\LaradminLte\Actions\Auth\UpdateUserPassword;
+use DFSmania\LaradminLte\Actions\Auth\UpdateUserProfileInformation;
+
 /*
 |------------------------------------------------------------------------------
 | LaradminLTE Authentication Scaffolding Configuration
@@ -175,6 +180,34 @@ return [
         // - initials: Uses ui-avatars.com service to generate an image with
         //   the user's initials.
         'default_mode' => 'initials',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Actions
+    |--------------------------------------------------------------------------
+    |
+    | Here you can setup the authentication actions. These actions are
+    | responsible for handling various authentication-related tasks such as
+    | user creation, password updates, and profile information updates. Default
+    | implementations for these actions are provided by the package, but you can
+    | easily customize their behavior by creating your own action classes and
+    | updating the corresponding class references here.
+    |
+    */
+
+    'actions' => [
+        // The class responsible for creating new users during registration.
+        'create_user' => CreateNewUser::class,
+
+        // The class responsible for resetting user passwords.
+        'reset_password' => ResetUserPassword::class,
+
+        // The class responsible for updating user passwords.
+        'update_passwords' => UpdateUserPassword::class,
+
+        // The class responsible for updating user profile information.
+        'update_profile_information' => UpdateUserProfileInformation::class,
     ],
 
     /*

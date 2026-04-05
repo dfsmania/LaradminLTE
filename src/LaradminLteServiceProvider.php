@@ -2,6 +2,10 @@
 
 namespace DFSmania\LaradminLte;
 
+use DFSmania\LaradminLte\Actions\Auth\CreateNewUser;
+use DFSmania\LaradminLte\Actions\Auth\ResetUserPassword;
+use DFSmania\LaradminLte\Actions\Auth\UpdateUserPassword;
+use DFSmania\LaradminLte\Actions\Auth\UpdateUserProfileInformation;
 use DFSmania\LaradminLte\View\Auth;
 use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
@@ -303,6 +307,11 @@ class LaradminLteServiceProvider extends ServiceProvider
         if (config('ladmin.auth.features.registration', false)) {
             $features[] = Features::registration();
 
+            Fortify::createUsersUsing(config(
+                'ladmin.auth.actions.create_user',
+                CreateNewUser::class
+            ));
+
             Fortify::registerView(function () {
                 return view("{$this->pkgPrefix}::auth.register");
             });
@@ -310,6 +319,11 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         if (config('ladmin.auth.features.password_reset', false)) {
             $features[] = Features::resetPasswords();
+
+            Fortify::resetUserPasswordsUsing(config(
+                'ladmin.auth.actions.reset_password',
+                ResetUserPassword::class
+            ));
 
             Fortify::requestPasswordResetLinkView(function () {
                 return view("{$this->pkgPrefix}::auth.forgot-password");
@@ -332,10 +346,20 @@ class LaradminLteServiceProvider extends ServiceProvider
 
         if (config('ladmin.auth.features.update_profile_information', false)) {
             $features[] = Features::updateProfileInformation();
+
+            Fortify::updateUserProfileInformationUsing(config(
+                'ladmin.auth.actions.update_profile_information',
+                UpdateUserProfileInformation::class
+            ));
         }
 
         if (config('ladmin.auth.features.update_passwords', false)) {
             $features[] = Features::updatePasswords();
+
+            Fortify::updateUserPasswordsUsing(config(
+                'ladmin.auth.actions.update_passwords',
+                UpdateUserPassword::class
+            ));
         }
 
         // Configure enabled features in Fortify.
