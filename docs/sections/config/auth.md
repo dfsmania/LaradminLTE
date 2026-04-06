@@ -5,7 +5,7 @@ These settings allow you to customize the appearance and features of the authent
 The authentication settings are managed in the `config/ladmin/auth.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
+php artisan vendor:publish --tag="ladmin-config"
 ```
 
 ## How to Use the Authentication Scaffolding
@@ -231,7 +231,7 @@ This setting enables or disables the profile image management feature on the use
 Use the provided package migration to add the `profile_image_path` column to your `users` table. You can publish the migration file by running the following command:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="migrations"
+php artisan vendor:publish --tag="ladmin-migrations"
 ```
 
 Then, run the migrations to update your database schema:

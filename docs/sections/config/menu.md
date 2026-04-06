@@ -5,7 +5,7 @@ This configuration defines the static menu structure of your admin panel. You ca
 The menu settings are managed in the `config/ladmin/menu.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
-php artisan vendor:publish --provider="DFSmania\LaradminLte\LaradminLteServiceProvider" --tag="config"
+php artisan vendor:publish --tag="ladmin-config"
 ```
 
 ## Menu Items
