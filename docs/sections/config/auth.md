@@ -33,7 +33,7 @@ Once you have done this, you can access the login page by navigating to `/login`
 
 ![LaradminLTE Login Example](/images/login-example.png)
 
-The authentication scaffolding offer additional features that can be enabled or disabled as needed. These features include *registration*, *password reset* and *email verification*. Also, the appearance of the authentication views can be customized by modifying the configuration file. All of these settings are explained in the next sections.
+The authentication scaffolding offer additional features that can be enabled or disabled as needed. These features include *registration*, *password reset* and *email verification* among others. Also, the appearance of the authentication views can be customized by modifying the configuration file. All of these settings are explained in the next sections.
 
 ## Main Settings
 
@@ -151,34 +151,41 @@ The authentication scaffolding includes several features that can be enabled or 
 ```php
 'features' => [
     'registration' => true,
-    'password_reset' => true,
+    'password_reset' => false,
     'email_verification' => false,
     'profile_image' => true,
     'update_profile_information' => true,
     'update_password' => true,
+    'browser_sessions' => true,
     'account_deletion' => true,
 ]
 ```
 :::
 
+Take into account that some of these features may require additional configuration or setup to work properly. For example, the *password reset* and *email verification* features require you to have a mailing service configured in your Laravel application to send the corresponding emails to users. Details about these requirements are provided in the descriptions of each feature below.
 
-### *registration*:
+## Feature: *Registration*
 
 - Type: `boolean`
 - Example: `'registration' => true`
 
 This setting enables or disables the user registration feature. When set to `true`, users will be able to create new accounts using the registration form. When set to `false`, the registration routes and views will be disabled, preventing new user registrations.
 
-### *password_reset*:
+## Feature: *Password Reset*
 
 - Type: `boolean`
 - Example: `'password_reset' => true`
+- Requires: A mailing service configuration.
 
-This setting enables or disables the password reset feature. When set to `true`, users will be able to reset their passwords if they forget them. This feature requires you to properly configure a mailing service in your Laravel application, by setting the corresponding `MAIL_*` environment variables. When set to `false`, the password reset routes and views will be disabled.
+This setting enables or disables the password reset feature. When set to `true`, users will be able to reset their passwords if they forget them. When set to `false`, the password reset routes and views will be disabled.
 
-At next, an example of environment configuration using [Mailtrap](https://mailtrap.io/) is provided for your reference.
+This feature requires you to properly configure a mailing service in your Laravel application, by setting the corresponding `MAIL_*` environment variables. This is necessary to allow the application to send password reset emails to users.
 
-::: details Environment Configuration with Mailtrap {open}
+### Mailing Service Configuration
+
+Laravel supports various mailing services that you can use to send emails from your application, such as *SMTP*, *Mailgun*, *Postmark*, etc. At next, an example of the environment (`.env`) configuration using [Mailtrap](https://mailtrap.io/) is provided for your reference.
+
+::: details Mailing Service Configuration with Mailtrap {open}
 ```php
 MAIL_MAILER=smtp
 MAIL_SCHEME=null
@@ -191,104 +198,145 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```
 :::
 
-### *email_verification*:
+## Feature: *Email Verification*
 
 - Type: `boolean`
 - Example: `'email_verification' => true`
+- Requires: A mailing service configuration, the `MustVerifyEmail` contract on the `User` model and the `verified` middleware on protected routes.
 
-This setting enables or disables the email verification feature. When set to `true`, users will be required to verify their email addresses upon registration. This feature requires you to properly configure a mailing service in your Laravel application, by setting the corresponding `MAIL_*` environment variables, to implement the `Illuminate\Contracts\Auth\MustVerifyEmail` interface on your `User` model, and to add the `verified` middleware to routes that should only be accessible to verified users.
+This setting enables or disables the email verification feature. When set to `true`, users will be required to verify their email addresses upon registration.
 
-You can see [password_reset](#password-reset) for an example of environment configuration using [Mailtrap](https://mailtrap.io/). At next we provide an example of how to implement the `MustVerifyEmail` interface in the `User` model and how to protect routes using the `verified` middleware.
+This feature requires you to properly configure a mailing service in your Laravel application, by setting the corresponding `MAIL_*` environment variables, you can see [Mailing Service Configuration](#mailing-service-configuration) for an example of environment configuration using [Mailtrap](https://mailtrap.io/).
 
+Additionally, you need to add the `Illuminate\Contracts\Auth\MustVerifyEmail` contract on your `User` model, and to add the `verified` middleware to routes that should only be accessible to verified users.
 
-::: code-group
+For further customization on the format of the email verification notification, check the official Laravel documentation on [Email Verification Customization](https://laravel.com/docs/verification#customization).
+
+### The `MustVerifyEmail` Contract
+
+Laravel already handles email verification with default logic, so you don't need to create it manually. However, you do need to add the `MustVerifyEmail` contract on your `User` model to enable this feature. At next we provide an example of how to add the `MustVerifyEmail` contract in the `User` model.
+
 ```php [In app/Models/User.php]
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+<?php
 
-// Just add the interface to the User model...
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+// Note the User model implements the MustVerifyEmail contract...
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use Notifiable;
+
     // ...
 }
 ```
+
+### The `verified` Middleware
+
+To restrict access to certain routes only to users with verified email addresses, you need to add the `verified` middleware to those routes. This middleware will check if the authenticated user's email address has been verified before allowing access to the route. If the user's email is not verified, they will be redirected to a page prompting them to verify their email. You can add the `verified` middleware to your routes as follows:
 
 ```php [In routes/web.php]
 Route::middleware(['auth', 'verified'])->group(function () {
     // Add routes that require authenticated and verified users here...
 });
 ```
-:::
 
-### *profile_image*:
+## Feature: *Profile Image*
 
 - Type: `boolean`
 - Example: `'profile_image' => true`
+- Requires: Adding `profile_image_path` column to users table, using `HasProfileImage` trait in `User` model and setting up Laravel Filesystem.
 
-This setting enables or disables the profile image management feature on the user profile page. When set to `true`, users will be able to upload and display a profile image. When set to `false`, the profile image functionality will be disabled. This feature requires a few steps to be fully functional:
+This setting enables or disables the profile image management feature on the user profile page. When set to `true`, users will be able to upload and display a profile image. When set to `false`, the profile image functionality will be disabled. This feature requires a few steps to be fully functional, which are explained below.
 
-#### 1. Add `profile_image_path` Column to Users Table
+### Add `profile_image_path` Column to Users Table
 
-Use the provided package migration to add the `profile_image_path` column to your `users` table. You can publish the migration file by running the following command:
+This packages comes with a migration file that adds the `profile_image_path` column to the `users` table in your database. This column is used to store the file path of the uploaded profile image for each user. So, you need to publish this migration file by running the following command:
 
 ```bash
 php artisan vendor:publish --tag="ladmin-migrations"
 ```
 
-Then, run the migrations to update your database schema:
+And then, execute the migrate command to update your database schema:
 
 ```bash
 php artisan migrate
 ```
 
-#### 2. Use `DFSmania\LaradminLte\Models\Concerns\HasProfileImage` Trait
+### Include the `HasProfileImage` Trait on `User` Model
 
-Include the `HasProfileImage` trait in your `User` model to add the necessary methods and relationships for handling profile images. For example:
+Include the `DFSmania\LaradminLte\Models\Concerns\HasProfileImage` trait in your `User` model to add the necessary methods and relationships for handling profile images. For example:
 
 ```php
 <?php
+
 namespace App\Models;
 
 use DFSmania\LaradminLte\Models\Concerns\HasProfileImage;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasProfileImage;
+    // Note the User model uses the HasProfileImage trait...
+    use HasProfileImage, Notifiable;
 
     // ...
 }
 ```
 
-#### 3. Setup Your Laravel Filesystem
+### Setup Your Laravel Filesystem
 
-This feature requires you to have the [Laravel Filesystem](https://laravel.com/docs/filesystem) properly configured in your application to handle file uploads. By default, the profile images are stored in the `public` disk, which is typically linked to the `storage/app/public` directory. Make sure to run `php artisan storage:link` to create a symbolic link from `public/storage` to `storage/app/public` if you haven't done so already.
+This feature requires you to have the [Laravel Filesystem](https://laravel.com/docs/filesystem) properly configured in your application to handle file uploads. By default, the profile images are stored in the `public` disk, which is typically linked to the `storage/app/public` directory. Make sure to run the following command to create a symbolic link from `public/storage` to `storage/app/public` if you haven't done so already.
 
-#### 4. Customize Profile Image Settings (Optional)
+```bash
+php artisan storage:link
+```
 
-You can customize the profile image settings in the `config/ladmin/auth.php` file under the `profile_images` section. This includes options such as the *storage disk*, *maximum file size*, *allowed file types*, and *default image mode* (i.e., the default image to use when a user has not uploaded a profile image). The default image uses external services like [UI Avatars](https://ui-avatars.com/) or [Gravatar](https://gravatar.com/) to generate placeholder images based on the user's name initials or the user's email. Details about these settings can be found in the [Profile Images Configuration](#profile-images) section.
+### Customize Profile Image Settings (Optional)
 
-### *update_profile_information*:
+You can customize the profile image settings in the `config/ladmin/auth.php` file under the `profile_images` section. This includes options such as the *storage disk*, *maximum file size*, *allowed file types*, and *default image mode* (i.e., the default image to use when a user has not uploaded a profile image). The default image uses external services like [UI Avatars](https://ui-avatars.com/) or [Gravatar](https://gravatar.com/) to generate placeholder images based on the user's name initials or the user's email. Details about these settings can be found in the [Profile Images Configuration](#profile-images-configuration) section.
+
+## Feature: *Update Profile Information*
 
 - Type: `boolean`
 - Example: `'update_profile_information' => true`
 
 This setting enables or disables the ability for users to update their profile information on the user profile page. When set to `true`, users will be able to edit and save changes to their profile details, such as name and email address. When set to `false`, the profile information update functionality will be disabled.
 
-### *update_password*:
+:::info INFO: About Email Verification and Updating Email Address
+Under the scenario where the **email verification** feature is also enabled, if a user updates their email address, they will be required to verify the new email address before it becomes active and can be used for authentication. In this case, the user will receive a new verification email at the updated email address, and they must click the verification link in that email to confirm the new address. During this process, the old email address won't be able to be used for authentication anymore.
+:::
+
+## Feature: *Update Password*
 
 - Type: `boolean`
 - Example: `'update_password' => true`
 
 This setting enables or disables the ability for users to update their passwords on the user profile page. When set to `true`, users will be able to change their passwords. When set to `false`, the password update functionality will be disabled.
 
-### *account_deletion*:
+## Feature: *Browser Sessions*
+
+- Type: `boolean`
+- Example: `'browser_sessions' => true`
+
+This setting enables or disables the management of active browser sessions on the user profile page. When set to `true`, users will be able to view and manage their active sessions, including the ability to log out from other sessions. When set to `false`, the browser session management functionality will be disabled.
+
+The *log out from other sessions* feature allows users to log out from all other active sessions except the current one. This can be useful for security purposes, especially if a user suspects that their account may have been accessed from another device or location. When a user chooses to log out from other sessions, all other active sessions will be invalidated, and the user will be logged out from those sessions immediately. This action is protected by password confirmation to ensure that only the rightful owner of the account can perform it.
+
+## Feature: *Account Deletion*
 
 - Type: `boolean`
 - Example: `'account_deletion' => true`
 
 This setting enables or disables the account deletion feature on the user profile page. When set to `true`, users will have the option to permanently delete their accounts. When set to `false`, the account deletion functionality will be disabled.
 
-### Password Confirmation
+This feature allows users to permanently delete their accounts from the application. When a user chooses to delete their account, all of their data will be removed from the database, and they will no longer be able to log in or access any features of the application. This action is irreversible, so it should be used with caution. To prevent unauthorized account deletions, this action is protected by password confirmation, ensuring that only the rightful owner of the account can perform it.
+
+## Feature: *Password Confirmation*
 
 The authentication scaffolding also includes password confirmation functionality, which is used to verify a user's identity before allowing access to sensitive actions or areas of the application. This feature is enabled by default and does not require any additional configuration.
 
@@ -319,9 +367,9 @@ Route::middleware(['auth'])->group(function () {
 });
 ```
 
-## Profile Images
+## Profile Images Configuration
 
-The `profile_images` configuration section allows you to customize the settings related to user profile images. These settings will only take effect if the [profile_image](#profile-image) feature is enabled in the `features` section of the `config/ladmin/auth.php` file.
+The `profile_images` configuration section allows you to customize the settings related to user profile images. These settings will only take effect if the [Profile Image](#feature-profile-image) feature is enabled in the `features` section of the `config/ladmin/auth.php` file.
 
 ::: details Quick Example {open}
 ```php
