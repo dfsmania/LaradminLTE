@@ -426,6 +426,99 @@ This setting defines the default image mode to be used when a user has not uploa
 - **robohash**: Uses `Gravatar` service with `robohash` mode based on user's email.
 - **initials**: Uses `ui-avatars.com` service to generate an image with the user's initials.
 
+## Authentication Actions
+
+The authentication scaffolding allows you to customize the logic of various authentication-related actions by defining your own action classes. These action classes are responsible for handling specific operations during the authentication process, such as creating new users, updating profile information, changing passwords, etc. You can create your own action classes that implement the corresponding Fortify contracts and then register them in the `actions` section of the `config/ladmin/auth.php` file. This provides you with the flexibility to add custom logic during authentication operations, such as assigning roles, sending notifications, or integrating with third-party services.
+
+::: details Quick Example {open}
+```php
+use DFSmania\LaradminLte\Actions\Auth\CreateNewUser;
+use DFSmania\LaradminLte\Actions\Auth\ResetUserPassword;
+use DFSmania\LaradminLte\Actions\Auth\UpdateUserPassword;
+use DFSmania\LaradminLte\Actions\Auth\UpdateUserProfileInformation;
+
+'actions' => [
+    'create_user' => CreateNewUser::class,
+    'reset_password' => ResetUserPassword::class,
+    'update_passwords' => UpdateUserPassword::class,
+    'update_profile_information' => UpdateUserProfileInformation::class,
+],
+```
+:::
+
+- **_create_user_**: This action is responsible for creating new users during the registration process. It should implement the `CreatesNewUsers` contract of Fortify.
+- **_reset_password_**: This action handles the logic for resetting user passwords. It should implement the `ResetsUserPasswords` contract of Fortify.
+- **_update_passwords_**: This action manages the logic for updating user passwords. It should implement the `UpdatesUserPasswords` contract of Fortify.
+- **_update_profile_information_**: This action is responsible for updating user profile information. It should implement the `UpdatesUserProfileInformation` contract of Fortify.
+
+### Using a Custom Action Class
+
+By creating custom action classes and registering them in the configuration file, you can easily customize the authentication logic to fit the specific needs of your application. For example, you can add additional validation rules, assign default roles to new users, send custom notifications, or integrate with external services during the authentication process. This allows you to have full control over how authentication operations are handled in your application while still leveraging the built-in features of *Laravel Fortify* and *LaradminLTE*.
+
+::: tip TIP: Reference Default Action Classes
+If you ever need to customize the logic for any of the authentication operations, we recommend to inspect the default set of action classes provided by *LaradminLTE* in your `vendor/dfsmania/laradminlte/src/Actions/Auth/` directory. You can use these default action classes as a reference or starting point for creating your own custom action classes.
+:::
+
+As an example, we provide a simple implementation of a custom action class for creating new users that assigns a default role to the user upon registration, by using the [Spatie Laravel Permission](https://spatie.be/docs/laravel-permission) package. You can create this class in the `app/Actions` directory of your Laravel application.
+
+```php
+<?php
+
+namespace App\Actions;
+
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Spatie\Permission\Models\Role;
+
+class CreateNewUser implements CreatesNewUsers
+{
+    /**
+     * Validate and create a newly registered user.
+     *
+     * @param  array<string, string>  $input
+     * @return User
+     */
+    public function create(array $input): User
+    {
+        // Validate the input data for creating a new user.
+
+        Validator::make($input, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ])->validate();
+
+        // Create the new user with the validated data.
+
+        $user = User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => Hash::make($input['password']),
+        ]);
+
+        // Assign a default role to the user (e.g., "user").
+
+        $user->assignRole('user');
+
+        return $user;
+    }
+}
+```
+
+Then you can register this custom action class in the `actions` section of the `config/ladmin/auth.php` file as shown next:
+
+```php
+//use DFSmania\LaradminLte\Actions\Auth\CreateNewUser;
+use App\Actions\CreateNewUser as CustomCreateNewUser;
+
+'actions' => [
+    'create_user' => CustomCreateNewUser::class,
+    // Other actions...
+],
+```
+
 ## Accent Themes
 
 The authentication scaffolding supports various accent themes that can be applied to the authentication pages. These themes change the color scheme of various elements on the pages, such as buttons and links. You can choose from the following predefined accent themes by setting the [accent_theme](#accent-theme) option in the `config/ladmin/auth.php` file: `default`, `blue`, `green`, `red`, `yellow`, `skyblue`, `gray`, and `black`.
