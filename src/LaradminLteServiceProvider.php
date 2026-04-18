@@ -305,66 +305,149 @@ class LaradminLteServiceProvider extends ServiceProvider
         $features = [];
 
         if (config('ladmin.auth.features.registration', false)) {
-            $features[] = Features::registration();
-
-            Fortify::createUsersUsing(config(
-                'ladmin.auth.actions.create_user',
-                CreateNewUser::class
-            ));
-
-            Fortify::registerView(function () {
-                return view("{$this->pkgPrefix}::auth.register");
-            });
+            $features[] = $this->setupRegistrationFeature();
         }
 
         if (config('ladmin.auth.features.password_reset', false)) {
-            $features[] = Features::resetPasswords();
-
-            Fortify::resetUserPasswordsUsing(config(
-                'ladmin.auth.actions.reset_password',
-                ResetUserPassword::class
-            ));
-
-            Fortify::requestPasswordResetLinkView(function () {
-                return view("{$this->pkgPrefix}::auth.forgot-password");
-            });
-
-            Fortify::resetPasswordView(function ($request) {
-                return view("{$this->pkgPrefix}::auth.reset-password", [
-                    'request' => $request,
-                ]);
-            });
+            $features[] = $this->setupResetPasswordsFeature();
         }
 
         if (config('ladmin.auth.features.email_verification', false)) {
-            $features[] = Features::emailVerification();
-
-            Fortify::verifyEmailView(function () {
-                return view("{$this->pkgPrefix}::auth.verify-email");
-            });
+            $features[] = $this->setupEmailVerificationFeature();
         }
 
         if (config('ladmin.auth.features.update_profile_information', false)) {
-            $features[] = Features::updateProfileInformation();
-
-            Fortify::updateUserProfileInformationUsing(config(
-                'ladmin.auth.actions.update_profile_information',
-                UpdateUserProfileInformation::class
-            ));
+            $features[] = $this->setupUpdateProfileInformationFeature();
         }
 
         if (config('ladmin.auth.features.update_passwords', false)) {
-            $features[] = Features::updatePasswords();
-
-            Fortify::updateUserPasswordsUsing(config(
-                'ladmin.auth.actions.update_passwords',
-                UpdateUserPassword::class
-            ));
+            $features[] = $this->setupUpdatePasswordsFeature();
         }
 
         // Configure enabled features in Fortify.
 
         config(['fortify.features' => $features]);
+    }
+
+    /**
+     * Setup the Laravel Fortify registration feature.
+     *
+     * @return string
+     */
+    private function setupRegistrationFeature(): string
+    {
+        // Register the action class responsible for handling the user
+        // registration logic.
+
+        Fortify::createUsersUsing(config(
+            'ladmin.auth.actions.create_user',
+            CreateNewUser::class
+        ));
+
+        // Register the view for the registration page.
+
+        Fortify::registerView(function () {
+            return view("{$this->pkgPrefix}::auth.register");
+        });
+
+        // Return the name of the registration feature to be added to the list
+        // of enabled features.
+
+        return Features::registration();
+    }
+
+    /**
+     * Setup the Laravel Fortify reset passwords feature.
+     *
+     * @return string
+     */
+    private function setupResetPasswordsFeature(): string
+    {
+        // Register the action class responsible for handling the password
+        // reset logic.
+
+        Fortify::resetUserPasswordsUsing(config(
+            'ladmin.auth.actions.reset_password',
+            ResetUserPassword::class
+        ));
+
+        // Register the views for the password reset pages.
+
+        Fortify::requestPasswordResetLinkView(function () {
+            return view("{$this->pkgPrefix}::auth.forgot-password");
+        });
+
+        Fortify::resetPasswordView(function ($request) {
+            return view("{$this->pkgPrefix}::auth.reset-password", [
+                'request' => $request,
+            ]);
+        });
+
+        // Return the name of the password reset feature to be added to the
+        // list of enabled features.
+
+        return Features::resetPasswords();
+    }
+
+    /**
+     * Setup the Laravel Fortify email verification feature.
+     *
+     * @return string
+     */
+    private function setupEmailVerificationFeature(): string
+    {
+        // Register the view for the email verification page.
+
+        Fortify::verifyEmailView(function () {
+            return view("{$this->pkgPrefix}::auth.verify-email");
+        });
+
+        // Return the name of the email verification feature to be added to the
+        // list of enabled features.
+
+        return Features::emailVerification();
+    }
+
+    /**
+     * Setup the Laravel Fortify update profile information feature.
+     *
+     * @return string
+     */
+    private function setupUpdateProfileInformationFeature(): string
+    {
+        // Register the action class responsible for handling the user profile
+        // information update logic.
+
+        Fortify::updateUserProfileInformationUsing(config(
+            'ladmin.auth.actions.update_profile_information',
+            UpdateUserProfileInformation::class
+        ));
+
+        // Return the name of the update profile information feature to be
+        // added to the list of enabled features.
+
+        return Features::updateProfileInformation();
+    }
+
+    /**
+     * Setup the Laravel Fortify update passwords feature.
+     *
+     * @return string
+     */
+    private function setupUpdatePasswordsFeature(): string
+    {
+        // Register the action class responsible for handling the user password
+        // update logic.
+
+        Fortify::updateUserPasswordsUsing(config(
+            'ladmin.auth.actions.update_passwords',
+            UpdateUserPassword::class
+        ));
+
+        // Return the name of the update passwords feature to be added to the
+        // list of enabled features.
+
+        return Features::updatePasswords();
     }
 
     /**
