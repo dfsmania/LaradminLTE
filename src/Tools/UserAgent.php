@@ -196,7 +196,7 @@ class UserAgent extends MobileDetect
      * provided callback and store it in the cache for future retrievals.
      *
      * @param  string  $key
-     * @param  \Closure():mixed  $callback
+     * @param  Closure():mixed  $callback
      * @return mixed
      */
     protected function retrieveOrResolve(string $key, Closure $callback): mixed
