@@ -1,0 +1,16 @@
+<?php
+
+namespace DFSmania\LaradminLte\Support\Menu\Enums;
+
+/**
+ * MenuPlacement enum class.
+ * This class defines the allowed placements for menu items in the AdminLTE
+ * template. The placement determines where the menu item will be rendered
+ * within the admin panel layout.
+ */
+enum MenuPlacement: string
+{
+    case NAVBAR = 'navbar';
+    case NAVBAR_DROPDOWN = 'navbar-dropdown';
+    case SIDEBAR = 'sidebar';
+}

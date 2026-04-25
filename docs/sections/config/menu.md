@@ -32,7 +32,7 @@ All available menu item properties are thoroughly documented in the [Properties 
 Menu items are grouped by placement using the next enum:
 
 ```php
-DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement
+DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement
 ```
 
 - `MenuPlacement::NAVBAR`: Items for the top navigation bar.
@@ -43,7 +43,7 @@ So, your `config/ladmin/menu.php` file should follow this structure:
 ```php
 <?php
 
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 return [
     MenuPlacement::NAVBAR->value => [
@@ -63,7 +63,7 @@ This layout organizes your menu items by their placement, making it easy to mana
 Each menu item must specify a type, defined by the following enum:
 
 ```php
-DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType
+DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType
 ```
 
 The currently available menu item types are:
@@ -475,7 +475,7 @@ Suppose you have a resource listing page with a `state` query parameter (e.g., `
 ```php [ResourceStateActiveStrategy.php]
 namespace App\CustomActiveStrategies;
 
-use DFSmania\LaradminLte\Tools\Menu\Contracts\ActiveStrategy;
+use DFSmania\LaradminLte\Support\Menu\Contracts\ActiveStrategy;
 
 class ResourceStateActiveStrategy implements ActiveStrategy
 {
@@ -716,8 +716,8 @@ This basic example demonstrates how to add a new item to the static menu configu
 
 ```php
 use DFSmania\LaradminLte\Events\BuildingMenu;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 /**
  * Handle the event.
@@ -741,8 +741,8 @@ This basic example demonstrates how to generate your entire menu dynamically, co
 
 ```php
 use DFSmania\LaradminLte\Events\BuildingMenu;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 /**
  * Handle the event.
@@ -788,8 +788,8 @@ Here's how you could implement this in your listener:
 namespace App\Listeners;
 
 use DFSmania\LaradminLte\Events\BuildingMenu;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 class SetupLaradminLteMenu
 {
@@ -824,8 +824,8 @@ Suppose you store your menu definitions in a database table (e.g., `admin_menus`
 namespace App\Listeners;
 
 use DFSmania\LaradminLte\Events\BuildingMenu;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 use App\Models\AdminMenu;
 
 class SetupLaradminLteMenu
@@ -927,8 +927,8 @@ Below is a basic example demonstrating this approach. In this scenario, the conf
 ```php [config/ladmin/menu.php]
 <?php
 
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 return [
     MenuPlacement::NAVBAR->value => [
@@ -989,8 +989,8 @@ Below is a basic example illustrating this approach. The configuration file uses
 ```php [config/ladmin/menu.php]
 <?php
 
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 return [
     MenuPlacement::NAVBAR->value => [

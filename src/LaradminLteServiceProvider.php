@@ -225,7 +225,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         // resources in the HTML document.
 
         Blade::directive("{$this->pkgPrefix}_plugin", function ($pluginName) {
-            $phpCode = "\DFSmania\LaradminLte\Tools\Plugins";
+            $phpCode = "\DFSmania\LaradminLte\Support\Plugins";
             $phpCode .= "\PluginsManager::setPluginAsRequired($pluginName);";
 
             return "<?php {$phpCode} ?>";

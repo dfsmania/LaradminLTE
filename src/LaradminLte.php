@@ -3,8 +3,8 @@
 namespace DFSmania\LaradminLte;
 
 use DFSmania\LaradminLte\Events\BuildingMenu;
-use DFSmania\LaradminLte\Tools\Menu\MenuManager;
-use DFSmania\LaradminLte\Tools\Plugins\PluginsManager;
+use DFSmania\LaradminLte\Support\Menu\MenuManager;
+use DFSmania\LaradminLte\Support\Plugins\PluginsManager;
 
 class LaradminLte
 {

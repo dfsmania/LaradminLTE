@@ -78,7 +78,7 @@ When setting the **asset** property to `true` for a plugin resource, make sure t
 Each plugin resource must have a **type** that determines its injection point within the layout, relative to the **AdminLTE** core files. These are defined by the following enum:
 
 ```php
-DFSmania\LaradminLte\Tools\Plugins\ResourceType
+DFSmania\LaradminLte\Support\Plugins\ResourceType
 ```
 
 | Constant               | Description                      |

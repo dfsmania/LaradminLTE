@@ -2,8 +2,8 @@
 
 namespace DFSmania\LaradminLte\View\Auth;
 
-use DFSmania\LaradminLte\Tools\Plugins\PluginResource;
-use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
+use DFSmania\LaradminLte\Support\Plugins\PluginResource;
+use DFSmania\LaradminLte\Support\Plugins\ResourceType;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 

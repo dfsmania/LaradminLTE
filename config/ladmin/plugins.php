@@ -1,6 +1,6 @@
 <?php
 
-use DFSmania\LaradminLte\Tools\Plugins\ResourceType;
+use DFSmania\LaradminLte\Support\Plugins\ResourceType;
 
 /*
 |------------------------------------------------------------------------------

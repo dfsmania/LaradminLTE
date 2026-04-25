@@ -3,7 +3,7 @@
 namespace DFSmania\LaradminLte\Http\Controllers;
 
 use Carbon\Carbon;
-use DFSmania\LaradminLte\Tools\UserAgent;
+use DFSmania\LaradminLte\Support\UserAgent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

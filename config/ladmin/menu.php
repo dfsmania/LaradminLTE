@@ -1,7 +1,7 @@
 <?php
 
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuItemType;
-use DFSmania\LaradminLte\Tools\Menu\Enums\MenuPlacement;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
+use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 
 /*
 |------------------------------------------------------------------------------
