@@ -3,13 +3,13 @@
 namespace DFSmania\LaradminLte\Http\Controllers;
 
 use Carbon\Carbon;
+use DFSmania\LaradminLte\Tools\UserAgent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use Jenssegers\Agent\Agent;
 
 class UserProfileController extends Controller
 {
@@ -224,10 +224,10 @@ class UserProfileController extends Controller
         // We then map over the sessions to create a collection of session
         // objects that include the agent information, IP address, whether it's
         // the current device, and the last active time. Note we use a
-        // third-party package (jenssegers/agent) to parse the user agent
-        // string and extract information about the device and browser used.
+        // custom UserAgent class to parse the user agent string and extract
+        // information about the device and browser used.
 
-        $agent = new Agent;
+        $agent = new UserAgent;
 
         return $sessions->map(function ($session) use ($request, $agent) {
             $agent->setUserAgent($session->user_agent ?? '');
