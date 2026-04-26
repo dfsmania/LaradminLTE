@@ -122,10 +122,6 @@ As example, save the following content in `resources/views/laradminlte-welcome.b
 To use the authentication scaffolding, you need to have the default Laravel's migrations for users already set up in your database. If this is not your case, then you can can install Laravel's default migrations by running: `php artisan migrate`.
 :::
 
-::: tip IMPORTANT: Fortify Installation Required
-The authentication scaffolding relies on **Laravel Fortify**, so you need to install its resources in your application. You can do this by running: `php artisan fortify:install`. This step is required for having **Fortify Actions** available in your application, which are used by the package's authentication scaffolding. In the future, we will work on a way to avoid this requirement, if possible.
-:::
-
 If you want to use the built-in authentication scaffolding, make sure to have it enabled in the `config/ladmin/auth.php` file, and setup the `home_path`. The `home_path` is the place where users will be redirected after login. Then protect your routes using the `auth` middleware:
 
 ```php
