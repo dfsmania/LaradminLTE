@@ -145,7 +145,13 @@ After this, all the routes within this group will require authentication to be a
 
 ### 3. Test your Route/View
 
-To test the admin layout, open your browser and navigate to:
+To test the admin panel, you first need to ensure that your *Laravel* application is running. You can start the development server using the following *Artisan* command:
+
+```bash
+php artisan serve
+```
+
+Then, just open your browser and navigate to:
 
 ```sh
 http://your-app.test/ladmin_welcome
