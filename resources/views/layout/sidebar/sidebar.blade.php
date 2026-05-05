@@ -6,6 +6,7 @@
     <x-ladmin-sidebar-brand label="{{ config('ladmin.main.logo.text', 'AdminLTE') }}"
         logo-url="{{ config('ladmin.main.logo.image', '') }}"
         logo-alt="{{ config('ladmin.main.logo.image_alt', 'AdminLTE Logo') }}"
+        url="{{ config('ladmin.main.logo.url', '#') }}"
         label-classes="{{ $brandTextClasses }}"
         logo-classes="{{ $brandImageClasses }}"/>
 

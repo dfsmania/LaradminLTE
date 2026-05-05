@@ -236,6 +236,13 @@ The textual portion of the brand logo, displayed next to the image. This is help
 
 An array of *CSS* utility classes applied to the logo text. This lets you control its typography and visual presentation, such as font weight, color, spacing, etc.
 
+### *url*:
+
+- Type: `string (URL | path)`
+- Example: `'url' => '/'`
+
+The URL that the logo links to. Clicking the logo will navigate to this path. Defaults to `'#'` if not specified.
+
 ## Layout
 
 The **layout** section lets you customize the overall structure and appearance of your admin panel. These options affect the positioning of interface components like the *header*, *sidebar*, and *footer*, and support both light and dark themes.
