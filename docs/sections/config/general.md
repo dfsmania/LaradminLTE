@@ -197,6 +197,7 @@ The **logo** section allows you to configure the brand logo displayed in the adm
     'image_classes' => ['rounded-circle', 'shadow'],
     'text' => 'LaradminLTE',
     'text_classes' => ['fw-bold'],
+    'url' => '/home',
 ]
 ```
 :::
@@ -235,6 +236,13 @@ The textual portion of the brand logo, displayed next to the image. This is help
 - Example: `'text_classes' => ['fw-bold']`
 
 An array of *CSS* utility classes applied to the logo text. This lets you control its typography and visual presentation, such as font weight, color, spacing, etc.
+
+### *url*:
+
+- Type: `string (path | URL)`
+- Example: `'url' => '/home'`
+
+The URL path or absolute URL where users will be directed when they click on the logo. This is typically set to the dashboard or homepage of your admin panel, providing a quick way for users to return to the main interface. You can use the `'#'` placeholder to disable the link if you don't want the logo to be clickable.
 
 ## Layout
 
