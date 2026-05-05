@@ -99,7 +99,8 @@ return [
         // The CSS classes applied to style the logo text.
         'text_classes' => ['fw-bold'],
 
-        // The URL the logo links to.
+        // The URL path the logo links to when clicked. Can be a relative path
+        // or an absolute URL.
         'url' => '#',
     ],
 
