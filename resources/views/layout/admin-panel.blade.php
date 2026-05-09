@@ -12,18 +12,24 @@
         {{-- Title --}}
         <title>{{ $title }}</title>
 
-        {{-- Pre AdminLTE plugins links --}}
-        @foreach(ladmin()->plugins->getPreAdminlteLinks() as $resource)
-            {{ $resource->renderToHtml() }}
-        @endforeach
+        {{-- Stylesheets / Vite assets --}}
+        @if(ladmin()->isViteEnabled)
+            {{-- Vite assets --}}
+            @vite(ladmin()->viteInput)
+        @else
+            {{-- Pre AdminLTE plugins links --}}
+            @foreach(ladmin()->plugins->getPreAdminlteLinks() as $resource)
+                {{ $resource->renderToHtml() }}
+            @endforeach
 
-        {{-- AdminLTE theme style --}}
-        <link rel="stylesheet" href="{{ $adminlteCssFile }}">
+            {{-- AdminLTE theme style --}}
+            <link rel="stylesheet" href="{{ $adminlteCssFile }}">
 
-        {{-- Post AdminLTE plugins links --}}
-        @foreach(ladmin()->plugins->getPostAdminlteLinks() as $resource)
-            {{ $resource->renderToHtml() }}
-        @endforeach
+            {{-- Post AdminLTE plugins links --}}
+            @foreach(ladmin()->plugins->getPostAdminlteLinks() as $resource)
+                {{ $resource->renderToHtml() }}
+            @endforeach
+        @endif
 
         {{-- Favicons markup --}}
         <x-ladmin-favicons/>
@@ -63,18 +69,21 @@
 
         </div>
 
-        {{-- Pre AdminLTE plugins scripts --}}
-        @foreach(ladmin()->plugins->getPreAdminlteScripts() as $resource)
-            {{ $resource->renderToHtml() }}
-        @endforeach
+        {{-- Scripts --}}
+        @unless(ladmin()->isViteEnabled)
+            {{-- Pre AdminLTE plugins scripts --}}
+            @foreach(ladmin()->plugins->getPreAdminlteScripts() as $resource)
+                {{ $resource->renderToHtml() }}
+            @endforeach
 
-        {{-- AdminLTE JavaScript App --}}
-        <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
+            {{-- AdminLTE JavaScript App --}}
+            <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
 
-        {{-- Post AdminLTE plugins scripts --}}
-        @foreach(ladmin()->plugins->getPostAdminlteScripts() as $resource)
-            {{ $resource->renderToHtml() }}
-        @endforeach
+            {{-- Post AdminLTE plugins scripts --}}
+            @foreach(ladmin()->plugins->getPostAdminlteScripts() as $resource)
+                {{ $resource->renderToHtml() }}
+            @endforeach
+        @endunless
 
         {{-- OverlayScrollbars plugin initialization script --}}
         <x-ladmin-os-init/>

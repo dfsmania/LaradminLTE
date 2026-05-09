@@ -266,4 +266,32 @@ return [
         // translations when using short keys translations syntax.
         'php_file' => 'ladmin_menu',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Vite Assets Bundling
+    |--------------------------------------------------------------------------
+    |
+    | Here you can enable and setup Vite assets bundling for your admin panel.
+    | Vite is a modern frontend build tool that provides fast and efficient
+    | development and production builds for your CSS and JavaScript assets.
+    | When using Vite, you are in charge of bundling your CSS and JS assets
+    | into single files, so all the resources defined in the "plugins" config
+    | of this package will be ignored. Avoid mixing Vite with the plugins
+    | configuration of this package. Use one or the other, but not both.
+    |
+    */
+
+    'vite' => [
+        // Determines whether to enable Vite assets bundling.
+        'enabled' => true,
+
+        // The list of entry points that will be bundled by Vite, as configured
+        // in your Vite setup. These entry points should include the CSS and JS
+        // files that are required for your admin panel.
+        'input' => [
+            'resources/css/app.css',
+            'resources/js/app.js',
+        ],
+    ],
 ];

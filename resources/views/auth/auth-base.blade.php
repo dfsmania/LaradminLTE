@@ -12,13 +12,19 @@
         {{-- Title --}}
         <title>{{ $title }}</title>
 
-        {{-- Pre AdminLTE plugins links --}}
-        @foreach($preAdminlteLinks as $resource)
-            {{ $resource->renderToHtml() }}
-        @endforeach
+        {{-- Stylesheets / Vite assets --}}
+        @if(ladmin()->isViteEnabled)
+            {{-- Vite assets --}}
+            @vite(ladmin()->viteInput)
+        @else
+            {{-- Pre AdminLTE plugins links --}}
+            @foreach($preAdminlteLinks as $resource)
+                {{ $resource->renderToHtml() }}
+            @endforeach
 
-        {{-- AdminLTE theme style --}}
-        <link rel="stylesheet" href="{{ $adminlteCssFile }}">
+            {{-- AdminLTE theme style --}}
+            <link rel="stylesheet" href="{{ $adminlteCssFile }}">
+        @endif
 
         {{-- Favicons markup --}}
         <x-ladmin-favicons/>
@@ -39,13 +45,16 @@
             {{ $slot }}
         </div>
 
-        {{-- Pre AdminLTE plugins scripts --}}
-        @foreach($preAdminlteScripts as $resource)
-            {{ $resource->renderToHtml() }}
-        @endforeach
+        {{-- Scripts --}}
+        @unless(ladmin()->isViteEnabled)
+            {{-- Pre AdminLTE plugins scripts --}}
+            @foreach($preAdminlteScripts as $resource)
+                {{ $resource->renderToHtml() }}
+            @endforeach
 
-        {{-- AdminLTE JavaScript App --}}
-        <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
+            {{-- AdminLTE JavaScript App --}}
+            <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
+        @endunless
 
         {{-- Inline JavaScript injected from child views using @push('js') --}}
         @stack('js')
