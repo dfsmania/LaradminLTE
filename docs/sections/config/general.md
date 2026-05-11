@@ -12,7 +12,7 @@ php artisan vendor:publish --tag="ladmin-config"
 
 The **basic** section allows you to define essential metadata for your admin panel. This information is primarily used in the footer (by default) and potentially in other components such as *"About"* modals or system metadata sections.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'basic' => [
     'company' => 'Acme Inc.',
@@ -189,7 +189,7 @@ To easily generate a complete set of favicon files from your brand logo, use onl
 
 The **logo** section allows you to configure the brand logo displayed in the admin panel. The logo appears in the top-left corner of the layout and helps visually identify your panel or application.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'logo' => [
     'image' => 'vendor/ladmin/img/LaradminLTE.png',
@@ -248,7 +248,7 @@ The URL path or absolute URL where users will be directed when they click on the
 
 The **layout** section lets you customize the overall structure and appearance of your admin panel. These options affect the positioning of interface components like the *header*, *sidebar*, and *footer*, and support both light and dark themes.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'layout' => [
     'bootstrap_theme' => 'light',
@@ -307,7 +307,7 @@ Enables support for *right-to-left (RTL)* layouts. Useful for languages like *Ar
 
 The **navbar** section allows you to customize the appearance of the top navigation bar in your admin panel. You can use this to control its styling using *Bootstrap* utility classes or your own custom classes.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'navbar' => [
     'classes' => ['bg-body'],
@@ -330,7 +330,7 @@ You can experiment with different navbar styles using the [AdminLTE v4 Theme Too
 
 The **sidebar** section provides full control over the behavior and appearance of the sidebar navigation in your admin panel. You can configure visual styles, layout responsiveness, collapsibility, and interactive features like accordion menus and mini-sidebar mode.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'sidebar' => [
     'accordion' => false,
@@ -404,7 +404,7 @@ Specifies the duration (in *milliseconds*) of the expand/collapse animation for 
 
 The **footer** section allows you to customize the appearance of the bottom footer in your admin panel. This typically includes background styling, shadows, or spacing using *Bootstrap* utility classes.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'footer' => [
     'classes' => ['bg-body'],
@@ -427,7 +427,7 @@ You can experiment with different footer styles using the [AdminLTE v4 Theme Too
 
 The **main content** section controls the styling of the central content area where most pages, widgets, and dashboards are rendered.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'main_content' => [
     'classes' => ['bg-body-tertiary'],
@@ -446,7 +446,7 @@ A list of *CSS* classes applied to the main content container. These classes aff
 
 The **menu translations** section allows you to enable and configure the localization system for menu items. When enabled, some attributes in the menu items (like the *label* and *badge*) will be translated automatically using [Laravel's translation features](https://laravel.com/docs/localization), supporting both **PHP array** and **JSON-based** translations. This helps create multilingual admin panels more easily.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'menu_translations' => [
     'enabled' => true,
@@ -479,7 +479,7 @@ The **vite** section allows you to enable the support for [Assets Bundling with 
 When using **Vite**, the [Plugins Configuration](/sections/config/plugins) of this package will be ignored completely, as you will be responsible for including the necessary *CSS* and *JavaScript* files for the plugins you want to use in your *Vite* entry points (e.g., `resources/js/app.js` or `resources/css/app.css`). This means that you need to manually import the plugin assets, mostly from *NPM* packages, in your *Vite* entry files to ensure they are included in your build process and available in your admin panel.
 :::
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'vite' => [
     'enabled' => true,

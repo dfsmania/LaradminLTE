@@ -39,6 +39,18 @@ The authentication scaffolding offer additional features that can be enabled or 
 
 The main settings for the authentication scaffolding are as follows:
 
+::: details Quick Config Example {open}
+```php
+[
+    'enabled' => true,
+    'accent_theme' => 'default',
+    'background_classes' => ['bg-body-secondary', 'bg-gradient'],
+    'background_image' => null,
+    'home_path' => '/home',
+]
+```
+:::
+
 ### *enabled*:
 
 - Type: `boolean`
@@ -79,7 +91,7 @@ This setting defines the path where users will get redirected by default during 
 
 The `logo` configuration section allows you to set and customize the logo displayed on the authentication pages.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'logo' => [
     'image' => '/vendor/ladmin/img/LaradminLTE-Auth.png',
@@ -147,7 +159,7 @@ This setting allows you to define the CSS classes that will be applied to style 
 
 The authentication scaffolding includes several features that can be enabled or disabled individually. These features are managed in the `features` section of the `config/ladmin/auth.php` file.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'features' => [
     'registration' => true,
@@ -371,7 +383,7 @@ Route::middleware(['auth'])->group(function () {
 
 The `profile_images` configuration section allows you to customize the settings related to user profile images. These settings will only take effect if the [Profile Image](#feature-profile-image) feature is enabled in the `features` section of the `config/ladmin/auth.php` file.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 'profile_images' => [
     'max_size' => 1024,
@@ -430,7 +442,7 @@ This setting defines the default image mode to be used when a user has not uploa
 
 The authentication scaffolding allows you to customize the logic of various authentication-related actions by defining your own action classes. These action classes are responsible for handling specific operations during the authentication process, such as creating new users, updating profile information, changing passwords, etc. You can create your own action classes that implement the corresponding Fortify contracts and then register them in the `actions` section of the `config/ladmin/auth.php` file. This provides you with the flexibility to add custom logic during authentication operations, such as assigning roles, sending notifications, or integrating with third-party services.
 
-::: details Quick Example {open}
+::: details Quick Config Example {open}
 ```php
 use DFSmania\LaradminLte\Actions\Auth\CreateNewUser;
 use DFSmania\LaradminLte\Actions\Auth\ResetUserPassword;
