@@ -470,3 +470,130 @@ Specifies whether to enable automatic translation of menu item attributes such a
 - Example: `'php_file' => 'ladmin_menu'`
 
 Specifies the name of the PHP language file used for translating menu items properties defined with short keys. When a menu item's *label* or *badge* is set to a short key (for example, `'dashboard'`), it will be resolved as `'{php_file}.dashboard'` using the translations defined in that file. This option is only relevant when the value is not a full translation string and you prefer to use Laravel’s PHP array translation files instead of JSON-based translations.
+
+## Vite Support
+
+The **vite** section allows you to enable the support for [Assets Bundling with Vite](https://laravel.com/docs/vite). **Vite** is a modern frontend build tool that provides fast and efficient development and production builds for your *CSS* and *JavaScript* assets. Enabling this option will automatically include the necessary *Vite* directives in your admin panel layout, allowing you to manage your assets using *Vite*'s powerful features. If you are not familiarized with *Vite*, we suggest you to read the [official Laravel documentation on Vite](https://laravel.com/docs/vite) to understand how to set up and use *Vite* in your Laravel application.
+
+::: tip IMPORTANT: Plugins configuration when using Vite
+When using **Vite**, the [Plugins Configuration](/sections/config/plugins) of this package will be ignored completely, as you will be responsible for including the necessary *CSS* and *JavaScript* files for the plugins you want to use in your *Vite* entry points (e.g., `resources/js/app.js` or `resources/css/app.css`). This means that you need to manually import the plugin assets, mostly from *NPM* packages, in your *Vite* entry files to ensure they are included in your build process and available in your admin panel.
+:::
+
+::: details Quick Example {open}
+```php
+'vite' => [
+    'enabled' => true,
+    'input' => [
+        'resources/css/app.css',
+        'resources/js/app.js',
+    ],
+]
+```
+:::
+
+### *enabled*:
+
+- Type: `bool`
+- Example: `'enabled' => true`
+
+Determines whether to enable *Vite* support in your admin panel. When set to `true`, the layout will include the necessary *Vite* directives to load your assets, and you will need to manage your asset imports in your *Vite* entry files. If set to `false`, the package will use its default asset loading mechanism, and the plugins configuration will be applied as usual.
+
+### *input*:
+
+- Type: `array<string>`
+- Example: `'input' => ['resources/css/app.css', 'resources/js/app.js']`
+
+An array of file paths that serve as entry points for *Vite* to bundle your assets. These should point to your main *CSS* and *JavaScript* files where you import your styles and scripts, including any plugin assets. The paths are relative to the root of your *Laravel* application, and they will be processed by *Vite* according to your configuration in `vite.config.js`. These entry points should match the ones that are defined in your `vite.config.js` file to ensure that *Vite* can correctly bundle and serve your assets in both development and production environments.
+
+### Using Vite with LaradminLTE (Quick Setup Guide)
+
+To use **Vite** with *LaradminLTE*, you first need to enable the *Vite* support in the package configuration and set up your *Vite* entry points paths as previously explained. Once you have done this, follow the next steps to complete the setup:
+
+#### 1. Install LaradminLTE's NPM Dependencies
+
+Use *NPM* to install the required dependencies for *LaradminLTE* in your project. This typically includes *Bootstrap*, *OverlayScrollbars*, and other plugins that the package and *AdminLTE v4* relies on. For this, execute the following command in your terminal:
+
+```bash
+npm install bootstrap @popperjs/core bootstrap-icons overlayscrollbars @fontsource/source-sans-3
+```
+
+Note this package already installs *AdminLTE v4* distribution files in the `public/vendor/ladmin` directory, so you don't need to install *AdminLTE* via *NPM* unless you prefer to manage it fully through *NPM*. In this latest case, you can install *AdminLTE* via *NPM* as well:
+
+```bash
+npm install admin-lte
+```
+
+::: warning WARNING: AdminLTE v4 Compatibility
+Take into consideration that while the distribution files of *AdminLTE v4* installed by this package are known to be compatible and work correctly with the package, the *AdminLTE* version installed via *NPM* is not guaranteed to be fully compatible.
+:::
+
+#### 2. Import Dependencies in Your Vite Entry Files
+
+In your *Vite* entry files (e.g., `resources/js/app.js` and `resources/css/app.css`), you need to import the necessary *CSS* and *JavaScript* files for the plugins we installed previously, including *AdminLTE* if you choose to install it via *NPM*. This ensures that these assets are included in your build process and available in your admin panel. To get you started, we created an initial template for both `app.js` and `app.css` files, which you can copy and modify as needed:
+
+:::code-group
+
+```js [resources/js/app.js]
+// Popper (required by Bootstrap 5).
+import '@popperjs/core';
+
+// Bootstrap 5.
+// Make the bootstrap module available in the global window scope, as it's
+// used by LaradminLTE package.
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
+
+// OverlayScrollbars.
+// Make OverlayScrollbars available in the global window scope, as it's
+// used by LaradminLTE package.
+import { OverlayScrollbars } from 'overlayscrollbars';
+window.OverlayScrollbarsGlobal = { OverlayScrollbars };
+
+// AdminLTE 4 (compatible version from public vendor).
+import '/public/vendor/ladmin/js/adminlte.min.js';
+
+// Or AdminLTE 4 from NPM (if you prefer to go fully with npm).
+// import 'admin-lte';
+```
+
+```css [resources/css/app.css]
+/* Fonts */
+@import "@fontsource/source-sans-3/index.css";
+
+/* Bootstrap 5 */
+@import "bootstrap/dist/css/bootstrap.css";
+
+/* Bootstrap Icons */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* OverlayScrollbars */
+@import "overlayscrollbars/styles/overlayscrollbars.css";
+
+/* AdminLTE 4 (compatible version from public vendor) */
+@import "/public/vendor/ladmin/css/adminlte.min.css";
+
+/* Or AdminLTE 4 RTL (compatible version from public vendor) */
+/* @import "/public/vendor/ladmin/css/adminlte.rtl.min.css"; */
+
+/* Or AdminLTE 4 from NPM (if you prefer to go fully with npm) */
+/* @import "admin-lte/dist/css/adminlte.css"; */
+```
+:::
+
+You can customize these files further by adding your own styles or importing additional plugins as needed. Then you can use the next command (if available in your environment) to start both *Vite* and *Laravel* development servers:
+
+```bash
+composer run dev
+```
+
+Or you can start them separately with next commands:
+
+```bash
+# Start Vite development server in one terminal
+npm run dev
+```
+
+```bash
+# Start Laravel development server in another terminal
+php artisan serve
+```
