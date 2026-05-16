@@ -1,33 +1,36 @@
 {{-- Profile page --}}
 <x-ladmin-panel title="{{ __('ladmin::auth.profile.title') }}">
-<div id="profileContent">
 
-    {{-- Profile image section --}}
-    @if(config('ladmin.auth.features.profile_image', false))
-        @include('ladmin::profile.profile-image-section')
-        <hr class="border-secondary-subtle">
-    @endif
+    <div id="profileContent">
 
-    {{-- Profile information section --}}
-    @include('ladmin::profile.profile-info-section')
+        {{-- Profile image section --}}
+        @if(config('ladmin.auth.features.profile_image', false))
+            @include('ladmin::profile.profile-image-section')
+            <hr class="border-secondary-subtle">
+        @endif
 
-    {{-- Password update section --}}
-    @if(config('ladmin.auth.features.update_passwords', false))
-        <hr class="border-secondary-subtle">
-        @include('ladmin::profile.password-update-section')
-    @endif
+        {{-- Profile information section --}}
+        @include('ladmin::profile.profile-info-section')
 
-    {{-- Browser sessions section --}}
-    @if(config('ladmin.auth.features.browser_sessions', false))
-        <hr class="border-secondary-subtle">
-        @include('ladmin::profile.browser-sessions-section')
-    @endif
+        {{-- Password update section --}}
+        @if(config('ladmin.auth.features.update_passwords', false))
+            <hr class="border-secondary-subtle">
+            @include('ladmin::profile.password-update-section')
+        @endif
 
-    {{-- Account deletion section --}}
-    @if(config('ladmin.auth.features.account_deletion', false))
-        <hr class="border-secondary-subtle">
-        @include('ladmin::profile.delete-account-section')
-    @endif
+        {{-- Browser sessions section --}}
+        @if(config('ladmin.auth.features.browser_sessions', false))
+            <hr class="border-secondary-subtle">
+            @include('ladmin::profile.browser-sessions-section')
+        @endif
+
+        {{-- Account deletion section --}}
+        @if(config('ladmin.auth.features.account_deletion', false))
+            <hr class="border-secondary-subtle">
+            @include('ladmin::profile.delete-account-section')
+        @endif
+
+    </div>
 
     {{-- Extra JS --}}
     @push('js')
@@ -68,5 +71,4 @@
     </script>
     @endpush
 
-</div>
 </x-ladmin-panel>
