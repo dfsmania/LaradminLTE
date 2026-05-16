@@ -284,7 +284,7 @@ return [
 
     'vite' => [
         // Determines whether to enable Vite assets bundling.
-        'enabled' => true,
+        'enabled' => false,
 
         // The list of entry points that will be bundled by Vite, as configured
         // in your Vite setup. These entry points should include the CSS and JS
