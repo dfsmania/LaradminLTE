@@ -35,6 +35,13 @@ export default defineConfig({
           { text: 'Authentication', link: '/sections/config/auth' },
         ]
       },
+      {
+        text: 'Blade Components',
+        collapsed: false,
+        items: [
+          { text: 'Forms', link: '/sections/components/forms' },
+        ]
+      },
     ],
 
     socialLinks: [
