@@ -597,3 +597,26 @@ npm run dev
 # Start Laravel development server in another terminal
 php artisan serve
 ```
+
+## Livewire Support
+
+The **livewire** section allows you to enable support for [Livewire](https://livewire.laravel.com/) components in your admin panel. **Livewire** is a full-stack framework for Laravel that makes building dynamic interfaces simple, without leaving the comfort of Laravel. When enabled, the package will automatically include the necessary *Livewire* assets and directives in your admin panel layout, allowing you to use *Livewire* components seamlessly.
+
+::: details Quick Config Example {open}
+```php
+'livewire' => [
+    'enabled' => true,
+]
+```
+:::
+
+### *enabled*:
+
+- Type: `bool`
+- Example: `'enabled' => true`
+
+Determines whether to enable *Livewire* support in your admin panel. When set to `true`, the provided layout will include the necessary *Livewire* directives to load the required *Livewire* styles and scripts, and you will be able to use *Livewire* components in your views.
+
+::: tip TIP: Automatic Livewire Assets Inclusion
+On the most recent versions of *Livewire*, the same package automatically detects if a *Livewire* component is being used and includes the necessary *Livewire* assets (styles and scripts), so you may not even need to enable this option. However, enabling it ensures that the *Livewire* assets are always included in your admin panel layout, which can be useful if you plan to use *Livewire* components throughout your application, or you are using an older version of *Livewire* that does not support automatic asset inclusion.
+:::

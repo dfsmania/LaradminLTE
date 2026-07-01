@@ -51,4 +51,12 @@ features:
       </svg>
     title: Built-in Authentication Scaffolding
     details: Includes ready-to-use authentication views and logic powered by Laravel Fortify, with seamless integration into the dashboard.
+
+  - icon:
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#7837fa" viewBox="0 0 16 16">
+        <path d="M8.5.134a.5.5 0 0 0-1 0v2.232a.5.5 0 0 0 1 0z"/>
+        <path d="M11.353 1.146a.5.5 0 0 0-.707 0L9.068 2.724a.5.5 0 1 0 .707.707l1.578-1.578a.5.5 0 0 0 0-.707m-6 0a.5.5 0 0 0-.707.707l1.578 1.578a.5.5 0 1 0 .707-.707zM8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8m-6.5 4a.5.5 0 0 0 0 1h2.232a.5.5 0 0 0 0-1zm10.768 0a.5.5 0 0 0 0 1H14.5a.5.5 0 0 0 0-1zM4.646 12.854a.5.5 0 1 0 .707.707l1.578-1.578a.5.5 0 0 0-.707-.707zm5.932-1.578 1.578 1.578a.5.5 0 0 0 .707-.707l-1.578-1.578a.5.5 0 0 0-.707.707M8.5 13.634a.5.5 0 0 0-1 0v2.232a.5.5 0 0 0 1 0z"/>
+      </svg>
+    title: Vite & Livewire Ready
+    details: Ready to use with Vite Assets Bundling tool and the Livewire frontend framework, ensuring a modern development workflow fully aligned with the Laravel ecosystem.
 ---

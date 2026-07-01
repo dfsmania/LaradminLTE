@@ -34,6 +34,11 @@
         {{-- Favicons markup --}}
         <x-ladmin-favicons/>
 
+        {{-- Livewire styles --}}
+        @if(ladmin()->isLivewireEnabled)
+            @livewireStyles
+        @endif
+
         {{-- Inline CSS injected from child views using @push('css') --}}
         @stack('css')
 
@@ -87,6 +92,11 @@
 
         {{-- OverlayScrollbars plugin initialization script --}}
         <x-ladmin-os-init/>
+
+        {{-- Livewire scripts --}}
+        @if(ladmin()->isLivewireEnabled)
+            @livewireScripts
+        @endif
 
         {{-- Inline JavaScript injected from child views using @push('js') --}}
         @stack('js')

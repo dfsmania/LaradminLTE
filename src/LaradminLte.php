@@ -43,6 +43,15 @@ class LaradminLte
     public array $viteInput;
 
     /**
+     * A flag indicating whether Livewire is enabled. This is determined based
+     * on the presence of Livewire configuration in the package's main
+     * configuration file.
+     *
+     * @var bool
+     */
+    public bool $isLivewireEnabled;
+
+    /**
      * Create a new class instance.
      *
      * @return void
@@ -57,6 +66,13 @@ class LaradminLte
         $this->viteInput = $this->isViteEnabled
             ? config('ladmin.main.vite.input', [])
             : [];
+
+        // Determine if Livewire is enabled by configuration.
+
+        $this->isLivewireEnabled = config(
+            'ladmin.main.livewire.enabled',
+            false
+        );
 
         // Load static menu from configuration file.
 

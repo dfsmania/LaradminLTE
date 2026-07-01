@@ -294,4 +294,20 @@ return [
             'resources/js/app.js',
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Livewire Support
+    |--------------------------------------------------------------------------
+    |
+    | Here you can enable support for Livewire components in your admin panel.
+    | When enabled, the required Livewire styles and scripts will be injected
+    | into the main layout automatically. Note the Livewire package must be
+    | installed in your Laravel application.
+    |
+    */
+
+    'livewire' => [
+        'enabled' => false,
+    ],
 ];
