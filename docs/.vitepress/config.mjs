@@ -42,6 +42,13 @@ export default defineConfig({
           { text: 'Forms', link: '/sections/components/forms' },
         ]
       },
+      {
+        text: 'Miscellaneous',
+        collapsed: false,
+        items: [
+          { text: 'Livewire Support', link: '/sections/misc/livewire' },
+        ]
+      },
     ],
 
     socialLinks: [

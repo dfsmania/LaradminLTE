@@ -620,3 +620,5 @@ Determines whether to enable *Livewire* support in your admin panel. When set to
 ::: tip TIP: Automatic Livewire Assets Inclusion
 On the most recent versions of *Livewire*, the same package automatically detects if a *Livewire* component is being used and includes the necessary *Livewire* assets (styles and scripts), so you may not even need to enable this option. However, enabling it ensures that the *Livewire* assets are always included in your admin panel layout, which can be useful if you plan to use *Livewire* components throughout your application, or you are using an older version of *Livewire* that does not support automatic asset inclusion.
 :::
+
+For more details about using *Livewire* with *LaradminLTE*, please refer to the dedicated [Livewire Support](/sections/misc/livewire) section of the documentation.
