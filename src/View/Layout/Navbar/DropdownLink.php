@@ -8,6 +8,11 @@ use Illuminate\View\View;
 class DropdownLink extends Component
 {
     /**
+     * The default URL for the link, used when no URL is provided.
+     */
+    protected const DEFAULT_URL = '#';
+
+    /**
      * The text for the badge of the link (optional).
      *
      * @var ?string
@@ -74,7 +79,11 @@ class DropdownLink extends Component
     ) {
         $this->icon = $icon;
         $this->label = html_entity_decode($label);
-        $this->url = filter_var($url, FILTER_VALIDATE_URL) ? $url : '#';
+
+        $this->url = filter_var($url, FILTER_VALIDATE_URL)
+            ? $url
+            : self::DEFAULT_URL;
+
         $this->badge = html_entity_decode($badge);
         $this->linkClasses = $this->getLinkClasses($color, $isActive);
 
@@ -97,6 +106,19 @@ class DropdownLink extends Component
     public function render(): View|string
     {
         return view('ladmin::layout.navbar.dropdown-link');
+    }
+
+    /**
+     * Determines whether the link should use the "wire:navigate" directive for
+     * Livewire SPA navigation.
+     *
+     * @return bool
+     */
+    public function isLivewireNavigate(): bool
+    {
+        return ladmin()->isLivewireSpaEnabled
+            && ! empty($this->url)
+            && $this->url !== self::DEFAULT_URL;
     }
 
     /**

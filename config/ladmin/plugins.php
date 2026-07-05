@@ -58,6 +58,12 @@ return [
                 'type' => ResourceType::PRE_ADMINLTE_SCRIPT,
                 'source' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js',
                 'crossorigin' => 'anonymous',
+
+                // Extra support to Livewire SPA navigation. This attribute is
+                // added to the script tag to ensure that the script is not
+                // reloaded when navigating between pages in a Livewire SPA
+                // context.
+                'data-navigate-once' => true,
             ],
         ],
     ],
