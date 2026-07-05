@@ -606,6 +606,7 @@ The **livewire** section allows you to enable support for [Livewire](https://liv
 ```php
 'livewire' => [
     'enabled' => true,
+    'spa_navigation' => false,
 ]
 ```
 :::
@@ -622,3 +623,12 @@ On the most recent versions of *Livewire*, the same package automatically detect
 :::
 
 For more details about using *Livewire* with *LaradminLTE*, please refer to the dedicated [Livewire Support](/sections/misc/livewire) section of the documentation.
+
+### *spa_navigation*:
+
+- Type: `bool`
+- Example: `'spa_navigation' => false`
+
+When enabled (`true`), this option allows you to use *Livewire* on *SPA (Single Page Application)* navigation mode, by adding the `wire:navigate` directive to the links you create in the menu configuration. In this mode, *Livewire* will handle page navigation without requiring full page reloads, providing a smoother user experience.
+
+For more details about using *Livewire* with *SPA navigation*, please refer to the dedicated [Livewire SPA Navigation](/sections/misc/livewire#spa-navigation-support) section of the documentation.

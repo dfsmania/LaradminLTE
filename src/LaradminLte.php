@@ -52,6 +52,15 @@ class LaradminLte
     public bool $isLivewireEnabled;
 
     /**
+     * A flag indicating whether Livewire SPA Navigation is enabled. This is
+     * determined based on the presence of Livewire configuration in the
+     * package's main configuration file.
+     *
+     * @var bool
+     */
+    public bool $isLivewireSpaEnabled;
+
+    /**
      * Create a new class instance.
      *
      * @return void
@@ -67,10 +76,16 @@ class LaradminLte
             ? config('ladmin.main.vite.input', [])
             : [];
 
-        // Determine if Livewire is enabled by configuration.
+        // Determine if Livewire is enabled by configuration, and if SPA
+        // navigation is also enabled.
 
         $this->isLivewireEnabled = config(
             'ladmin.main.livewire.enabled',
+            false
+        );
+
+        $this->isLivewireSpaEnabled = config(
+            'ladmin.main.livewire.spa_navigation',
             false
         );
 

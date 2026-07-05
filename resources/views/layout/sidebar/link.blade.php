@@ -1,7 +1,7 @@
 {{-- Sidebar link --}}
 <li class="nav-item">
 
-    <a href="{{ $url }}" {{ $attributes->merge(['class' => $linkClasses]) }}>
+    <a href="{{ $url }}" {{ $attributes->merge(['class' => $linkClasses, 'wire:navigate' => ladmin()->isLivewireSpaEnabled]) }}>
 
         {{-- Icon (optional) --}}
         @if(! empty($icon))

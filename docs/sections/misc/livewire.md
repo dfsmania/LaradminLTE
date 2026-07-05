@@ -262,3 +262,13 @@ Finnally, you can define a route in your `routes/web.php` file to access this fu
     'url' => '/url/to/full-page-component',
 ],
 ```
+
+## SPA Navigation Support
+
+**Livewire** also provides support for *Single Page Application* (SPA) navigation. Many modern web applications are built as *Single Page Applications*. In these applications, each page rendered by the application no longer requires a full browser page reload, avoiding the overhead of re-downloading JavaScript and CSS assets on every request. This provides a smoother and faster user experience, as the application can update only the parts of the page that need to change, without requiring a full page reload.
+
+The alternative to a single page application is a multi-page application. In these applications, every time a user clicks a link, an entirely new *HTML* page is requested and rendered in the browser.
+
+While most *PHP* applications have traditionally been multi-page applications, *Livewire* offers a single page application experience via a simple attribute you can add to links in your application: `wire:navigate`. For more details, visit [Livewire SPA Navigation](https://livewire.laravel.com/docs/navigate).
+
+**LaradminLTE** provides support for *Livewire SPA navigation* through the `spa_navigation` configuration option in the `config/ladmin/main.php` file. When this option is enabled, the `wire:navigate` directive will be automatically added to the links in your menu configuration.

@@ -308,6 +308,12 @@ return [
     */
 
     'livewire' => [
+        // Determines whether to enable Livewire support, by adding the
+        // Livewire styles and scripts to the main layout automatically.
         'enabled' => false,
+
+        // Determines whether to enable SPA (Single Page Application)
+        // navigation mode for Livewire.
+        'spa_navigation' => false,
     ],
 ];
