@@ -45,8 +45,8 @@
             </form>
 
             {{-- Profile link --}}
-            <x-ladmin-button theme="outline-secondary" icon="bi bi-person-fill-gear fs-5" title="{{ __('ladmin::auth.profile.title') }}"
-                onclick="window.location='{{ route(config('ladmin.main.routes.as', 'ladmin.') . 'profile.show') }}'"/>
+            <x-ladmin-button theme="outline-secondary" icon="bi bi-person-fill-gear fs-5"
+                title="{{ __('ladmin::auth.profile.title') }}" onclick="{{ $navigateToProfileScript }}"/>
 
         </li>
 

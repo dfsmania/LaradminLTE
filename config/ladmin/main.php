@@ -313,7 +313,8 @@ return [
         'enabled' => false,
 
         // Determines whether to enable SPA (Single Page Application)
-        // navigation mode for Livewire.
+        // navigation mode for Livewire. This requires Livewire to be also
+        // enabled with the 'enabled' option above.
         'spa_navigation' => false,
     ],
 ];

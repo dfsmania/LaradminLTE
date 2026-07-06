@@ -632,3 +632,7 @@ For more details about using *Livewire* with *LaradminLTE*, please refer to the 
 When enabled (`true`), this option allows you to use *Livewire* on *SPA (Single Page Application)* navigation mode, by adding the `wire:navigate` directive to the links you create in the menu configuration. In this mode, *Livewire* will handle page navigation without requiring full page reloads, providing a smoother user experience.
 
 For more details about using *Livewire* with *SPA navigation*, please refer to the dedicated [Livewire SPA Navigation](/sections/misc/livewire#spa-navigation-support) section of the documentation.
+
+::: danger CRITICAL: Requires Livewire Support
+The *SPA navigation* feature requires that the *Livewire* support is always enabled in your configuration. This is because the `wire:navigate` directive is part of *Livewire*, and it will not work if the *Livewire* assets are not included in your admin panel layout. Therefore, make sure to set `'livewire.enabled' => true` in your configuration if you want to use the *SPA navigation* feature.
+:::

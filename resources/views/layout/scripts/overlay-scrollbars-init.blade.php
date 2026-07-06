@@ -1,11 +1,7 @@
 {{-- OverlayScrollbars plugin initialization script --}}
 <script is:inline>
 
-    // Add event listeners to initialize OverlayScrollbars when the DOM is
-    // fully loaded and when Livewire navigates to a new page.
-
-    document.addEventListener("DOMContentLoaded", initOverlayScrollbars);
-    document.addEventListener("livewire:navigated", initOverlayScrollbars);
+    initOverlayScrollbars();
 
     /*
      * Initializes the OverlayScrollbars plugin on the sidebar wrapper element.

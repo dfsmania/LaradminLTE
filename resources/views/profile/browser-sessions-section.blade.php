@@ -110,7 +110,12 @@
 @push('js')
 <script>
 
-    document.addEventListener('DOMContentLoaded', function () {
+    initBrowserSessionsSection();
+
+    /*
+     * Initializes the browser sessions section.
+     */
+    function initBrowserSessionsSection() {
         // Check if there are validation errors in the 'logoutOtherSessions'
         // error bag. If there are, it means the form was submitted but failed
         // validation. In that case, we show the modal again so the user can
@@ -122,7 +127,7 @@
             const modal = document.getElementById('logoutOtherSessionsModal');
             (new bootstrap.Modal(modal)).show();
         }
-    });
+    }
 
 </script>
 @endpush

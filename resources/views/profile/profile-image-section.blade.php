@@ -72,7 +72,13 @@
 @push('js')
 <script>
 
-    document.addEventListener('DOMContentLoaded', function () {
+    initProfileImageSection();
+
+    /*
+     * Initializes the profile image section. This function listens for changes
+     * on the file input and updates the image preview accordingly.
+     */
+    function initProfileImageSection() {
         const imageInput = document.querySelector('input[name=photo]');
 
         // Listen for changes on the file input to update the image preview.
@@ -89,19 +95,25 @@
             // Since a new image has been selected, enable the save button.
 
             btnSave = document.getElementById('btn_save_image');
-            btnSave.removeAttribute('disabled');
+            btnSave?.removeAttribute('disabled');
 
             // Create a FileReader to read the file and set the preview image
             // source. Note we use readAsDataURL() to get a base64 encoded
             // string with data:URL format that can be used as image src.
 
             const reader = new FileReader();
+
             reader.onload = function (e) {
-                document.getElementById('image_preview').src = e.target.result;
+                imagePreview = document.getElementById('image_preview');
+
+                if (imagePreview) {
+                    imagePreview.src = e.target.result;
+                }
             };
+
             reader.readAsDataURL(file);
         });
-    });
+    }
 
 </script>
 @endpush

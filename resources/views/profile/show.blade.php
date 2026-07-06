@@ -36,14 +36,19 @@
     @push('js')
     <script>
 
-        document.addEventListener('DOMContentLoaded', function () {
+        initScrollRestoration();
+
+        /*
+         * Initializes scroll restoration for the profile page.
+         */
+        function initScrollRestoration() {
             // Listen for each form submission event and save the current
             // scroll position in sessionStorage, so we can restore it after
             // the form submission.
 
             const profileContent = document.getElementById('profileContent');
 
-            profileContent.querySelectorAll('form').forEach(function (f) {
+            profileContent?.querySelectorAll('form').forEach(function (f) {
                 f.addEventListener('submit', function () {
                     sessionStorage.setItem(
                         'ladmin.scroll.position',
@@ -66,7 +71,7 @@
                     sessionStorage.removeItem('ladmin.scroll.position');
                 });
             }
-        });
+        }
 
     </script>
     @endpush

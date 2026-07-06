@@ -74,10 +74,16 @@
 @push('js')
 <script>
 
-    document.addEventListener('DOMContentLoaded', function () {
+    initPasswordUpdateSection();
+
+    /*
+     * Initializes the password update section by adding event listeners to
+     * toggle buttons that show or hide the password fields.
+     */
+    function initPasswordUpdateSection() {
         const toggleButtons = document.querySelectorAll('.toggle-password');
 
-        toggleButtons.forEach(function (button) {
+        toggleButtons?.forEach(function (button) {
             button.addEventListener('click', function (e) {
                 e.preventDefault();
 
@@ -97,7 +103,7 @@
                 }
             });
         });
-    });
+    }
 
 </script>
 @endpush

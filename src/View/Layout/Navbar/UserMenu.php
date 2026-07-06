@@ -30,6 +30,14 @@ class UserMenu extends Component
     public ?string $userImageUrl;
 
     /**
+     * The script to be executed when the profile button is clicked. This will
+     * either navigate using Livewire SPA or perform a standard page redirect.
+     *
+     * @var string
+     */
+    public string $navigateToProfileScript;
+
+    /**
      * Create a new component instance.
      *
      * @return void
@@ -51,6 +59,17 @@ class UserMenu extends Component
             && method_exists($user, 'profileImageUrl');
 
         $this->userImageUrl = $imageEnabled ? $user->profileImageUrl() : null;
+
+        // Set the onclick value for the profile button based on whether
+        // Livewire SPA navigation is enabled or not.
+
+        $profileRoute = route(
+            config('ladmin.main.routes.as', 'ladmin.').'profile.show'
+        );
+
+        $this->navigateToProfileScript = ladmin()->isLivewireSpaEnabled
+            ? "Livewire.navigate('{$profileRoute}')"
+            : "window.location='{$profileRoute}'";
     }
 
     /**

@@ -70,7 +70,12 @@
 @push('js')
 <script>
 
-    document.addEventListener('DOMContentLoaded', function () {
+    initDeleteAccountSection();
+
+    /*
+     * Initializes the delete account section.
+     */
+    function initDeleteAccountSection() {
         // Check if there are validation errors in the 'deleteAccount' error
         // bag. If there are, it means the form was submitted but failed
         // validation. In that case, we show the modal again so the user can
@@ -82,7 +87,7 @@
             const modal = document.getElementById('deleteAccountModal');
             (new bootstrap.Modal(modal)).show();
         }
-    });
+    }
 
 </script>
 @endpush
