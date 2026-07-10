@@ -6,7 +6,7 @@
         <i data-lte-icon="maximize" class="{{ $iconExpand }}"></i>
 
         {{-- Collapse icon --}}
-        <i data-lte-icon="minimize" class="{{ $iconCollapse }}" style="display:none;"></i>
+        <i data-lte-icon="minimize" class="{{ $iconCollapse }} d-none"></i>
 
     </a>
 </li>
