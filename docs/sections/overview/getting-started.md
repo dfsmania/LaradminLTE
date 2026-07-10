@@ -171,3 +171,48 @@ Explore and modify the package's configuration files to suit your needs:
 - `config/ladmin/menu.php`: Define the menu structure.
 - `config/ladmin/plugins.php`: Manage plugins and extensions.
 - `config/ladmin/auth.php`: Configure authentication scaffolding.
+
+## Updating
+
+To update **LaradminLTE** to the latest version, just run the following command:
+
+```bash
+composer update dfsmania/laradminlte
+```
+
+It's recommended to always check the release notes and documentation for any
+breaking changes or new features before updating.
+
+### AdminLTE V4 Assets
+
+If the new version of **LaradminLTE** includes updates to the **AdminLTE v4** assets, you may need to re-publish the assets to your application. You can do this by running:
+
+```bash
+php artisan vendor:publish --tag="ladmin-assets" --force
+```
+
+### Updating Configuration Files
+
+If the new version of **LaradminLTE** introduces changes to the configuration files, you may need to update your existing configuration files. You can do this by re-publishing the configuration files:
+
+```bash
+php artisan vendor:publish --tag="ladmin-config" --force
+```
+
+::: danger CAUTION: Losing Configuration Changes
+Be cautious when updating configuration files, as any custom changes you made may be overwritten. It's recommended to always back up your configuration files before updating. After updating, review the new configuration files and merge any necessary changes into your existing configuration, by using your backup as a reference.
+:::
+
+Alternatively, you can manually check the differences between the new configuration files and your existing ones, and apply the necessary changes without overwriting your customizations. The package configuration files (latest version) can be found in the `vendor/dfsmania/laradminlte/config` directory of your Laravel application. So you can use a diff tool to compare the new configuration files with your existing ones and apply the necessary changes. For example, you can use the `diff` command in your terminal:
+
+```bash
+diff -u vendor/dfsmania/laradminlte/config/ladmin/main.php config/ladmin/main.php
+```
+
+#### Other Diff Tools
+
+There are other diff tools available, such as [Meld](https://meldmerge.org/) or [Beyond Compare](https://www.scootersoftware.com/), which provide a graphical interface for comparing files and merging changes. With **Meld**, for example, you could compare the entire configuration directory of the package with your existing configuration directory by executing the following command:
+
+```bash
+meld vendor/dfsmania/laradminlte/config/ladmin config/ladmin
+```
