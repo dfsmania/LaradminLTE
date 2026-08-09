@@ -81,8 +81,13 @@
                 {{ $resource->renderToHtml() }}
             @endforeach
 
-            {{-- AdminLTE JavaScript App --}}
-            <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
+            {{-- AdminLTE JavaScript --}}
+            @if(ladmin()->isLivewireSpaEnabled)
+                {{-- Load AdminLTE only once when using Livewire SPA navigation --}}
+                <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}" data-navigate-once></script>
+            @else
+                <script src="{{ asset('vendor/ladmin/js/adminlte.min.js') }}"></script>
+            @endif
 
             {{-- Post AdminLTE plugins scripts --}}
             @foreach(ladmin()->plugins->getPostAdminlteScripts() as $resource)
@@ -96,6 +101,13 @@
         {{-- Livewire scripts --}}
         @if(ladmin()->isLivewireEnabled)
             @livewireScripts
+        @endif
+
+        {{-- Re-initialize AdminLTE after Livewire SPA navigation --}}
+        @if(ladmin()->isLivewireSpaEnabled)
+            <script is:inline>
+                globalThis.adminlte?.initialize();
+            </script>
         @endif
 
         {{-- Inline JavaScript injected from child views using @push('js') --}}
