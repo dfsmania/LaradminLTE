@@ -271,4 +271,8 @@ The alternative to a single page application is a multi-page application. In the
 
 While most *PHP* applications have traditionally been multi-page applications, *Livewire* offers a single page application experience via a simple attribute you can add to links in your application: `wire:navigate`. For more details, visit [Livewire SPA Navigation](https://livewire.laravel.com/docs/navigate).
 
-**LaradminLTE** provides support for *Livewire SPA navigation* through the `spa_navigation` configuration option in the `config/ladmin/main.php` file. When this option is enabled, the `wire:navigate` directive will be automatically added to the links in your menu configuration.
+**LaradminLTE** provides support for *Livewire SPA navigation* through the `spa_navigation` configuration option in the `config/ladmin/main.php` file. When this option is enabled:
+
+1. The *AdminLTE JavaScript* file will only be **loaded once**, and will not be reloaded on subsequent page navigations.
+2. *AdminLTE* will be **re-initialized** after each *Livewire SPA navigation*, ensuring that all necessary JavaScript functionality is properly set up for the new page.
+3. All links in the menu configuration will automatically have the `wire:navigate` directive added to them, enabling *Livewire SPA navigation* for those links.
