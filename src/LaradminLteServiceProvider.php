@@ -42,6 +42,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         'panel' => Layout\AdminPanel::class,
         'sidebar' => Layout\Sidebar\Sidebar::class,
         'sidebar-brand' => Layout\Sidebar\BrandLink::class,
+        'sidebar-search' => Layout\Sidebar\SidebarSearch::class,
     ];
 
     /**

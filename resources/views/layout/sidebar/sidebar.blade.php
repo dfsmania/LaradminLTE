@@ -12,9 +12,14 @@
 
     {{-- Sidebar menu wrapper --}}
     <div class="sidebar-wrapper">
-        <nav class="mt-2">
 
-            {{-- Sidebar menu --}}
+        {{-- Sidebar search widget --}}
+        @if(config('ladmin.main.sidebar.search_widget', false))
+            <x-ladmin-sidebar-search target="ul.sidebar-menu"/>
+        @endif
+
+        {{-- Sidebar menu --}}
+        <nav class="mt-2">
             <ul class="nav sidebar-menu flex-column"
                 data-accordion="{{ config('ladmin.main.sidebar.accordion', false) ? 'true' : 'false' }}"
                 data-animation-speed="{{ config('ladmin.main.sidebar.treeview_animation_speed', 300) }}"
@@ -25,10 +30,9 @@
                 @foreach(ladmin()->menu->getSidebarItems() as $item)
                     {{ $item->renderToHtml() }}
                 @endforeach
-
             </ul>
-
         </nav>
+
     </div>
 
 </aside>

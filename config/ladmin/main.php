@@ -212,6 +212,11 @@ return [
         // local storage.
         'persistence' => false,
 
+        // Determines whether to enable the sidebar search widget. When
+        // enabled, a search input field will be displayed at the top of the
+        // sidebar, allowing users to filter and search through the menu items.
+        'search_widget' => true,
+
         // The animation speed in milliseconds to use when toggling a sidebar
         // treeview menu between expanded and collapsed states.
         'treeview_animation_speed' => 300,
