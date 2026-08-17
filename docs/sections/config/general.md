@@ -339,6 +339,8 @@ The **sidebar** section provides full control over the behavior and appearance o
     'default_collapsed' => false,
     'expand_breakpoint' => 'lg',
     'mini_sidebar' => true,
+    'persistence' => false,
+    'search_widget' => true,
     'treeview_animation_speed' => 300,
 ]
 ```
@@ -392,6 +394,20 @@ Determines the *Bootstrap* breakpoint at which the sidebar automatically expands
 - Example: `'mini_sidebar' => true`
 
 Enables a compact **mini sidebar** mode when the sidebar is manually collapsed. Instead of hiding completely, the sidebar shrinks to show only icons. A useful feature for experienced users familiar with the menu structure.
+
+### *persistence*:
+
+- Type: `bool`
+- Example: `'persistence' => false`
+
+Determines whether the sidebar state (collapsed or expanded) should be remembered across page reloads. If set to `true`, the sidebar will retain its state using local storage.
+
+### *search_widget*:
+
+- Type: `bool`
+- Example: `'search_widget' => true`
+
+Determines whether the sidebar search widget is enabled. If set to `true`, a search input will be displayed in the sidebar, allowing users to quickly find menu items.
 
 ### *treeview_animation_speed*:
 
