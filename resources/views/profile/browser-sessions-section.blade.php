@@ -110,8 +110,6 @@
 @push('js')
 <script>
 
-    initBrowserSessionsSection();
-
     /*
      * Initializes the browser sessions section.
      */
@@ -127,6 +125,18 @@
             const modal = document.getElementById('logoutOtherSessionsModal');
             (new bootstrap.Modal(modal)).show();
         }
+    }
+
+    // Check if Bootstrap is already loaded in the global scope. If it is,
+    // init the browser sessions section. If not, wait for the window load
+    // event to ensure all the scripts are fully loaded before initializing.
+
+    if (globalThis.bootstrap) {
+        initBrowserSessionsSection();
+    } else {
+        window.addEventListener("load", initBrowserSessionsSection, {
+            once: true
+        });
     }
 
 </script>

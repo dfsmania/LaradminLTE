@@ -36,8 +36,6 @@
     @push('js')
     <script>
 
-        initScrollRestoration();
-
         /*
          * Initializes scroll restoration for the profile page.
          */
@@ -72,6 +70,8 @@
                 });
             }
         }
+
+        initScrollRestoration();
 
     </script>
     @endpush

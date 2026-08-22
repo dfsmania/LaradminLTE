@@ -70,8 +70,6 @@
 @push('js')
 <script>
 
-    initDeleteAccountSection();
-
     /*
      * Initializes the delete account section.
      */
@@ -87,6 +85,18 @@
             const modal = document.getElementById('deleteAccountModal');
             (new bootstrap.Modal(modal)).show();
         }
+    }
+
+    // Check if Bootstrap is already loaded in the global scope. If it is,
+    // init the delete account section. If not, wait for the window load event
+    // to ensure that the script is fully loaded before initializing.
+
+    if (globalThis.bootstrap) {
+        initDeleteAccountSection();
+    } else {
+        window.addEventListener("load", initDeleteAccountSection, {
+            once: true
+        });
     }
 
 </script>

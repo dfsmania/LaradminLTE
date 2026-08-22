@@ -74,8 +74,6 @@
 @push('js')
 <script>
 
-    initPasswordUpdateSection();
-
     /*
      * Initializes the password update section by adding event listeners to
      * toggle buttons that show or hide the password fields.
@@ -104,6 +102,8 @@
             });
         });
     }
+
+    initPasswordUpdateSection();
 
 </script>
 @endpush

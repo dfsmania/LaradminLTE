@@ -72,8 +72,6 @@
 @push('js')
 <script>
 
-    initProfileImageSection();
-
     /*
      * Initializes the profile image section. This function listens for changes
      * on the file input and updates the image preview accordingly.
@@ -114,6 +112,8 @@
             reader.readAsDataURL(file);
         });
     }
+
+    initProfileImageSection();
 
 </script>
 @endpush
