@@ -1,5 +1,5 @@
 {{-- Sidebar search widget --}}
-<div class="sidebar-search" role="search">
+<div class="sidebar-search mt-2" role="search">
 
     {{-- Label (visually hidden, but accessible to screen readers) --}}
     <label for="sidebar-search-input" class="visually-hidden">
@@ -7,7 +7,7 @@
     </label>
 
     {{-- Search input --}}
-    <input id="sidebar-search-input" type="search" class="form-control" autocomplete="off"
+    <input id="sidebar-search-input" type="search" class="form-control fs-6" autocomplete="off"
         placeholder="{{ __('ladmin::layout.sidebar_search.search') }}"
         data-lte-toggle="sidebar-search" data-lte-target="{{ $target }}">
 

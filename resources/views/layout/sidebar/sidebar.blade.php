@@ -10,13 +10,13 @@
         label-classes="{{ $brandTextClasses }}"
         logo-classes="{{ $brandImageClasses }}"/>
 
+    {{-- Sidebar search widget --}}
+    @if(config('ladmin.main.sidebar.search_widget', false))
+        <x-ladmin-sidebar-search target="ul.sidebar-menu"/>
+    @endif
+
     {{-- Sidebar menu wrapper --}}
     <div class="sidebar-wrapper">
-
-        {{-- Sidebar search widget --}}
-        @if(config('ladmin.main.sidebar.search_widget', false))
-            <x-ladmin-sidebar-search target="ul.sidebar-menu"/>
-        @endif
 
         {{-- Sidebar menu --}}
         <nav class="mt-2">
