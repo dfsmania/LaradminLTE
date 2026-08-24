@@ -276,3 +276,19 @@ While most *PHP* applications have traditionally been multi-page applications, *
 1. The *AdminLTE JavaScript* file will only be **loaded once**, and will not be reloaded on subsequent page navigations.
 2. *AdminLTE* will be **re-initialized** after each *Livewire SPA navigation*, ensuring that all necessary JavaScript functionality is properly set up for the new page.
 3. All links in the menu configuration will automatically have the `wire:navigate` directive added to them, enabling *Livewire SPA navigation* for those links.
+
+### Disabling `wire:navigate` for Specific Links
+
+In the particular case that you want to disable the `wire:navigate` directive for a specific link in your menu configuration, you can do so by setting the `wire:navigate` option to `false` for that specific link. For example:
+
+```php
+[
+    'type' => MenuItemType::LINK,
+    'label' => 'External Link',
+    'icon' => 'bi bi-box-arrow-up-right',
+    'url' => 'https://example.com',
+    'wire:navigate' => false, // Disable SPA navigation for this link
+],
+```
+
+This is useful for links that point to external websites or pages that should not be handled by *Livewire SPA navigation*.
