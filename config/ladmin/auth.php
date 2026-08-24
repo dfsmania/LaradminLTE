@@ -24,7 +24,7 @@ return [
 
     // Determines whether to completely enable or disable the authentication
     // scaffolding.
-    'enabled' => true,
+    'enabled' => false,
 
     // Defines the accent theme used for the authentication pages. You can set
     // this to any of the defined accent themes in the "accent_themes" section
