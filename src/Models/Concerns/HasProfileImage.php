@@ -97,8 +97,9 @@ trait HasProfileImage
 
     /**
      * Gets the URL of the user's default profile image. This URL is generated
-     * with an external service based on the user's name (ui-avatars.com) or
-     * email (Gravatar). The service to use is determined by configuration.
+     * locally, or with an external service, based on the user's name
+     * (ui-avatars.com) or email (Gravatar). The mode used is determined by
+     * configuration.
      *
      * @return string
      */
@@ -106,11 +107,26 @@ trait HasProfileImage
     {
         $mode = config('ladmin.auth.profile_images.default_mode', 'initials');
 
-        if ($mode === 'initials') {
+        if ($mode === 'local_initials') {
+            return $this->getLocalInitialsAvatarUrl($this->name);
+        } elseif ($mode === 'initials') {
             return $this->getUiAvatarsUrl($this->name);
         } else {
             return $this->getGravatarUrl($this->email, $mode);
         }
+    }
+
+    /**
+     * Get the URL of the local, SVG based, initials avatar for the given
+     * name. This URL points to a route registered by the package that
+     * generates the SVG image on the fly.
+     *
+     * @param  string  $name  The user's name.
+     * @return string
+     */
+    protected function getLocalInitialsAvatarUrl(string $name): string
+    {
+        return route('ladmin.avatar.initials', ['name' => $name]);
     }
 
     /**

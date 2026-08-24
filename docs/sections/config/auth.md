@@ -395,6 +395,11 @@ The `profile_images` configuration section allows you to customize the settings 
     'storage_disk' => 'public',
     'storage_path' => 'profile-images',
     'default_mode' => 'initials',
+    'local_initials' => [
+        'size' => 128,
+        'background_colors' => ['#F44336', '#2196F3', '#4CAF50'],
+        'foreground_color' => '#FFFFFF',
+    ],
 ]
 ```
 :::
@@ -429,7 +434,7 @@ This setting specifies the directory path within the storage disk where profile 
 
 ### *default_mode*:
 
-- Type: `string ('identicon'|'robohash'|'initials')`
+- Type: `string ('identicon'|'robohash'|'initials'|'local_initials')`
 - Example: `'default_mode' => 'initials'`
 
 This setting defines the default image mode to be used when a user has not uploaded a profile image. Supported modes are:
@@ -437,6 +442,25 @@ This setting defines the default image mode to be used when a user has not uploa
 - **identicon**: Uses `Gravatar` service with `identicon` mode based on user's email.
 - **robohash**: Uses `Gravatar` service with `robohash` mode based on user's email.
 - **initials**: Uses `ui-avatars.com` service to generate an image with the user's initials.
+- **local_initials**: Generates a local SVG image with the user's initials, without relying on any external service. Useful for environments without an internet connection.
+
+### *local_initials*:
+
+- Type: `array`
+- Example:
+```php
+'local_initials' => [
+    'size' => 128,
+    'background_colors' => ['#F44336', '#2196F3', '#4CAF50'],
+    'foreground_color' => '#FFFFFF',
+]
+```
+
+This setting configures the `local_initials` default image mode (only takes effect when `default_mode` is set to `local_initials`):
+
+- **size**: The size (width and height, in pixels) of the generated SVG avatar.
+- **background_colors**: The palette of background colors to choose from. The color is deterministically picked based on the user's name, so the same user will always get the same color.
+- **foreground_color**: The color used for the initials text.
 
 ## Authentication Actions
 

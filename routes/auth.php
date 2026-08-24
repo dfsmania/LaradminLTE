@@ -1,7 +1,35 @@
 <?php
 
+use DFSmania\LaradminLte\Http\Controllers\InitialsAvatarController;
 use DFSmania\LaradminLte\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
+
+/*
+|------------------------------------------------------------------------------
+| Local Initials Avatar
+|------------------------------------------------------------------------------
+|
+| This route is public (not behind the auth middleware) so it behaves like
+| a local avatar service (cacheable, no session required).
+|
+*/
+
+if (config('ladmin.auth.features.profile_image', false)) {
+    Route::get(
+        '/ladmin/avatar/initials',
+        [InitialsAvatarController::class, 'show']
+    )->name('avatar.initials');
+}
+
+/*
+|------------------------------------------------------------------------------
+| Authentication Routes
+|------------------------------------------------------------------------------
+|
+| These routes are protected by the authentication middlewares, and they
+| provide access to several user-management features.
+|
+*/
 
 // Define the base set of middlewares applied to the authentication routes.
 
