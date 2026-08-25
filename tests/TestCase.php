@@ -26,7 +26,7 @@ class TestCase extends BaseTestCase
      * @param  Application  $app
      * @return array
      */
-    protected function getPackageProviders(Application $app): array
+    protected function getPackageProviders($app)
     {
         return [
             LaradminLteServiceProvider::class,
@@ -39,7 +39,7 @@ class TestCase extends BaseTestCase
      * @param  Application  $app
      * @return void
      */
-    protected function getEnvironmentSetUp(Application $app): void
+    protected function getEnvironmentSetUp($app)
     {
         // Perform environment setup...
     }
