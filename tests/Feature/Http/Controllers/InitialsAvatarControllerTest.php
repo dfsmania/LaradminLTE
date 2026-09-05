@@ -6,6 +6,19 @@ use DFSmania\LaradminLte\Tests\TestCase;
 
 class InitialsAvatarControllerTest extends TestCase
 {
+    protected function defineEnvironment($app)
+    {
+        // Call the parent method to ensure any additional environment setup is
+        // performed.
+
+        parent::defineEnvironment($app);
+
+        // Set up the configuration to enable authentication scaffolding for
+        // these tests.
+
+        $app['config']->set('ladmin.auth.enabled', true);
+    }
+
     public function test_it_returns_a_svg_with_the_computed_initials(): void
     {
         $response = $this->get('/ladmin/avatar/initials?name=John+Doe');

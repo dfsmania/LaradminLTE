@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use DFSmania\LaradminLte\Models\Concerns\HasProfileImage;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    use HasProfileImage;
     use Notifiable;
 
     /**
@@ -19,4 +21,12 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function tokens(): object
+    {
+        return new class
+        {
+            public function delete(): void {}
+        };
+    }
 }
