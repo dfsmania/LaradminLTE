@@ -270,6 +270,10 @@ class LaradminLteServiceProvider extends ServiceProvider
             return;
         }
 
+        // Explicitly enable Fortify's route registration.
+
+        Fortify::$registersRoutes = true;
+
         // Setup the Fortify home path after login or password reset.
 
         config(['fortify.home' => config('ladmin.auth.home_path', '/home')]);

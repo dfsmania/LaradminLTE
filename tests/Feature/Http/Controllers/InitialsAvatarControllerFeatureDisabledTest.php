@@ -6,10 +6,17 @@ use DFSmania\LaradminLte\Tests\TestCase;
 
 class InitialsAvatarControllerFeatureDisabledTest extends TestCase
 {
-    protected function getEnvironmentSetUp($app)
+    protected function defineEnvironment($app)
     {
-        parent::getEnvironmentSetUp($app);
+        // Call the parent method to ensure any additional environment setup is
+        // performed.
 
+        parent::defineEnvironment($app);
+
+        // Set up the configuration to enable authentication scaffolding for
+        // these tests.
+
+        $app['config']->set('ladmin.auth.enabled', true);
         $app['config']->set('ladmin.auth.features.profile_image', false);
     }
 

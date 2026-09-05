@@ -34,15 +34,23 @@ class TestCase extends BaseTestCase
     }
 
     /**
-     * Make common environment setup, to be applied before running each test.
+     * Define common environment setup, to be applied before running each test.
      *
      * @param  Application  $app
      * @return void
      */
-    protected function getEnvironmentSetUp($app)
+    protected function defineEnvironment($app)
     {
+        // Set up the application key for testing, as some features may require
+        // it.
+
+        $app['config']->set(
+            'app.key',
+            'base64:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
+        );
+
         // Set up the database configuration for testing, using an in-memory
-        // SQLite database.s
+        // SQLite database.
 
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite.database', ':memory:');
@@ -60,6 +68,7 @@ class TestCase extends BaseTestCase
         // Load the default Laravel migrations for users, password resets, etc.
 
         $this->loadLaravelMigrations();
+        $this->loadPackageMigrations();
     }
 
     /**
@@ -74,5 +83,21 @@ class TestCase extends BaseTestCase
         // Load the default Laravel migrations for users, password resets, etc.
 
         $this->loadLaravelMigrations();
+        $this->loadPackageMigrations();
+    }
+
+    /**
+     * Load the package's database migrations for testing.
+     * This is a helper method to load the package's migrations into the
+     * testing database.
+     *
+     * @return void
+     */
+    private function loadPackageMigrations(): void
+    {
+        $this->artisan('migrate', [
+            '--path' => __DIR__.'/../database/migrations',
+            '--realpath' => true,
+        ]);
     }
 }
