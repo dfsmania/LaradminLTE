@@ -138,7 +138,7 @@ class UserProfileControllerTest extends TestCase
             '/user/profile_image',
             [
                 'photo' => UploadedFile::fake()
-                    ->create('document.txt', 1, 'text/plain')
+                    ->create('document.txt', 1, 'text/plain'),
             ]
         );
 
