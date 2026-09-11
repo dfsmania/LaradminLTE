@@ -3,13 +3,19 @@
 namespace DFSmania\LaradminLte\Tests\Feature\Http\Controllers;
 
 use DFSmania\LaradminLte\Tests\TestCase;
+use Illuminate\Foundation\Application;
 
 class InitialsAvatarControllerTest extends TestCase
 {
+    /**
+     * Override the environment setup with extra configuration for these tests.
+     *
+     * @param  Application  $app
+     * @return void
+     */
     protected function defineEnvironment($app)
     {
-        // Call the parent method to ensure any additional environment setup is
-        // performed.
+        // Call the parent method to ensure base environment setup is performed.
 
         parent::defineEnvironment($app);
 
@@ -18,6 +24,10 @@ class InitialsAvatarControllerTest extends TestCase
 
         $app['config']->set('ladmin.auth.enabled', true);
     }
+
+    // ------------------------------------------------------------------------
+    // TESTS
+    // ------------------------------------------------------------------------
 
     public function test_it_returns_a_svg_with_the_computed_initials(): void
     {

@@ -13,6 +13,10 @@ class ResetUserPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
+    // ------------------------------------------------------------------------
+    // TESTS
+    // ------------------------------------------------------------------------
+
     public function test_it_resets_a_users_password(): void
     {
         $user = $this->createUser();
@@ -39,6 +43,15 @@ class ResetUserPasswordTest extends TestCase
         ]);
     }
 
+    // ------------------------------------------------------------------------
+    // HELPER METHODS
+    // ------------------------------------------------------------------------
+
+    /**
+     * Create a new user for testing purposes.
+     *
+     * @return User
+     */
     private function createUser(): User
     {
         return User::create([
