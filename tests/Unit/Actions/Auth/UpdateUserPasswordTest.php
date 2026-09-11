@@ -13,6 +13,10 @@ class UpdateUserPasswordTest extends TestCase
 {
     use RefreshDatabase;
 
+    // ------------------------------------------------------------------------
+    // TESTS
+    // ------------------------------------------------------------------------
+
     public function test_it_updates_password_when_current_password_valid(): void
     {
         $user = $this->createUser();
@@ -50,6 +54,15 @@ class UpdateUserPasswordTest extends TestCase
         $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }
 
+    // ------------------------------------------------------------------------
+    // HELPER METHODS
+    // ------------------------------------------------------------------------
+
+    /**
+     * Create a new user for testing purposes.
+     *
+     * @return User
+     */
     private function createUser(): User
     {
         return User::create([

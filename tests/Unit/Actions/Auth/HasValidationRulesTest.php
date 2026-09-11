@@ -65,13 +65,16 @@ class HasValidationRulesTest extends TestCase
 }
 
 /**
- * A simple class that uses the HasValidationRules trait for testing purposes.
+ * A simple class that uses the HasValidationRules trait for testing purposes,
+ * and exposes its methods for testing purposes.
  */
 class ValidationRulesConsumer
 {
     use HasValidationRules;
 
     /**
+     * Get the username validation rules.
+     *
      * @return array<int, mixed>
      */
     public function getUsernameRules(): array
@@ -80,6 +83,8 @@ class ValidationRulesConsumer
     }
 
     /**
+     * Get the email validation rules.
+     *
      * @return array<int, mixed>
      */
     public function getEmailRules(?int $ignoreUniqueForId = null): array
@@ -88,6 +93,8 @@ class ValidationRulesConsumer
     }
 
     /**
+     * Get the password validation rules.
+     *
      * @return array<int, mixed>
      */
     public function getPasswordRules(bool $confirmed = false): array
@@ -96,6 +103,8 @@ class ValidationRulesConsumer
     }
 
     /**
+     * Get the current password validation rules.
+     *
      * @return array<int, mixed>
      */
     public function getCurrentPasswordRules(): array

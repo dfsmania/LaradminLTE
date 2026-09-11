@@ -16,6 +16,10 @@ class UpdateUserProfileInformationTest extends TestCase
 {
     use RefreshDatabase;
 
+    // ------------------------------------------------------------------------
+    // TESTS
+    // ------------------------------------------------------------------------
+
     public function test_it_updates_users_profile_information(): void
     {
         $user = $this->createUser();
@@ -81,6 +85,15 @@ class UpdateUserProfileInformationTest extends TestCase
         Notification::assertNothingSent();
     }
 
+    // ------------------------------------------------------------------------
+    // HELPER METHODS
+    // ------------------------------------------------------------------------
+
+    /**
+     * Create a new user for testing purposes.
+     *
+     * @return User
+     */
     private function createUser(): User
     {
         return User::create([
@@ -90,6 +103,11 @@ class UpdateUserProfileInformationTest extends TestCase
         ]);
     }
 
+    /**
+     * Create a new verifiable user for testing purposes.
+     *
+     * @return VerifiableUser
+     */
     private function createVerifiableUser(): VerifiableUser
     {
         $user = new VerifiableUser;

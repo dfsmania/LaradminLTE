@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte\Tests\Unit\Models\Concerns;
 
 use App\Models\User;
 use DFSmania\LaradminLte\Tests\TestCase;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,12 @@ class HasProfileImageTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * Override the environment setup with extra configuration for these tests.
+     *
+     * @param  Application  $app
+     * @return void
+     */
     protected function defineEnvironment($app)
     {
         // Call the parent method to ensure any additional environment setup is
@@ -24,6 +31,10 @@ class HasProfileImageTest extends TestCase
 
         $app['config']->set('ladmin.auth.enabled', true);
     }
+
+    // ------------------------------------------------------------------------
+    // TESTS
+    // ------------------------------------------------------------------------
 
     public function test_it_stores_a_profile_image(): void
     {
@@ -125,6 +136,17 @@ class HasProfileImageTest extends TestCase
         );
     }
 
+    // ------------------------------------------------------------------------
+    // HELPER METHODS
+    // ------------------------------------------------------------------------
+
+    /**
+     * Create a new user for testing purposes.
+     *
+     * @param  string  $name
+     * @param  string  $email
+     * @return User
+     */
     private function createUser(
         string $name = 'Jane Doe',
         string $email = 'jane@example.com'
