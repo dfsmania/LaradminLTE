@@ -29,8 +29,7 @@ class UserProfileControllerTest extends TestCase
      */
     protected function defineEnvironment($app)
     {
-        // Call the parent method to ensure any additional environment setup is
-        // performed.
+        // Call the parent method to ensure base environment setup is performed.
 
         parent::defineEnvironment($app);
 
@@ -53,6 +52,10 @@ class UserProfileControllerTest extends TestCase
             ...parent::getPackageProviders($app),
         ];
     }
+
+    // ------------------------------------------------------------------------
+    // TESTS
+    // ------------------------------------------------------------------------
 
     public function test_it_shows_the_authenticated_users_profile(): void
     {
@@ -138,7 +141,7 @@ class UserProfileControllerTest extends TestCase
             '/user/profile_image',
             [
                 'photo' => UploadedFile::fake()
-                    ->create('document.txt', 1, 'text/plain')
+                    ->create('document.txt', 1, 'text/plain'),
             ]
         );
 
@@ -249,6 +252,10 @@ class UserProfileControllerTest extends TestCase
             $request->session()->get('password_hash_web')
         );
     }
+
+    // ------------------------------------------------------------------------
+    // HELPER METHODS
+    // ------------------------------------------------------------------------
 
     /**
      * Create a new user for testing purposes.
