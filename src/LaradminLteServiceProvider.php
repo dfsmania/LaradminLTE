@@ -262,10 +262,13 @@ class LaradminLteServiceProvider extends ServiceProvider
     private function setupFortify(): void
     {
         // If the authentication scaffolding is disabled via the package
-        // configuration, ignore the Fortify routes and return early.
+        // configuration, ignore the Fortify routes and return early (only if
+        // LaradminLTE is allowed to manage the Fortify routes).
 
         if (! config('ladmin.auth.enabled', false)) {
-            Fortify::ignoreRoutes();
+            if (config('ladmin.auth.manages_fortify_routes', true)) {
+                Fortify::ignoreRoutes();
+            }
 
             return;
         }

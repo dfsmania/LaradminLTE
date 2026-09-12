@@ -26,6 +26,10 @@ return [
     // scaffolding.
     'enabled' => false,
 
+    // Determines whether LaradminLTE can automatically disable or mess with
+    // the Fortify routes.
+    'manages_fortify_routes' => true,
+
     // Defines the accent theme used for the authentication pages. You can set
     // this to any of the defined accent themes in the "accent_themes" section
     // of this configuration file to change the color scheme of various

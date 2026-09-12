@@ -43,6 +43,7 @@ The main settings for the authentication scaffolding are as follows:
 ```php
 [
     'enabled' => true,
+    'manages_fortify_routes' => true,
     'accent_theme' => 'default',
     'background_classes' => ['bg-body-secondary', 'bg-gradient'],
     'background_image' => null,
@@ -57,6 +58,15 @@ The main settings for the authentication scaffolding are as follows:
 - Example: `'enabled' => true`
 
 This setting enables or fully disables the authentication scaffolding provided by *LaradminLTE*. When set to `false`, all of the authentication views and routes will be disabled. When set to `true`, the authentication scaffolding will be available for use with a minimal setup of features: *login*, *logout* and *password confirmation*. All of the other features may be enabled or disabled individually as needed.
+
+### *manages_fortify_routes*:
+
+- Type: `boolean`
+- Example: `'manages_fortify_routes' => true`
+
+This setting determines whether *LaradminLTE* manages Laravel Fortify's route registration when the package's authentication scaffolding is **disabled**.
+
+When enabled, *LaradminLTE* automatically disables Fortify's routes if its authentication scaffolding is not enabled. When disabled, *LaradminLTE* leaves Fortify's route registration unchanged, allowing another authentication scaffolding package or application to manage Fortify's routes.
 
 ### *accent_theme*:
 
