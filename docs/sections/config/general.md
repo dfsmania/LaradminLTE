@@ -192,7 +192,7 @@ The **logo** section allows you to configure the brand logo displayed in the adm
 ::: details Quick Config Example {open}
 ```php
 'logo' => [
-    'image' => 'vendor/ladmin/img/LaradminLTE.png',
+    'image' => '/vendor/ladmin/img/LaradminLTE.png',
     'image_alt' => 'LaradminLTE Logo',
     'image_classes' => ['rounded-circle', 'shadow'],
     'text' => 'LaradminLTE',
@@ -205,7 +205,7 @@ The **logo** section allows you to configure the brand logo displayed in the adm
 ### *image*:
 
 - Type: `string (path | URL)`
-- Example: `'image' => 'vendor/ladmin/img/LaradminLTE.png'`
+- Example: `'image' => '/vendor/ladmin/img/LaradminLTE.png'`
 
 The path or URL to the logo image file. You can use a relative path (from the `public/` directory) or an absolute URL. This image is used as the main brand icon in the admin panel header.
 
