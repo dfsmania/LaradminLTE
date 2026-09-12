@@ -2,10 +2,17 @@
 # Pint.
 name: Pint Code Style
 
-# This workflow is triggered on push and pull request events. It also can be
-# manually triggered using the workflow_dispatch event from the GitHub Actions
-# tab.
-on: [push, pull_request, workflow_dispatch]
+# This workflow is triggered on push and pull request events on the main
+# branch. It also can be manually triggered using the workflow_dispatch event
+# from the GitHub Actions tab.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
 
