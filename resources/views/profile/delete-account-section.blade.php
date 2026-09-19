@@ -48,7 +48,7 @@
             </div>
 
             {{-- Modal footer --}}
-            <div class="modal-footer bg-light border-top-0 justify-content-between">
+            <div class="modal-footer bg-body-tertiary border-top-0 justify-content-between">
                 {{-- Cancel button --}}
                 <x-ladmin-button type="button" theme="secondary" icon="bi bi-x-circle fs-5"
                     label="{{ __('ladmin::auth.profile.buttons.cancel') }}"
