@@ -25,6 +25,11 @@
             {{-- AdminLTE theme style --}}
             <link rel="stylesheet" href="{{ $adminlteCssFile }}">
 
+            {{-- AdminLTE extra colors palette stylesheet --}}
+            @if($adminlteColorsCssFile)
+                <link rel="stylesheet" href="{{ $adminlteColorsCssFile }}">
+            @endif
+
             {{-- Post AdminLTE plugins links --}}
             @foreach(ladmin()->plugins->getPostAdminlteLinks() as $resource)
                 {{ $resource->renderToHtml() }}

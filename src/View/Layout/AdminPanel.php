@@ -26,6 +26,16 @@ class AdminPanel extends Component
     protected array $validScreenBreakpoints = ['sm', 'md', 'lg', 'xl', 'xxl'];
 
     /**
+     * The set of valid AdminLTE colors palettes.
+     *
+     * @var array<string, string>
+     */
+    protected array $validColorsPalette = [
+        'default' => 'adminlte-colors.min.css',
+        'v3' => 'adminlte-colors-v3.min.css',
+    ];
+
+    /**
      * The 'dir' attribute for the main HTML tag. This is used to switch between
      * LTR (left-to-right) and RTL (right-to-left) layouts.
      */
@@ -61,6 +71,14 @@ class AdminPanel extends Component
     public string $adminlteCssFile;
 
     /**
+     * The URL path to the AdminLTE colors stylesheet file. This file is used
+     * to apply the extended color palette provided by AdminLTE.
+     *
+     * @var ?string
+     */
+    public ?string $adminlteColorsCssFile;
+
+    /**
      * The set of CSS classes for the body tag, as a space-separated string.
      * This is used to apply different layout styles.
      *
@@ -84,6 +102,10 @@ class AdminPanel extends Component
         // Setup the AdminLTE stylesheet file path (LTR or RTL).
 
         $this->adminlteCssFile = $this->getAdminlteCssFile();
+
+        // Setup the AdminLTE colors stylesheet file path.
+
+        $this->adminlteColorsCssFile = $this->getAdminlteColorsCssFile();
 
         // Setup the body classes.
 
@@ -161,6 +183,35 @@ class AdminPanel extends Component
             : 'adminlte.rtl.min.css';
 
         return asset("vendor/ladmin/css/{$file}");
+    }
+
+    /**
+     * Gets the AdminLTE colors stylesheet file. This file is used to apply the
+     * extended color palette provided by AdminLTE.
+     *
+     * @return ?string
+     */
+    protected function getAdminlteColorsCssFile(): ?string
+    {
+        // Check if the AdminLTE colors feature is enabled. If not, return null.
+
+        if (empty(config('ladmin.main.colors.enabled', false))) {
+            return null;
+        }
+
+        // Get the configured colors palette. If it's not valid, return null.
+
+        $palette = config('ladmin.main.colors.palette', 'default');
+
+        if (! in_array($palette, array_keys($this->validColorsPalette))) {
+            return null;
+        }
+
+        // Otherwise, use the configured palette.
+
+        $paletteFile = $this->validColorsPalette[$palette];
+
+        return asset("vendor/ladmin/css/{$paletteFile}");
     }
 
     /**

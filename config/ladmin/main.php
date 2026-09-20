@@ -254,6 +254,30 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | AdminLTE Colors
+    |--------------------------------------------------------------------------
+    |
+    | Here you can enable and configure the extended color palette provided by
+    | AdminLTE. These additional colors are available through the corresponding
+    | AdminLTE CSS extension.
+    |
+    | When using Vite, this configuration is ignored and the color extension
+    | must be imported manually into your Vite CSS entry point.
+    |
+    */
+
+    'colors' => [
+        // Determines whether to enable the AdminLTE extended color palette.
+        'enabled' => false,
+
+        // Determines which AdminLTE color palette to use. Supported values are
+        // 'default' for the AdminLTE 4 designed palette or 'v3' for the
+        // original AdminLTE 3 color palette.
+        'palette' => 'default',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Menu Translations
     |--------------------------------------------------------------------------
     |

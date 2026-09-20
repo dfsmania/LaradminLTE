@@ -458,6 +458,39 @@ The **main content** section controls the styling of the central content area wh
 
 A list of *CSS* classes applied to the main content container. These classes affect the background color and general styling of the page body. Useful for aligning your content area with your overall design theme.
 
+## Colors
+
+The **colors** section allows you to enable and configure the extended color palette provided by **AdminLTE v4**. This can be useful for customizing the appearance of various UI components with additional color options.
+
+::: details Quick Config Example {open}
+```php
+'colors' => [
+    'enabled' => false,
+    'palette' => 'default',
+]
+```
+:::
+
+### *enabled*:
+
+- Type: `bool`
+- Example: `'enabled' => false`
+
+Specifies whether to enable the AdminLTE extended color palette. When set to `true`, additional color classes will be available for use throughout the admin panel.
+
+### *palette*:
+
+- Type: `string`
+- Example: `'palette' => 'default'`
+
+Determines which AdminLTE color palette to use. Supported values are `'default'` for the AdminLTE 4 designed palette or `'v3'` for the legacy AdminLTE 3 color palette.
+
+- Palette `default`: the AdminLTE 4 designed color palette, which provides 14 additional colours designed in **OKLCH**: *orange, amber, olive, teal, sky, indigo, violet, fuchsia, pink, navy, steel, slate, graphite, midnight*.
+
+- Palette `v3`: the legacy AdminLTE 3 color palette, which provides 18 additional colours: *lightblue, navy, olive, lime, fuchsia, maroon, blue, indigo, purple, pink, red, orange, yellow, green, teal, cyan, gray, gray-dark*.
+
+For more information, visit the [AdminLTE Colors Documentation](https://adminlte.io/themes/v4/docs/colors.html).
+
 ## Menu Translations
 
 The **menu translations** section allows you to enable and configure the localization system for menu items. When enabled, some attributes in the menu items (like the *label* and *badge*) will be translated automatically using [Laravel's translation features](https://laravel.com/docs/localization), supporting both **PHP array** and **JSON-based** translations. This helps create multilingual admin panels more easily.
@@ -596,7 +629,23 @@ import '/public/vendor/ladmin/js/adminlte.min.js';
 ```
 :::
 
-You can customize these files further by adding your own styles or importing additional plugins as needed. Then you can use the next command (if available in your environment) to start both *Vite* and *Laravel* development servers:
+You can customize these files further by adding your own styles or importing additional plugins as needed. For example, to include an extra AdminLTE color palette, you can add one of the following imports to your `resources/css/app.css` file:
+
+```css
+/* Extra AdminLTE 4 designed color palette (from public vendor) */
+@import "/public/vendor/ladmin/css/adminlte-colors.css";
+
+/* Or extra AdminLTE 3 original color palette (from public vendor) */
+/* @import "/public/vendor/ladmin/css/adminlte-colors-v3.css"; */
+
+/* Or extra AdminLTE 4 designed color palette (from npm) */
+/* @import "admin-lte/dist/css/adminlte-colors.css"; */
+
+/* Or extra AdminLTE 3 original color palette (from npm) */
+/* @import "admin-lte/dist/css/adminlte-colors-v3.css"; */
+```
+
+Then you can use the next command (if available in your environment) to start both *Vite* and *Laravel* development servers:
 
 ```bash
 composer run dev
