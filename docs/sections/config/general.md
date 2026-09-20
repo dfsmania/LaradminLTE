@@ -633,10 +633,10 @@ You can customize these files further by adding your own styles or importing add
 
 ```css
 /* Extra AdminLTE 4 designed color palette (from public vendor) */
-@import "/public/vendor/ladmin/css/adminlte-colors.css";
+@import "/public/vendor/ladmin/css/adminlte-colors.min.css";
 
 /* Or extra AdminLTE 3 original color palette (from public vendor) */
-/* @import "/public/vendor/ladmin/css/adminlte-colors-v3.css"; */
+/* @import "/public/vendor/ladmin/css/adminlte-colors-v3.min.css"; */
 
 /* Or extra AdminLTE 4 designed color palette (from npm) */
 /* @import "admin-lte/dist/css/adminlte-colors.css"; */
