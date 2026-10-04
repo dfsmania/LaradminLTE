@@ -19,10 +19,12 @@ jobs:
   # The job to run Pint and commit any changes.
   lint:
     runs-on: ubuntu-latest
+
     strategy:
       fail-fast: true
       matrix:
-        php: [8.4]
+        php: [8.5]
+
     steps:
       # Checkout the code.
       - name: Checkout code

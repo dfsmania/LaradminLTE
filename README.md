@@ -1,17 +1,18 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/dfsmania/LaradminLTE?logo=packagist&logoColor=white&label=Downloads)](https://packagist.org/packages/dfsmania/LaradminLTE)
+[![Tests](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-tests.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-tests.yml)
 [![Pint Code Style](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml)
 
 # LaradminLTE: AdminLTE v4 for Laravel
 
-**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte.io/themes/v4/) dashboard template into [Laravel](https://laravel.com/) (v10 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels by using a Laravel [Blade component](https://laravel.com/docs/blade#components) to quick access the layout and configuration files to customize it.
+**LaradminLTE** is a Laravel package that seamlessly integrates the powerful [AdminLTE v4](https://adminlte.io/themes/v4/) dashboard template into [Laravel](https://laravel.com/) (v11 or higher). Designed for modern web applications, this package provides a fast and flexible way to build responsive, maintainable, and feature-rich admin panels by using a Laravel [Blade component](https://laravel.com/docs/blade#components) to quick access the layout and configuration files to customize it.
 
 > [!CAUTION]
 > **Active Development**: **LaradminLTE** is currently under active development. Features, configuration options, and behavior are subject to change until the first stable release.
 
 ## Requirements
 
-- **Laravel**: 10 or higher
-- **PHP**: 8.1 or higher
+- **Laravel**: 11 or higher
+- **PHP**: 8.2 or higher
 
 ## Installation
 

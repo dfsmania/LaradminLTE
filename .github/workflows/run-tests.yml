@@ -1,0 +1,94 @@
+# A workflow to run tests for the LaradminLTE package across multiple PHP and
+# Laravel versions.
+name: Tests
+
+# This workflow is triggered on push and pull request events on the main
+# branch. It also can be manually triggered using the workflow_dispatch event
+# from the GitHub Actions tab.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Allow only one concurrent workflow run per branch. Cancel any in-progress
+# runs if a new one is triggered.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  # The job that runs the tests for different PHP and Laravel versions.
+  tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Do not stop the workflow if one of the matrix combinations fails.
+      fail-fast: false
+
+      # Define the matrix of PHP and Laravel versions to test against. The
+      # lowest dependencies are only verified on the minimum supported PHP
+      # version of every Laravel release.
+      matrix:
+        include:
+          - { php: '8.2', laravel: '11.*', testbench: '9.*', stability: prefer-lowest }
+          - { php: '8.2', laravel: '11.*', testbench: '9.*', stability: prefer-stable }
+          - { php: '8.3', laravel: '11.*', testbench: '9.*', stability: prefer-stable }
+          - { php: '8.4', laravel: '11.*', testbench: '9.*', stability: prefer-stable }
+          - { php: '8.2', laravel: '12.*', testbench: '10.*', stability: prefer-lowest }
+          - { php: '8.2', laravel: '12.*', testbench: '10.*', stability: prefer-stable }
+          - { php: '8.3', laravel: '12.*', testbench: '10.*', stability: prefer-stable }
+          - { php: '8.4', laravel: '12.*', testbench: '10.*', stability: prefer-stable }
+          - { php: '8.5', laravel: '12.*', testbench: '10.*', stability: prefer-stable }
+          - { php: '8.3', laravel: '13.*', testbench: '11.*', stability: prefer-lowest }
+          - { php: '8.3', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
+          - { php: '8.4', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
+          - { php: '8.5', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
+
+    # Set the name of the job dynamically based on the matrix values, with next
+    # format: PHP <version> / Laravel <version> / <stability>
+    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }} / ${{ matrix.stability }}
+
+    steps:
+
+      # Checkout the code from the repository.
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      # Cache Composer dependencies to speed up subsequent workflow runs.
+      - name: Cache Composer dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+      # Set up the PHP environment for the specified version and extensions.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv, gd
+          coverage: none
+
+      # Validate the composer.json file to ensure it is correctly formatted and
+      # adheres to best practices.
+      - name: Validate composer.json
+        run: composer validate --strict --no-check-lock
+
+      # Install the project dependencies based on the specified matrix values.
+      - name: Install dependencies
+        run: |
+          composer config policy.advisories.block false
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      # Run the test suite using PHPUnit.
+      - name: Run tests
+        run: vendor/bin/phpunit

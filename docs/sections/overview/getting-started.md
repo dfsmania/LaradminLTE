@@ -6,8 +6,8 @@ This documentation is a work in progress. The installation steps and usage instr
 
 ## Requirements
 
-- **Laravel**: 10 or higher
-- **PHP**: 8.1 or higher
+- **Laravel**: 11 or higher
+- **PHP**: 8.2 or higher
 
 ## Installation
 
