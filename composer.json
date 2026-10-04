@@ -36,7 +36,7 @@
         }
     },
     "require": {
-        "laravel/framework": ">=10.0",
+        "laravel/framework": ">=11.0",
         "laravel/fortify": "^1.31",
         "mobiledetect/mobiledetectlib": "^4.8"
     },
