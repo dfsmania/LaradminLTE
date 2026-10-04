@@ -37,6 +37,7 @@ class UserProfileControllerTest extends TestCase
         // these tests.
 
         $app['config']->set('ladmin.auth.enabled', true);
+        $app['config']->set('ladmin.auth.features.profile_image', true);
     }
 
     /**
