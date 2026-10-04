@@ -38,11 +38,12 @@
     "require": {
         "laravel/framework": "^11.0 || ^12.0 || ^13.0",
         "laravel/fortify": "^1.31",
-        "mobiledetect/mobiledetectlib": "^4.8"
+        "mobiledetect/mobiledetectlib": "^4.10"
     },
     "require-dev": {
         "orchestra/testbench": ">=9.0",
-        "phpunit/phpunit": ">=10.0",
+        "orchestra/testbench-core": "^9.0.7 || ^10.0 || ^11.0",
+        "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0 || ^13.0",
         "laravel/pint": "^1.22"
     }
 }
