@@ -6,6 +6,7 @@ use DFSmania\LaradminLte\Actions\Auth\CreateNewUser;
 use DFSmania\LaradminLte\Actions\Auth\ResetUserPassword;
 use DFSmania\LaradminLte\Actions\Auth\UpdateUserPassword;
 use DFSmania\LaradminLte\Actions\Auth\UpdateUserProfileInformation;
+use DFSmania\LaradminLte\Console\Commands\InstallCommand;
 use DFSmania\LaradminLte\View\Auth;
 use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
@@ -127,13 +128,15 @@ class LaradminLteServiceProvider extends ServiceProvider
         $this->loadRoutes();
 
         // Declare the publishable resources of the package. Ensure publishable
-        // resources are only available in console context.
+        // resources are only available in console context. Then register the
+        // commands of the package.
 
         if ($this->app->runningInConsole()) {
             $this->setAssetsAsPublishable();
             $this->setConfigAsPublishable();
             $this->setMigrationsAsPublishable();
             $this->setTranslationsAsPublishable();
+            $this->registerCommands();
         }
     }
 
@@ -545,6 +548,18 @@ class LaradminLteServiceProvider extends ServiceProvider
         $this->publishes([
             $path => lang_path("vendor/{$this->pkgPrefix}"),
         ], "{$this->pkgPrefix}-translations");
+    }
+
+    /**
+     * Register the package console commands.
+     *
+     * @return void
+     */
+    private function registerCommands(): void
+    {
+        $this->commands([
+            InstallCommand::class,
+        ]);
     }
 
     /**

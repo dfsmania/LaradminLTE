@@ -7,7 +7,7 @@ These settings apply only when you are not using an **asset bundler** (like [Vit
 The plugins settings are managed in the `config/ladmin/plugins.php` file. If this file does not exist, you can publish it by running the following command in the `root` folder of your Laravel application:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-config"
+php artisan ladmin:install --resource=config
 ```
 
 ## Plugins Overview
