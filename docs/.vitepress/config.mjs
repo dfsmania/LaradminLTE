@@ -22,7 +22,8 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: 'What is LaradminLTE?', link: '/sections/overview/what-is-laradminlte' },
-          { text: 'Getting Started', link: '/sections/overview/getting-started' }
+          { text: 'Getting Started', link: '/sections/overview/getting-started' },
+          { text: 'Resources & Installation', link: '/sections/overview/installation' },
         ]
       },
       {

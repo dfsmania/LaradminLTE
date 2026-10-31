@@ -11,7 +11,7 @@ This documentation is a work in progress. The installation steps and usage instr
 
 ## Installation
 
-Follow these steps to install **LaradminLTE** in your Laravel application:
+Follow these steps to install **LaradminLTE** in your Laravel application.
 
 ### 1. Install the Package
 
@@ -21,44 +21,57 @@ Use [Composer](https://getcomposer.org/) to add the package to your Laravel proj
 composer require dfsmania/laradminlte:^1.0@beta
 ```
 
-### 2. Publish Required Package Resources
-
-Run the following commands to publish the basic package's assets and configuration files:
+Alternatively, to install the latest development version:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-assets" --tag="ladmin-config"
+composer require dfsmania/laradminlte:dev-main --prefer-stable
 ```
 
-This command will publish the following elements to your application:
+### 2. Install Package Resources
 
-- **Assets**: The set of **AdminLTE v4** distribution files (`CSS`, `JS`) and some images in the `public/vendor/ladmin` folder of your Laravel application.
-- **Config**: The package configuration files in the `config/ladmin` folder of your Laravel application.
-
-### 3. Other Publishable Resources (Optional)
-
-#### Translations
-
-Additionally, you can also publish the translation files if you want to customize them or add new languages:
+LaradminLTE provides an interactive installer to publish the package resources:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-translations"
+php artisan ladmin:install
 ```
 
-Translation files will be published to the `resources/lang/vendor/ladmin` folder of your Laravel application.
+The installer automatically publishes the **required resources**:
 
-#### Migrations
+- **Assets:** AdminLTE v4 distribution files (`CSS`, `JS`) and images, published to `public/vendor/ladmin`.
+- **Configuration:** LaradminLTE configuration files, published to `config/ladmin`.
 
-If you plan to use the built-in authentication scaffolding with the **profile images feature**, you should publish the package's migrations:
+During installation, you can also select **optional resources**:
+
+- **Translations:** Translation files for customization and additional languages, published to `lang/vendor/ladmin`.
+- **Migrations:** Database migrations supporting user profile images, published to `database/migrations`.
+
+The installer detects previously published files and asks for confirmation before overwriting them, preserving existing customizations by default.
+
+#### Installing Individual Resources
+
+You can install or republish specific resources at any time using the `--resource` option:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-migrations"
+php artisan ladmin:install --resource=translations
 ```
 
-Migrations will be published to the `database/migrations` folder of your Laravel application. These migrations will create the necessary columns on the `users` table to support user profile images. You can run migrations by executing:
+To install multiple resources, repeat the option:
+
+```bash
+php artisan ladmin:install --resource=translations --resource=migrations
+```
+
+For detailed information about available resources, installation options, and updating existing files, see the [Installation Guide](./installation.md).
+
+#### Running Migrations
+
+If you installed the optional **Migrations** resource, run:
 
 ```bash
 php artisan migrate
 ```
+
+These migrations add the necessary columns to the `users` table to support profile images. The installer does not execute database migrations automatically.
 
 ## Usage
 
@@ -174,45 +187,28 @@ Explore and modify the package's configuration files to suit your needs:
 
 ## Updating
 
-To update **LaradminLTE** to the latest version, just run the following command:
+To update **LaradminLTE** to the latest version, run:
 
 ```bash
 composer update dfsmania/laradminlte
 ```
 
-It's recommended to always check the release notes and documentation for any
-breaking changes or new features before updating.
+It's recommended to review the release notes before updating, as new versions may introduce breaking changes, new features, or changes to published resources.
 
-### AdminLTE V4 Assets
+### Updating Package Resources
 
-If the new version of **LaradminLTE** includes updates to the **AdminLTE v4** assets, you may need to re-publish the assets to your application. You can do this by running:
+After updating the package, you may need to republish certain resources to apply the latest changes.
 
-```bash
-php artisan vendor:publish --tag="ladmin-assets" --force
-```
-
-### Updating Configuration Files
-
-If the new version of **LaradminLTE** introduces changes to the configuration files, you may need to update your existing configuration files. You can do this by re-publishing the configuration files:
+For example, to update the AdminLTE v4 assets:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-config" --force
+php artisan ladmin:install --resource=assets --force
 ```
 
-::: danger CAUTION: Losing Configuration Changes
-Be cautious when updating configuration files, as any custom changes you made may be overwritten. It's recommended to always back up your configuration files before updating. After updating, review the new configuration files and merge any necessary changes into your existing configuration, by using your backup as a reference.
+You can also update configuration files or other resources using the same installation command.
+
+::: warning CAUTION: Overwriting Existing Files
+The `--force` option overwrites previously published files. Be particularly careful when updating configuration files or translations, as your customizations may be lost.
 :::
 
-Alternatively, you can manually check the differences between the new configuration files and your existing ones, and apply the necessary changes without overwriting your customizations. The package configuration files (latest version) can be found in the `vendor/dfsmania/laradminlte/config` directory of your Laravel application. So you can use a diff tool to compare the new configuration files with your existing ones and apply the necessary changes. For example, you can use the `diff` command in your terminal:
-
-```bash
-diff -u vendor/dfsmania/laradminlte/config/ladmin/main.php config/ladmin/main.php
-```
-
-#### Other Diff Tools
-
-There are other diff tools available, such as [Meld](https://meldmerge.org/) or [Beyond Compare](https://www.scootersoftware.com/), which provide a graphical interface for comparing files and merging changes. With **Meld**, for example, you could compare the entire configuration directory of the package with your existing configuration directory by executing the following command:
-
-```bash
-meld vendor/dfsmania/laradminlte/config/ladmin config/ladmin
-```
+For detailed instructions on updating individual resources, preserving customizations, and comparing configuration changes, see the [Installation Guide](./installation.md).

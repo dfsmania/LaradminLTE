@@ -16,7 +16,7 @@
 
 ## Installation
 
-Follow these steps to install **LaradminLTE** in your Laravel application:
+Follow these steps to install **LaradminLTE** in your Laravel application.
 
 ### 1. Install the Package
 
@@ -26,50 +26,78 @@ Use [Composer](https://getcomposer.org/) to add the package to your Laravel proj
 composer require dfsmania/laradminlte:^1.0@beta
 ```
 
-Alternatively, if you want to install the latest development version, you can run:
+Alternatively, to install the latest development version:
 
 ```bash
 composer require dfsmania/laradminlte:dev-main --prefer-stable
 ```
 
-### 2. Publish Required Package Resources
+### 2. Install Package Resources
 
-Run the following commands to publish the basic package's assets and configuration files:
-
-```bash
-php artisan vendor:publish --tag="ladmin-assets" --tag="ladmin-config"
-```
-
-This command will publish the following elements to your application:
-
-- **Assets**: The set of **AdminLTE v4** distribution files (`CSS`, `JS`) and some images in the `public/vendor/ladmin` folder of your Laravel application.
-- **Config**: The package configuration files in the `config/ladmin` folder of your Laravel application.
-
-### 3. Other Publishable Resources (Optional)
-
-#### Translations
-
-Additionally, you can also publish the translation files if you want to customize them or add new languages:
+LaradminLTE provides an interactive installer to publish the package resources:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-translations"
+php artisan ladmin:install
 ```
 
-Translation files will be published to the `resources/lang/vendor/ladmin` folder of your Laravel application.
+The installer automatically publishes the **required resources**:
 
-#### Migrations
+- **Assets:** AdminLTE v4 distribution files (`CSS`, `JS`) and images, published to `public/vendor/ladmin`.
+- **Configuration:** LaradminLTE configuration files, published to `config/ladmin`.
 
-If you plan to use the built-in authentication scaffolding with the **profile images feature**, you should publish the package's migrations:
+During installation, you can also select **optional resources**:
+
+- **Translations:** Translation files for customization and additional languages, published to `lang/vendor/ladmin`.
+- **Migrations:** Database migrations supporting user profile images, published to `database/migrations`.
+
+The installer detects previously published files and asks for confirmation before overwriting them, preserving existing customizations by default.
+
+#### Installing Individual Resources
+
+You can install or republish specific resources at any time using the `--resource` option:
 
 ```bash
-php artisan vendor:publish --tag="ladmin-migrations"
+php artisan ladmin:install --resource=translations
 ```
 
-Migrations will be published to the `database/migrations` folder of your Laravel application. These migrations will create the necessary columns on the `users` table to support user profile images. You can run migrations by executing:
+To install multiple resources, repeat the option:
+
+```bash
+php artisan ladmin:install --resource=translations --resource=migrations
+```
+
+Available resource keys are `assets`, `config`, `translations`, and `migrations`.
+
+When using `--resource`, only the specified resources are processed, without running the standard installation workflow.
+
+#### Additional Options
+
+To overwrite existing resources without confirmation, use:
+
+```bash
+php artisan ladmin:install --force
+```
+
+> [!WARNING]
+> The `--force` option overwrites previously published files and may replace your customizations.
+
+For non-interactive environments, run:
+
+```bash
+php artisan ladmin:install --no-interaction
+```
+
+This installs the required resources without prompting for optional ones. Existing files are preserved unless `--force` is specified.
+
+#### Running Migrations
+
+If you installed the optional **Migrations** resource, run:
 
 ```bash
 php artisan migrate
 ```
+
+These migrations add the necessary columns to the `users` table to support profile images. The installer does not execute database migrations automatically.
 
 ## Usage
 
