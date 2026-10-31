@@ -8,6 +8,7 @@ use DFSmania\LaradminLte\Support\Installation\PublishableResource;
 use DFSmania\LaradminLte\Support\Installation\PublishableResourceCatalog;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Laravel\Prompts\MultiSelectPrompt;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 
@@ -270,6 +271,15 @@ class InstallCommand extends Command
      */
     private function selectOptionalResources(Collection $resources): array
     {
+        // Check the constructor parameters of the MultiSelectPrompt class to
+        // determine if the 'info' parameter is supported.
+
+        $supportedParams = array_map(
+            fn (\ReflectionParameter $parameter) => $parameter->getName(),
+            (new \ReflectionMethod(MultiSelectPrompt::class, '__construct'))
+                ->getParameters()
+        );
+
         // Prompt the user to select optional resources to install, and return
         // the selected ones.
 
@@ -285,14 +295,19 @@ class InstallCommand extends Command
             ]
         )->all();
 
-        return multiselect(
-            label: 'Optional resources',
-            options: $options,
-            default: [],
-            info: fn (string $key) => $resources->get($key)?->help,
-            hint: 'These resources can also be published later.',
-            required: false,
-        );
+        $arguments = [
+            'label' => 'Optional resources',
+            'options' => $options,
+            'default' => [],
+            'hint' => 'These resources can also be published later.',
+            'required' => false,
+        ];
+
+        if (in_array('info', $supportedParams, true)) {
+            $arguments['info'] = fn ($key) => $resources->get($key)?->help;
+        }
+
+        return multiselect(...$arguments);
     }
 
     /**
