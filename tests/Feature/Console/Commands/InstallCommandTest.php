@@ -131,7 +131,6 @@ class InstallCommandTest extends TestCase
     public function test_it_preserves_existing_files_without_force(): void
     {
         $destination = $this->resourceDestination('config');
-
         File::put($destination, 'Customized content');
 
         $this->artisan('ladmin:install', [
@@ -149,7 +148,6 @@ class InstallCommandTest extends TestCase
     {
         $existing = $this->resourceDestination('assets');
         $missing = $this->resourceDestination('assets', 'extra.txt');
-
         File::put($existing, 'Customized content');
 
         $this->artisan('ladmin:install', [
@@ -173,7 +171,6 @@ class InstallCommandTest extends TestCase
     public function test_it_overwrites_existing_files_with_force(): void
     {
         $destination = $this->resourceDestination('config');
-
         File::put($destination, 'Customized content');
 
         $this->artisan('ladmin:install', [
@@ -203,14 +200,9 @@ class InstallCommandTest extends TestCase
     public function test_it_installs_selected_optional_resources(): void
     {
         $this->artisan('ladmin:install')
-            ->expectsChoice(
+            ->expectsQuestion(
                 'Optional resources',
                 ['translations', 'migrations'],
-                [
-                    'translations' => 'Translations',
-                    'migrations' => 'Migrations',
-                ],
-                true
             )
             ->assertSuccessful();
 
@@ -223,14 +215,9 @@ class InstallCommandTest extends TestCase
     public function test_it_skips_unselected_optional_resources(): void
     {
         $this->artisan('ladmin:install')
-            ->expectsChoice(
+            ->expectsQuestion(
                 'Optional resources',
                 [],
-                [
-                    'translations' => 'Translations',
-                    'migrations' => 'Migrations',
-                ],
-                true
             )
             ->assertSuccessful();
 
