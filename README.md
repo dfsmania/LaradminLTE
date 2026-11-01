@@ -1,6 +1,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/dfsmania/LaradminLTE?logo=packagist&logoColor=white&label=Downloads)](https://packagist.org/packages/dfsmania/LaradminLTE)
 [![Tests](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-tests.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-tests.yml)
 [![Pint Code Style](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml)
+[![Codecov](https://codecov.io/github/dfsmania/LaradminLTE/graph/badge.svg?token=Z381W4F4H0)](https://codecov.io/github/dfsmania/LaradminLTE)
 
 # LaradminLTE: AdminLTE v4 for Laravel
 
