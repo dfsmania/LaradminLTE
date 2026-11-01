@@ -47,7 +47,7 @@ jobs:
           - { php: '8.3', laravel: '13.*', testbench: '11.*', stability: prefer-lowest }
           - { php: '8.3', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
           - { php: '8.4', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
-          - { php: '8.5', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
+          - { php: '8.5', laravel: '13.*', testbench: '11.*', stability: prefer-stable, coverage: true }
 
     # Set the name of the job dynamically based on the matrix values, with next
     # format: PHP <version> / Laravel <version> / <stability>
@@ -75,7 +75,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv, gd
-          coverage: none
+          coverage: ${{ matrix.coverage && 'pcov' || 'none' }}
 
       # Validate the composer.json file to ensure it is correctly formatted and
       # adheres to best practices.
@@ -91,4 +91,20 @@ jobs:
 
       # Run the test suite using PHPUnit.
       - name: Run tests
-        run: vendor/bin/phpunit
+        run: |
+          if [[ "${{ matrix.coverage }}" == "true" ]]; then
+            vendor/bin/phpunit --coverage-clover=coverage.xml
+          else
+            vendor/bin/phpunit
+          fi
+
+      # Upload coverage reports to Codecov if coverage is enabled and the event
+      # is a push.
+      - name: Upload coverage reports to Codecov
+        if: matrix.coverage
+        uses: codecov/codecov-action@v7
+        with:
+          files: ./coverage.xml
+          flags: laravel-${{ matrix.laravel }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
