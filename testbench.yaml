@@ -1,0 +1,3 @@
+# Testbench configuration for Laravel package testing.
+providers:
+    - DFSmania\LaradminLte\LaradminLteServiceProvider

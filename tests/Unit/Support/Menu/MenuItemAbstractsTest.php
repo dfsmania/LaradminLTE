@@ -117,7 +117,7 @@ class TestCompositeComponent extends CompositeMenuItem
     /**
      * The allowed child types for the composite menu item.
      *
-     * @var array
+     * @var array<MenuItemType>
      */
     protected static array $allowedChildTypes = [
         MenuItemType::LINK,

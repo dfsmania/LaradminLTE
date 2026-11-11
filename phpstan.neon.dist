@@ -1,0 +1,14 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    # Setup the analysis level (10 is the highest).
+    level: 5
+
+    # Setup the paths to be analysed.
+    paths:
+        - src/
+        - tests/
+
+    # Setup the temporary directory for PHPStan's cache.
+    tmpDir: storage/phpstan

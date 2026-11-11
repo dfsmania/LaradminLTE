@@ -27,7 +27,7 @@ class ResetUserPasswordTest extends TestCase
         ]);
 
         $this->assertTrue(
-            Hash::check('new-password', $user->fresh()->password)
+            Hash::check('new-password', $user->fresh()->getAuthPassword())
         );
     }
 

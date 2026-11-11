@@ -42,7 +42,7 @@ trait ResolvesItemLocalization
 
         // Resolve and return the translation.
 
-        return static::resolveTranslation($key, $params);
+        return self::resolveTranslation($key, $params);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace DFSmania\LaradminLte\View\Forms\Concerns;
 
-use Illuminate\Support\MessageBag;
+use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Support\ViewErrorBag;
 
 /**
@@ -89,7 +89,7 @@ trait HandlesValidationErrors
      */
     public function anyErrors(ViewErrorBag $errors): bool
     {
-        return $this->getBag($errors)->any();
+        return $this->getBag($errors)->count() > 0;
     }
 
     /**

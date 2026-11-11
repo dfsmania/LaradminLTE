@@ -18,6 +18,8 @@ use Illuminate\View\View;
  * This class serves as a base for creating leaf menu items that do not have
  * child items. It provides methods for creating instances from configuration,
  * rendering the menu item as HTML, and checking for child items.
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
 {

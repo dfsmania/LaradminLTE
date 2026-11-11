@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use DFSmania\LaradminLte\Support\UserAgent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -57,9 +58,21 @@ class UserProfileController extends Controller
             ],
         ]);
 
+        // Retrieve the currently authenticated user. If the user is not found
+        // or does not have the updateProfileImage method, abort the request.
+
+        $user = $request->user();
+        abort_unless($user && method_exists($user, 'updateProfileImage'), 404);
+
+        // Retrieve the uploaded image file from the request. If it is not a
+        // valid UploadedFile instance, abort the request.
+
+        $image = $request->file('photo');
+        abort_unless($image instanceof UploadedFile, 422);
+
         // Update the user's profile image.
 
-        $request->user()->updateProfileImage($request->file('photo'));
+        $user->updateProfileImage($image);
 
         // Redirect back with success status.
 
@@ -74,7 +87,15 @@ class UserProfileController extends Controller
      */
     public function deleteImage(Request $request): RedirectResponse
     {
-        $request->user()->deleteProfileImage();
+        // Retrieve the currently authenticated user. If the user is not found
+        // or does not have the deleteProfileImage method, abort the request.
+
+        $user = $request->user();
+        abort_unless($user && method_exists($user, 'deleteProfileImage'), 404);
+
+        // Delete the user's profile image.
+
+        $user->deleteProfileImage();
 
         return back()->with('status', 'profile-image-deleted');
     }
