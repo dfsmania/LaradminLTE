@@ -32,8 +32,10 @@ class UserMenuTest extends TestCase
         $this->registerProfileRoute();
 
         $user = new class extends Authenticatable {};
-        $user->name = 'Jane Doe';
-        $user->email = 'jane@example.test';
+        $user->forceFill([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.test',
+        ]);
         $this->actingAs($user);
 
         $menu = new UserMenu;
@@ -48,8 +50,10 @@ class UserMenuTest extends TestCase
         $this->registerProfileRoute();
 
         $user = new class extends Authenticatable {};
-        $user->name = 'Jane Doe';
-        $user->email = 'jane@example.test';
+        $user->forceFill([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.test',
+        ]);
         $this->actingAs($user);
 
         $menu = new UserMenu;

@@ -1,0 +1,80 @@
+# A workflow to run static code analysis using PHPStan.
+name: Static Code Analysis
+
+# This workflow is triggered on push and pull request events on the main
+# branch. It also can be manually triggered using the workflow_dispatch event
+# from the GitHub Actions tab.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Add permission to read repository contents for the workflow.
+permissions:
+  contents: read
+
+jobs:
+
+  # Job to run PHPStan static analysis on the codebase.
+  phpstan:
+    runs-on: ubuntu-latest
+
+    strategy:
+      # Stop the workflow if one of the matrix combinations fails.
+      fail-fast: true
+
+      # Define the matrix of PHP and Laravel versions to test against.
+      # Currently, we only test against newest PHP and Laravel versions.
+      matrix:
+        include:
+          - { php: '8.5', laravel: '13.*', testbench: '11.*', stability: prefer-stable }
+
+    # Set the name of the job dynamically based on the matrix values, with next
+    # format: PHP <version> / Laravel <version> / <stability>
+    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }} / ${{ matrix.stability }}
+
+    steps:
+
+      # Checkout the repository code.
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      # Set up the PHP environment for the specified version and extensions.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, iconv, gd
+          coverage: none
+
+      # Install the project dependencies based on the specified matrix values.
+      - name: Install dependencies
+        run: |
+          composer config policy.advisories.block false
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      # Run PHPStan static analysis on the codebase.
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G
+
+      # Generate the PHPStan report even if the analysis fails.
+      - name: Generate PHPStan report
+        if: always()
+        run: |
+          vendor/bin/phpstan analyse --no-progress --memory-limit=2G --error-format=json > phpstan-report.json || true
+
+      # Upload the PHPStan report as an artifact. This allows the report to be
+      # accessed even if the workflow fails.
+      - name: Upload PHPStan report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: phpstan-report
+          path: phpstan-report.json
+          if-no-files-found: warn
+          retention-days: 14

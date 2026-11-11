@@ -50,8 +50,8 @@ class UserMenu extends Component
 
         // Set the user basic properties with fallbacks.
 
-        $this->userName = $user?->name ?? 'Guest';
-        $this->userEmail = $user?->email ?? 'guest@example.com';
+        $this->userName = $user?->getAttribute('name') ?? 'Guest';
+        $this->userEmail = $user?->getAttribute('email') ?? 'guest@example.com';
 
         // Set the user image URL if the profile image feature is enabled.
 

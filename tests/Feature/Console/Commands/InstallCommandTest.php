@@ -421,7 +421,7 @@ class TestPublishableResourceCatalog extends PublishableResourceCatalog
     /**
      * Create a new test publishable resource catalog.
      *
-     * @param  Collection<string, PublishableResource>  $resources
+     * @param  Collection<string, PublishableResource>  $testResources
      */
     public function __construct(private Collection $testResources) {}
 

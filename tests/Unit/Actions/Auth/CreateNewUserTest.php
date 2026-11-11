@@ -27,7 +27,7 @@ class CreateNewUserTest extends TestCase
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
         ]);
-        $this->assertTrue(Hash::check('password', $user->password));
+        $this->assertTrue(Hash::check('password', $user->getAuthPassword()));
     }
 
     public function test_it_rejects_an_existing_email_address(): void

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Storage;
  * Trait for handling the profile image feature on the User model.
  * To enable profile image support, you should include this trait in the User
  * model of your Laravel application.
+ *
+ * @property string|null $profile_image_path The path to the profile image.
+ * @property string $name The user's name.
+ * @property string $email The user's email address.
  */
 trait HasProfileImage
 {

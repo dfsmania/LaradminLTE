@@ -29,7 +29,7 @@ class UpdateUserPasswordTest extends TestCase
         ]);
 
         $this->assertTrue(
-            Hash::check('new-password', $user->fresh()->password)
+            Hash::check('new-password', $user->fresh()->getAuthPassword())
         );
     }
 
@@ -51,7 +51,9 @@ class UpdateUserPasswordTest extends TestCase
             $this->assertArrayHasKey('current_password', $exception->errors());
         }
 
-        $this->assertTrue(Hash::check('password', $user->fresh()->password));
+        $this->assertTrue(
+            Hash::check('password', $user->fresh()->getAuthPassword())
+        );
     }
 
     // ------------------------------------------------------------------------
