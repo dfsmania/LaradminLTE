@@ -35,10 +35,10 @@ jobs:
       # version of every Laravel release.
       matrix:
         include:
-          - { php: '8.2', laravel: '11.*', testbench: '9.*', stability: prefer-lowest }
-          - { php: '8.2', laravel: '11.*', testbench: '9.*', stability: prefer-stable }
-          - { php: '8.3', laravel: '11.*', testbench: '9.*', stability: prefer-stable }
-          - { php: '8.4', laravel: '11.*', testbench: '9.*', stability: prefer-stable }
+          - { php: '8.2', laravel: '11.*', testbench: '^9.18.0', stability: prefer-lowest }
+          - { php: '8.2', laravel: '11.*', testbench: '^9.18.0', stability: prefer-stable }
+          - { php: '8.3', laravel: '11.*', testbench: '^9.18.0', stability: prefer-stable }
+          - { php: '8.4', laravel: '11.*', testbench: '^9.18.0', stability: prefer-stable }
           - { php: '8.2', laravel: '12.*', testbench: '10.*', stability: prefer-lowest }
           - { php: '8.2', laravel: '12.*', testbench: '10.*', stability: prefer-stable }
           - { php: '8.3', laravel: '12.*', testbench: '10.*', stability: prefer-stable }

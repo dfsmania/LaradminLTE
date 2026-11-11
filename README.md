@@ -2,7 +2,7 @@
 [![Tests](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-tests.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-tests.yml)
 [![Pint Code Style](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-pint.yml)
 [![Codecov](https://codecov.io/github/dfsmania/LaradminLTE/graph/badge.svg?token=Z381W4F4H0)](https://codecov.io/github/dfsmania/LaradminLTE)
-[![PHPStan Level=5](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-static-analysis.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-static-analysis.yml)
+[![Static Code Analysis](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-static-analysis.yml/badge.svg)](https://github.com/dfsmania/LaradminLTE/actions/workflows/run-static-analysis.yml)
 
 # LaradminLTE: AdminLTE v4 for Laravel
 
