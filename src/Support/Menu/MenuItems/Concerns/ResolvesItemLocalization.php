@@ -15,9 +15,7 @@ trait ResolvesItemLocalization
      * 1. Short key translations (i.e. using PHP array syntax).
      * 2. JSON translations (i.e. using full string as key in a JSON file).
      *
-     * @param  string|array  $value  The value to translate, it can be:
-     *                               A plain string (translation key or literal)
-     *                               An array: [key_or_string, parameters]
+     * @param  string|array<array-key, mixed>  $value  The value to translate
      * @return string
      */
     protected static function getTranslation(string|array $value): string
@@ -54,7 +52,7 @@ trait ResolvesItemLocalization
      * key if no translation is found.
      *
      * @param  string  $key  The translation key to resolve.
-     * @param  array  $params  Optional parameters for the translation.
+     * @param  array<array-key, mixed>  $params  Optional translation params
      * @return string
      */
     private static function resolveTranslation(

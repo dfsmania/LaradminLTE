@@ -30,6 +30,10 @@ class InstallationResult
 
     /**
      * Create a new installation result instance.
+     *
+     * @param  PublishableResource  $resource  The resource being installed.
+     * @param  InstallationStatus  $status  The resource installation status.
+     * @param  array<string>  $destinations  The resource destination paths.
      */
     public function __construct(
         PublishableResource $resource,

@@ -3,7 +3,8 @@
 namespace DFSmania\LaradminLte\Http\Controllers;
 
 use Carbon\Carbon;
-use DFSmania\LaradminLte\Support\UserAgent;
+use DFSmania\LaradminLte\Support\Auth\Session\BrowserSession;
+use DFSmania\LaradminLte\Support\Auth\Session\UserAgent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -222,7 +223,7 @@ class UserProfileController extends Controller
      * Get the sessions for the authenticated user.
      *
      * @param  Request  $request
-     * @return Collection
+     * @return Collection<int, BrowserSession>
      */
     protected function getSessions(Request $request): Collection
     {
@@ -258,12 +259,12 @@ class UserProfileController extends Controller
             $lastActive = Carbon::createFromTimestamp($session->last_activity)
                 ->diffForHumans();
 
-            return (object) [
-                'agent' => $agent,
-                'ip_address' => $session->ip_address,
-                'is_current_device' => $isCurrentDevice,
-                'last_active' => $lastActive,
-            ];
+            return new BrowserSession(
+                agent: $agent,
+                ipAddress: $session->ip_address,
+                isCurrentDevice: $isCurrentDevice,
+                lastActive: $lastActive,
+            );
         });
     }
 

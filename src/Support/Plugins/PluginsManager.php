@@ -40,8 +40,10 @@ class PluginsManager
 
     /**
      * Create a new instance of the class.
+     * It receives the plugins configuration array and classifies the resources
+     * accordingly.
      *
-     * @param  array  $pluginsCfg  An array with the raw plugins config
+     * @param  array<string, array<array-key, mixed>>  $pluginsCfg
      * @return void
      */
     public function __construct(array $pluginsCfg = [])
@@ -126,7 +128,7 @@ class PluginsManager
     /**
      * Retrieve the resources of one or more plugins by their names.
      *
-     * @param  string|array  $pluginNames  The name(s) of the plugin(s)
+     * @param  string|array<array-key, string>  $pluginNames  The plugin name(s)
      * @param  ?ResourceType  $type  The type of resources to retrieve
      * @return PluginResource[]
      */
@@ -198,7 +200,7 @@ class PluginsManager
      * Read, validate and classify the resources of the provided plugins into
      * one of the available categories.
      *
-     * @param  array  $plugins  An array with the raw plugins configuration
+     * @param  array<string, array<array-key, mixed>>  $plugins
      * @return void
      */
     protected function classifyPlugins(array $plugins): void

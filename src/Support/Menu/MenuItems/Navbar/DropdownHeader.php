@@ -16,7 +16,7 @@ class DropdownHeader extends LeafMenuItem
      * rules are used with the Laravel Validator to ensure the configuration
      * adheres to the expected schema.
      *
-     * @var array<string, string|array>
+     * @var array<string, string|array<array-key, mixed>>
      */
     protected static array $cfgValidationRules = [
         'color' => 'sometimes|string',
@@ -33,7 +33,7 @@ class DropdownHeader extends LeafMenuItem
      * based on the provided configuration. It should return an instance of the
      * component that will be used to render the menu item.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */

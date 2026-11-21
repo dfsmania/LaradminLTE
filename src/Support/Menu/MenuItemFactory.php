@@ -91,7 +91,7 @@ class MenuItemFactory
      * Create a new MenuItem instance from its raw configuration array. A null
      * value will be returned if the configuration is invalid.
      *
-     * @param  array  $config  The raw configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @param  MenuPlacement  $place  The placement of the item
      * @return ?MenuItem
      */
@@ -126,7 +126,7 @@ class MenuItemFactory
     /**
      * Check if a menu item configuration has a valid type.
      *
-     * @param  array  $config  The raw configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return bool
      */
     protected static function hasValidType(array $config): bool

@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte\Tests\Unit\Support\Menu;
 
 use DFSmania\LaradminLte\Support\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Support\Menu\Contracts\AllowStrategy;
+use DFSmania\LaradminLte\Support\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Support\Menu\MenuItems\Abstracts\CompositeMenuItem;
@@ -74,7 +75,7 @@ class TestLeafComponent extends LeafMenuItem
     /**
      * Make a fake Blade component for the leaf menu item.
      *
-     * @param  array  $config
+     * @param  array<array-key, mixed>  $config
      * @param  bool  $isActive
      * @return Component
      */
@@ -88,7 +89,7 @@ class TestLeafComponent extends LeafMenuItem
     /**
      * Get the active strategy for the leaf menu item.
      *
-     * @param  array  $config
+     * @param  array<array-key, mixed>  $config
      * @return ActiveStrategy|null
      */
     public function activeStrategy(array $config): ?ActiveStrategy
@@ -99,7 +100,7 @@ class TestLeafComponent extends LeafMenuItem
     /**
      * Get the allow strategy for the leaf menu item.
      *
-     * @param  array  $config
+     * @param  array<array-key, mixed>  $config
      * @return AllowStrategy|null
      */
     public function allowStrategy(array $config): ?AllowStrategy
@@ -133,7 +134,7 @@ class TestCompositeComponent extends CompositeMenuItem
     /**
      * Make a fake Blade component for the composite menu item.
      *
-     * @param  array  $config
+     * @param  array<array-key, mixed>  $config
      * @param  bool  $isActive
      * @return Component
      */
@@ -167,8 +168,8 @@ class TestCompositeComponent extends CompositeMenuItem
     /**
      * Get the active strategy for the composite menu item.
      *
-     * @param  array  $config
-     * @param  array  $children
+     * @param  array<array-key, mixed>  $config
+     * @param  MenuItem[]  $children
      * @return ActiveStrategy|null
      */
     public function activeStrategy(
@@ -181,7 +182,7 @@ class TestCompositeComponent extends CompositeMenuItem
     /**
      * Get the allow strategy for the composite menu item.
      *
-     * @param  array  $config
+     * @param  array<array-key, mixed>  $config
      * @return AllowStrategy|null
      */
     public function allowStrategy(array $config): ?AllowStrategy

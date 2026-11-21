@@ -61,9 +61,11 @@ class InitialsAvatarGenerator
      * Create a new instance of the class.
      *
      * @param  string  $name  The name used to compute the initials and color.
-     * @param  array  $config  The avatar configuration (size, background
-     *                         colors, and foreground color).
-     * @return void
+     * @param  array{
+     *     size?: int,
+     *     foreground_color?: string,
+     *     background_colors?: non-empty-list<string>
+     * }  $config  The avatar configuration.
      */
     public function __construct(string $name, array $config = [])
     {

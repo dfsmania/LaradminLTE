@@ -103,7 +103,7 @@ class FakeMenuItem implements MenuItem
     /**
      * Retrieves the children of the menu item.
      *
-     * @return array
+     * @return list<MenuItem>
      */
     public function getChildren(): array
     {

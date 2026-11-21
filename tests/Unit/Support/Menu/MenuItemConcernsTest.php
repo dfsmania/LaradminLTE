@@ -87,7 +87,7 @@ class MenuConcernConsumer
     /**
      * Get the URL from the given configuration.
      *
-     * @param  array  $config
+     * @param  array<array-key, mixed>  $config
      * @return string
      */
     public static function url(array $config): string
@@ -98,7 +98,7 @@ class MenuConcernConsumer
     /**
      * Get the translation for the given value.
      *
-     * @param  string|array  $value
+     * @param  string|array<array-key, mixed>  $value
      * @return string
      */
     public static function translation(string|array $value): string

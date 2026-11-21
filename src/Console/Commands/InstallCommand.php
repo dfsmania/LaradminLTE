@@ -140,9 +140,7 @@ class InstallCommand extends Command
                 : new InstallationResult(
                     resource: $resource,
                     status: InstallationStatus::Skipped,
-                    destinations: array_values(
-                        $resource->inspect()['destinations']
-                    ),
+                    destinations: $resource->inspect()['destinations'],
                 );
 
             $results->put($resource->key, $result);
@@ -208,8 +206,11 @@ class InstallCommand extends Command
      *
      * @param  PublishableResource  $resource  The resource to publish.
      * @param  bool  $force  Whether to overwrite existing files.
-     * @param  array  $beforeInspection  The current state of the resource
-     *                                   before publishing.
+     * @param  array{
+     *     existing: list<string>,
+     *     missing: list<string>,
+     *     destinations: list<string>
+     * }  $beforeInspection  The state of the resource before publishing.
      * @return InstallationResult The result of the installation.
      */
     private function publishResource(
@@ -266,8 +267,8 @@ class InstallCommand extends Command
     /**
      * Prompt the user to select optional resources to install.
      *
-     * @param  Collection  $resources  The collection of optional resources.
-     * @return array The selected optional resources keys.
+     * @param  Collection<string, PublishableResource>  $resources
+     * @return list<string> The selected optional resources keys.
      */
     private function selectOptionalResources(Collection $resources): array
     {

@@ -55,7 +55,7 @@ class HandlesOldInputTest extends TestCase
      * Flash the given data as old input, so it becomes available through the
      * global "old()" helper.
      *
-     * @param  array  $data
+     * @param  array<array-key, mixed>  $data
      * @return void
      */
     private function flashOldInput(array $data): void

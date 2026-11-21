@@ -8,6 +8,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 use Laravel\Fortify\Contracts\ConfirmPasswordViewResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
@@ -50,7 +51,7 @@ class LaradminLteServiceProviderTest extends TestCase
      * Override the package providers to include Fortify for these tests.
      *
      * @param  Application  $app
-     * @return array
+     * @return list<class-string<ServiceProvider>>
      */
     protected function getPackageProviders($app)
     {

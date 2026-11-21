@@ -29,7 +29,7 @@ class CallableAllowStrategy implements AllowStrategy
      * will be passed to the callable. This may be really useful when the menu
      * is built dynamically.
      *
-     * @var array
+     * @var array<array-key, mixed>
      */
     protected array $rawConfig;
 
@@ -37,7 +37,8 @@ class CallableAllowStrategy implements AllowStrategy
      * Create a new class instance.
      *
      * @param  callable  $callable  The callable to determine the allowed status
-     * @param  array  $rawConfig  The raw configuration of the menu item
+     * @param  array<array-key, mixed>  $rawConfig  The raw configuration of
+     *                                              the menu item
      * @return void
      */
     public function __construct(callable $callable, array $rawConfig = [])

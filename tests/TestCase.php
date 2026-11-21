@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte\Tests;
 
 use DFSmania\LaradminLte\LaradminLteServiceProvider;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
@@ -24,7 +25,7 @@ class TestCase extends BaseTestCase
      * Get the service providers of our package.
      *
      * @param  Application  $app
-     * @return array
+     * @return list<class-string<ServiceProvider>>
      */
     protected function getPackageProviders($app)
     {
