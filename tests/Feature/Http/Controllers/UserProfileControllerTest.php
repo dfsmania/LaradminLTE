@@ -4,6 +4,7 @@ namespace DFSmania\LaradminLte\Tests\Feature\Http\Controllers;
 
 use App\Models\User;
 use DFSmania\LaradminLte\Http\Controllers\UserProfileController;
+use DFSmania\LaradminLte\Support\Auth\Session\BrowserSession;
 use DFSmania\LaradminLte\Tests\TestCase;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,6 +14,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\FortifyServiceProvider;
@@ -44,7 +46,7 @@ class UserProfileControllerTest extends TestCase
      * Override the package providers to include Fortify for these tests.
      *
      * @param  Application  $app
-     * @return array
+     * @return list<class-string<ServiceProvider>>
      */
     protected function getPackageProviders($app)
     {
@@ -112,9 +114,14 @@ class UserProfileControllerTest extends TestCase
         $sessions = (new ExposedUserProfileController)->sessionsFor($request);
 
         $this->assertCount(2, $sessions);
-        $this->assertTrue($sessions->first()->is_current_device);
-        $this->assertSame('127.0.0.1', $sessions->first()->ip_address);
-        $this->assertFalse($sessions->last()->is_current_device);
+
+        foreach ($sessions as $session) {
+            $this->assertInstanceOf(BrowserSession::class, $session);
+        }
+
+        $this->assertTrue($sessions->first()->isCurrentDevice);
+        $this->assertSame('127.0.0.1', $sessions->first()->ipAddress);
+        $this->assertFalse($sessions->last()->isCurrentDevice);
     }
 
     public function test_it_updates_a_profile_image(): void
@@ -276,7 +283,7 @@ class UserProfileControllerTest extends TestCase
      * Create a new user profile request for the given user and input data.
      *
      * @param  User  $user
-     * @param  array  $input
+     * @param  array<array-key, mixed>  $input
      * @return Request
      */
     private function requestFor(User $user, array $input = []): Request
@@ -302,7 +309,7 @@ class ExposedUserProfileController extends UserProfileController
     /**
      * Get the sessions for the authenticated user.
      *
-     * @return Collection<int, object>
+     * @return Collection<int, BrowserSession>
      */
     public function sessionsFor(Request $request): Collection
     {

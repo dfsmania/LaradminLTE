@@ -58,7 +58,7 @@ class Plugin
      * resources are found in the configuration.
      *
      * @param  string  $name  The plugin name
-     * @param  array  $config  The plugin raw configuration array
+     * @param  array<array-key, mixed>  $config  The plugin configuration array
      * @return ?self
      */
     public static function createFromConfig(string $name, array $config): ?self
@@ -91,7 +91,7 @@ class Plugin
      * configuration array. It will return an empty array when no valid
      * resources are found in the configuration.
      *
-     * @param  array  $resources  The raw plugin resources configuration array
+     * @param  array<array-key, array<array-key, mixed>>  $resources
      * @return PluginResource[]
      */
     protected static function createResourcesFromConfig(array $resources): array

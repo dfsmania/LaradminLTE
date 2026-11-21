@@ -1,6 +1,6 @@
 <?php
 
-namespace DFSmania\LaradminLte\Support;
+namespace DFSmania\LaradminLte\Support\Auth\Session;
 
 use Closure;
 use Detection\MobileDetect;
@@ -223,7 +223,7 @@ class UserAgent extends MobileDetect
     /**
      * Merge multiple rules into one array.
      *
-     * @param  array  $all
+     * @param  array<string, string|array<string>>  ...$all
      * @return array<string, string|array<string>>
      */
     protected function mergeRules(...$all): array

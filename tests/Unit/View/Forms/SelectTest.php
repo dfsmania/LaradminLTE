@@ -82,7 +82,7 @@ class SelectTest extends TestCase
     /**
      * Flash old input to the session.
      *
-     * @param  array  $data
+     * @param  array<array-key, mixed>  $data
      * @return void
      */
     private function flashOldInput(array $data): void

@@ -18,7 +18,7 @@ class Menu extends CompositeMenuItem
      * rules are used with the Laravel Validator to ensure the configuration
      * adheres to the expected schema.
      *
-     * @var array<string, string|array>
+     * @var array<string, string|array<array-key, mixed>>
      */
     protected static array $cfgValidationRules = [
         'badge' => 'sometimes|ladmin_translatable',
@@ -60,7 +60,7 @@ class Menu extends CompositeMenuItem
      * based on the provided configuration. It should return an instance of the
      * component that will be used to render the menu item.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */

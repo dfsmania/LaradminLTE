@@ -3,6 +3,7 @@
 namespace DFSmania\LaradminLte\View\Forms;
 
 use DFSmania\LaradminLte\View\Forms\Abstracts\BaseFormInput;
+use Illuminate\Support\Collection;
 
 class Select extends BaseFormInput
 {
@@ -34,7 +35,7 @@ class Select extends BaseFormInput
      * @param  bool  $noOldInput  Whether to disable old input support
      * @param  bool  $noValidationFeedback  Whether to disable validation feedback
      * @param  ?string  $errorsBag  The errors bag to use for validation feedback
-     * @param  array  $options  The set of options for the select element
+     * @param  array<int, array<string, mixed>>  $options  The set of options
      * @return void
      */
     public function __construct(
@@ -90,7 +91,9 @@ class Select extends BaseFormInput
         // Determine old selected values. If old input support is disabled,
         // this will be an empty collection.
 
-        $oldSelectedValues = collect($this->resolveOldInput($this->errorKey));
+        $oldSelectedValues = new Collection(
+            $this->resolveOldInput($this->errorKey)
+        );
 
         // Normalize options to ensure each has the required properties. This
         // also handles selection state based on old input. When there are

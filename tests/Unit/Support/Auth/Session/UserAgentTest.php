@@ -1,8 +1,8 @@
 <?php
 
-namespace DFSmania\LaradminLte\Tests\Unit\Support;
+namespace DFSmania\LaradminLte\Tests\Unit\Support\Auth\Session;
 
-use DFSmania\LaradminLte\Support\UserAgent;
+use DFSmania\LaradminLte\Support\Auth\Session\UserAgent;
 use DFSmania\LaradminLte\Tests\TestCase;
 
 class UserAgentTest extends TestCase
@@ -141,7 +141,7 @@ class TestableUserAgent extends UserAgent
     /**
      * Detect a value based on the given rules.
      *
-     * @param  array  $rules
+     * @param  array<string, string|array<string>>  $rules
      * @return string|null
      */
     public function detectRules(array $rules): ?string
@@ -152,8 +152,8 @@ class TestableUserAgent extends UserAgent
     /**
      * Merge multiple sets of rules into one.
      *
-     * @param  array  ...$rules
-     * @return array
+     * @param  array<string, string|array<string>>  ...$rules
+     * @return array<string, string|array<string>>
      */
     public function merge(array ...$rules): array
     {

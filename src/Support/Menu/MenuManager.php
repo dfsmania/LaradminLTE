@@ -26,7 +26,7 @@ class MenuManager
     /**
      * Create a new instance of the class.
      *
-     * @param  array  $menuCfg  An array with the raw menu items configuration
+     * @param  array<array-key, mixed>  $menuCfg  The menu configuration array
      * @return void
      */
     public function __construct(array $menuCfg = [])
@@ -89,7 +89,7 @@ class MenuManager
      * respective placement categories. Invalid menu items in the array will
      * be skipped.
      *
-     * @param  array  $items  An array with the raw menu items configuration
+     * @param  array<array-key, array<array-key, mixed>>  $items
      * @return void
      */
     protected function readNavbarMenuItems(array $items): void
@@ -122,7 +122,7 @@ class MenuManager
      * Read and validate the provided sidebar menu items. Invalid menu items in
      * the array will be skipped.
      *
-     * @param  array  $items  An array with the raw menu items configuration
+     * @param  array<array-key, array<array-key, mixed>>  $items
      * @return void
      */
     protected function readSidebarMenuItems(array $items): void

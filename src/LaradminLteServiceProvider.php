@@ -579,7 +579,7 @@ class LaradminLteServiceProvider extends ServiceProvider
      * A valid translatable array should have a string as the first element
      * and an optional array as the second element.
      *
-     * @param  array  $arr  The array to check.
+     * @param  array<array-key, mixed>  $arr  The array to check.
      * @return bool
      */
     private function isTranslatableArray(array $arr): bool

@@ -25,7 +25,7 @@ class HandlesValidationErrorsTest extends TestCase
     /**
      * Data provider for error key generation tests.
      *
-     * @return array
+     * @return array<string, array{string, string}>
      */
     public static function errorKeyProvider(): array
     {

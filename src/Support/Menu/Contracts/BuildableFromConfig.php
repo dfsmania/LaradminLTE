@@ -17,7 +17,8 @@ interface BuildableFromConfig
      * return a new instance of the class if the configuration is valid. If the
      * configuration is invalid, it should return null.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The configuration array of the
+     *                                           menu item
      * @return ?static
      */
     public static function createFromConfig(array $config): ?static;

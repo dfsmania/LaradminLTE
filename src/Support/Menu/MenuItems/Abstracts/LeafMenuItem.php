@@ -28,7 +28,7 @@ abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
      * rules are used with the Laravel Validator to ensure the configuration
      * adheres to the expected schema.
      *
-     * @var array<string, string|array>
+     * @var array<string, string|array<array-key, mixed>>
      */
     protected static array $cfgValidationRules = [];
 
@@ -67,7 +67,7 @@ abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
      * return a new instance of the class if the configuration is valid. If the
      * configuration is invalid, it should return null.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return ?static
      */
     public static function createFromConfig(array $config): ?static
@@ -137,7 +137,7 @@ abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
      * based on the provided configuration. It should return an instance of the
      * component that will be used to render the menu item.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @param  bool  $isActive  Whether the component should be marked as active
      * @return Component
      */
@@ -153,7 +153,7 @@ abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
      * based on the provided configuration. It should return an instance of the
      * active strategy that'll be used to determine if the menu item is active.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return ?ActiveStrategy
      */
     protected static function makeActiveStrategy(array $config): ?ActiveStrategy
@@ -173,7 +173,7 @@ abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
      * strategy that'll be used to determine if the menu item is allowed to be
      * shown.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return ?AllowStrategy
      */
     protected static function makeAllowStrategy(array $config): ?AllowStrategy

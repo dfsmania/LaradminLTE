@@ -87,7 +87,7 @@ class PublishableResource
     /**
      * Get the publish paths for this resource.
      *
-     * @return array The publish paths for this resource.
+     * @return array<string, string> The publish paths, keyed by source path.
      */
     public function getPublishPaths(): array
     {
@@ -101,8 +101,11 @@ class PublishableResource
      * Inspect the resource to determine existing and missing files relative to
      * its publish paths.
      *
-     * @return array An array containing 'existing', 'missing', and
-     *               'destinations' keys.
+     * @return array{
+     *     existing: list<string>,
+     *     missing: list<string>,
+     *     destinations: list<string>
+     * }
      */
     public function inspect(): array
     {
@@ -154,7 +157,7 @@ class PublishableResource
      *
      * @param  string  $source  The source path.
      * @param  string  $destination  The destination path.
-     * @return array The destination paths of the resource.
+     * @return list<string> The destination paths of the resource.
      */
     private function getResourceDestinations(
         string $source,

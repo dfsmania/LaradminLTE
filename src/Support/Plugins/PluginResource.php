@@ -47,7 +47,7 @@ class PluginResource
      * Additional HTML attributes for the resource. These attributes will be
      * rendered as extra HTML attributes on the resource tag.
      *
-     * @var array
+     * @var array<array-key, mixed>
      */
     public array $htmlAttributes;
 
@@ -56,7 +56,7 @@ class PluginResource
      *
      * @param  ResourceType  $type  The type of the resource
      * @param  string  $source  The source URL of the resource
-     * @param  array  $attributes  Additional HTML attributes for the resource
+     * @param  array<array-key, mixed>  $attributes  Additional HTML attributes
      * @return void
      */
     public function __construct(
@@ -73,7 +73,7 @@ class PluginResource
      * Create a new PluginResource instance from a raw configuration array. It
      * will return null when the configuration is invalid.
      *
-     * @param  array  $config  The raw plugin resource configuration array
+     * @param  array<array-key, mixed>  $config  The resource configuration
      * @return ?self
      */
     public static function createFromConfig(array $config): ?self

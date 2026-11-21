@@ -29,7 +29,7 @@ class CallableActiveStrategy implements ActiveStrategy
      * will be passed to the callable to help determine its active status. This
      * may be really useful when the menu is built dynamically.
      *
-     * @var array
+     * @var array<array-key, mixed>
      */
     protected array $rawConfig;
 
@@ -37,7 +37,8 @@ class CallableActiveStrategy implements ActiveStrategy
      * Create a new class instance.
      *
      * @param  callable  $callable  The callable to determine the active status
-     * @param  array  $rawConfig  The raw configuration of the menu item
+     * @param  array<array-key, mixed>  $rawConfig  The raw configuration of
+     *                                              the menu item
      * @return void
      */
     public function __construct(callable $callable, array $rawConfig = [])

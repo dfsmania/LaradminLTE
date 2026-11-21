@@ -10,7 +10,7 @@ class Sidebar extends Component
     /**
      * The set of valid Bootstrap themes that can be applied to the sidebar.
      *
-     * @var array
+     * @var list<string>
      */
     protected $validBootstrapThemes = [
         'light',

@@ -30,16 +30,16 @@
                 {{-- IP address and last active time --}}
                 <div>
                     <span class="text-muted small me-1">
-                        IP: {{ $session->ip_address }}
+                        IP: {{ $session->ipAddress }}
                     </span>
 
-                    @if($session->is_current_device)
+                    @if($session->isCurrentDevice)
                         <span class="badge rounded-pill text-bg-success fw-bold">
                             {{ __('ladmin::auth.profile.labels.this_dev') }}
                         </span>
                     @else
                         <span class="badge rounded-pill text-bg-secondary">
-                            {{ __('ladmin::auth.profile.labels.last_active') }}: {{ $session->last_active }}
+                            {{ __('ladmin::auth.profile.labels.last_active') }}: {{ $session->lastActive }}
                         </span>
                     @endif
                 </div>

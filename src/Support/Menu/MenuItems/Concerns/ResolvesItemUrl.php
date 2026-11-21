@@ -11,7 +11,7 @@ trait ResolvesItemUrl
      * 'url' key, or a named route using the 'route' key. If neither is
      * defined, a fallback placeholder is returned.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return string
      */
     protected static function getUrlFromConfig(array $config): string
@@ -48,7 +48,7 @@ trait ResolvesItemUrl
      * Check if the 'url' key is defined in the configuration and is a valid
      * string.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return bool
      */
     protected static function hasValidUrlKey(array $config): bool
@@ -60,7 +60,7 @@ trait ResolvesItemUrl
      * Check if the 'route' key is defined in the configuration and is a valid
      * array.
      *
-     * @param  array  $config  The configuration array of the menu item
+     * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return bool
      */
     protected static function hasValidRouteKey(array $config): bool
