@@ -10,6 +10,7 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Testing\PendingCommand;
 
 class InstallCommandTest extends TestCase
 {
@@ -63,7 +64,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_installs_required_resources(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--no-interaction' => true,
         ])->assertSuccessful();
 
@@ -73,7 +74,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_skips_optional_resources_in_non_interactive(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--no-interaction' => true,
         ])->assertSuccessful();
 
@@ -83,7 +84,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_installs_only_the_requested_resource(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['translations'],
             '--no-interaction' => true,
         ])->assertSuccessful();
@@ -96,7 +97,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_installs_multiple_requested_resources(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['assets', 'translations'],
             '--no-interaction' => true,
         ])->assertSuccessful();
@@ -109,7 +110,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_ignores_duplicate_resource_keys(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['assets', 'assets'],
             '--no-interaction' => true,
         ])->assertSuccessful();
@@ -120,7 +121,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_rejects_unknown_resources_before_installing(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['assets', 'unknown'],
             '--no-interaction' => true,
         ])->assertFailed();
@@ -133,7 +134,7 @@ class InstallCommandTest extends TestCase
         $destination = $this->resourceDestination('config');
         File::put($destination, 'Customized content');
 
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['config'],
             '--no-interaction' => true,
         ])->assertSuccessful();
@@ -150,7 +151,7 @@ class InstallCommandTest extends TestCase
         $missing = $this->resourceDestination('assets', 'extra.txt');
         File::put($existing, 'Customized content');
 
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['assets'],
             '--no-interaction' => true,
         ])->assertSuccessful();
@@ -173,7 +174,7 @@ class InstallCommandTest extends TestCase
         $destination = $this->resourceDestination('config');
         File::put($destination, 'Customized content');
 
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['config'],
             '--force' => true,
             '--no-interaction' => true,
@@ -187,7 +188,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_warns_when_migrations_are_installed(): void
     {
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['migrations'],
             '--no-interaction' => true,
         ])
@@ -199,7 +200,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_installs_selected_optional_resources(): void
     {
-        $this->artisan('ladmin:install')
+        $this->installCommand()
             ->expectsQuestion(
                 'Optional resources',
                 ['translations', 'migrations'],
@@ -214,7 +215,7 @@ class InstallCommandTest extends TestCase
 
     public function test_it_skips_unselected_optional_resources(): void
     {
-        $this->artisan('ladmin:install')
+        $this->installCommand()
             ->expectsQuestion(
                 'Optional resources',
                 [],
@@ -232,7 +233,7 @@ class InstallCommandTest extends TestCase
         $destination = $this->resourceDestination('config');
         File::put($destination, 'Customized content');
 
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['config'],
         ])
             ->expectsConfirmation(
@@ -252,7 +253,7 @@ class InstallCommandTest extends TestCase
         $destination = $this->resourceDestination('config');
         File::put($destination, 'Customized content');
 
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['config'],
         ])
             ->expectsConfirmation(
@@ -285,7 +286,7 @@ class InstallCommandTest extends TestCase
         // Attempt to install the resource, which should fail due to the
         // simulated failing vendor:publish command.
 
-        $this->artisan('ladmin:install', [
+        $this->installCommand([
             '--resource' => ['config'],
             '--no-interaction' => true,
         ])->assertFailed();
@@ -296,6 +297,24 @@ class InstallCommandTest extends TestCase
     // ------------------------------------------------------------------------
     // HELPER METHODS
     // ------------------------------------------------------------------------
+
+    /**
+     * Run the installer with mocked console output.
+     *
+     * @param  array<string, mixed>  $parameters
+     */
+    private function installCommand(array $parameters = []): PendingCommand
+    {
+        $command = $this->artisan('ladmin:install', $parameters);
+
+        if (! $command instanceof PendingCommand) {
+            throw new \LogicException(
+                'The installer requires mocked console output.'
+            );
+        }
+
+        return $command;
+    }
 
     /**
      * Register isolated publishable resources for testing.

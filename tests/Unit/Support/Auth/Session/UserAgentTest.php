@@ -84,6 +84,25 @@ class UserAgentTest extends TestCase
         ));
     }
 
+    public function test_it_merges_array_patterns_without_nesting(): void
+    {
+        $agent = $this->agent('Test');
+
+        $this->assertSame([
+            'string_then_array' => ['a', 'b', 'c'],
+            'array_then_array' => ['a', 'b', 'c'],
+        ], $agent->merge(
+            [
+                'string_then_array' => 'a',
+                'array_then_array' => ['first' => 'a'],
+            ],
+            [
+                'string_then_array' => ['b', 'c'],
+                'array_then_array' => ['first' => 'b', 'second' => 'c'],
+            ],
+        ));
+    }
+
     public function test_it_caches_null_results_as_a_resolved_value(): void
     {
         $agent = $this->agent('Unknown');

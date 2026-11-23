@@ -11,10 +11,10 @@ use DFSmania\LaradminLte\Support\Menu\Contracts\MenuItem;
 use DFSmania\LaradminLte\Support\Menu\Enums\MenuItemType;
 use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Support\Menu\MenuItemFactory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
-use Illuminate\View\View;
 
 /**
  * Abstract class representing a composite menu item in the menu system.
@@ -376,20 +376,22 @@ abstract class CompositeMenuItem implements BuildableFromConfig, MenuItem
             $this->children
         ));
 
-        // Now, render the underlying blade component with the children inside
-        // the configured slot. This will return a string or a View instance.
+        // Then, render the underlying blade component with the children in its
+        // slot. If the component does not render a view, an exception will be
+        // thrown.
 
         $slotVar = static::getChildrenSlotVariable();
-        $view = $this->bladeComponent->render()
-            ->with([$slotVar => new HtmlString($childrenHtml)]);
+        $view = $this->bladeComponent->render();
 
-        // If the rendered output is a View instance, we will pass the data
-        // from the blade component to the view and render it again.
-
-        if ($view instanceof View) {
-            $viewData = $this->bladeComponent->data();
-            $view = $view->with($viewData)->render();
+        if (! $view instanceof View) {
+            throw new \UnexpectedValueException(
+                'Composite menu components must render a view.'
+            );
         }
+
+        $view = $view->with([$slotVar => new HtmlString($childrenHtml)])
+            ->with($this->bladeComponent->data())
+            ->render();
 
         // Finally, we will return the rendered output as an HtmlString. This
         // ensures that the output is treated as safe HTML and can be directly
