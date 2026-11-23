@@ -10,6 +10,7 @@ use DFSmania\LaradminLte\Support\Menu\Enums\MenuPlacement;
 use DFSmania\LaradminLte\Support\Menu\MenuItems\Abstracts\CompositeMenuItem;
 use DFSmania\LaradminLte\Support\Menu\MenuItems\Abstracts\LeafMenuItem;
 use DFSmania\LaradminLte\Tests\TestCase;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\View\Component;
 
 class MenuItemAbstractsTest extends TestCase
@@ -40,6 +41,60 @@ class MenuItemAbstractsTest extends TestCase
         $this->assertNull($composite->allowStrategy([]));
     }
 
+    public function test_leaf_component_renders_htmlable_output(): void
+    {
+        // Create a test component that renders HTML.
+
+        $component = new class extends Component
+        {
+            public function render(): Htmlable
+            {
+                return new class implements Htmlable
+                {
+                    public function toHtml(): string
+                    {
+                        return '<span>Item</span>';
+                    }
+                };
+            }
+        };
+
+        // Create a test leaf component with the HTML-rendering component.
+
+        $leaf = new TestLeafComponent($component);
+
+        // Assert that the rendered HTML matches the expected output.
+
+        $this->assertSame(
+            '<span>Item</span>',
+            $leaf->renderToHtml()->toHtml()
+        );
+    }
+
+    public function test_leaf_component_rejects_closure_output(): void
+    {
+        // Create a test component that renders a closure.
+
+        $component = new class extends Component
+        {
+            public function render(): \Closure
+            {
+                return fn () => 'Item';
+            }
+        };
+
+        // Create a test leaf component with the closure-rendering component
+        // and expect an exception when rendering it.
+
+        $this->expectException(\UnexpectedValueException::class);
+
+        $this->expectExceptionMessage(
+            'Leaf menu components must render a view or HTML.'
+        );
+
+        (new TestLeafComponent($component))->renderToHtml();
+    }
+
     public function test_empty_composite_exposes_default_hooks(): void
     {
         $emptyComposite = new TestCompositeComponent(new FakeComponent);
@@ -57,6 +112,23 @@ class MenuItemAbstractsTest extends TestCase
         ]);
 
         $this->assertTrue($allowStrategy->isAllowed());
+    }
+
+    public function test_composite_component_requires_a_view(): void
+    {
+        // Create a test composite component without a view.
+
+        $composite = new TestCompositeComponent(new FakeComponent);
+
+        // Expect an exception when attempting to render it.
+
+        $this->expectException(\UnexpectedValueException::class);
+
+        $this->expectExceptionMessage(
+            'Composite menu components must render a view.'
+        );
+
+        $composite->renderToHtml();
     }
 
     public function test_composite_creation_from_empty_config(): void

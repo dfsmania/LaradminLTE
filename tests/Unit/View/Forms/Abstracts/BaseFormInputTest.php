@@ -101,6 +101,16 @@ class BaseFormInputTest extends TestCase
         $this->assertSame('ladmin::forms.input', $view->getName());
     }
 
+    public function test_it_reports_a_missing_view(): void
+    {
+        $this->app['view']->replaceNamespace('ladmin', [__FILE__]);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('View [ladmin::forms.input] not found.');
+
+        (new StubFormInput('username'))->render();
+    }
+
     // ------------------------------------------------------------------------
     // HELPER METHODS
     // ------------------------------------------------------------------------

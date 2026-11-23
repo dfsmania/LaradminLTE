@@ -109,6 +109,16 @@ class LaradminLteServiceProviderTest extends TestCase
         $this->assertSame($request, $resetResponse->getData()['request']);
     }
 
+    public function test_it_reports_a_missing_authentication_view(): void
+    {
+        $this->app['view']->replaceNamespace('ladmin', [__FILE__]);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('View [ladmin::auth.login] not found.');
+
+        app(LoginViewResponse::class)->toResponse(Request::create('/test'));
+    }
+
     public function test_it_compiles_the_package_plugin_directive(): void
     {
         $compiled = Blade::compileString('@ladmin_plugin("charts")');

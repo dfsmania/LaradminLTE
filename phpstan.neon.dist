@@ -3,7 +3,7 @@ includes:
 
 parameters:
     # Setup the analysis level (10 is the highest).
-    level: 6
+    level: 7
 
     # Setup the paths to be analysed.
     paths:

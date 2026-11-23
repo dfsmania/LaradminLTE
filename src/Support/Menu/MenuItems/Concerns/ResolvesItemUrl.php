@@ -50,6 +50,8 @@ trait ResolvesItemUrl
      *
      * @param  array<array-key, mixed>  $config  The menu item configuration
      * @return bool
+     *
+     * @phpstan-assert-if-true array{url: non-empty-string, ...} $config
      */
     protected static function hasValidUrlKey(array $config): bool
     {

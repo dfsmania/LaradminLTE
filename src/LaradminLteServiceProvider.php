@@ -11,6 +11,7 @@ use DFSmania\LaradminLte\View\Auth;
 use DFSmania\LaradminLte\View\Forms;
 use DFSmania\LaradminLte\View\Layout;
 use DFSmania\LaradminLte\View\Profile;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -301,11 +302,11 @@ class LaradminLteServiceProvider extends ServiceProvider
         // them regardless of the enabled features.
 
         Fortify::loginView(function () {
-            return view("{$this->pkgPrefix}::auth.login");
+            return $this->resolvePackageView('auth.login');
         });
 
         Fortify::confirmPasswordView(function () {
-            return view("{$this->pkgPrefix}::auth.confirm-password");
+            return $this->resolvePackageView('auth.confirm-password');
         });
 
         // Manage the set of enabled Fortify features. For each feature
@@ -358,7 +359,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Register the view for the registration page.
 
         Fortify::registerView(function () {
-            return view("{$this->pkgPrefix}::auth.register");
+            return $this->resolvePackageView('auth.register');
         });
 
         // Return the name of the registration feature to be added to the list
@@ -385,11 +386,11 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Register the views for the password reset pages.
 
         Fortify::requestPasswordResetLinkView(function () {
-            return view("{$this->pkgPrefix}::auth.forgot-password");
+            return $this->resolvePackageView('auth.forgot-password');
         });
 
         Fortify::resetPasswordView(function ($request) {
-            return view("{$this->pkgPrefix}::auth.reset-password", [
+            return $this->resolvePackageView('auth.reset-password', [
                 'request' => $request,
             ]);
         });
@@ -410,7 +411,7 @@ class LaradminLteServiceProvider extends ServiceProvider
         // Register the view for the email verification page.
 
         Fortify::verifyEmailView(function () {
-            return view("{$this->pkgPrefix}::auth.verify-email");
+            return $this->resolvePackageView('auth.verify-email');
         });
 
         // Return the name of the email verification feature to be added to the
@@ -560,6 +561,28 @@ class LaradminLteServiceProvider extends ServiceProvider
         $this->commands([
             InstallCommand::class,
         ]);
+    }
+
+    /**
+     * Resolve any view registered by the package.
+     *
+     * Add package prefix to the view name and ensure the view exists.
+     *
+     * @param  array<string, mixed>  $data  The data to pass to the view
+     */
+    private function resolvePackageView(string $name, array $data = []): View
+    {
+        // Prepend the package prefix to the view name and ensure it exists.
+
+        $view = "{$this->pkgPrefix}::{$name}";
+
+        if (! view()->exists($view)) {
+            throw new \InvalidArgumentException("View [{$view}] not found.");
+        }
+
+        // Return the view with the provided data.
+
+        return view($view, $data);
     }
 
     /**

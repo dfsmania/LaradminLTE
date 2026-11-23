@@ -7,10 +7,11 @@ use DFSmania\LaradminLte\Support\Menu\Contracts\ActiveStrategy;
 use DFSmania\LaradminLte\Support\Menu\Contracts\AllowStrategy;
 use DFSmania\LaradminLte\Support\Menu\Contracts\BuildableFromConfig;
 use DFSmania\LaradminLte\Support\Menu\Contracts\MenuItem;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
-use Illuminate\View\View;
 
 /**
  * Abstract class representing a leaf menu item in the menu system.
@@ -246,17 +247,20 @@ abstract class LeafMenuItem implements BuildableFromConfig, MenuItem
      */
     public function renderToHtml(): HtmlString
     {
-        // Render the underlying blade component. This will return a string or
-        // a View instance.
+        // Render the underlying blade component. If a view is returned, we
+        // will pass the component's data to it. If HTML is returned, we will
+        // use it directly. Otherwise, an exception will be thrown.
 
         $view = $this->bladeComponent->render();
 
-        // If the rendered output is a View instance, we will pass the data
-        // from the blade component to the view and render it again.
-
         if ($view instanceof View) {
-            $viewData = $this->bladeComponent->data();
-            $view = $view->with($viewData)->render();
+            $view = $view->with($this->bladeComponent->data())->render();
+        } elseif ($view instanceof Htmlable) {
+            $view = $view->toHtml();
+        } elseif (! is_string($view)) {
+            throw new \UnexpectedValueException(
+                'Leaf menu components must render a view or HTML.'
+            );
         }
 
         // Finally, we will return the rendered output as an HtmlString. This

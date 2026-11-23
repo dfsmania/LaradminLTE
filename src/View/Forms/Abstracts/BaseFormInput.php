@@ -141,7 +141,13 @@ abstract class BaseFormInput extends Component
      */
     public function render(): View|string
     {
-        return view($this->viewName());
+        $view = $this->viewName();
+
+        if (! view()->exists($view)) {
+            throw new \InvalidArgumentException("View [{$view}] not found.");
+        }
+
+        return view($view);
     }
 
     /**

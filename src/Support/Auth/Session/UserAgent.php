@@ -226,24 +226,26 @@ class UserAgent extends MobileDetect
      * @param  array<string, string|array<string>>  ...$all
      * @return array<string, string|array<string>>
      */
-    protected function mergeRules(...$all): array
+    protected function mergeRules(array ...$all): array
     {
         $merged = [];
 
         // Iterate through each set of rules provided in the arguments and
-        // merge them together into a single array. If a key already exists in
-        // the merged array, append the new value to the existing value using a
-        // pipe or add it to an array if the existing value is already an array.
-        // This allows for multiple regex patterns to be associated with the
-        // same key, enabling more comprehensive detection of platforms and
-        // browsers.
+        // merge them together into a single array. For duplicate keys, join
+        // strings with a pipe or combine patterns into a flat array if either
+        // value is an array. This allows for multiple regex patterns to be
+        // associated with the same key, enabling more comprehensive detection
+        // of platforms and browsers.
 
         foreach ($all as $rules) {
             foreach ($rules as $key => $value) {
                 if (! array_key_exists($key, $merged)) {
                     $merged[$key] = $value;
-                } elseif (is_array($merged[$key])) {
-                    $merged[$key][] = $value;
+                } elseif (is_array($merged[$key]) || is_array($value)) {
+                    $merged[$key] = array_merge(
+                        array_values((array) $merged[$key]),
+                        array_values((array) $value),
+                    );
                 } else {
                     $merged[$key] .= '|'.$value;
                 }

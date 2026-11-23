@@ -268,7 +268,7 @@ class InstallCommand extends Command
      * Prompt the user to select optional resources to install.
      *
      * @param  Collection<string, PublishableResource>  $resources
-     * @return list<string> The selected optional resources keys.
+     * @return array<int|string> The selected optional resources keys.
      */
     private function selectOptionalResources(Collection $resources): array
     {
